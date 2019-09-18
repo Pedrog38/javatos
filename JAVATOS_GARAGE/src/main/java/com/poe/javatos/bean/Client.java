@@ -20,6 +20,10 @@ public class Client {
 	public Integer getId() {
 		return id;
 	}
+	/**
+	 * test github
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
