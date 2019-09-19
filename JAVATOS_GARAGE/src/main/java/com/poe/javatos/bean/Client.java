@@ -1,5 +1,5 @@
 package com.poe.javatos.bean;
-
+// test 1
 import java.util.Date;
 
 import javax.persistence.Column;
