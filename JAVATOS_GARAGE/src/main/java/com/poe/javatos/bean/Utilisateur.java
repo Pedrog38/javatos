@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,7 +38,10 @@ public class Utilisateur
 	
 	@ManyToMany
 	@JoinTable(name = "t_utilisateur_has_t_role", 
-	joinColumns = {@JoinColumn(name = "t_utilisateur_id", referencedColumnName = "id" )})
+	joinColumns =
+			@JoinColumn(name = "t_utilisateur_id", referencedColumnName = "id" ),
+			inverseJoinColumns = 
+			@JoinColumn(name = "t_role_id",referencedColumnName = "id"))
 	private List<RoleUtilisateur> roles;
 
 	public Integer getId() {
