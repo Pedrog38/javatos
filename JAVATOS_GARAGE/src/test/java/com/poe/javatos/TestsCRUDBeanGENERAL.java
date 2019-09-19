@@ -63,7 +63,6 @@ public class TestsCRUDBeanGENERAL {
 	@Test
 	public void testBeanAsso()
 	{
-		//test
 		
 	}
 	
