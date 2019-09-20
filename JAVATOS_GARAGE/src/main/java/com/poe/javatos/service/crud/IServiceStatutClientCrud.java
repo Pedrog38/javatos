@@ -1,6 +1,7 @@
 package com.poe.javatos.service.crud;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.poe.javatos.bean.StatutClient;
 
@@ -8,7 +9,7 @@ public interface IServiceStatutClientCrud {
 	
 	StatutClient createStatutclient(StatutClient statutClient);
 	
-	StatutClient findByIdStatutClient(Integer idStatutClient);
+	Optional<StatutClient> findByIdStatutClient(Integer idStatutClient);
 	
 	List<StatutClient> findAllStatutClient();
 	
