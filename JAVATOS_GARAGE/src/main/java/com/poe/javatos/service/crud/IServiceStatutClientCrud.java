@@ -9,7 +9,9 @@ public interface IServiceStatutClientCrud {
 	
 	StatutClient createStatutclient(StatutClient statutClient);
 	
-	Optional<StatutClient> findByIdStatutClient(Integer idStatutClient);
+	Optional<StatutClient> findOptionalByIdStatutClient(Integer idStatutClient);
+	
+	StatutClient findByIdStatutClient(Integer idStatutClient);
 	
 	List<StatutClient> findAllStatutClient();
 	

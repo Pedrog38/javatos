@@ -28,8 +28,14 @@ public class ServiceStatutClientCrudImpl implements IServiceStatutClientCrud {
 
 	@Override
 	@Transactional
-	public Optional<StatutClient> findByIdStatutClient(Integer idStatutClient) {
+	public Optional<StatutClient> findOptionalByIdStatutClient(Integer idStatutClient) {
 		return dao.findById(idStatutClient);
+	}
+	
+	@Override
+	@Transactional
+	public StatutClient findByIdStatutClient(Integer idStatutClient) {
+		return dao.findById(idStatutClient).orElse(null);
 	}
 
 	@Override
@@ -50,5 +56,6 @@ public class ServiceStatutClientCrudImpl implements IServiceStatutClientCrud {
 		dao.deleteById(idStatutClient);
 
 	}
+
 
 }
