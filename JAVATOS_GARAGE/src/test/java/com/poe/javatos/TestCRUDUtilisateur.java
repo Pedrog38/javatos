@@ -44,7 +44,7 @@ public class TestCRUDUtilisateur {
 		dao.createUtilisateur(u1);
 		dao.createUtilisateur(u2);
 		
-		Utilisateur uRecup1 = dao.findByUtilisateur(1);
+		Utilisateur uRecup1 = dao.findByIdUtilisateur(1);
 		assertNotNull(uRecup1);
 		assertEquals("Commercial",uRecup1.getFonction());
 		assertEquals("KEBBAJ",uRecup1.getNom());
@@ -52,7 +52,7 @@ public class TestCRUDUtilisateur {
 		assertEquals("20Shadows",uRecup1.getUsername());
 		assertEquals("natacha",uRecup1.getPassword());
 		
-		Utilisateur uRecup2 = dao.findByUtilisateur(2);
+		Utilisateur uRecup2 = dao.findByIdUtilisateur(2);
 		assertNotNull(uRecup2);
 		assertEquals("Magasinier",uRecup2.getFonction());
 		assertEquals("Dupont",uRecup2.getNom());
@@ -70,14 +70,14 @@ public class TestCRUDUtilisateur {
 		dao.updateUtilisateur(u1Modifie);
 		dao.updateUtilisateur(u2Modifie);
 		
-		Utilisateur uRecupModifie1 = dao.findByUtilisateur(1);
+		Utilisateur uRecupModifie1 = dao.findByIdUtilisateur(1);
 		assertEquals("Stagiaire",uRecupModifie1.getFonction());
 		assertEquals("KEBBAJ",uRecupModifie1.getNom());
 		assertEquals("Yassine",uRecupModifie1.getPrenom());
 		assertEquals("20Shadows",uRecupModifie1.getUsername());
 		assertEquals("natacha",uRecupModifie1.getPassword());
 		
-		Utilisateur uRecupModifie2 = dao.findByUtilisateur(2);
+		Utilisateur uRecupModifie2 = dao.findByIdUtilisateur(2);
 		assertEquals("Alternant",uRecupModifie2.getFonction());
 		assertEquals("KEBBAJ",uRecupModifie2.getNom());
 		assertEquals("Yassine",uRecupModifie2.getPrenom());

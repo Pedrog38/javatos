@@ -46,13 +46,13 @@ public class ServiceUtilisateurCrudImpl implements IServiceUtilisateurCrud {
 
 	@Override
 	@Transactional
-	public Optional<Utilisateur> findOptionalByUtilisateur(final Integer idUtilisateur) {
+	public Optional<Utilisateur> findOptionalByIdUtilisateur(final Integer idUtilisateur) {
 			return dao.findById(idUtilisateur);
 	}
 	
 	@Override
 	@Transactional
-	public Utilisateur findByUtilisateur(final Integer idUtilisateur) {
+	public Utilisateur findByIdUtilisateur(final Integer idUtilisateur) {
 		return dao.findById(idUtilisateur).orElse(null);
 	}
 
