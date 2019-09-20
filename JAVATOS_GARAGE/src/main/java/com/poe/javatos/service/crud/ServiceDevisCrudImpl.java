@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.repository.crud.IDevisRepositoryCrud;
+import com.poe.javatos.repository.crud.ILigneDevisRepositoryCrud;
 
 @Service
 public class ServiceDevisCrudImpl implements IServiceDevisCrud 
@@ -17,6 +18,10 @@ public class ServiceDevisCrudImpl implements IServiceDevisCrud
 	@Autowired
 	private IDevisRepositoryCrud dao;
 	
+	public IDevisRepositoryCrud getDao()
+	{
+		return dao;
+	}
 	
 	@Override
 	@Transactional
@@ -27,10 +32,18 @@ public class ServiceDevisCrudImpl implements IServiceDevisCrud
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Devis> findByIdDevis(Integer idDevis) 
+	public Optional<Devis> findOptionalByIdDevis(Integer idDevis) 
 	{
 		return dao.findById(idDevis);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Devis findByIdDevis(Integer idDevis) 
+	{
+		return dao.findById(idDevis).orElse(null);
+	}
+	
 
 	@Override
 	@Transactional(readOnly = true)

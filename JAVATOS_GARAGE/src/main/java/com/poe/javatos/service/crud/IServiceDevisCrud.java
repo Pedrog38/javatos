@@ -10,7 +10,8 @@ import com.poe.javatos.bean.Devis;
 public interface IServiceDevisCrud 
 {
 	Devis createDevis(Devis devis);
-	Optional<Devis> findByIdDevis(Integer idDevis);
+	Optional<Devis> findOptionalByIdDevis(Integer idDevis);
+	Devis findByIdDevis(Integer idDevis);
 	List<Devis> findAllDevis();
 	Devis updateDevis(Devis devis);
 	void deleteByIdDevis(Integer idDevis);

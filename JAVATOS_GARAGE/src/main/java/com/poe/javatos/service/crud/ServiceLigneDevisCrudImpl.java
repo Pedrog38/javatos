@@ -17,6 +17,10 @@ public class ServiceLigneDevisCrudImpl implements IServiceLigneDevisCrud
 	@Autowired
 	private ILigneDevisRepositoryCrud dao;
 	
+	public ILigneDevisRepositoryCrud getDao()
+	{
+		return dao;
+	}
 	
 	@Override
 	@Transactional
@@ -27,10 +31,18 @@ public class ServiceLigneDevisCrudImpl implements IServiceLigneDevisCrud
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<LigneDevis> findByIdLigneDevis(Integer idLigneDevis) 
+	public LigneDevis findByIdLigneDevis(Integer idLigneDevis) 
+	{
+		return dao.findById(idLigneDevis).orElse(null);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<LigneDevis> findOptionalByIdLigneDevis(Integer idLigneDevis) 
 	{
 		return dao.findById(idLigneDevis);
 	}
+	
 
 	@Override
 	@Transactional(readOnly = true)

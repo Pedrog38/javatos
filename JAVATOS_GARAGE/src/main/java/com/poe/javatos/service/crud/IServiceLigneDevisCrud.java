@@ -8,7 +8,8 @@ import com.poe.javatos.bean.LigneDevis;
 public interface IServiceLigneDevisCrud 
 {
 	LigneDevis createLigneDevis(LigneDevis ligneDevis);
-	Optional<LigneDevis> findByIdLigneDevis(Integer idLigneDevis);
+	Optional<LigneDevis> findOptionalByIdLigneDevis(Integer idLigneDevis);
+	LigneDevis findByIdLigneDevis(Integer idLigneDevis);
 	List<LigneDevis> findAllLigneDevis();
 	LigneDevis updateLigneDevis(LigneDevis ligneDevis);
 	void deleteByIdLigneDevis(Integer idLigneDevis);
