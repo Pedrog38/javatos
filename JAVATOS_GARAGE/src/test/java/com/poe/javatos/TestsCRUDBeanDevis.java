@@ -15,9 +15,11 @@ import com.poe.javatos.bean.Devis;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
+import com.poe.javatos.service.crud.IServiceUtilisateurCrud;
 import com.poe.javatos.service.crud.ServiceClientCrudImpl;
 import com.poe.javatos.service.crud.ServiceDevisCrudImpl;
 import com.poe.javatos.service.crud.ServiceLigneDevisCrudImpl;
+import com.poe.javatos.service.crud.ServiceUtilisateurCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -65,7 +67,7 @@ public class TestsCRUDBeanDevis
 		 assertEquals(date1,dRecup1.getDateCreation());
 		 assertEquals("Statut1", dRecup1.getStatut());
 		 assertEquals(daoClient.findByIdClient(1),dRecup1.getClient());
-		 assertEquals(daoUtilisateur.findUtilisateurById(1), dRecup1.getCommercialResponsable());
+		 assertEquals(daoUtilisateur.findByIdUtilisateur(1), dRecup1.getCommercialResponsable());
 		 
 		 Devis dRecup2 = dao.findByIdDevis(2);
 		 
@@ -76,7 +78,7 @@ public class TestsCRUDBeanDevis
 		 assertEquals(date2,dRecup2.getDateCreation());
 		 assertEquals("Statut2", dRecup2.getStatut());
 		 assertEquals(daoClient.findByIdClient(2),dRecup2.getClient());
-		 assertEquals(daoUtilisateur.findUtilisateurById(2), dRecup2.getCommercialResponsable());
+		 assertEquals(daoUtilisateur.findByIdUtilisateur(2), dRecup2.getCommercialResponsable());
 		 
 		 Devis d1Modifie = d1;
 		 d1Modifie.setStatut("StatutModifie1");
@@ -95,7 +97,7 @@ public class TestsCRUDBeanDevis
 		 assertEquals(date1,dRecupModifie1.getDateCreation());
 		 assertEquals("StatutModifie1", dRecupModifie1.getStatut());
 		 assertEquals(daoClient.findByIdClient(1),dRecupModifie1.getClient());
-		 assertEquals(daoUtilisateur.findUtilisateurById(1), dRecupModifie1.getCommercialResponsable());
+		 assertEquals(daoUtilisateur.findByIdUtilisateur(1), dRecupModifie1.getCommercialResponsable());
 		 
 		 Devis dRecupModifie2 = dao.findByIdDevis(2);
 		 
@@ -106,7 +108,7 @@ public class TestsCRUDBeanDevis
 		 assertEquals(date2,dRecupModifie2.getDateCreation());
 		 assertEquals("StatutModifie2", dRecupModifie2.getStatut());
 		 assertEquals(daoClient.findByIdClient(2),dRecupModifie2.getClient());
-		 assertEquals(daoUtilisateur.findUtilisateurById(2), dRecupModifie2.getCommercialResponsable());
+		 assertEquals(daoUtilisateur.findByIdUtilisateur(2), dRecupModifie2.getCommercialResponsable());
 		 
 		 List<Devis> allDevis = dao.findAllDevis();
 		 assertEquals(2, allDevis.size());
@@ -118,7 +120,7 @@ public class TestsCRUDBeanDevis
 		 assertEquals(date1,allDevis.get(1).getDateCreation());
 		 assertEquals("StatutModifie1", allDevis.get(1).getStatut());
 		 assertEquals(daoClient.findByIdClient(1),allDevis.get(1).getClient());
-		 assertEquals(daoUtilisateur.findUtilisateurById(1), allDevis.get(1).getCommercialResponsable());
+		 assertEquals(daoUtilisateur.findByIdUtilisateur(1), allDevis.get(1).getCommercialResponsable());
 		 
 		 assertNotNull(allDevis.get(2));
 		 
@@ -127,7 +129,7 @@ public class TestsCRUDBeanDevis
 		 assertEquals(date2,allDevis.get(2).getDateCreation());
 		 assertEquals("StatutModifie2", allDevis.get(2).getStatut());
 		 assertEquals(daoClient.findByIdClient(2),allDevis.get(2).getClient());
-		 assertEquals(daoUtilisateur.findUtilisateurById(2), allDevis.get(2).getCommercialResponsable());
+		 assertEquals(daoUtilisateur.findByIdUtilisateur(2), allDevis.get(2).getCommercialResponsable());
 		 
 	}
 	

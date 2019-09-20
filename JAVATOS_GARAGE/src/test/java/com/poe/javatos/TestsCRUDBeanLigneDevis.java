@@ -3,7 +3,6 @@ package com.poe.javatos;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,12 +10,13 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
+import com.poe.javatos.service.crud.IServiceModelCrud;
 import com.poe.javatos.service.crud.ServiceDevisCrudImpl;
 import com.poe.javatos.service.crud.ServiceLigneDevisCrudImpl;
+import com.poe.javatos.service.crud.ServiceModelCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
