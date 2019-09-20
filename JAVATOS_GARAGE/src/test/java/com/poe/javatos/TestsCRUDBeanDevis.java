@@ -2,9 +2,7 @@ package com.poe.javatos;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,12 +11,13 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.Devis;
-import com.poe.javatos.bean.LigneDevis;
-import com.poe.javatos.bean.Utilisateur;
+import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
+import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
+import com.poe.javatos.service.crud.ServiceClientCrudImpl;
 import com.poe.javatos.service.crud.ServiceDevisCrudImpl;
+import com.poe.javatos.service.crud.ServiceLigneDevisCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,8 +28,8 @@ public class TestsCRUDBeanDevis
 	{
 		 IServiceDevisCrud dao = new ServiceDevisCrudImpl();
 		 IServiceClientCrud daoClient = new ServiceClientCrudImpl();
-		 IServiceLignesDevisCrud daoLignesDevis = new ServiceLignesDevisImpl();
-		 IServiceUtilisateurCrud daoUtilisateur = new ServiceUtilisateurImpl();
+		 IServiceLigneDevisCrud daoLignesDevis = new ServiceLigneDevisCrudImpl();
+		 IServiceUtilisateurCrud daoUtilisateur = new ServiceUtilisateurCrudImpl();
 		 
 		 
 		 
