@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.poe.javatos.bean.RoleUtilisateur;
 import com.poe.javatos.service.crud.IServiceRoleUtilisateurCrud;
 import com.poe.javatos.service.crud.ServiceRoleUtilisateurCrudImpl;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,6 +33,7 @@ public class TestCRUDRoleUtilisateur {
 		r2.setId(2);
 		r2.setNom("Magasinier");
 		
+		System.err.println(daoRole.getDao());
 		daoRole.createRoleUtilisateur(r1);
 		daoRole.createRoleUtilisateur(r2);
 		
