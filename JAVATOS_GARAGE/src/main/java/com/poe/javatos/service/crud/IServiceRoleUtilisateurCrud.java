@@ -12,7 +12,9 @@ public interface IServiceRoleUtilisateurCrud {
 		List<RoleUtilisateur> findAllRoleUtilisateur();
 		
 		//Afficher une ligne t_role par Id
-		RoleUtilisateur findByIdRoleutilisateur(final Integer idRoleUtilisateur);
+		RoleUtilisateur findByIdRoleUtilisateur(final Integer idRoleUtilisateur);
+		
+		Optional<RoleUtilisateur> findOptionalByIdRoleUtilisateur(final Integer idRoleUtilisateur);
 		
 		//Creer une ligne dans t_role
 		RoleUtilisateur createRoleUtilisateur(final RoleUtilisateur pRoleUtilisateur);

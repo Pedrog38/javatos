@@ -28,7 +28,7 @@ public class ServiceRoleUtilisateurCrudImpl implements IServiceRoleUtilisateurCr
 
 	@Override
 	@Transactional
-	public RoleUtilisateur findByIdRoleutilisateur(Integer idRoleUtilisateur) {
+	public RoleUtilisateur findByIdRoleUtilisateur(Integer idRoleUtilisateur) {
 		return dao.findById(idRoleUtilisateur).orElse(null);
 		
 	}
@@ -54,6 +54,12 @@ public class ServiceRoleUtilisateurCrudImpl implements IServiceRoleUtilisateurCr
 		
 		
 		
+	}
+
+	@Override
+	public Optional<RoleUtilisateur> findOptionalByIdRoleUtilisateur(Integer idRoleUtilisateur) {
+		// TODO Auto-generated method stub
+		return dao.findById(idRoleUtilisateur);
 	}
 
 	

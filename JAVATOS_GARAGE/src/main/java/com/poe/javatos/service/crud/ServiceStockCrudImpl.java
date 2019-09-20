@@ -1,6 +1,7 @@
 package com.poe.javatos.service.crud;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,11 @@ public class ServiceStockCrudImpl implements IServiceStockCrud {
 	public void deleteByIdStock(Integer idStock) {
 		dao.deleteById(idStock);
 		
+	}
+
+	@Override
+	public Optional<Stock> findOptionalByIdStock(Integer idStock) {
+		return dao.findById(idStock);
 	}
 	
 	

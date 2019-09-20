@@ -37,13 +37,13 @@ public class TestCRUDRoleUtilisateur {
 		daoRole.createRoleUtilisateur(r2);
 		
 		//Récuperation des deux rôles crées
-		RoleUtilisateur r1Recup = daoRole.findByIdRoleutilisateur(1);
+		RoleUtilisateur r1Recup = daoRole.findByIdRoleUtilisateur(1);
 		
 		assertNotNull(r1Recup);
 		assertEquals("Commercial", r1Recup.getNom());
 		
 		
-		RoleUtilisateur r2Recup = daoRole.findByIdRoleutilisateur(2);
+		RoleUtilisateur r2Recup = daoRole.findByIdRoleUtilisateur(2);
 		
 		assertNotNull(r2Recup);
 		assertEquals("Magasinier", r2Recup.getNom());
@@ -61,10 +61,10 @@ public class TestCRUDRoleUtilisateur {
 		
 		
 		
-		RoleUtilisateur rRecupModifie1 = daoRole.findByIdRoleutilisateur(1);
+		RoleUtilisateur rRecupModifie1 = daoRole.findByIdRoleUtilisateur(1);
 		assertEquals("CommercialMod", rRecupModifie1.getNom());
 
-		RoleUtilisateur rRecupModifie2 = daoRole.findByIdRoleutilisateur(2);
+		RoleUtilisateur rRecupModifie2 = daoRole.findByIdRoleUtilisateur(2);
 		assertEquals("MagasinierMod", rRecupModifie2.getNom());
 		
 		
