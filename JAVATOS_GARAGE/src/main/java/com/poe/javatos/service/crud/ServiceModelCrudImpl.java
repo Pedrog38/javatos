@@ -47,7 +47,13 @@ public class ServiceModelCrudImpl implements IServiceModelCrud {
 	
 	@Override
 	@Transactional
-	public Optional<Model> findByIdModel(final Integer idModel) {
+	public Model findByIdModel(final Integer idModel) {
+		return dao.findById(idModel).orElse(null);
+	}
+	
+	@Override
+	@Transactional
+	public Optional<Model> findOptionalByIdModel(final Integer idModel) {
 		return dao.findById(idModel);
 	}
 

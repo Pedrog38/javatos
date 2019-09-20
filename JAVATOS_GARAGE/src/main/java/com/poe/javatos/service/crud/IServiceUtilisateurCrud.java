@@ -15,6 +15,8 @@ public interface IServiceUtilisateurCrud {
 	
 	Utilisateur updateUtilisateur(final Utilisateur uUtilisateur);
 	
-	Optional<Utilisateur> findByUtilisateur(final Integer idUtilisateur);
+	Optional<Utilisateur> findOptionalByUtilisateur(final Integer idUtilisateur);
+	
+	Utilisateur findByUtilisateur(final Integer idUtilisateur);
 
 }

@@ -15,6 +15,7 @@ public interface IServiceModelCrud {
 	
 	Model updateModel(final Model mModel);
 	
-	Optional<Model> findByIdModel(final Integer idModel);
-		
+	Optional<Model> findOptionalByIdModel(final Integer idModel);
+	
+    Model findByIdModel(final Integer idModel);
 }
