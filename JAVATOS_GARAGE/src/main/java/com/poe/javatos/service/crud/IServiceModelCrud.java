@@ -1,17 +1,20 @@
 package com.poe.javatos.service.crud;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.poe.javatos.bean.Model;
 
 public interface IServiceModelCrud {
 	
-	List<Model> getAllModel();
+	List<Model> findAllModel();
 	
-	void creerModel(final Model mModel);
+	Model createModel(final Model mModel);
 	
-	void supprimerModel(final Integer idModel);
+	void deleteByIdModel(final Integer idModel);
 	
-	void modifierModel(final List<Model> mListeModel);
+	Model updateModel(final Model mModel);
+	
+	Optional<Model> findByIdModel(final Integer idModel);
 		
 }
