@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,10 +60,14 @@ public class TestsCRUDBeanStatutClient {
 		
 		StatutClient sCRecupModifie1 = dao.findByIdStatutClient(1);
 		
+		assertNotNull(sCRecupModifie1);
+		
 		assertEquals("test statut client 1 modifie", sCRecupModifie1.getNom());
 		assertEquals(Float.valueOf(19.6F), sCRecupModifie1.getTauxTva());
 		
 		StatutClient sCRecupModifie2 = dao.findByIdStatutClient(2);
+		
+		assertNotNull(sCRecupModifie2);
 		
 		assertEquals("test statut client 2 modifie", sCRecupModifie2.getNom());
 		assertEquals(Float.valueOf(5.5F), sCRecupModifie2.getTauxTva());

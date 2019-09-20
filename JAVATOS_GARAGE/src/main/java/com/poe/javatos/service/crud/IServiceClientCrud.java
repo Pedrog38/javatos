@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.Client;
-import com.poe.javatos.bean.StatutClient;
 
 public interface IServiceClientCrud {
 	
 	Client createClient(Client client);
 	
-	Optional<Client> findByIdClient(Integer idClient);
+	Optional<Client> findOptionalByIdClient(Integer idClient);
+	
+	Client findByIdClient(Integer idClient);
 	
 	List<Client> findAllClient();
 	

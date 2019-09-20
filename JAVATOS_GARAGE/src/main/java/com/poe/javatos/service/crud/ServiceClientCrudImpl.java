@@ -28,8 +28,15 @@ public class ServiceClientCrudImpl implements IServiceClientCrud {
 
 	@Override
 	@Transactional
-	public Optional<Client> findByIdClient(Integer idClient) {
+	public Optional<Client> findOptionalByIdClient(Integer idClient) {
 		return dao.findById(idClient);
+	}
+	
+	@Override
+	@Transactional
+	public Client findByIdClient(Integer idClient) {
+		
+		return dao.findById(idClient).orElse(null);
 	}
 
 	@Override
@@ -50,5 +57,6 @@ public class ServiceClientCrudImpl implements IServiceClientCrud {
 		dao.deleteById(idClient);
 
 	}
+
 
 }
