@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -18,13 +19,18 @@ import com.poe.javatos.service.crud.ServiceModelCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestCRUDStock {
+public class TestsCRUDStock {
+	
+	@Autowired
+	IServiceStockCrud daoStock;
+	@Autowired
+	IServiceModelCrud daoModel;
+	
 	
 	@Test
 	public void testCrudStock() {
 
-		IServiceStockCrud daoStock = new ServiceStockCrudImpl();
-		IServiceModelCrud daoModel = new ServiceModelCrudImpl();
+		
 		
 		//Creation de stock
 		Stock s1 = new Stock();
@@ -51,7 +57,7 @@ public class TestCRUDStock {
 		assertEquals(Integer.valueOf(10),s1Recup.getQteDispo());
 		assertEquals(Integer.valueOf(10),s1Recup.getQteReservee());
 		assertEquals(Integer.valueOf(10),s1Recup.getQteCommandee());
-		assertEquals(daoModel.findByIdModel(1),s1Recup.getModel());
+		assertEquals(daoModel.findByIdModel(1).getId(),s1Recup.getModel().getId());
 		
 		Stock s2Recup = daoStock.findByIdStock(2);
 		
@@ -59,7 +65,7 @@ public class TestCRUDStock {
 		assertEquals(Integer.valueOf(20),s2Recup.getQteDispo());
 		assertEquals(Integer.valueOf(20),s2Recup.getQteReservee());
 		assertEquals(Integer.valueOf(20),s2Recup.getQteCommandee());
-		assertEquals(daoModel.findByIdModel(2),s2Recup.getModel());
+		assertEquals(daoModel.findByIdModel(2).getId(),s2Recup.getModel().getId());
 		
 		//Modification des deux stock 
 		Stock s1Modifie = s1;
@@ -81,28 +87,28 @@ public class TestCRUDStock {
 		assertEquals(Integer.valueOf(15),rRecupModifie1.getQteDispo());
 		assertEquals(Integer.valueOf(15),rRecupModifie1.getQteReservee());
 		assertEquals(Integer.valueOf(15),rRecupModifie1.getQteCommandee());
-		assertEquals(daoModel.findByIdModel(1),rRecupModifie1.getModel());
+		assertEquals(daoModel.findByIdModel(1).getId(),rRecupModifie1.getModel().getId());
 		
 		Stock rRecupModifie2 = daoStock.findByIdStock(2);
 		assertEquals(Integer.valueOf(25),rRecupModifie2.getQteDispo());
 		assertEquals(Integer.valueOf(25),rRecupModifie2.getQteReservee());
 		assertEquals(Integer.valueOf(25),rRecupModifie2.getQteCommandee());
-		assertEquals(daoModel.findByIdModel(2),rRecupModifie2.getModel());
+		assertEquals(daoModel.findByIdModel(2).getId(),rRecupModifie2.getModel().getId());
 		
 		
 		//Afficher la liste des stock
 		List<Stock> allStock = daoStock.findAllStock();
 		assertEquals(2, allStock.size());
 		
-		assertEquals(Integer.valueOf(15),allStock.get(1).getQteDispo());
-		assertEquals(Integer.valueOf(15),allStock.get(1).getQteReservee());
-		assertEquals(Integer.valueOf(15),allStock.get(1).getQteCommandee());
-		assertEquals(daoModel.findByIdModel(1),allStock.get(1).getModel());
+		assertEquals(Integer.valueOf(15),allStock.get(0).getQteDispo());
+		assertEquals(Integer.valueOf(15),allStock.get(0).getQteReservee());
+		assertEquals(Integer.valueOf(15),allStock.get(0).getQteCommandee());
+		assertEquals(daoModel.findByIdModel(1).getId(),allStock.get(0).getModel().getId());
 		
-		assertEquals(Integer.valueOf(25),allStock.get(2).getQteDispo());
-		assertEquals(Integer.valueOf(25),allStock.get(2).getQteReservee());
-		assertEquals(Integer.valueOf(25),allStock.get(2).getQteCommandee());
-		assertEquals(daoModel.findByIdModel(2),allStock.get(2).getModel());
+		assertEquals(Integer.valueOf(25),allStock.get(1).getQteDispo());
+		assertEquals(Integer.valueOf(25),allStock.get(1).getQteReservee());
+		assertEquals(Integer.valueOf(25),allStock.get(1).getQteCommandee());
+		assertEquals(daoModel.findByIdModel(2).getId(),allStock.get(1).getModel().getId());
 }
 
 

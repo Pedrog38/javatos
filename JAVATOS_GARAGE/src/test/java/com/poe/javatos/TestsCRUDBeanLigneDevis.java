@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,12 +23,17 @@ import com.poe.javatos.service.crud.ServiceModelCrudImpl;
 @SpringBootTest
 public class TestsCRUDBeanLigneDevis 
 {
+	@Autowired
+	IServiceLigneDevisCrud dao ;
+	@Autowired
+	IServiceDevisCrud daoDevis;
+	@Autowired
+	IServiceModelCrud daoModel;
+	
 	@Test
 	public void testCrudLigneDevis()
 	{
-		IServiceLigneDevisCrud dao = new ServiceLigneDevisCrudImpl();
-		IServiceDevisCrud daoDevis = new ServiceDevisCrudImpl();
-		IServiceModelCrud daoModel = new ServiceModelCrudImpl();
+		
 		
 		LigneDevis ld1 = new LigneDevis();
 		ld1.setId(1);
@@ -55,7 +61,7 @@ public class TestsCRUDBeanLigneDevis
 		
 		LigneDevis ld4 = new LigneDevis();
 		ld4.setId(4);
-		ld4.setQuantite(10);
+		ld4.setQuantite(40);
 		ld4.setStatut("StatutLD4");
 		ld4.setNbResvervees(40);
 		ld4.setModel(daoModel.findByIdModel(2));
@@ -70,45 +76,45 @@ public class TestsCRUDBeanLigneDevis
 		
 		assertNotNull(ldRecup1);
 		
-		assertEquals(ld1, ldRecup1);
-		assertEquals(Integer.valueOf(1), ldRecup1.getQuantite());
+		//assertEquals(ld1, ldRecup1);
+		assertEquals(Integer.valueOf(10), ldRecup1.getQuantite());
 		assertEquals("StatutLD1", ldRecup1.getStatut());
-		assertEquals(Integer.valueOf(1), ldRecup1.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(1), ldRecup1.getModel());
-		assertEquals(daoDevis.findByIdDevis(1), ldRecup1.getDevis());
+		assertEquals(Integer.valueOf(10), ldRecup1.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(1).getId(), ldRecup1.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(1).getId(), ldRecup1.getDevis().getId());
 		
 		LigneDevis ldRecup2 = dao.findByIdLigneDevis(2);
 		
 		assertNotNull(ldRecup2);
 		
-		assertEquals(ld2, ldRecup2);
-		assertEquals(Integer.valueOf(2), ldRecup2.getQuantite());
+		//assertEquals(ld2, ldRecup2);
+		assertEquals(Integer.valueOf(20), ldRecup2.getQuantite());
 		assertEquals("StatutLD2", ldRecup2.getStatut());
-		assertEquals(Integer.valueOf(2), ldRecup2.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(2), ldRecup2.getModel());
-		assertEquals(daoDevis.findByIdDevis(1), ldRecup2.getDevis());
+		assertEquals(Integer.valueOf(20), ldRecup2.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(2).getId(), ldRecup2.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(1).getId(), ldRecup2.getDevis().getId());
 		
 		LigneDevis ldRecup3 = dao.findByIdLigneDevis(3);
 		
 		assertNotNull(ldRecup3);
 		
-		assertEquals(ld3, ldRecup3);
-		assertEquals(Integer.valueOf(3), ldRecup3.getQuantite());
+		//assertEquals(ld3, ldRecup3);
+		assertEquals(Integer.valueOf(30), ldRecup3.getQuantite());
 		assertEquals("StatutLD3", ldRecup3.getStatut());
-		assertEquals(Integer.valueOf(3), ldRecup3.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(1), ldRecup3.getModel());
-		assertEquals(daoDevis.findByIdDevis(2), ldRecup3.getDevis());
+		assertEquals(Integer.valueOf(30), ldRecup3.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(1).getId(), ldRecup3.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(2).getId(), ldRecup3.getDevis().getId());
 		
 		LigneDevis ldRecup4 = dao.findByIdLigneDevis(4);
 		
 		assertNotNull(ldRecup4);
 		
-		assertEquals(ld4, ldRecup4);
-		assertEquals(Integer.valueOf(4), ldRecup4.getQuantite());
+		//assertEquals(ld4, ldRecup4);
+		assertEquals(Integer.valueOf(40), ldRecup4.getQuantite());
 		assertEquals("StatutLD4", ldRecup4.getStatut());
-		assertEquals(Integer.valueOf(4), ldRecup4.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(2), ldRecup4.getModel());
-		assertEquals(daoDevis.findByIdDevis(2), ldRecup4.getDevis());
+		assertEquals(Integer.valueOf(40), ldRecup4.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(2).getId(), ldRecup4.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(2).getId(), ldRecup4.getDevis().getId());
 		
 		LigneDevis ldModifier1 = ld1;
 		ldModifier1.setStatut("StatutModifie1");
@@ -134,64 +140,64 @@ public class TestsCRUDBeanLigneDevis
 		assertNotNull(ldRecupModifie3);
 		assertNotNull(ldRecupModifie4);
 		
-		assertEquals(ldModifier1,ldRecupModifie1);
-		assertEquals(Integer.valueOf(1), ldRecupModifie1.getQuantite());
+		//assertEquals(ldModifier1,ldRecupModifie1);
+		assertEquals(Integer.valueOf(10), ldRecupModifie1.getQuantite());
 		assertEquals("StatutModifie1", ldRecupModifie1.getStatut());
-		assertEquals(Integer.valueOf(1), ldRecupModifie1.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(1), ldRecupModifie1.getModel());
-		assertEquals(daoDevis.findByIdDevis(1), ldRecupModifie1.getDevis());
+		assertEquals(Integer.valueOf(10), ldRecupModifie1.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(1).getId(), ldRecupModifie1.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(1).getId(), ldRecupModifie1.getDevis().getId());
 		
-		assertEquals(ldModifier2,ldRecupModifie2);
-		assertEquals(Integer.valueOf(2), ldRecupModifie2.getQuantite());
+		//assertEquals(ldModifier2,ldRecupModifie2);
+		assertEquals(Integer.valueOf(20), ldRecupModifie2.getQuantite());
 		assertEquals("StatutModifie2", ldRecupModifie2.getStatut());
-		assertEquals(Integer.valueOf(2), ldRecupModifie2.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(2), ldRecupModifie2.getModel());
-		assertEquals(daoDevis.findByIdDevis(1), ldRecupModifie2.getDevis());
+		assertEquals(Integer.valueOf(20), ldRecupModifie2.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(2).getId(), ldRecupModifie2.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(1).getId(), ldRecupModifie2.getDevis().getId());
 		
-		assertEquals(ldModifier3,ldRecupModifie3);
-		assertEquals(Integer.valueOf(3), ldRecupModifie3.getQuantite());
+		//assertEquals(ldModifier3,ldRecupModifie3);
+		assertEquals(Integer.valueOf(30), ldRecupModifie3.getQuantite());
 		assertEquals("StatutModifie3", ldRecupModifie3.getStatut());
-		assertEquals(Integer.valueOf(2), ldRecupModifie3.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(1), ldRecupModifie3.getModel());
-		assertEquals(daoDevis.findByIdDevis(2), ldRecupModifie3.getDevis());
+		assertEquals(Integer.valueOf(30), ldRecupModifie3.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(1).getId(), ldRecupModifie3.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(2).getId(), ldRecupModifie3.getDevis().getId());
 		
-		assertEquals(ldModifier4,ldRecupModifie4);
-		assertEquals(Integer.valueOf(4), ldRecupModifie4.getQuantite());
+		//assertEquals(ldModifier4,ldRecupModifie4);
+		assertEquals(Integer.valueOf(40), ldRecupModifie4.getQuantite());
 		assertEquals("StatutModifie4", ldRecupModifie4.getStatut());
-		assertEquals(Integer.valueOf(4), ldRecupModifie4.getNbResvervees());
-		assertEquals(daoModel.findByIdModel(2), ldRecupModifie4.getModel());
-		assertEquals(daoDevis.findByIdDevis(2), ldRecupModifie4.getDevis());
+		assertEquals(Integer.valueOf(40), ldRecupModifie4.getNbResvervees());
+		assertEquals(daoModel.findByIdModel(2).getId(), ldRecupModifie4.getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(2).getId(), ldRecupModifie4.getDevis().getId());
 		
 		List<LigneDevis> allLignedevis = dao.findAllLigneDevis();
 		assertEquals(4, allLignedevis.size());
 		 
-		assertEquals(ldModifier1,allLignedevis.get(1));
-		assertEquals(Integer.valueOf(1), allLignedevis.get(1).getQuantite());
-		assertEquals("StatutModifie1", allLignedevis.get(1).getStatut());
-		assertEquals(Integer.valueOf(1), allLignedevis.get(1).getNbResvervees());
-		assertEquals(daoModel.findByIdModel(1), allLignedevis.get(1).getModel());
-		assertEquals(daoDevis.findByIdDevis(1), allLignedevis.get(1).getDevis());
+		//assertEquals(ldModifier1,allLignedevis.get(0));
+		assertEquals(Integer.valueOf(10), allLignedevis.get(0).getQuantite());
+		assertEquals("StatutModifie1", allLignedevis.get(0).getStatut());
+		assertEquals(Integer.valueOf(10), allLignedevis.get(0).getNbResvervees());
+		assertEquals(daoModel.findByIdModel(1).getId(), allLignedevis.get(0).getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(1).getId(), allLignedevis.get(0).getDevis().getId());
 		
-		assertEquals(ldModifier2,allLignedevis.get(2));
-		assertEquals(Integer.valueOf(2), allLignedevis.get(2).getQuantite());
-		assertEquals("StatutModifie2", allLignedevis.get(2).getStatut());
-		assertEquals(Integer.valueOf(2), allLignedevis.get(2).getNbResvervees());
-		assertEquals(daoModel.findByIdModel(2), allLignedevis.get(2).getModel());
-		assertEquals(daoDevis.findByIdDevis(1), allLignedevis.get(2).getDevis());
+		//assertEquals(ldModifier2,allLignedevis.get(1));
+		assertEquals(Integer.valueOf(20), allLignedevis.get(1).getQuantite());
+		assertEquals("StatutModifie2", allLignedevis.get(1).getStatut());
+		assertEquals(Integer.valueOf(20), allLignedevis.get(1).getNbResvervees());
+		assertEquals(daoModel.findByIdModel(2).getId(), allLignedevis.get(1).getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(1).getId(), allLignedevis.get(1).getDevis().getId());
 		
-		assertEquals(ldModifier3,allLignedevis.get(3));
-		assertEquals(Integer.valueOf(3), allLignedevis.get(3).getQuantite());
-		assertEquals("StatutModifie3", allLignedevis.get(3).getStatut());
-		assertEquals(Integer.valueOf(2), allLignedevis.get(3).getNbResvervees());
-		assertEquals(daoModel.findByIdModel(1), allLignedevis.get(3).getModel());
-		assertEquals(daoDevis.findByIdDevis(2), allLignedevis.get(3).getDevis());
+		//assertEquals(ldModifier3,allLignedevis.get(2));
+		assertEquals(Integer.valueOf(30), allLignedevis.get(2).getQuantite());
+		assertEquals("StatutModifie3", allLignedevis.get(2).getStatut());
+		assertEquals(Integer.valueOf(30), allLignedevis.get(2).getNbResvervees());
+		assertEquals(daoModel.findByIdModel(1).getId(), allLignedevis.get(2).getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(2).getId(), allLignedevis.get(2).getDevis().getId());
 		
-		assertEquals(ldModifier4,allLignedevis.get(4));
-		assertEquals(Integer.valueOf(4), allLignedevis.get(4).getQuantite());
-		assertEquals("StatutModifie4", allLignedevis.get(4).getStatut());
-		assertEquals(Integer.valueOf(4), allLignedevis.get(4).getNbResvervees());
-		assertEquals(daoModel.findByIdModel(2), allLignedevis.get(4).getModel());
-		assertEquals(daoDevis.findByIdDevis(2), allLignedevis.get(4).getDevis());
+		//assertEquals(ldModifier4,allLignedevis.get(3));
+		assertEquals(Integer.valueOf(40), allLignedevis.get(3).getQuantite());
+		assertEquals("StatutModifie4", allLignedevis.get(3).getStatut());
+		assertEquals(Integer.valueOf(40), allLignedevis.get(3).getNbResvervees());
+		assertEquals(daoModel.findByIdModel(2).getId(), allLignedevis.get(3).getModel().getId());
+		assertEquals(daoDevis.findByIdDevis(2).getId(), allLignedevis.get(3).getDevis().getId());
 		
 		 
 	}
