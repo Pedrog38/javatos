@@ -10,7 +10,8 @@ spring:
               format_sql: true
 
       datasource:
-           url: jdbc:mysql://localhost:3306/javatosbdd
+           url: jdbc:mysql://localhost:3306/javatosbddtest
            username: root
            password:
-#           driverClassName: com.mysql.jdbc.Driver
+           
+
