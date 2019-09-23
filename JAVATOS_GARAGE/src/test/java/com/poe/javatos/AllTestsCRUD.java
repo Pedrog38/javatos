@@ -7,12 +7,14 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses(
 		{ TestsCRUDBeanStatutClient.class,
-			TestCRUDRoleUtilisateur.class,
-			TestCRUDModel.class,
-			 TestCRUDStock.class, 
+			TestsCRUDRoleUtilisateur.class,
+			TestsCRUDModel.class,
+			 TestsCRUDStock.class, 
 			 TestsCRUDBeanClient.class,
-			 TestCRUDUtilisateur.class,
+			 TestsCRUDUtilisateur.class,
+			 TestsCRUDBeanCommande.class,
 		 TestsCRUDBeanDevis.class, 
+		 TestsCRUDBeanLigneCommande.class,
 		 TestsCRUDBeanLigneDevis.class
 		 })
 public class AllTestsCRUD {

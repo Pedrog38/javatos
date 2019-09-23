@@ -17,7 +17,7 @@ import com.poe.javatos.service.crud.ServiceUtilisateurCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestCRUDUtilisateur {
+public class TestsCRUDUtilisateur {
 	
 	@Autowired
 	IServiceUtilisateurCrud dao;

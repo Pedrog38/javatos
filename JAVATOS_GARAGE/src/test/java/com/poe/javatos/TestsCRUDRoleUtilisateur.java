@@ -17,7 +17,7 @@ import com.poe.javatos.service.crud.IServiceRoleUtilisateurCrud;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestCRUDRoleUtilisateur {
+public class TestsCRUDRoleUtilisateur {
 	@Autowired
 	IServiceRoleUtilisateurCrud daoRole;
 	

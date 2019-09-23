@@ -19,7 +19,7 @@ import com.poe.javatos.service.crud.ServiceModelCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestCRUDStock {
+public class TestsCRUDStock {
 	
 	@Autowired
 	IServiceStockCrud daoStock;
