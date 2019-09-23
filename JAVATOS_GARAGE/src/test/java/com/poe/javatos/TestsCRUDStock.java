@@ -77,7 +77,7 @@ public class TestsCRUDStock {
 		Stock s2Modifie = s2;
 		s2Modifie.setQteDispo(25);
 		s2Modifie.setQteReservee(25);
-		s2Modifie.setQteCommandee(25);
+		s2Modifie.setQteCommandee(0);
 		s2Modifie.setModel(daoModel.findByIdModel(2));
 		
 		daoStock.updateStock(s1Modifie);
@@ -92,7 +92,7 @@ public class TestsCRUDStock {
 		Stock rRecupModifie2 = daoStock.findByIdStock(2);
 		assertEquals(Integer.valueOf(25),rRecupModifie2.getQteDispo());
 		assertEquals(Integer.valueOf(25),rRecupModifie2.getQteReservee());
-		assertEquals(Integer.valueOf(25),rRecupModifie2.getQteCommandee());
+		assertEquals(Integer.valueOf(0),rRecupModifie2.getQteCommandee());
 		assertEquals(daoModel.findByIdModel(2).getId(),rRecupModifie2.getModel().getId());
 		
 		
@@ -107,7 +107,7 @@ public class TestsCRUDStock {
 		
 		assertEquals(Integer.valueOf(25),allStock.get(1).getQteDispo());
 		assertEquals(Integer.valueOf(25),allStock.get(1).getQteReservee());
-		assertEquals(Integer.valueOf(25),allStock.get(1).getQteCommandee());
+		assertEquals(Integer.valueOf(0),allStock.get(1).getQteCommandee());
 		assertEquals(daoModel.findByIdModel(2).getId(),allStock.get(1).getModel().getId());
 }
 

@@ -37,8 +37,6 @@ public class TestsCRUDBeanCommande{
 	@Autowired
     IServiceClientCrud daoClient;
 	@Autowired
-    IServiceLigneCommandeCrud daoLignesCommande;
-	@Autowired
     IServiceUtilisateurCrud daoUtilisateur;
 	
 	

@@ -9,16 +9,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.poe.javatos.bean.Utilisateur;
-import com.poe.javatos.repository.UtilisateurRepository;
+import com.poe.javatos.repository.IUtilisateurRepository;
 
 @Service
 
-public class UtilisateurService implements UserDetailsService {
+public class ServiceUtilisateurImpl implements UserDetailsService {
 
-    private final UtilisateurRepository utilisateurRepository;
+    private final IUtilisateurRepository utilisateurRepository;
 
     @Autowired
-    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+    public ServiceUtilisateurImpl(IUtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
     }
 
