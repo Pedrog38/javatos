@@ -69,7 +69,7 @@ public class TestsCRUDBeanClient {
 		assertNotNull(cRecup1);
 
 		assertEquals("AdresseTest1", cRecup1.getAdresse());
-		assertEquals(formatDate.format(date1), formatDate.format(cRecup1.getDateCreation()));
+		assertEquals(formatDate.format(c1.getDateCreation()), formatDate.format(cRecup1.getDateCreation()));
 		assertEquals("test1@test.com", cRecup1.getMail());
 		assertEquals("NomTest1", cRecup1.getNom());
 		assertEquals("PrenomTest1", cRecup1.getPrenom());
