@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.Model;
 import com.poe.javatos.repository.crud.IModelRepositoryCrud;
 
+@Service
 public class ServiceModelCrudImpl implements IServiceModelCrud {
 
 	@Autowired

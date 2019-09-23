@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.repository.crud.IStockRepositoryCrud;
 
 public interface IServiceStockCrud {
 	
@@ -23,4 +24,6 @@ public interface IServiceStockCrud {
 	
 	//Supprimer une ligne dans t_stock par Id
 	void deleteByIdStock(final Integer idStock);
+	
+	IStockRepositoryCrud getDao();
 }
