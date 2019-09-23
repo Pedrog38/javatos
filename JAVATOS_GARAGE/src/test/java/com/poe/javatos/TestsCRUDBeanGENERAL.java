@@ -8,63 +8,101 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestsCRUDBeanGENERAL {
-
-	@Test
-	public void testBeanVide() 
-	{
-
-//			  ServiceBG dao = new ServiceBG();
-//			  
-//			  BG b1 = new BG("1","Bean1");
-//			  BG b2 = new BG("2","Bean2");
-//			  
-//			  dao.createBG(b1);
-//			  dao.createBG(b2);
-//
-//			  assertNotNull(dao.findByIdBG("1"));
-//			  
-//			  assertEquals("Bean1", dao.findByIdBG("1").getNom());
-//			  //Pour chaque attribut
-//			  assertEquals("Bean2", dao.findByIdBG("2").getNom());
-//			  //Pour chaque attribut
-//
-//			  BG b1Modifie = b1;
-//			  b1Modifie.setNom("Bean1Modifie");
-//			  BG b2Modifie = b2;
-//			  b2Modifie.setNom("Bean2Modifie");
-//			  
-//			  
-//			  dao.updateBG(b1Modifie);
-//			  dao.updateBG(b2Modifie);
-//
-//			  assertEquals("Bean1Modifie", dao.findByIdBG("1").getNom());
-//			  //Pour chaque attribut
-//			  assertEquals("Bean2Modifie", dao.findByIdBG("2").getNom());
-//			  //Pour chaque attribut
-//			  
-//			  List<BG> bgs = dao.findAllBG();
-//			  assertEquals(bgs.size(), 2);
-//			  assertEquals("Bean1Modifie", bgs.get(1).getNom());
-//			  //Pour chaque attribut
-//			  assertEquals("Bean2Modifie", bgs.get(2).getNom());
-//			  //Pour chaque attribut
-//			  
-//			  dao.deleteByIdBG("1");
-//			  dao.deleteByIdBG("2");
-//
-//			  assertNull(dao.findByIdBG("1"));
-//			  assertNull(dao.findByIdBG("2"));
-
-	}
-	@Test
-	public void testBeanAsso()
-	{
-		
-	}
-	
-
-}
+public class TestsCRUDBeanDevis
+{
+    @Test
+    public void testCrudDevis()
+    {
+         IServiceDevisCrud dao = new ServiceDevisCrudImpl();
+         IServiceClientCrud daoClient = new ServiceClientCrudImpl();
+         IServiceLignesDevisCrud daoLignesDevis = new ServiceLignesDevisImpl();
+         IServiceUtilisateurCrud daoUtilisateur = new ServiceUtilisateurImpl();
+         
+         
+         
+         Devis d1 = new Devis();
+         d1.setId(1);
+         d1.setDelaisProd(10);
+         Date date1= new Date();
+         d1.setDateCreation(date1);
+         d1.setStatut("Statut1");
+         d1.setClient(daoClient.findByIdClient(1));
+         //d1.setLignesDevis(daoLignesDevis.findAllLignesDevis);
+         d1.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(1));
+         
+         Devis d2 = new Devis();
+         d2.setId(2);
+         d2.setDelaisProd(20);
+         Date date2= new Date();
+         d2.setDateCreation(date2);
+         d2.setStatut("Statut2");
+         d2.setClient(daoClient.findByIdClient(2));
+         //d2.setLignesDevis(daoLignesDevis.findAllLignesDevis);
+         d2.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(2));
+         
+         dao.createDevis(d1);
+         dao.createDevis(d2);
+         
+         Devis dRecup1 = dao.findByIdDevis(1).orElse(null);
+         
+         assertNotNull(dRecup1);
+         
+         assertEquals(Integer.valueOf(10),dRecup1.getDelaisProd());
+         assertEquals(date1,dRecup1.getDateCreation());
+         assertEquals("Statut1", dRecup1.getStatut());
+         assertEquals(daoClient.findByIdClient(1),dRecup1.getClient());
+         asertEquals(daoUtilisateur.findUtilisateurById(1), dRecup1.getCommercialResponsable());
+         
+         Devis dRecup2 = dao.findByIdDevis(2).orElse(null);
+         
+         assertNotNull(dRecup2);
+         
+         assertEquals(Integer.valueOf(20),dRecup2.getDelaisProd());
+         assertEquals(date2,dRecup2.getDateCreation());
+         assertEquals("Statut2", dRecup2.getStatut());
+         assertEquals(daoClient.findByIdClient(2),dRecup2.getClient());
+         asertEquals(daoUtilisateur.findUtilisateurById(2), dRecup2.getCommercialResponsable());
+         
+         Devis d1Modifie = d1;
+         d1Modifie.setStatut("StatutModifie1");
+         Devis d2Modifie = d2;
+         d2Modifie.setStatut("StatutModifie2");
+         
+         dao.updateDevis(d1Modifie);
+         dao.updateDevis(d2Modifie);
+         
+         Devis dRecupModifie1 = dao.findByIdDevis(1).orElse(null);
+         
+         assertEquals(Integer.valueOf(10),dRecupModifie1.getDelaisProd());
+         assertEquals(date1,dRecupModifie1.getDateCreation());
+         assertEquals("StatutModifie1", dRecupModifie1.getStatut());
+         assertEquals(daoClient.findByIdClient(1),dRecupModifie1.getClient());
+         asertEquals(daoUtilisateur.findUtilisateurById(1), dRecupModifie1.getCommercialResponsable());
+         
+         Devis dRecupModifie2 = dao.findByIdDevis(2).orElse(null);
+         assertEquals(Integer.valueOf(20),dRecupModifie2.getDelaisProd());
+         assertEquals(date2,dRecupModifie2.getDateCreation());
+         assertEquals("StatutModifie2", dRecupModifie2.getStatut());
+         assertEquals(daoClient.findByIdClient(2),dRecupModifie2.getClient());
+         asertEquals(daoUtilisateur.findUtilisateurById(2), dRecupModifie2.getCommercialResponsable());
+         
+         List<Devis> allDevis = dao.findAllDevis();
+         assertEquals(2, allDevis.size());
+         
+         assertEquals(Integer.valueOf(10),allDevis.get(1).getDelaisProd());
+         assertEquals(date1,allDevis.get(1).getDateCreation());
+         assertEquals("StatutModifie1", allDevis.get(1).getStatut());
+         assertEquals(daoClient.findByIdClient(1),allDevis.get(1).getClient());
+         asertEquals(daoUtilisateur.findUtilisateurById(1), allDevis.get(1).getCommercialResponsable());
+         
+         assertEquals(Integer.valueOf(20),allDevis.get(2).getDelaisProd());
+         assertEquals(date2,allDevis.get(2).getDateCreation());
+         assertEquals("StatutModifie2", allDevis.get(2).getStatut());
+         assertEquals(daoClient.findByIdClient(2),allDevis.get(2).getClient());
+         asertEquals(daoUtilisateur.findUtilisateurById(2), allDevis.get(2).getCommercialResponsable());
+         
+    }
+    
+}z

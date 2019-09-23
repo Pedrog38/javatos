@@ -8,8 +8,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_commande")
-public class Commande extends ProcessVente
-{
+public class Commande extends ProcessVente{
+	
 	@OneToMany(mappedBy = "commande")
 	private List<LigneCommande> lignesCommandes;
 
