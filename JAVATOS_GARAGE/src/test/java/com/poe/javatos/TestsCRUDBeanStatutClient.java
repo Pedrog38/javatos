@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -18,10 +19,13 @@ import com.poe.javatos.service.crud.ServiceStatutClientCrudImpl;
 @SpringBootTest
 public class TestsCRUDBeanStatutClient {
 
+	@Autowired
+	IServiceStatutClientCrud dao;
+	
 	@Test
 	public void testsBeanStatutClient() {
 
-		IServiceStatutClientCrud dao = new ServiceStatutClientCrudImpl();
+		
 
 		StatutClient sC1 = new StatutClient();
 		sC1.setId(1);
@@ -75,11 +79,11 @@ public class TestsCRUDBeanStatutClient {
 		List<StatutClient> allStatutsClient = dao.findAllStatutClient();
 		assertEquals(2, allStatutsClient.size());
 		
-		assertEquals("test statut client 1 modifie", allStatutsClient.get(1).getNom());
-		assertEquals(Float.valueOf(19.6F), allStatutsClient.get(1).getTauxTva());
+		assertEquals("test statut client 1 modifie", allStatutsClient.get(0).getNom());
+		assertEquals(Float.valueOf(19.6F), allStatutsClient.get(0).getTauxTva());
 		
-		assertEquals("test statut client 2 modifie", allStatutsClient.get(2).getNom());
-		assertEquals(Float.valueOf(5.5F), allStatutsClient.get(2).getTauxTva());
+		assertEquals("test statut client 2 modifie", allStatutsClient.get(1).getNom());
+		assertEquals(Float.valueOf(5.5F), allStatutsClient.get(1).getTauxTva());
 
 	}
 

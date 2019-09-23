@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.LigneDevis;
+import com.poe.javatos.repository.crud.ILigneDevisRepositoryCrud;
 
 public interface IServiceLigneDevisCrud 
 {
@@ -13,4 +14,5 @@ public interface IServiceLigneDevisCrud
 	List<LigneDevis> findAllLigneDevis();
 	LigneDevis updateLigneDevis(LigneDevis ligneDevis);
 	void deleteByIdLigneDevis(Integer idLigneDevis);
+	ILigneDevisRepositoryCrud getDao();
 }

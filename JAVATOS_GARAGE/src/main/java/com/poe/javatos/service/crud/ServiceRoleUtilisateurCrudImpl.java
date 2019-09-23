@@ -13,7 +13,7 @@ import com.poe.javatos.repository.crud.IRoleUtilisateurRepositoryCrud;
 @Service
 public class ServiceRoleUtilisateurCrudImpl implements IServiceRoleUtilisateurCrud {
 
-	
+	@Autowired
 	private IRoleUtilisateurRepositoryCrud dao;
 	
 	public IRoleUtilisateurRepositoryCrud getDao() {
