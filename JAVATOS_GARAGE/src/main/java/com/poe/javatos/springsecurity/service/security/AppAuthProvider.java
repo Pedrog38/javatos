@@ -8,12 +8,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.poe.javatos.service.UtilisateurService;
+import com.poe.javatos.service.ServiceUtilisateurImpl;
 
 public class AppAuthProvider extends DaoAuthenticationProvider {
 
     @Autowired
-    UtilisateurService utilisateurDetailsService;
+    ServiceUtilisateurImpl utilisateurDetailsService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

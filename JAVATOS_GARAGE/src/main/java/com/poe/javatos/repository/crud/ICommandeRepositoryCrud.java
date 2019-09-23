@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.poe.javatos.bean.Commande;
 
-public interface CommandeRepositoryCrud extends JpaRepository<Commande, Integer> {
+public interface ICommandeRepositoryCrud extends JpaRepository<Commande, Integer> {
 
 }

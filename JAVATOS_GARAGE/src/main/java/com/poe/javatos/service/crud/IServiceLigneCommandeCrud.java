@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.LigneCommande;
-import com.poe.javatos.repository.crud.LigneCommandeRepositoryCrud;
+import com.poe.javatos.repository.crud.ILigneCommandeRepositoryCrud;
 
 public interface IServiceLigneCommandeCrud {
 	
@@ -20,5 +20,5 @@ public interface IServiceLigneCommandeCrud {
  	
 	LigneCommande findByIdLigneCommande(final Integer idLigneCommande);
 	
-	LigneCommandeRepositoryCrud getDao();
+	ILigneCommandeRepositoryCrud getDao();
 }
