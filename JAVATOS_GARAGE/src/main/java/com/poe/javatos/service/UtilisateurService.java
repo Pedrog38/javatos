@@ -1,7 +1,6 @@
-package com.poe.javatos.springsecurity.service;
+package com.poe.javatos.service;
 
-import com.poe.javatos.springsecurity.core.model.User;
-import com.poe.javatos.springsecurity.repo.UserRepository;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,27 +8,28 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import com.poe.javatos.bean.Utilisateur;
+import com.poe.javatos.repository.UtilisateurRepository;
 
 @Service
 
-public class UserService implements UserDetailsService {
+public class UtilisateurService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UtilisateurRepository utilisateurRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+        this.utilisateurRepository = utilisateurRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Objects.requireNonNull(username);
-        User user = userRepository.findUserWithName(username)
+        Utilisateur utilisateur = utilisateurRepository.findUserWithName(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return user;
+        return utilisateur;
     }
 
 }
