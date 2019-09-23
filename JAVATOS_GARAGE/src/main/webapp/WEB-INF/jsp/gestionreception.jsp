@@ -28,10 +28,6 @@
 	<td> <form:input path="qteCommandee" /> </td>
 	<td> <input type="submit" value="VALIDER RECEPTION" /> </td>
 	</form:form>
-	<td><c:out value="${stock.model.nom}" /></td>
-	<td><c:out value="${stock.qteDispo}" /></td>
-	<td><c:out value="${stock.qteReservee}" /></td>
-	<td><c:out value="${stock.qteCommandee}" /></td>
 	</tr>
 	</c:forEach>
 	</tbody>
