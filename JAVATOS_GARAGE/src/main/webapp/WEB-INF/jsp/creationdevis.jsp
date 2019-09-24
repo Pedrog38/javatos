@@ -15,7 +15,7 @@
 		action="creerDevis">
 		<a href="#">Créer nouveau client</a>
 		<a href="#">Créer nouveau modèle</a>
-		<form:select path="client" items="${clientList}" />
+		<form:select path="idClient" items="${clients}" />
 		<%-- 	<p> <c:out value="${creationDevis.dateCreation}"/> </p> --%>
 		<form:input path="dateCreation" type="date" disabled="disabled" />
 		<table>
