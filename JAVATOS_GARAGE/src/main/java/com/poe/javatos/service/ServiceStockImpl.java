@@ -20,5 +20,24 @@ public class ServiceStockImpl implements IServiceStock
 		return dao.findStocksEnCommandeFournisseur();
 	}
 
+	@Override
+	public Stock findByIdModelStock(Integer idModel) 
+	{
+		return dao.findByIdModelStocks(idModel).get(0);
+	}
+
+	public Stock miseAjourAssignation(Stock s, Integer qteAReserver)
+	{
+		s.setQteDispo(s.getQteDispo()-qteAReserver);
+		s.setQteReservee(s.getQteReservee()+qteAReserver);
+		return dao.save(s);
+	}
+	
+	public Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue)
+	{
+		s.setQteDispo(s.getQteDispo()+qteRecue);
+		s.setQteCommandee(s.getQteCommandee()-qteRecue);
+		return dao.save(s);
+	}
 	
 }
