@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.LigneCommande;
-import com.poe.javatos.repository.crud.LigneCommandeRepositoryCrud;
+import com.poe.javatos.repository.crud.ILigneCommandeRepositoryCrud;
 
 @Service
 public class ServiceLigneCommandeCrudImpl implements IServiceLigneCommandeCrud {
 
-	private LigneCommandeRepositoryCrud dao;
+	private ILigneCommandeRepositoryCrud dao;
 	
-	public LigneCommandeRepositoryCrud getDao() {
+	public ILigneCommandeRepositoryCrud getDao() {
 		return dao;
 	}
 	
