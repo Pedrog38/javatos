@@ -55,9 +55,9 @@ public class TestsCRUDBeanStatutClient {
 		assertEquals(Float.valueOf(5.5F), sCRecup2.getTauxTva());
 		
 		StatutClient sC1Modifie = sC1;
-		sC1Modifie.setNom("test statut client 1 modifie");
+		sC1Modifie.setNom("Particulier");
 		StatutClient sC2Modifie = sC2;
-		sC2Modifie.setNom("test statut client 2 modifie");
+		sC2Modifie.setNom("Professionel");
 		
 		dao.updateStatutClient(sC1Modifie);
 		dao.updateStatutClient(sC2Modifie);
@@ -66,23 +66,23 @@ public class TestsCRUDBeanStatutClient {
 		
 		assertNotNull(sCRecupModifie1);
 		
-		assertEquals("test statut client 1 modifie", sCRecupModifie1.getNom());
+		assertEquals("Particulier", sCRecupModifie1.getNom());
 		assertEquals(Float.valueOf(19.6F), sCRecupModifie1.getTauxTva());
 		
 		StatutClient sCRecupModifie2 = dao.findByIdStatutClient(2);
 		
 		assertNotNull(sCRecupModifie2);
 		
-		assertEquals("test statut client 2 modifie", sCRecupModifie2.getNom());
+		assertEquals("Professionel", sCRecupModifie2.getNom());
 		assertEquals(Float.valueOf(5.5F), sCRecupModifie2.getTauxTva());
 		
 		List<StatutClient> allStatutsClient = dao.findAllStatutClient();
 		assertEquals(2, allStatutsClient.size());
 		
-		assertEquals("test statut client 1 modifie", allStatutsClient.get(0).getNom());
+		assertEquals("Particulier", allStatutsClient.get(0).getNom());
 		assertEquals(Float.valueOf(19.6F), allStatutsClient.get(0).getTauxTva());
 		
-		assertEquals("test statut client 2 modifie", allStatutsClient.get(1).getNom());
+		assertEquals("Professionel", allStatutsClient.get(1).getNom());
 		assertEquals(Float.valueOf(5.5F), allStatutsClient.get(1).getTauxTva());
 
 	}
