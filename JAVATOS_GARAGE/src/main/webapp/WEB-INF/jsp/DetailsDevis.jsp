@@ -25,10 +25,19 @@
 				<th>Quantite</th>
 				<th>Délai de production (jour)</th>
 				<th>Prix HT </th>
-		</thread>
+			</tr>
+		</thread>	
+	</table>
 	
-	
-	
+	<table border="1">
+		<thread>
+			<tr>
+				<th>Délai Total: <c:out value="${d.client}"/> </th><br>
+				<th>Tarif HT:   <c:out value="${d.date}" /> </th>
+				<th>Tarif TTC:  <c:out value="${d.date}" /> </th> 
+				<th>Taux TVA  <c:out value="${d.taux}" /> </th> 
+			</tr>
+		</thread>	
 	</table>
 
 </body>
