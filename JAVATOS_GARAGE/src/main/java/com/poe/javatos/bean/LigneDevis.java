@@ -19,12 +19,6 @@ public class LigneDevis
 	
 	@Column(name = "quantite")
 	private Integer quantite;
-	
-	@Column(name = "statut")
-	private String statut;
-	
-	@Column(name = "nb_reservee")
-	private Integer nbResvervees;
 
 	@ManyToOne
 	@JoinColumn(name = "t_devis_id")
@@ -50,21 +44,7 @@ public class LigneDevis
 		this.quantite = quantite;
 	}
 
-	public String getStatut() {
-		return statut;
-	}
-
-	public void setStatut(String statut) {
-		this.statut = statut;
-	}
-
-	public Integer getNbResvervees() {
-		return nbResvervees;
-	}
-
-	public void setNbResvervees(Integer nbResvervees) {
-		this.nbResvervees = nbResvervees;
-	}
+	
 
 	public Devis getDevis() {
 		return devis;
@@ -84,8 +64,7 @@ public class LigneDevis
 
 	@Override
 	public String toString() {
-		return "LigneDevis [id=" + id + ", quantite=" + quantite + ", statut=" + statut + ", nbResvervees="
-				+ nbResvervees + ", devis=" + devis.getId() + ", model=" + model + "]";
+		return "LigneDevis [id=" + id + ", quantite=" + quantite + ", devis=" + devis.getId() + ", model=" + model + "]";
 	}
 	
 	
