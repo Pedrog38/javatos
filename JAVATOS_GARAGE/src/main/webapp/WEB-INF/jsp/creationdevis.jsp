@@ -15,37 +15,41 @@
 		action="creerDevis">
 		<a href="#">Créer nouveau client</a>
 		<a href="#">Créer nouveau modèle</a>
-		<form:select path="idClient" items="${clients}" />
+		<form:select path="client">
+			<c:forEach items="${clients}" var="client">
+				<form:option value="${client.id}" label="${client.prenom} ${client.nom}" />
+			</c:forEach>
+		</form:select>
 		<%-- 	<p> <c:out value="${creationDevis.dateCreation}"/> </p> --%>
 		<form:input path="dateCreation" type="date" disabled="disabled" />
-		<table>
-			<thead>
-				<tr>
-					<td>Modèle</td>
-					<td>Quantité</td>
-					<td>Délais</td>
-					<td>Prix</td>
-				</tr>
-			</thead>
-			<c:forEach items="${lignesDevis}" var="ligne">
-				<tr>
-					<td><c:out value="ligne.model.nom"></c:out></td>
-					<td><c:out value="ligne.quantite"></c:out></td>
-					<td><c:out value="ligne.model.delaisProd"></c:out></td>
-					<td><c:out value="ligne.model.prixVente"></c:out></td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td>
-					<form:select path="model">
-						<c:forEach items="${listemodel}" var="model">
-							<form:option value="${model.id}">${model.nom}</form:option>
-						</c:forEach>
-					</form:select>
-				</td>
-				<td> <input type="text" /> </td>
-			</tr>
-		</table>
+<!-- 		<table> -->
+<!-- 			<thead> -->
+<!-- 				<tr> -->
+<!-- 					<td>Modèle</td> -->
+<!-- 					<td>Quantité</td> -->
+<!-- 					<td>Délais</td> -->
+<!-- 					<td>Prix</td> -->
+<!-- 				</tr> -->
+<!-- 			</thead> -->
+<%-- 			<c:forEach items="${lignesDevis}" var="ligne"> --%>
+<!-- 				<tr> -->
+<%-- 					<td><c:out value="ligne.model.nom"></c:out></td> --%>
+<%-- 					<td><c:out value="ligne.quantite"></c:out></td> --%>
+<%-- 					<td><c:out value="ligne.model.delaisProd"></c:out></td> --%>
+<%-- 					<td><c:out value="ligne.model.prixVente"></c:out></td> --%>
+<!-- 				</tr> -->
+<%-- 			</c:forEach> --%>
+<!-- 			<tr> -->
+<!-- 				<td> -->
+<%-- 					<form:select path="model"> --%>
+<%-- 						<c:forEach items="${listemodel}" var="model"> --%>
+<%-- 							<form:option value="${model.id}">${model.nom}</form:option> --%>
+<%-- 						</c:forEach> --%>
+<%-- 					</form:select> --%>
+<!-- 				</td> -->
+<!-- 				<td> <input type="text" /> </td> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
 	</form:form>
 	<table>
 		<thead>

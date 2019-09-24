@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.poe.javatos.bean.Client;
+import com.poe.javatos.form.CreationDevisForm;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
@@ -30,6 +31,10 @@ public class CreationDevisController {
 		final List<Client> listeClients = serviceClientCrud.findAllClient();
 		
 		model.addAttribute("clients", listeClients);
+		
+		if(model.get("creationDevis")==null) {
+			model.addAttribute("creationDevis", new CreationDevisForm());
+		}
 		
 		return "creationdevis";
 	}
