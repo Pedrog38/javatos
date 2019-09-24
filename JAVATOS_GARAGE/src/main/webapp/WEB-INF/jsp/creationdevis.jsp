@@ -43,7 +43,7 @@
 						</c:forEach>
 					</form:select>
 				</td>
-				<td> <form:input path="quantite"/> </td>
+				<td> <input type="text" /> </td>
 			</tr>
 		</table>
 	</form:form>

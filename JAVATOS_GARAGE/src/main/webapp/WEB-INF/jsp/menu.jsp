@@ -12,6 +12,7 @@
 
 <a href="<c:url value='/app/hello'/>">Hello</a>
 <a href="<c:url value='creerClientAfficher'/>">creerClient</a>
+<a href="<c:url value='afficherCreerDevis'/>">creer Devis</a>
 
 </body>
 </html>
