@@ -83,7 +83,6 @@ public class TestsCRUDBeanLigneCommande{
          lc21.setQuantite(21);
          lc21.setNbResvervees(17);
          
-         System.err.println(daoLC.getDao());
          
          daoLC.createLigneCommande(lc10);
          daoLC.createLigneCommande(lc11);
