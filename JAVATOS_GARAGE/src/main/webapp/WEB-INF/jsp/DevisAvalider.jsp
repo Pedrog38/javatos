@@ -22,20 +22,19 @@
 		</thead>				
 		
 		<tbody>
-			<c:forEach items="${listeDevisValider}" var="devis">
+			<c:forEach items="${listeDevisValiderForm}" var="devisForm">
 			<tr>
-				<td><c:out value="${devis.id}"/></td>
-				<td><c:out value="${devis.client.nom}"/></td>
-				<td><c:out value="${devis.dateDeCreation}"/></td>
-				<td><c:out value="${devis.prixHT}"/></td>
-				<td><a href= "/validerDevis?id="<c:out value="${devis.id}"/>Valider</a></td>			
-				<td><a href= "/visualiserDevis?id="<c:out value="${devis.id}"/>Visualiser</a></td>
-				<td><a href= "/annulerDevis?id="<c:out value="${devis.id}"/>Annuler</a></td>
+				<td><c:out value="${devisForm.devis.id}"/></td>
+				<td><c:out value="${devisForm.devis.client.nom}"/></td>
+				<td><c:out value="${devisForm.devis.dateCreation}"/></td>
+				<td><c:out value="${devisForm.prixDevis}"/></td>
+				<td><a href= "/validerDevis?id="><c:out value="${devisForm.devis.id}"/>Valider</a></td>			
+				<td><a href= "/visualiserDevis?id="><c:out value="${devisForm.devis.id}"/>Visualiser</a></td>
+				<td><a href= "/annulerDevis?id="><c:out value="${devisForm.devis.id}"/>Annuler</a></td>
 				
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-s
 </body>
 </html>

@@ -41,7 +41,7 @@
 				<td><c:out value="${t.quantiteDemande}"/></td>
 				<td><c:out value="${t.quantiteReserver}"/></td>
 				<td><c:out value="${t.quantiteAcommanderFournisseur}"/></td>
-				<td><a href= "/validerCommande?id="<c:out value="${t.id}"/>Valider</a></td>			
+				<td><a href= "/validerCommande?id="><c:out value="${t.id}">Valider</c:out></a></td>			
 		
 
 			</tr>

@@ -33,7 +33,7 @@
 					<td><c:out value="${c.idDevis}"/></td>
 					<td><c:out value="${c.prixTotal}"/></td>
 					<td><c:out value="${c.statut}"/></td>
-					<td><a href= "/visualiserCommande?id="<c:out value="${c.idCommande}"/>Visualiser</a></td>
+					<td><a href= "/visualiserCommande?id="><c:out value="${c.idCommande}">Visualiser</c:out></a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
