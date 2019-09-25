@@ -5,7 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<form:form method="post" modelAttribute="assignation" action="assignerCommandeSelonStock">
+<form:form method="post" modelAttribute="assignation" action="assignationModifier">
     <table border="1">
         <thead>
             <tr>
@@ -19,14 +19,11 @@
                 <th>Stock dispo</th>
                 <th>Qté à réserver</th>
             </tr>
-        </thead>
-        <!-- il faudra créer une @query = "Select "ligneCommande" from "ListeDetailCommande" order by ""LC.Commande.Id"
-        où ListeDetailCommande sera la liste avec tous les paramètres qu'on veut afficher" -->
-        <tbody>
-            <c:forEach items="${assignation.listeDetailCommande}" var="ligneCommande" varStatus="status">
+        </thead>       
+            <c:forEach items="${listAssignationForm}" var="ligneCommande" varStatus="status">
                 <tr>
                     <td>
-                        <c:out value="${ligneCommande.commande.id}"/>
+                        <c:out value="${listAssignationForm}"/>
                         <input type="hidden" name="ListeDetailCommande[${status.index}].commande.id" value="${ligneCommande.commande.id}"/>
                     </td>
                     <td>
