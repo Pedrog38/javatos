@@ -67,10 +67,10 @@
                         <input type="text" name="saisieQteAReserver[${status.index}]" value="0"/><br/>
                       <!-- faudra gérere les erreurs dans el ccontroller ou dans le pattern du validateur
                       <b><i><form:errors path="listeCourses[${status.index}].quantite" /></i></b> -->  
-                <td>
+                	</td>
                     <td>
                     <input type="submit" value= Assigner>
-                    <td>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
