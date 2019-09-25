@@ -16,6 +16,7 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 	@Autowired
 	ILigneCommandeRepository dao;
 	
+	@Autowired
 	IServiceCommande serviceCommande;
 	
 	@Override
@@ -40,6 +41,20 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 			serviceCommande.mettreAJourStatut(lc.getCommande());
 		}
 		
+		return dao.save(lc);
+	}
+
+	@Override
+	public LigneCommande miseAJourStatut(LigneCommande lc) 
+	{
+		if(lc.getQuantite()==lc.getNbResvervees())
+		{
+			lc.setStatut(StatutLigneCommande.Reservee);
+		}
+		else
+		{
+			lc.setStatut(StatutLigneCommande.EnCommandeFournisseur);
+		}
 		return dao.save(lc);
 	}
 

@@ -14,6 +14,6 @@ public interface IStockRepository extends JpaRepository<Stock, Integer>
 	@Query(" select s from Stock s where s.qteCommandee>0")
     List<Stock> findStocksEnCommandeFournisseur();
 	
-	@Query(" select s from Stock s where s.model.id == ?1")
+	@Query(" select s from Stock s where s.model.id = ?1")
     List<Stock> findByIdModelStocks(Integer idModel);
 }
