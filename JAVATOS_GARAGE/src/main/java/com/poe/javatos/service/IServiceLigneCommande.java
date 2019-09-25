@@ -10,4 +10,5 @@ public interface IServiceLigneCommande
 	List<LigneCommande> findByStatutEnCommandeFournisseurLignesCommande();
 	
 	LigneCommande miseAJourAssignation(LigneCommande lc, Integer qteAReserver);
+	LigneCommande miseAJourStatut(LigneCommande lc);
 }

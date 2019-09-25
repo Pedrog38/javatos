@@ -33,17 +33,19 @@ public class ServiceCommandeImpl implements IServiceCommande
 	@Override
 	public Commande mettreAJourStatut(Commande c) 
 	{
-		boolean resTot = true;
-		for (LigneCommande lc : c.getLignesCommandes()) 
-		{
-			resTot = resTot && lc.getStatut().equals(StatutLigneCommande.Reservee);
+		if(c.getStatut()==StatutCommande.EnTraitement)
+		{			
+			boolean resTot = true;
+			for (LigneCommande lc : c.getLignesCommandes()) 
+			{
+				resTot = resTot && lc.getStatut().equals(StatutLigneCommande.Reservee);
+			}
+			if(resTot)
+			{
+				c.setStatut(StatutCommande.Prete);
+			}
 		}
-		if(resTot)
-		{
-			c.setStatut(StatutCommande.Prete);
-		}
-		dao.save(c);
-		return null;
+		return dao.save(c);
 	}
 
 	
