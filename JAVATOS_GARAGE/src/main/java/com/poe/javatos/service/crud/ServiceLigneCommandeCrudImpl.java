@@ -14,6 +14,8 @@ import com.poe.javatos.service.IServiceLigneCommande;
 @Service
 public class ServiceLigneCommandeCrudImpl implements IServiceLigneCommandeCrud {
 
+
+
 	@Autowired
 	private ILigneCommandeRepositoryCrud dao;
 	

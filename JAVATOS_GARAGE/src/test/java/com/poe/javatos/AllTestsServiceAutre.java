@@ -9,8 +9,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestsServiceCommande.class,
 	TestsServiceDevis.class,
 	TestsServiceLigneCommande.class,
-	TestsLigneDevis.class,
-	TestsStatutCommandeLigneCommande.class})
+	TestsLigneDevis.class})
 public class AllTestsServiceAutre {
 
 }

@@ -1,17 +1,20 @@
 package com.poe.javatos.form;
 
+import java.io.Serializable;
+
+import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotEmpty;
 
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
 
-public class AssignationStockForm 
+public class AssignationStockForm implements Serializable
 {
 	private LigneCommande ligneCommande;
 	
 	private Stock stock;
 	
+	@Valid
 	private Integer qteAReserve; 
 
 	public LigneCommande getLigneCommande() {
@@ -38,16 +41,11 @@ public class AssignationStockForm
 		this.qteAReserve = qteAReserve;
 	}
 	
-	@AssertTrue
-	private boolean isModelSame()
+
+	@AssertTrue(message="test")
+	public boolean isQteReserveOk()
 	{
-		return ligneCommande.getModel().getId()==stock.getModel().getId();
-	}
-	
-	@AssertTrue
-	private boolean isQteReserveOk()
-	{
-		return (qteAReserve>=0)&&(qteAReserve<=ligneCommande.getQuantite()-ligneCommande.getNbResvervees());
+		return (this.getQteAReserve()>=0)&&(this.getQteAReserve()<=this.getLigneCommande().getQuantite()-this.getLigneCommande().getNbResvervees());
 	}
 	
 	

@@ -12,6 +12,11 @@
 
 <a href="<c:url value='/app/hello'/>">Hello</a>
 <a href="<c:url value='creerClientAfficher'/>">creerClient</a>
+<a href="<c:url value='assignationAfficherListe'/>">assignerStock</a>
+
+
+
+
 
 </body>
 </html>
