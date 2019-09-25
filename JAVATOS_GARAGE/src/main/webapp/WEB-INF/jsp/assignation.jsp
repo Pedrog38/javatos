@@ -5,7 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<form:form method="post" modelAttribute="assignationForm" action="assignationModifier">
+<form:form method="post" modelAttribute="listAssignationForm" action="assignationModifierLigne">
     <table border="1">
         <thead>
             <tr>
@@ -20,45 +20,47 @@
                 <th>Qté à réserver</th>
             </tr>
         </thead>       
-            <c:forEach items="${listAssignationForm}" var="ass" varStatus="status">
+            <c:forEach items="${listAssignationForm.listAss}" var="ass" varStatus="status">
                 <tr>
                     <td>
-                        <c:out value="${listAssignationForm.lignecommande.commande.id}"/>
-                        <input type="hidden" name="ass[${status.index}].lignecommande.commande.id" value="${listAssignationForm.lignecommande.commande.id}"/>
+                        <c:out value="${ass.ligneCommande.commande.id}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.commande.id" value="${ass.ligneCommande.commande.id}"/>
                     </td>
                     <td>
-                        <c:out value="${listAssignationForm.lignecommande.commande.client}"/>
-                        <input type="hidden" name="ass[${status.index}].lignecommande.commande.client" value="${listAssignationForm.lignecommande.commande.client}"/>
+                        <c:out value="${ass.ligneCommande.commande.client.nom} ${ass.ligneCommande.commande.client.prenom}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.commande.client.id" value="${ass.ligneCommande.commande.client.id}"/>
                     </td>
                     <td>
-                        <c:out value="${listAssignationForm.lignecommande.model}"/>
-                        <input type="hidden" name="ass[${status.index}].lignecommande.model" value="${listAssignationForm.lignecommande.model}"/>
+                        <c:out value="${ass.ligneCommande.model.nom}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.model.id" value="${ass.ligneCommande.model.id}"/>
                     </td>
                     <td>
-                        <c:out value="${listAssignationForm.lignecommande.delaisProd}"/>
-                        <input type="hidden" name="ass[${status.index}].lignecommande.delaisProd" value="${listAssignationForm.lignecommande.delaisProd}"/>
+                        <c:out value="${ass.ligneCommande.commande.delaisProd}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.commande.delaisProd" value="${ass.ligneCommande.commande.delaisProd}"/>
                     </td>
                     <td>
-                        <c:out value="${listAssignationForm.lignecommande.quantite}"/>
-                        <input type="hidden" name="ass[${status.index}].lignecommande.quantite" value="${listAssignationForm.lignecommande.quantite}"/>
+                        <c:out value="${ass.ligneCommande.quantite}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.quantite" value="${ass.ligneCommande.quantite}"/>
                     </td>
                     <td>
-                        <c:out value="${listAssignationForm.lignecommande.nbResvervees}"/>
-                        <input type="hidden" name="ass[${status.index}].lignecommande.nbResvervees" value="${listAssignationForm.lignecommande.nbResvervees}"/>
+                        <c:out value="${ass.ligneCommande.nbResvervees}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.nbResvervees" value="${ass.ligneCommande.nbResvervees}"/>
                     </td>
                     <td>
-                        <c:out value="${listAssignationForm.lignecommande.quantite-listAssignationForm.lignecommande.nbResvervees}"/>
+                        <c:out value="${ass.ligneCommande.quantite-ass.ligneCommande.nbResvervees}"/>
                         
                     </td>
                     <td>
-                        <c:out value="${listAssignationForm.stock.qteDispo}"/>
-                        <input type="hidden" name="ass[${status.index}].stock.qteDispo" value="${ligneCommande.stock.model.qteDispo}"/>
+                        <c:out value="${ass.stock.qteDispo}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].stock.id" value="${ass.stock.id}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].stock.qteDispo" value="${ass.stock.qteDispo}"/>
                     </td>
                     <td>
-                        <input type="text" name="ass[${status.index}].qteAReserve" value="0"/><br/>
+                        <form:input type="text" path="listAss[${status.index}].qteAReserve"/><br/>
+                        <form:errors path="listAss[${status.index}].qteAReserve" /></i></b>
                     </td>
                     <td>
-                    <input type="submit" value= Assigner>
+                    <input type="submit" value= Assigner >
                     </td>
                 </tr>
             </c:forEach>
