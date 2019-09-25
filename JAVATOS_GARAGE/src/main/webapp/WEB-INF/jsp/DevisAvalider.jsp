@@ -16,23 +16,22 @@
 			<tr>
 				<th>id Devis</th>
 				<th>Client</th>
-				<th>Date de création</th>
+				<th>Date de création</th>   
 				<th>Prix HT</th>
 			</tr>
 		</thead>				
 		
 		<tbody>
-			<c:forEach items="${listeDevisValider}" var="p">
+			<c:forEach items="${listeDevisValider}" var="devis">
 			<tr>
-				<td><c:out value="${d.idDevis}"/></td>
-				<td><c:out value="${d.client}"/></td>
-				<td><c:out value="${d.dateDeCreation}"/></td>
-				<td><c:out value="${d.prixHT}"/></td>
-				<td><a href= "/validerDevis?id="<c:out value="${d.idDevis}"/>Valider</a></td>			
-				<td><a href= "/visualiserDevis?id="<c:out value="${d.idDevis}"/>Visualiser</a></td>
-				<td><a href= "/annulerDevis?id="<c:out value="${d.idDevis}"/>Annuler</a></td>
+				<td><c:out value="${devis.id}"/></td>
+				<td><c:out value="${devis.client.nom}"/></td>
+				<td><c:out value="${devis.dateDeCreation}"/></td>
+				<td><c:out value="${devis.prixHT}"/></td>
+				<td><a href= "/validerDevis?id="<c:out value="${devis.id}"/>Valider</a></td>			
+				<td><a href= "/visualiserDevis?id="<c:out value="${devis.id}"/>Visualiser</a></td>
+				<td><a href= "/annulerDevis?id="<c:out value="${devis.id}"/>Annuler</a></td>
 				
-
 			</tr>
 			</c:forEach>
 		</tbody>

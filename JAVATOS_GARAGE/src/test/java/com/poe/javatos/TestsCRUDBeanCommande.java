@@ -73,7 +73,7 @@ public class TestsCRUDBeanCommande{
          assertEquals(datec1,CRecup1.getDateCreation());
          assertEquals("Statut1", CRecup1.getStatut());
          assertEquals(daoClient.findByIdClient(1),CRecup1.getClient());
-         assertEquals(daoUtilisateur.findUtilisateurById(1), CRecup1.getCommercialResponsable());
+         assertEquals(daoUtilisateur.findByIdUtilisateur(1), CRecup1.getCommercialResponsable());
          
          Commande CRecup2 = dao.findByIdCommande(2);
          
@@ -83,7 +83,7 @@ public class TestsCRUDBeanCommande{
          assertEquals(datec2,CRecup2.getDateCreation());
          assertEquals("Statut2", CRecup2.getStatut());
          assertEquals(daoClient.findByIdClient(2),CRecup2.getClient());
-         assertEquals(daoUtilisateur.findUtilisateurById(2), CRecup2.getCommercialResponsable());
+         assertEquals(daoUtilisateur.findByIdUtilisateur(2), CRecup2.getCommercialResponsable());
          
          Commande c1Modifie = c1;
          c1Modifie.setStatut("StatutModifiec1");
@@ -99,14 +99,14 @@ public class TestsCRUDBeanCommande{
          assertEquals(datec1,cRecupModifie1.getDateCreation());
          assertEquals("StatutModifie1", cRecupModifie1.getStatut());
          assertEquals(daoClient.findByIdClient(1),cRecupModifie1.getClient());
-         assertEquals(daoUtilisateur.findUtilisateurById(1), cRecupModifie1.getCommercialResponsable());
+         assertEquals(daoUtilisateur.findByIdUtilisateur(1), cRecupModifie1.getCommercialResponsable());
          
          Commande dRecupModifie2 = dao.findByIdCommande(2);
          assertEquals(Integer.valueOf(20),dRecupModifie2.getDelaisProd());
          assertEquals(datec2,dRecupModifie2.getDateCreation());
          assertEquals("StatutModifie2", dRecupModifie2.getStatut());
          assertEquals(daoClient.findByIdClient(2),dRecupModifie2.getClient());
-         assertEquals(daoUtilisateur.findUtilisateurById(2), dRecupModifie2.getCommercialResponsable());
+         assertEquals(daoUtilisateur.findByIdUtilisateur(2), dRecupModifie2.getCommercialResponsable());
          
          List<Commande> allCommande = dao.findAllCommande();
          assertEquals(2, allCommande.size());
@@ -115,13 +115,13 @@ public class TestsCRUDBeanCommande{
          assertEquals(datec1,allCommande.get(1).getDateCreation());
          assertEquals("StatutModifie1", allCommande.get(1).getStatut());
          assertEquals(daoClient.findByIdClient(1),allCommande.get(1).getClient());
-         assertEquals(daoUtilisateur.findUtilisateurById(1), allCommande.get(1).getCommercialResponsable());
+         assertEquals(daoUtilisateur.findByIdUtilisateur(1), allCommande.get(1).getCommercialResponsable());
          
          assertEquals(Integer.valueOf(20),allCommande.get(2).getDelaisProd());
          assertEquals(datec2,allCommande.get(2).getDateCreation());
          assertEquals("StatutModifie2", allCommande.get(2).getStatut());
          assertEquals(daoClient.findByIdClient(2),allCommande.get(2).getClient());
-         assertEquals(daoUtilisateur.findUtilisateurById(2), allCommande.get(2).getCommercialResponsable());
+         assertEquals(daoUtilisateur.findByIdUtilisateur(2), allCommande.get(2).getCommercialResponsable());
          
     }
     

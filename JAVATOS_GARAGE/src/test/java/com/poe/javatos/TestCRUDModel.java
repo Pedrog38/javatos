@@ -49,7 +49,7 @@ public class TestCRUDModel {
 			assertEquals(Integer.valueOf(5),mRecup1.getDelaisProd()); // vérifie que les valeurs attendues et réelles sont égales
 			assertEquals("Delorean",mRecup1.getNom());
 			assertEquals(Integer.valueOf(300),mRecup1.getPuissance());
-			assertEquals("Fussia",mRecup1.getNom());
+			assertEquals("Fussia",mRecup1.getCouleur());
 			assertEquals(Float.valueOf(10000),mRecup1.getPrixVente());
 			
 			Model mRecup2 = dao.findByIdModel(2);
@@ -57,7 +57,7 @@ public class TestCRUDModel {
 			assertEquals(Integer.valueOf(10),mRecup2.getDelaisProd()); // vérifie que les valeurs attendues et réelles sont égales
 			assertEquals("Porche Cayenne",mRecup2.getNom());
 			assertEquals(Integer.valueOf(500),mRecup2.getPuissance());
-			assertEquals("Verte",mRecup2.getNom());
+			assertEquals("Verte",mRecup2.getCouleur());
 			assertEquals(Float.valueOf(20000),mRecup2.getPrixVente());
 			
 			

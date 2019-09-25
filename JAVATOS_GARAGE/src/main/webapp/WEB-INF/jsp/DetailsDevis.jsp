@@ -7,16 +7,13 @@
 <html>
 
 <body>
-	<h1>Détails du devis N° <c:out value="${t.id}"/> </h1>
+	<h1>Détails du devis N° <c:out value="${devis.id}"/> </h1>
 
-	<table border="1">
-		<thread>
-			<tr>
-				<th>Client:<c:out value="${d.client}"/> </th><br>
-				<th>Date:  <c:out value="${d.date}" /> </th>
-			</tr>
-		</thread>	
-	</table>
+	
+			<div>
+				<label> Client: ${devis.client}/> </label><br>
+				<label> Date: ${devis.date}/> </label><br>
+			</div>
 	
 	<table border="1">
 		<thread>
@@ -32,10 +29,10 @@
 	<table border="1">
 		<thread>
 			<tr>
-				<th>Délai Total: <c:out value="${d.client}"/> </th><br>
-				<th>Tarif HT:   <c:out value="${d.date}" /> </th>
-				<th>Tarif TTC:  <c:out value="${d.date}" /> </th> 
-				<th>Taux TVA  <c:out value="${d.taux}" /> </th> 
+				<th>Délai Total: <c:out value="${devis.client}"/> </th><br>
+				<th>Tarif HT:   <c:out value="${devis.date}" /> </th>
+				<th>Tarif TTC:  <c:out value="${devis.date}" /> </th> 
+				<th>Taux TVA  <c:out value="${devis.taux}" /> </th> 
 			</tr>
 		</thread>	
 	</table>
