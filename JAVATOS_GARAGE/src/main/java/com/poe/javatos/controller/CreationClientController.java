@@ -56,9 +56,9 @@ public class CreationClientController
 			c.setTelephone(creationForm.getTelephone());
 			c.setStatut(creationForm.getStatutClient());
 			serviceClientCurd.createClient(c);
-			return "menu";
+			return "menu"; //TODO changer le chemin en "retour à la page appelante"
 		}
-		return afficherCreationClient(model);  //TODO changer le chemin en "retour à la page appelante"
+		return afficherCreationClient(model);  
 	}
 	
 	

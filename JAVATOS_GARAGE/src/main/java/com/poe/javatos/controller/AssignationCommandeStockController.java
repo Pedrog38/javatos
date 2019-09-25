@@ -36,8 +36,8 @@ public class AssignationCommandeStockController
 	@Autowired
 	IServiceStock serviceStock;
 	
-	@GetMapping(value="/assignationAfficher")
-	public String afficherAssignation(final ModelMap model)
+	@GetMapping(value="/assignationAfficherListe")
+	public String afficherListeAssignation(final ModelMap model)
 	{
 		List<AssignationStockForm> listAssignationForm = new ArrayList<>();
 		List<LigneCommande> listLigneCommande = serviceLigneCommande.findByStatutEnCommandeFournisseurLignesCommande();
@@ -50,12 +50,16 @@ public class AssignationCommandeStockController
 			listAssignationForm.add(ass);
 		}
 		model.addAttribute("listAssignationForm",listAssignationForm);
+		if(model.get("assignationForm")==null)
+		{
+			model.addAttribute("assignationForm", new AssignationStockForm());
+		}
 		
 		return "assignation";
 	}
 	
-	@PostMapping(value="/assignationModifier")
-	public String CreationClient(@Valid @ModelAttribute(value="assignationForm") 
+	@PostMapping(value="/assignationModifierLigne")
+	public String validerLigneAssignation(@Valid @ModelAttribute(value="assignationForm") 
 	 final AssignationStockForm assignationForm,final BindingResult bindingResult, final ModelMap model)
 	{
 		if(!bindingResult.hasErrors())
@@ -64,13 +68,16 @@ public class AssignationCommandeStockController
 			Stock s = assignationForm.getStock();
 			Integer qteAReserver = assignationForm.getQteAReserve();
 			s= serviceStock.miseAjourAssignation(s, qteAReserver);
+			lc=serviceLigneCommande.miseAJourAssignation(lc, qteAReserver);
 			
-			//TODO RESTE A FAIRE
 			
 			return "menu"; //TODO changer le chemin en "retour à la page appelante"
 		}
-		return afficherAssignation(model);  
+		return afficherListeAssignation(model);  
 	}
+	
+	
+
 	
 	
 }
