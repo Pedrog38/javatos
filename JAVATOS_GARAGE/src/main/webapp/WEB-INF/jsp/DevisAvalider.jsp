@@ -28,9 +28,9 @@
 				<td><c:out value="${devisForm.devis.client.nom}"/></td>
 				<td><c:out value="${devisForm.devis.dateCreation}"/></td>
 				<td><c:out value="${devisForm.prixDevis}"/></td>
-				<td><a href= "/validerDevis?id="><c:out value="${devisForm.devis.id}"/>Valider</a></td>			
-				<td><a href= "/visualiserDevis?id="><c:out value="${devisForm.devis.id}"/>Visualiser</a></td>
-				<td><a href= "/annulerDevis?id="><c:out value="${devisForm.devis.id}"/>Annuler</a></td>
+				<td><a href= "/validerDevis?id=<c:out value='${devisForm.devis.id}'/>">Valider</a></td>		
+				<td><a href= "/visualiserDevis?id=<c:out value='${devisForm.devis.id}'/>">Visualiser</a></td>
+				<td><a href= "/annulerDevis?id=<c:out value='${devisForm.devis.id}'/>">Annuler</a></td>
 				
 			</tr>
 			</c:forEach>

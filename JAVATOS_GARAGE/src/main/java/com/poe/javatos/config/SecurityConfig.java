@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
      * Configuration des chemins par défaut pour le menu et le formulaire
      * de connexion.
      */
-       registry.addViewController("/").setViewName("menu");
+       registry.addViewController("/").setViewName("login");
        registry.addViewController("/login").setViewName("secure/login");
     }
    

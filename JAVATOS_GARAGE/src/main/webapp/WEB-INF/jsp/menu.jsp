@@ -11,8 +11,8 @@
 <body>
 
 <a href="<c:url value='/app/hello'/>">Hello</a>
-<a href="<c:url value='creerClientAfficher'/>">creerClient</a>
-<a href="<c:url value='DevisValidation'/>">devis a valider</a>
+<a href="<c:url value='creerClientAfficher'/>">Creer un Client</a>
+<a href="<c:url value='DevisValidation'/>">Devis à valider</a>
 
 </body>
 </html>
