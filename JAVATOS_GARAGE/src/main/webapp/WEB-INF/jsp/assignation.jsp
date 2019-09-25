@@ -66,6 +66,3 @@
     </table>
 </form:form>
 
-<!--  Calcul dans le controller et le if aussi  
-le "post" recupere l'information $
-le "get" fait la mise a jour des autres colonnes-->
