@@ -4,25 +4,27 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.RoleUtilisateur;
 import com.poe.javatos.service.crud.IServiceRoleUtilisateurCrud;
-import com.poe.javatos.service.crud.ServiceRoleUtilisateurCrudImpl;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestCRUDRoleUtilisateur {
-
+public class TestsCRUDRoleUtilisateur {
+	@Autowired
+	IServiceRoleUtilisateurCrud daoRole;
+	
 	@Test
 	public void testCrudRole() {
 
-		IServiceRoleUtilisateurCrud daoRole = new ServiceRoleUtilisateurCrudImpl();
+		//IServiceRoleUtilisateurCrud daoRole = new ServiceRoleUtilisateurCrudImpl();
 		
 		//Creation de deux Roles
 		RoleUtilisateur r1 = new RoleUtilisateur();
@@ -33,6 +35,7 @@ public class TestCRUDRoleUtilisateur {
 		r2.setId(2);
 		r2.setNom("Magasinier");
 		
+		System.err.println(daoRole.getDao());
 		daoRole.createRoleUtilisateur(r1);
 		daoRole.createRoleUtilisateur(r2);
 		
@@ -72,8 +75,8 @@ public class TestCRUDRoleUtilisateur {
 		List<RoleUtilisateur> allRoleUtilisateur = daoRole.findAllRoleUtilisateur();
 		assertEquals(2, allRoleUtilisateur.size());
 		
-		assertEquals("CommercialMod", allRoleUtilisateur.get(1).getNom());
-		assertEquals("MagasinierMod", allRoleUtilisateur.get(2).getNom());
+		assertEquals("CommercialMod", allRoleUtilisateur.get(0).getNom());
+		assertEquals("MagasinierMod", allRoleUtilisateur.get(1).getNom());
 
 
 	}

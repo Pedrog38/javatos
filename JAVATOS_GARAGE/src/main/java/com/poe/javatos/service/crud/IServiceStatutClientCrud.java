@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.StatutClient;
+import com.poe.javatos.repository.crud.IStatutClientRepositoryCrud;
 
 public interface IServiceStatutClientCrud {
 	
@@ -18,5 +19,7 @@ public interface IServiceStatutClientCrud {
 	StatutClient updateStatutClient(StatutClient statutClient);
 	
 	void deleteByIdStatutClient(Integer idStatutClient);
+	
+	IStatutClientRepositoryCrud getDao();
 
 }

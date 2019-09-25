@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -30,15 +31,23 @@ import com.poe.javatos.service.crud.ServiceModelCrudImpl;
 @SpringBootTest
 public class TestsCRUDBeanLigneCommande{
     
+	@Autowired
+	IServiceLigneCommandeCrud daoLC;
+	@Autowired
+    IServiceCommandeCrud daoC;
+	@Autowired
+    IServiceClientCrud daoClient;
+	@Autowired
+    IServiceUtilisateurCrud daoUtilisateur;
+	@Autowired
+    IServiceModelCrud daoModel;
+	
+	
+	
 	@Test
-    public void testCrudCommande() {
+    public void testCrudLignesCommande() {
 		
-		// implementer les "dao" des beans utilisés 
-		 IServiceLigneCommandeCrud daoLC = new ServiceLigneCommandeCrudImpl();
-         IServiceCommandeCrud daoC = new ServiceCommandeCrudImpl();
-         IServiceClientCrud daoClient = new ServiceClientCrudImpl();
-         IServiceUtilisateurCrud daoUtilisateur = new ServiceUtilisateurCrudImpl();
-         IServiceModelCrud daoModel = new ServiceModelCrudImpl();
+		 
     
          
          // créer au moins 2 objet LigneCommande et les setter 
@@ -74,6 +83,7 @@ public class TestsCRUDBeanLigneCommande{
          lc21.setQuantite(21);
          lc21.setNbResvervees(17);
          
+         
          daoLC.createLigneCommande(lc10);
          daoLC.createLigneCommande(lc11);
          daoLC.createLigneCommande(lc20);
@@ -84,9 +94,9 @@ LigneCommande LCRecup10 = daoLC.findByIdLigneCommande(1);
          
          assertNotNull(LCRecup10);
          
-         assertEquals(daoC.findByIdCommande(1),LCRecup10.getCommande());
-         assertEquals("StatutC10",LCRecup10.getStatut());
-         assertEquals(daoModel.findByIdModel(1),LCRecup10.getModel());
+         assertEquals(daoC.findByIdCommande(1).getId(),LCRecup10.getCommande().getId());
+         assertEquals("StatutLC10",LCRecup10.getStatut());
+         assertEquals(daoModel.findByIdModel(1).getId(),LCRecup10.getModel().getId());
          assertEquals(Integer.valueOf(10),LCRecup10.getQuantite());
          assertEquals(Integer.valueOf(6),LCRecup10.getNbResvervees());
                
@@ -94,9 +104,9 @@ LigneCommande LCRecup11 = daoLC.findByIdLigneCommande(2);
          
          assertNotNull(LCRecup11);
          
-         assertEquals(daoC.findByIdCommande(1),LCRecup11.getCommande());
-         assertEquals("StatutC11",LCRecup11.getStatut());
-         assertEquals(daoModel.findByIdModel(2),LCRecup11.getModel());
+         assertEquals(daoC.findByIdCommande(1).getId(),LCRecup11.getCommande().getId());
+         assertEquals("StatutLC11",LCRecup11.getStatut());
+         assertEquals(daoModel.findByIdModel(2).getId(),LCRecup11.getModel().getId());
          assertEquals(Integer.valueOf(11),LCRecup11.getQuantite());
          assertEquals(Integer.valueOf(7),LCRecup11.getNbResvervees());
 
@@ -104,9 +114,9 @@ LigneCommande LCRecup20 = daoLC.findByIdLigneCommande(3);
          
          assertNotNull(LCRecup20);
          
-         assertEquals(daoC.findByIdCommande(2),LCRecup20.getCommande());
-         assertEquals("StatutC20",LCRecup20.getStatut());
-         assertEquals(daoModel.findByIdModel(1),LCRecup20.getModel());
+         assertEquals(daoC.findByIdCommande(2).getId(),LCRecup20.getCommande().getId());
+         assertEquals("StatutLC20",LCRecup20.getStatut());
+         assertEquals(daoModel.findByIdModel(1).getId(),LCRecup20.getModel().getId());
          assertEquals(Integer.valueOf(20),LCRecup20.getQuantite());
          assertEquals(Integer.valueOf(16),LCRecup20.getNbResvervees());
          
@@ -114,9 +124,9 @@ LigneCommande LCRecup21 = daoLC.findByIdLigneCommande(4);
          
          assertNotNull(LCRecup21);
          
-         assertEquals(daoC.findByIdCommande(2),LCRecup21.getCommande());
-         assertEquals("StatutC20",LCRecup21.getStatut());
-         assertEquals(daoModel.findByIdModel(2),LCRecup21.getModel());
+         assertEquals(daoC.findByIdCommande(2).getId(),LCRecup21.getCommande().getId());
+         assertEquals("StatutLC21",LCRecup21.getStatut());
+         assertEquals(daoModel.findByIdModel(2).getId(),LCRecup21.getModel().getId());
          assertEquals(Integer.valueOf(21),LCRecup21.getQuantite());
          assertEquals(Integer.valueOf(17),LCRecup21.getNbResvervees());
 
@@ -143,9 +153,9 @@ LigneCommande lCRecupModifie10 = daoLC.findByIdLigneCommande(1);
          
          assertNotNull(lCRecupModifie10);
          
-         assertEquals(daoC.findByIdCommande(1),lCRecupModifie10.getCommande());
+         assertEquals(daoC.findByIdCommande(1).getId(),lCRecupModifie10.getCommande().getId());
          assertEquals("StatutModifieLc10",lCRecupModifie10.getStatut());
-         assertEquals(daoModel.findByIdModel(1),lCRecupModifie10.getModel());
+         assertEquals(daoModel.findByIdModel(1).getId(),lCRecupModifie10.getModel().getId());
          assertEquals(Integer.valueOf(10),lCRecupModifie10.getQuantite());
          assertEquals(Integer.valueOf(6),lCRecupModifie10.getNbResvervees());
          
@@ -153,9 +163,9 @@ LigneCommande lCRecupModifie11 = daoLC.findByIdLigneCommande(2);
          
          assertNotNull(lCRecupModifie11);
          
-         assertEquals(daoC.findByIdCommande(1),lCRecupModifie11.getCommande());
+         assertEquals(daoC.findByIdCommande(1).getId(),lCRecupModifie11.getCommande().getId());
          assertEquals("StatutModifieLc11",lCRecupModifie11.getStatut());
-         assertEquals(daoModel.findByIdModel(2),lCRecupModifie11.getModel());
+         assertEquals(daoModel.findByIdModel(2).getId(),lCRecupModifie11.getModel().getId());
          assertEquals(Integer.valueOf(11),lCRecupModifie11.getQuantite());
          assertEquals(Integer.valueOf(7),lCRecupModifie11.getNbResvervees());
          
@@ -163,9 +173,9 @@ LigneCommande lCRecupModifie20 = daoLC.findByIdLigneCommande(3);
          
          assertNotNull(lCRecupModifie20);
          
-         assertEquals(daoC.findByIdCommande(2),lCRecupModifie20.getCommande());
+         assertEquals(daoC.findByIdCommande(2).getId(),lCRecupModifie20.getCommande().getId());
          assertEquals("StatutModifieLc20",lCRecupModifie20.getStatut());
-         assertEquals(daoModel.findByIdModel(1),lCRecupModifie20.getModel());
+         assertEquals(daoModel.findByIdModel(1).getId(),lCRecupModifie20.getModel().getId());
          assertEquals(Integer.valueOf(20),lCRecupModifie20.getQuantite());
          assertEquals(Integer.valueOf(16),lCRecupModifie20.getNbResvervees());
          
@@ -173,42 +183,42 @@ LigneCommande lCRecupModifie21 = daoLC.findByIdLigneCommande(4);
          
          assertNotNull(lCRecupModifie21);
          
-         assertEquals(daoC.findByIdCommande(2),lCRecupModifie21.getCommande());
+         assertEquals(daoC.findByIdCommande(2).getId(),lCRecupModifie21.getCommande().getId());
          assertEquals("StatutModifieLc21",lCRecupModifie21.getStatut());
-         assertEquals(daoModel.findByIdModel(2),lCRecupModifie21.getModel());
+         assertEquals(daoModel.findByIdModel(2).getId(),lCRecupModifie21.getModel().getId());
          assertEquals(Integer.valueOf(21),lCRecupModifie21.getQuantite());
          assertEquals(Integer.valueOf(17),lCRecupModifie21.getNbResvervees());
          
           
 List<LigneCommande> allLigneCommande = daoLC.findAllLigneCommande();
          assertEquals(4, allLigneCommande.size());
-       //get(1)  
-         assertEquals(daoC.findByIdCommande(2),allLigneCommande.get(1).getCommande());
-         assertEquals("StatutC20",allLigneCommande.get(1).getStatut());
-         assertEquals(daoModel.findByIdModel(2),allLigneCommande.get(1).getModel());
-         assertEquals(Integer.valueOf(21),allLigneCommande.get(1).getQuantite());
-         assertEquals(Integer.valueOf(17),allLigneCommande.get(1).getNbResvervees());
+       //get(0)  
+         assertEquals(daoC.findByIdCommande(1).getId(),allLigneCommande.get(0).getCommande().getId());
+         assertEquals("StatutModifieLc10",allLigneCommande.get(0).getStatut());
+         assertEquals(daoModel.findByIdModel(1).getId(),allLigneCommande.get(0).getModel().getId());
+         assertEquals(Integer.valueOf(10),allLigneCommande.get(0).getQuantite());
+         assertEquals(Integer.valueOf(6),allLigneCommande.get(0).getNbResvervees());
+         
+       //get(1)
+         assertEquals(daoC.findByIdCommande(1).getId(),allLigneCommande.get(1).getCommande().getId());
+         assertEquals("StatutModifieLc11",allLigneCommande.get(1).getStatut());
+         assertEquals(daoModel.findByIdModel(2).getId(),allLigneCommande.get(1).getModel().getId());
+         assertEquals(Integer.valueOf(11),allLigneCommande.get(1).getQuantite());
+         assertEquals(Integer.valueOf(7),allLigneCommande.get(1).getNbResvervees());
          
        //get(2)
-         assertEquals(daoC.findByIdCommande(1),allLigneCommande.get(2).getCommande());
-         assertEquals("StatutModifieLc11",allLigneCommande.get(2).getStatut());
-         assertEquals(daoModel.findByIdModel(2),allLigneCommande.get(2).getModel());
-         assertEquals(Integer.valueOf(11),allLigneCommande.get(2).getQuantite());
-         assertEquals(Integer.valueOf(7),allLigneCommande.get(2).getNbResvervees());
+         assertEquals(daoC.findByIdCommande(2).getId(),allLigneCommande.get(2).getCommande().getId());
+         assertEquals("StatutModifieLc20",allLigneCommande.get(2).getStatut());
+         assertEquals(daoModel.findByIdModel(1).getId(),allLigneCommande.get(2).getModel().getId());
+         assertEquals(Integer.valueOf(20),allLigneCommande.get(2).getQuantite());
+         assertEquals(Integer.valueOf(16),allLigneCommande.get(2).getNbResvervees());
          
        //get(3)
-         assertEquals(daoC.findByIdCommande(2),allLigneCommande.get(3).getCommande());
-         assertEquals("StatutModifieLc20",allLigneCommande.get(3).getStatut());
-         assertEquals(daoModel.findByIdModel(1),allLigneCommande.get(3).getModel());
-         assertEquals(Integer.valueOf(20),allLigneCommande.get(3).getQuantite());
-         assertEquals(Integer.valueOf(16),allLigneCommande.get(3).getNbResvervees());
-         
-       //get(4)
-         assertEquals(daoC.findByIdCommande(2),allLigneCommande.get(4).getCommande());
-         assertEquals("StatutModifieLc21",allLigneCommande.get(4).getStatut());
-         assertEquals(daoModel.findByIdModel(2),allLigneCommande.get(4).getModel());
-         assertEquals(Integer.valueOf(21),allLigneCommande.get(4).getQuantite());
-         assertEquals(Integer.valueOf(17),allLigneCommande.get(4).getNbResvervees());
+         assertEquals(daoC.findByIdCommande(2).getId(),allLigneCommande.get(3).getCommande().getId());
+         assertEquals("StatutModifieLc21",allLigneCommande.get(3).getStatut());
+         assertEquals(daoModel.findByIdModel(2).getId(),allLigneCommande.get(3).getModel().getId());
+         assertEquals(Integer.valueOf(21),allLigneCommande.get(3).getQuantite());
+         assertEquals(Integer.valueOf(17),allLigneCommande.get(3).getNbResvervees());
          
         
     }

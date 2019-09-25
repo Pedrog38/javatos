@@ -3,11 +3,13 @@ package com.poe.javatos;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,11 +24,16 @@ import com.poe.javatos.service.crud.ServiceStatutClientCrudImpl;
 @SpringBootTest
 public class TestsCRUDBeanClient {
 
+	@Autowired
+	IServiceClientCrud dao;
+	@Autowired
+	IServiceStatutClientCrud daoStatutClient;
+	
+	
 	@Test
 	public void TestBeanClient() {
 
-		IServiceClientCrud dao = new ServiceClientCrudImpl();
-		IServiceStatutClientCrud daoStatutClient = new ServiceStatutClientCrudImpl();
+		SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss");
 
 		Client c1 = new Client();
 
@@ -62,26 +69,26 @@ public class TestsCRUDBeanClient {
 		assertNotNull(cRecup1);
 
 		assertEquals("AdresseTest1", cRecup1.getAdresse());
-		assertEquals(date1, cRecup1.getDateCreation());
+		assertEquals(formatDate.format(c1.getDateCreation()), formatDate.format(cRecup1.getDateCreation()));
 		assertEquals("test1@test.com", cRecup1.getMail());
 		assertEquals("NomTest1", cRecup1.getNom());
 		assertEquals("PrenomTest1", cRecup1.getPrenom());
 		assertEquals("TelTest1", cRecup1.getTelephone());
 		assertEquals("SexeTest1", cRecup1.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(1), cRecup1.getStatut());
+		assertEquals(daoStatutClient.findByIdStatutClient(1).getId(), cRecup1.getStatut().getId());
 
 		Client cRecup2 = dao.findByIdClient(2);
 
 		assertNotNull(cRecup2);
 
 		assertEquals("AdresseTest2", cRecup2.getAdresse());
-		assertEquals(date2, cRecup2.getDateCreation());
+		assertEquals(formatDate.format(date2), formatDate.format(cRecup2.getDateCreation()));
 		assertEquals("test2@test.com", cRecup2.getMail());
 		assertEquals("NomTest2", cRecup2.getNom());
 		assertEquals("PrenomTest2", cRecup2.getPrenom());
 		assertEquals("TelTest2", cRecup2.getTelephone());
 		assertEquals("SexeTest2", cRecup2.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(2), cRecup2.getStatut());
+		assertEquals(daoStatutClient.findByIdStatutClient(2).getId(), cRecup2.getStatut().getId());
 
 		Client c1Modifie = c1;
 		c1Modifie.setNom("NomTest1Modifie");
@@ -96,47 +103,47 @@ public class TestsCRUDBeanClient {
 		assertNotNull(cRecupModifie1);
 
 		assertEquals("AdresseTest1", cRecupModifie1.getAdresse());
-		assertEquals(date1, cRecupModifie1.getDateCreation());
+		assertEquals(formatDate.format(date1), formatDate.format(cRecupModifie1.getDateCreation()));
 		assertEquals("test1@test.com", cRecupModifie1.getMail());
 		assertEquals("NomTest1Modifie", cRecupModifie1.getNom());
 		assertEquals("PrenomTest1", cRecupModifie1.getPrenom());
 		assertEquals("TelTest1", cRecupModifie1.getTelephone());
 		assertEquals("SexeTest1", cRecupModifie1.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(1), cRecupModifie1.getStatut());
+		assertEquals(daoStatutClient.findByIdStatutClient(1).getId(), cRecupModifie1.getStatut().getId());
 
 		Client cRecupModifie2 = dao.findByIdClient(2);
 
 		assertNotNull(cRecupModifie2);
 
 		assertEquals("AdresseTest2", cRecupModifie2.getAdresse());
-		assertEquals(date2, cRecupModifie2.getDateCreation());
+		assertEquals(formatDate.format(date2), formatDate.format(cRecupModifie2.getDateCreation()));
 		assertEquals("test2@test.com", cRecupModifie2.getMail());
 		assertEquals("NomTest2Modifie", cRecupModifie2.getNom());
 		assertEquals("PrenomTest2", cRecupModifie2.getPrenom());
 		assertEquals("TelTest2", cRecupModifie2.getTelephone());
 		assertEquals("SexeTest2", cRecupModifie2.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(2), cRecupModifie2.getStatut());
+		assertEquals(daoStatutClient.findByIdStatutClient(2).getId(), cRecupModifie2.getStatut().getId());
 		
 		List<Client> allClients = dao.findAllClient();
 		assertEquals(2, allClients.size());
 		
-		assertEquals("AdresseTest1", allClients.get(1).getAdresse());
-		assertEquals(date1, allClients.get(1).getDateCreation());
-		assertEquals("test1@test.com", allClients.get(1).getMail());
-		assertEquals("NomTest1Modifie", allClients.get(1).getNom());
-		assertEquals("PrenomTest1", allClients.get(1).getPrenom());
-		assertEquals("TelTest1", allClients.get(1).getTelephone());
-		assertEquals("SexeTest1", allClients.get(1).getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(1), allClients.get(1).getStatut());
+		assertEquals("AdresseTest1", allClients.get(0).getAdresse());
+		assertEquals(formatDate.format(date1), formatDate.format(allClients.get(0).getDateCreation()));
+		assertEquals("test1@test.com", allClients.get(0).getMail());
+		assertEquals("NomTest1Modifie", allClients.get(0).getNom());
+		assertEquals("PrenomTest1", allClients.get(0).getPrenom());
+		assertEquals("TelTest1", allClients.get(0).getTelephone());
+		assertEquals("SexeTest1", allClients.get(0).getSexe());
+		assertEquals(daoStatutClient.findByIdStatutClient(1).getId(), allClients.get(0).getStatut().getId());
 		
-		assertEquals("AdresseTest2", allClients.get(2).getAdresse());
-		assertEquals(date2, allClients.get(2).getDateCreation());
-		assertEquals("test2@test.com", allClients.get(2).getMail());
-		assertEquals("NomTest2Modifie", allClients.get(2).getNom());
-		assertEquals("PrenomTest2", allClients.get(2).getPrenom());
-		assertEquals("TelTest2", allClients.get(2).getTelephone());
-		assertEquals("SexeTest2", allClients.get(2).getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(2), allClients.get(2).getStatut());
+		assertEquals("AdresseTest2", allClients.get(1).getAdresse());
+		assertEquals(formatDate.format(date2), formatDate.format(allClients.get(1).getDateCreation()));
+		assertEquals("test2@test.com", allClients.get(1).getMail());
+		assertEquals("NomTest2Modifie", allClients.get(1).getNom());
+		assertEquals("PrenomTest2", allClients.get(1).getPrenom());
+		assertEquals("TelTest2", allClients.get(1).getTelephone());
+		assertEquals("SexeTest2", allClients.get(1).getSexe());
+		assertEquals(daoStatutClient.findByIdStatutClient(2).getId(), allClients.get(1).getStatut().getId());
 
 
 	}

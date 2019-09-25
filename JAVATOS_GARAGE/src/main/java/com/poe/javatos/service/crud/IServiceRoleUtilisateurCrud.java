@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.RoleUtilisateur;
+import com.poe.javatos.repository.crud.IRoleUtilisateurRepositoryCrud;
 
 
 public interface IServiceRoleUtilisateurCrud {
@@ -24,5 +25,7 @@ public interface IServiceRoleUtilisateurCrud {
 		
 		//Supprimer une ligne dans t_role
 		void deleteByIdRoleUtilisateur(final Integer idRoleUtilisateur);
+
+		IRoleUtilisateurRepositoryCrud getDao();
 	
 }

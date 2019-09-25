@@ -6,7 +6,6 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title >
-<!-- test -->
 			${titre}
 		</title>
 	</head>

@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.Commande;
-import com.poe.javatos.repository.crud.CommandeRepositoryCrud;
+import com.poe.javatos.repository.crud.ICommandeRepositoryCrud;
 
 @Service
 public class ServiceCommandeCrudImpl implements IServiceCommandeCrud {
 
 	@Autowired
-	private CommandeRepositoryCrud dao;
+	private ICommandeRepositoryCrud dao;
 	
-	public CommandeRepositoryCrud getDao(){
+	public ICommandeRepositoryCrud getDao(){
 		return dao;
 	}
 	

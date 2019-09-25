@@ -36,6 +36,8 @@ public class ServiceRoleUtilisateurCrudImpl implements IServiceRoleUtilisateurCr
 	@Override
 	@Transactional
 	public RoleUtilisateur createRoleUtilisateur(RoleUtilisateur pRoleUtilisateur) {
+		System.err.println("ROLE = "+pRoleUtilisateur);
+		System.err.println(dao);
 		return dao.save(pRoleUtilisateur);
 		
 	}

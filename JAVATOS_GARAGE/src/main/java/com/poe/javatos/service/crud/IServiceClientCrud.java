@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.Client;
+import com.poe.javatos.repository.crud.IClientRepositoryCrud;
 
 public interface IServiceClientCrud {
 	
@@ -18,5 +19,7 @@ public interface IServiceClientCrud {
 	Client updateClient(Client client);
 	
 	void deleteByIdClient(Integer idClient);
+	
+	IClientRepositoryCrud getDao();
 
 }

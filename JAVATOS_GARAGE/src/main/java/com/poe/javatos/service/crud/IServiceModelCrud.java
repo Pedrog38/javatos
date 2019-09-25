@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.Model;
+import com.poe.javatos.repository.crud.IModelRepositoryCrud;
 
 public interface IServiceModelCrud {
 	
@@ -18,4 +19,6 @@ public interface IServiceModelCrud {
 	Optional<Model> findOptionalByIdModel(final Integer idModel);
 	
     Model findByIdModel(final Integer idModel);
+    
+    IModelRepositoryCrud getDao();
 }
