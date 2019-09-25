@@ -1,5 +1,7 @@
 package com.poe.javatos.bean;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,9 +14,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name="t_utilisateur")
-public class Utilisateur 
+public class Utilisateur implements Serializable , UserDetails
 {
 
 	@Id
@@ -104,6 +109,36 @@ public class Utilisateur
 	public String toString() {
 		return "Utilisateur [id=" + id + ", username=" + username + ", password=" + password + ", nom=" + nom
 				+ ", prenom=" + prenom + ", fonction=" + fonction + ", roles=" + roles + "]";
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

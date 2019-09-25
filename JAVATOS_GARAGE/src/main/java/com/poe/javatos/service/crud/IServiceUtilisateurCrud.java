@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.poe.javatos.bean.Utilisateur;
+import com.poe.javatos.repository.crud.IUtilisateurRepositoryCrud;
 
 public interface IServiceUtilisateurCrud {
 	
@@ -18,5 +19,7 @@ public interface IServiceUtilisateurCrud {
 	Optional<Utilisateur> findOptionalByIdUtilisateur(final Integer idUtilisateur);
 	
 	Utilisateur findByIdUtilisateur(final Integer idUtilisateur);
+	
+	IUtilisateurRepositoryCrud getDao();
 
 }

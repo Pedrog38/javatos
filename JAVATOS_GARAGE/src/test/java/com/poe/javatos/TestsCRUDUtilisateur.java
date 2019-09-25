@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -16,12 +17,14 @@ import com.poe.javatos.service.crud.ServiceUtilisateurCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestCRUDUtilisateur {
+public class TestsCRUDUtilisateur {
 	
+	@Autowired
+	IServiceUtilisateurCrud dao;
 	
 	@Test
 	public void testCRUDUtilisateur () {
-		IServiceUtilisateurCrud dao = new ServiceUtilisateurCrudImpl();
+		
 		
 		Utilisateur u1 = new Utilisateur();
 		u1.setId(1);
@@ -32,12 +35,12 @@ public class TestCRUDUtilisateur {
 		u1.setPassword("natacha");
 
 		Utilisateur u2 = new Utilisateur();
-		u1.setId(2);
-		u1.setFonction("Magasinier");
-		u1.setNom("Dupont");
-		u1.setPrenom("Jean");
-		u1.setUsername("Tanaka");
-		u1.setPassword("Japon");
+		u2.setId(2);
+		u2.setFonction("Magasinier");
+		u2.setNom("Dupont");
+		u2.setPrenom("Jean");
+		u2.setUsername("Tanaka");
+		u2.setPassword("Japon");
 		
 		//TEST CREATE
 		
@@ -79,27 +82,27 @@ public class TestCRUDUtilisateur {
 		
 		Utilisateur uRecupModifie2 = dao.findByIdUtilisateur(2);
 		assertEquals("Alternant",uRecupModifie2.getFonction());
-		assertEquals("KEBBAJ",uRecupModifie2.getNom());
-		assertEquals("Yassine",uRecupModifie2.getPrenom());
-		assertEquals("20Shadows",uRecupModifie2.getUsername());
-		assertEquals("natacha",uRecupModifie2.getPassword());
+		assertEquals("Dupont",uRecupModifie2.getNom());
+		assertEquals("Jean",uRecupModifie2.getPrenom());
+		assertEquals("Tanaka",uRecupModifie2.getUsername());
+		assertEquals("Japon",uRecupModifie2.getPassword());
 		
 		//TEST FIND ALL
 		
 		List<Utilisateur>allUtilisateur = dao.findAllUtilisateur();
 		assertEquals(2,allUtilisateur.size());
 		
-		assertEquals("Stagiaire",allUtilisateur.get(1).getFonction());
-		assertEquals("KEBBAJ",allUtilisateur.get(1).getNom());
-		assertEquals("Yassine",allUtilisateur.get(1).getPrenom());
-		assertEquals("20Shadows",allUtilisateur.get(1).getUsername());
-		assertEquals("natacha",allUtilisateur.get(1).getPassword());
+		assertEquals("Stagiaire",allUtilisateur.get(0).getFonction());
+		assertEquals("KEBBAJ",allUtilisateur.get(0).getNom());
+		assertEquals("Yassine",allUtilisateur.get(0).getPrenom());
+		assertEquals("20Shadows",allUtilisateur.get(0).getUsername());
+		assertEquals("natacha",allUtilisateur.get(0).getPassword());
 		
-		assertEquals("Alternant",allUtilisateur.get(2).getFonction());
-		assertEquals("KEBBAJ",allUtilisateur.get(2).getNom());
-		assertEquals("Yassine",allUtilisateur.get(2).getPrenom());
-		assertEquals("20Shadows",allUtilisateur.get(2).getUsername());
-		assertEquals("natacha",allUtilisateur.get(2).getPassword());
+		assertEquals("Alternant",allUtilisateur.get(1).getFonction());
+		assertEquals("Dupont",allUtilisateur.get(1).getNom());
+		assertEquals("Jean",allUtilisateur.get(1).getPrenom());
+		assertEquals("Tanaka",allUtilisateur.get(1).getUsername());
+		assertEquals("Japon",allUtilisateur.get(1).getPassword());
 		
 		
 	}

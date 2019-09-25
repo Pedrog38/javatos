@@ -7,21 +7,24 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.Model;
 import com.poe.javatos.service.crud.IServiceModelCrud;
-import com.poe.javatos.service.crud.ServiceModelCrudImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestCRUDModel {
+public class TestsCRUDModel {
 
+	@Autowired
+	IServiceModelCrud dao;
+	
 		
 		@Test
 		public void testCRUDModel() {
-			IServiceModelCrud dao = new ServiceModelCrudImpl();
+			
 			
 			Model m1 = new Model();
 			m1.setId(1);
@@ -91,18 +94,18 @@ public class TestCRUDModel {
 			List<Model>allModel= dao.findAllModel();
 			assertEquals(2,allModel.size());
 			
-			assertEquals(Integer.valueOf(5),allModel.get(1).getDelaisProd());
-			assertEquals(Integer.valueOf(300),allModel.get(1).getPuissance());
-			assertEquals(Float.valueOf(10000),allModel.get(1).getPrixVente());
-			assertEquals("Delorean V12",allModel.get(1).getNom());
-			assertEquals("Fussia",allModel.get(1).getCouleur());
+			assertEquals(Integer.valueOf(5),allModel.get(0).getDelaisProd());
+			assertEquals(Integer.valueOf(300),allModel.get(0).getPuissance());
+			assertEquals(Float.valueOf(10000),allModel.get(0).getPrixVente());
+			assertEquals("Delorean V12",allModel.get(0).getNom());
+			assertEquals("Fussia",allModel.get(0).getCouleur());
 			
 			
-			assertEquals(Integer.valueOf(10),allModel.get(2).getDelaisProd());
-			assertEquals(Integer.valueOf(500),allModel.get(2).getPuissance());
-			assertEquals(Float.valueOf(20000),allModel.get(2).getPrixVente());
-			assertEquals("Ferrari",allModel.get(2).getNom());
-			assertEquals("Verte",allModel.get(2).getCouleur());
+			assertEquals(Integer.valueOf(10),allModel.get(1).getDelaisProd());
+			assertEquals(Integer.valueOf(500),allModel.get(1).getPuissance());
+			assertEquals(Float.valueOf(20000),allModel.get(1).getPrixVente());
+			assertEquals("Ferrari",allModel.get(1).getNom());
+			assertEquals("Verte",allModel.get(1).getCouleur());
 			
 			
 		}

@@ -3,18 +3,20 @@ package com.poe.javatos.service.crud;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.LigneCommande;
-import com.poe.javatos.repository.crud.LigneCommandeRepositoryCrud;
+import com.poe.javatos.repository.crud.ILigneCommandeRepositoryCrud;
 
 @Service
 public class ServiceLigneCommandeCrudImpl implements IServiceLigneCommandeCrud {
 
-	private LigneCommandeRepositoryCrud dao;
+	@Autowired
+	private ILigneCommandeRepositoryCrud dao;
 	
-	public LigneCommandeRepositoryCrud getDao() {
+	public ILigneCommandeRepositoryCrud getDao() {
 		return dao;
 	}
 	
@@ -27,6 +29,8 @@ public class ServiceLigneCommandeCrudImpl implements IServiceLigneCommandeCrud {
 	@Override
 	@Transactional
 	public LigneCommande createLigneCommande(LigneCommande ligneCommande) {
+		System.err.println(ligneCommande);
+		System.err.println(dao);
 		return dao.save(ligneCommande);
 	}
 

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.poe.javatos.springsecurity.service.UserService;
+import com.poe.javatos.service.ServiceUtilisateurImpl;
 import com.poe.javatos.springsecurity.service.security.AppAuthProvider;
 
 @Configuration
@@ -20,7 +20,7 @@ import com.poe.javatos.springsecurity.service.security.AppAuthProvider;
 @EnableWebMvc /**Gestion du MVC Web pour les WAR et les JSP **/
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer{
 	@Autowired
-    UserService userDetailsService;
+    ServiceUtilisateurImpl userDetailsService;
 
     
     @Override
