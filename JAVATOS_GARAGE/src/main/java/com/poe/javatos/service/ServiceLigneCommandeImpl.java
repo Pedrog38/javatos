@@ -16,6 +16,8 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 	@Autowired
 	ILigneCommandeRepository dao;
 	
+	IServiceCommande serviceCommande;
+	
 	@Override
 	public List<LigneCommande> findByIdCommandeLigneCommande(Integer idCommande) 
 	{
@@ -35,18 +37,10 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 		if(lc.getNbResvervees()==lc.getQuantite())
 		{
 			lc.setStatut(StatutLigneCommande.Reservee);
-			boolean resTot = true;
-			for (LigneCommande lcBis : lc.getCommande().getLignesCommandes()) 
-			{
-				resTot = resTot && lcBis.getStatut().equals(StatutLigneCommande.Reservee);
-			}
-			if(resTot)
-			{
-				lc.getCommande().setStatut(StatutCommande.Prete);
-			}
-			dao.save(lc);
+			serviceCommande.mettreAJourStatut(lc.getCommande());
 		}
-		return null;
+		
+		return dao.save(lc);
 	}
 
 }
