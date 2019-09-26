@@ -17,41 +17,41 @@ loose.dtd">
 		
 		<label>Nom: </label>
 		<form:input path="nom" type="text" />
-		<b><i><form:errors path="nom" /></i></b> </br>
+		<b><i><form:errors path="nom" /></i></b> <br>
 
 		<label>Prenom: </label>
 		<form:input path="prenom" type="text" />
-		<b><i><form:errors path="prenom" /></i></b></br>
+		<b><i><form:errors path="prenom" /></i></b><br>
 
 		<label>Email: </label>
 		<form:input path="mail" type="mail"/>
-		<b><i><form:errors path="mail" /></i></b></br>
+		<b><i><form:errors path="mail" /></i></b><br>
 
 		<label>Adresse: </label>
 		<form:input path="adresse" type="text" />
-		<b><i><form:errors path="adresse" /></i></b></br>
+		<b><i><form:errors path="adresse" /></i></b><br>
 
 		<label>Telephone: </label>
 		<form:input path="telephone" type="text" />
-		<b><i><form:errors path="telephone" cssclass="error"/></i></b></br>
+		<b><i><form:errors path="telephone" cssclass="error"/></i></b><br>
 
 		<label>Sexe: </label>
 		<form:select path="sexe">
 		    <form:option value="HOMME" label="HOMME" />
 		    <form:option value="FEMME" label="FEMME" />
-		</form:select></br>
+		</form:select><br>
 
 		<label>Statut: </label>
 		<form:select path="statutClient">
    			<c:forEach items="${statutList}" var="statut">
   				<form:option label="${statut.nom}" value="${statut}"/>
   			</c:forEach>
-		</form:select></br>
+		</form:select><br>
 		
 		
 
 		
-		<input type="button" value="Retour" onclick="history.go(-1)"/></br>
+		<input type="button" value="Retour" onclick="history.go(-1)"/><br>
 
 		<input type="submit" value="Creer un nouveau client" />
 	</form:form>
