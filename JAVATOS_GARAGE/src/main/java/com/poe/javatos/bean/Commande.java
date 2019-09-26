@@ -3,6 +3,7 @@ package com.poe.javatos.bean;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "t_commande")
 public class Commande extends ProcessVente{
 	
-	@OneToMany(mappedBy = "commande")
+	@OneToMany(mappedBy = "commande",fetch = FetchType.EAGER)
 	private List<LigneCommande> lignesCommandes;
 
 	public List<LigneCommande> getLignesCommandes() {
