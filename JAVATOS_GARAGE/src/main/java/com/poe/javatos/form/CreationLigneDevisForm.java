@@ -11,59 +11,27 @@ import com.poe.javatos.bean.Model;
 public class CreationLigneDevisForm 
 {
 		
-	@NotNull(message = "{creation.LigneDevis.quantite.notempty}")
-	@Min(value=0, message = "{creation.LigneDevis.quantite.positive}")
-	private Integer quantite;
+	private int quantite;
 
-	@NotNull(message = "{creation.LigneDevis.idModel.notempty}")
-	private Integer idModel;
-	
-	private Model model;
-	
-	private int delaisProd;
-	
-	private Float prixVente;
+	private int idModel;
 
-	public Integer getQuantite() {
+	public int getQuantite() {
 		return quantite;
 	}
 
-	public void setQuantite(Integer quantite) {
+	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
 
-	public Integer getIdModel() {
+	public int getIdModel() {
 		return idModel;
 	}
 
-	public void setIdModel(Integer idModel) {
+	public void setIdModel(int idModel) {
 		this.idModel = idModel;
 	}
 
-	public Model getModel() {
-		return model;
-	}
-
-	public void setModel(Model model) {
-		this.model = model;
-	}
-
-	public int getDelaisProd() {
-		return delaisProd;
-	}
-
-	public void setDelaisProd(int delaisProd) {
-		this.delaisProd = delaisProd;
-	}
-
-	public Float getPrixVente() {
-		return prixVente;
-	}
-
-	public void setPrixVente(Float prixVente) {
-		this.prixVente = prixVente;
-	}
-	
-	
+		
+		
 	
 }

@@ -16,69 +16,47 @@
 		<p><a href="#">Créer nouveau client</a></p>
 		<p><a href="#">Créer nouveau modèle</a></p>
 		<p>
-		<form:label path="client">Choix du client :</form:label>
-		<form:select path="client">
+		<form:label path="idClient" >Choix du client :</form:label>
+		<form:select path="idClient">
 			<c:forEach items="${clients}" var="client">
 				<form:option value="${client.id}" label="${client.prenom} ${client.nom}" />
 			</c:forEach>
 		</form:select>
 		</p>
 		<p>
-		<form:label path="dateCreation">Date du devis :</form:label>
-		<form:input path="dateCreation" type="date" max="${creationDevis.dateCreation}" />
+		<form:label path="DateDevis">Date du devis :</form:label>
+		<form:input path="DateDevis" type="date" max="${DateDevis}" />
 		</p>
-<!-- 		<table border="1"> -->
-<!-- 			<thead> -->
-<!-- 				<tr> -->
-<!-- 					<td>Modèle</td> -->
-<!-- 					<td>Quantité</td> -->
-<!-- 					<td>Délais</td> -->
-<!-- 					<td>Prix</td> -->
-<!-- 				</tr> -->
-<!-- 			</thead> -->
-<%-- 			<c:forEach items="${lignesDevis}" var="ligne"> --%>
-<!-- 				<tr> -->
-<%-- 					<td><c:out value="ligne.model.nom"></c:out></td> --%>
-<%-- 					<td><c:out value="ligne.quantite"></c:out></td> --%>
-<%-- 					<td><c:out value="ligne.model.delaisProd"></c:out></td> --%>
-<%-- 					<td><c:out value="ligne.model.prixVente"></c:out></td> --%>
-<!-- 				</tr> -->
-<%-- 			</c:forEach> --%>
-<!-- 			<tr> -->
-<!-- 				<td> -->
-<%-- 					<form:select path="model"> --%>
-<%-- 						<c:forEach items="${listemodel}" var="model"> --%>
-<%-- 							<form:option value="${model.id}">${model.nom}</form:option> --%>
-<%-- 						</c:forEach> --%>
-<%-- 					</form:select> --%>
-<!-- 				</td> -->
-<!-- 				<td> <input type="text" /> </td> -->
-<!-- 			</tr> -->
-<!-- 		</table> -->
 
-			<table border="1">
+		<table border="1">
 				<thead>
 					<tr>
 						<th>Modèle || Délais de production || Prix de vente HT</th>
 						<th>Quantité</th>
+						<th>Bt</th>
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${creationDevis.lignedevis}" var="vlignedevis" varStatus="status"> 
 					<tr>
 						<td>
-							<form:select path="creationLigneDevis">
+							<form:select path="lignedevis[${status.index}].idModel">
 								<c:forEach items="${models}" var="model">
-									<form:option value="${model.id}" label=" Modèle : ${model.nom} || Délais de production : ${model.delaisProd} jours || Prix de Vente HT : ${model.prixVente} euros" />
+									<form:option  value="${model.id}" label=" Modèle : ${model.nom} || Délais de production : ${model.delaisProd} jours || Prix de Vente HT : ${model.prixVente} euros" />
 								</c:forEach>
 							</form:select>
 						</td>
 						<td>
-							<form:input path="creationLigneDevis.quantite"/>
+							<form:input path="lignedevis[${status.index}].quantite"/>
 						</td>
-						<td> <a href="validerLigneDevis?model=">Valider la ligne</a> </td>
+						<td> <form:button name="submit" value="add" > ADD</form:button> </td>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
+			<form:button name="submit" value="valid" > Valider </form:button>
+			
 	</form:form>
+	
 </body>
 </html>
