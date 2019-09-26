@@ -60,7 +60,6 @@
 				<thead>
 					<tr>
 						<th>Modèle || Délais de production || Prix de vente HT</th>
-						<th>Délais de production </th>
 						<th>Quantité</th>
 					</tr>
 				</thead>
@@ -74,15 +73,9 @@
 							</form:select>
 						</td>
 						<td>
-							<c:out value="${creationLigneDevis.model.delaisProd}"/>
-							<form:input type="hidden" path="creationLigneDevis.delaisProd" value="${creationLigneDevis.model.delaisProd}"/>
-						</td>
-						<td>
 							<form:input path="creationLigneDevis.quantite"/>
-							<form:input type="hidden" path="creationLigneDevis.delaisProd" />
-						 	<form:input type="hidden" path="creationLigneDevis.prixVente"/>
 						</td>
-						<td> <a href="validerLigneDevis">Ajouter une ligne</a> </td>
+						<td> <a href="validerLigneDevis?model=">Valider la ligne</a> </td>
 					</tr>
 				</tbody>
 			</table>
