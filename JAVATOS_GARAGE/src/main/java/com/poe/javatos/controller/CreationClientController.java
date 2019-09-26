@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.StatutClient;
@@ -20,6 +21,7 @@ import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceStatutClientCrud;
 
 @Controller
+@RequestMapping(value="/admin/")
 public class CreationClientController 
 {
 	@Autowired
@@ -56,9 +58,9 @@ public class CreationClientController
 			c.setTelephone(creationForm.getTelephone());
 			c.setStatut(creationForm.getStatutClient());
 			serviceClientCurd.createClient(c);
-			return "menu";
+			return "menu"; //TODO changer le chemin en "retour à la page appelante"
 		}
-		return afficherCreationClient(model);  //TODO changer le chemin en "retour à la page appelante"
+		return afficherCreationClient(model);  
 	}
 	
 	
