@@ -10,6 +10,7 @@ import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.global.StatutCommande;
 import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.repository.ICommandeRepository;
+import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
 @Service
 public class ServiceCommandeImpl implements IServiceCommande 
@@ -17,6 +18,9 @@ public class ServiceCommandeImpl implements IServiceCommande
 
 	@Autowired
 	ICommandeRepository dao;
+	
+	@Autowired
+	IServiceCommandeCrud serviceCommande;
 	
 	@Override
 	public List<Commande> findByStatutNouvelleCommande() 
@@ -33,19 +37,23 @@ public class ServiceCommandeImpl implements IServiceCommande
 	@Override
 	public Commande mettreAJourStatut(Commande c) 
 	{
-		if(c.getStatut()==StatutCommande.EnTraitement)
+		//c=serviceCommande.findByIdCommande(c.getId());
+		if(c.getStatut().equals(StatutCommande.EnTraitement))
 		{			
 			boolean resTot = true;
 			for (LigneCommande lc : c.getLignesCommandes()) 
 			{
 				resTot = resTot && lc.getStatut().equals(StatutLigneCommande.Reservee);
+				System.err.println("Statut en cours  = "+lc.getId()+" , "+lc.getStatut());
+				System.err.println("RESTOT = "+resTot);
 			}
+			System.err.println("RESTOTFINAL = "+resTot);
 			if(resTot)
 			{
 				c.setStatut(StatutCommande.Prete);
 			}
 		}
-		return dao.save(c);
+		return serviceCommande.updateCommande(c);
 	}
 
 	

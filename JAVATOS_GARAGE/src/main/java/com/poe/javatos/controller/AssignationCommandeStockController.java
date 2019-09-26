@@ -40,20 +40,30 @@ public class AssignationCommandeStockController
 	@GetMapping(value="/assignationAfficherListe")
 	public String afficherListeAssignation(final ModelMap model)
 	{
-		ListeAssignationStockForm listFormAss = new ListeAssignationStockForm();
-		List<AssignationStockForm> listAssignationForm = new ArrayList<AssignationStockForm>();
-		List<LigneCommande> listLigneCommande = serviceLigneCommande.findByStatutEnCommandeFournisseurLignesCommande();
-		for (LigneCommande ligneCommande : listLigneCommande) 
-		{
-			AssignationStockForm ass = new AssignationStockForm();
-			ass.setLigneCommande(ligneCommande);
-			Stock s = serviceStock.findByIdModelStock(ligneCommande.getModel().getId());
-			ass.setStock(s);
-			ass.setQteAReserve(0);
-			listAssignationForm.add(ass);
+		if(model.get("error")==null || model.get("error")=="false")
+		{			
+			ListeAssignationStockForm listFormAss = new ListeAssignationStockForm();
+			List<AssignationStockForm> listAssignationForm = new ArrayList<AssignationStockForm>();
+			List<LigneCommande> listLigneCommande = serviceLigneCommande.findByStatutEnCommandeFournisseurLignesCommande();
+			for (LigneCommande lc : listLigneCommande) 
+			{
+				AssignationStockForm ass = new AssignationStockForm();
+				ass.setIdLigneCommande(lc.getId());
+				ass.setNomClient(lc.getCommande().getClient().getPrenom()+" "+lc.getCommande().getClient().getNom());
+				ass.setNomModel(lc.getModel().getNom());
+				ass.setQuantiteLigneCommande(lc.getQuantite());
+				ass.setNbReserveLigneCommande(lc.getNbResvervees());
+				Stock s = serviceStock.findByIdModelStock(lc.getModel().getId());			
+				ass.setIdStock(s.getId());
+				ass.setQteDispoStock(s.getQteDispo());
+				ass.setQteAReserve(0);
+				listAssignationForm.add(ass);
+			}
+			listFormAss.setListAss(listAssignationForm);
+			listFormAss.setIndex(0);
+			model.addAttribute("listAssignationForm",listFormAss);
+			
 		}
-		listFormAss.setListAss(listAssignationForm);
-		model.addAttribute("listAssignationForm",listFormAss);
 	
 		return "assignation";
 	}
@@ -64,22 +74,20 @@ public class AssignationCommandeStockController
 	{
 		if(!bindingResult.hasErrors())
 		{
-			System.err.println("ASS = ");
-			for (AssignationStockForm ass : listFormAss.getListAss()) 
-			{
-				System.err.println("ASS = "+ ass);
-				if(ass.getQteAReserve()!=0)
-				{
-					LigneCommande lc = ass.getLigneCommande();
-					Stock s = serviceStockCrud.findByIdStock(ass.getStock().getId());
-					System.err.println("S = "+s);
-					Integer qteAReserver = ass.getQteAReserve();
-					System.err.println("BOOL = "+ass.isQteReserveOk());
-					s= serviceStock.miseAjourAssignation(s, qteAReserver);
-					lc=serviceLigneCommande.miseAJourAssignation(lc, qteAReserver);
-				}
-			}
-			return "menu"; //TODO changer le chemin en "retour à la page appelante"
+			System.err.println("INDEX = " +listFormAss.getIndex());
+			AssignationStockForm ass =listFormAss.getListAss().get(Integer.valueOf(listFormAss.getIndex()));
+			LigneCommande lc = serviceLigneCommandeCrud.findByIdLigneCommande(ass.getIdLigneCommande());
+			Stock s = serviceStockCrud.findByIdStock(ass.getIdStock());
+			Integer qteAReserver = ass.getQteAReserve();
+			System.err.println("BOOL = "+ass.isQteReserveOk());
+			s= serviceStock.miseAjourAssignation(s, qteAReserver);
+			lc=serviceLigneCommande.miseAJourAssignation(lc, qteAReserver);
+			model.addAttribute("error","false");
+			//return "menu"; //TODO changer le chemin en "retour à la page appelante"
+		}
+		else
+		{
+			model.addAttribute("error","true");
 		}
 		System.err.println(bindingResult);
 		return afficherListeAssignation(model);  

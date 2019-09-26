@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poe.javatos.bean.LigneCommande;
-import com.poe.javatos.global.StatutCommande;
 import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.repository.ILigneCommandeRepository;
+import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
 
 @Service
 public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
@@ -18,6 +18,9 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 	
 	@Autowired
 	IServiceCommande serviceCommande;
+	
+	@Autowired
+	IServiceLigneCommandeCrud serviceLigneCommandeCrud;
 	
 	@Override
 	public List<LigneCommande> findByIdCommandeLigneCommande(Integer idCommande) 
@@ -41,12 +44,13 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 			serviceCommande.mettreAJourStatut(lc.getCommande());
 		}
 		
-		return dao.save(lc);
+		return serviceLigneCommandeCrud.updateLigneCommande(lc);
 	}
 
 	@Override
 	public LigneCommande miseAJourStatut(LigneCommande lc) 
 	{
+		
 		if(lc.getQuantite()==lc.getNbResvervees())
 		{
 			lc.setStatut(StatutLigneCommande.Reservee);
@@ -55,7 +59,7 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 		{
 			lc.setStatut(StatutLigneCommande.EnCommandeFournisseur);
 		}
-		return dao.save(lc);
+		return serviceLigneCommandeCrud.updateLigneCommande(lc);
 	}
 
 }

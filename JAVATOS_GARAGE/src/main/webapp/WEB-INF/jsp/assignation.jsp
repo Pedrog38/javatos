@@ -23,44 +23,45 @@
             <c:forEach items="${listAssignationForm.listAss}" var="ass" varStatus="status">
                 <tr>
                     <td>
-                        <c:out value="${ass.ligneCommande.commande.id}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.commande.id" value="${ass.ligneCommande.commande.id}"/>
+                        <c:out value="${ass.idLigneCommande}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].idLigneCommande" value="${ass.idLigneCommande}"/>
                     </td>
                     <td>
-                        <c:out value="${ass.ligneCommande.commande.client.nom} ${ass.ligneCommande.commande.client.prenom}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.commande.client.id" value="${ass.ligneCommande.commande.client.id}"/>
+                        <c:out value="${ass.nomClient}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].nomClient" value="${ass.nomClient}"/>
                     </td>
                     <td>
-                        <c:out value="${ass.ligneCommande.model.nom}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.model.id" value="${ass.ligneCommande.model.id}"/>
+                        <c:out value="${ass.nomModel}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].nomModel" value="${ass.nomModel}"/>
                     </td>
                     <td>
-                        <c:out value="${ass.ligneCommande.commande.delaisProd}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.commande.delaisProd" value="${ass.ligneCommande.commande.delaisProd}"/>
+                        <c:out value="${ass.delaisProd}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].delaisProd" value="${ass.delaisProd}"/>
                     </td>
                     <td>
-                        <c:out value="${ass.ligneCommande.quantite}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.quantite" value="${ass.ligneCommande.quantite}"/>
+                        <c:out value="${ass.quantiteLigneCommande}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].quantiteLigneCommande" value="${ass.quantiteLigneCommande}"/>
                     </td>
                     <td>
-                        <c:out value="${ass.ligneCommande.nbResvervees}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].ligneCommande.nbResvervees" value="${ass.ligneCommande.nbResvervees}"/>
+                        <c:out value="${ass.nbReserveLigneCommande}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].nbReserveLigneCommande" value="${ass.nbReserveLigneCommande}"/>
                     </td>
                     <td>
-                        <c:out value="${ass.ligneCommande.quantite-ass.ligneCommande.nbResvervees}"/>
+                        <c:out value="${ass.quantiteLigneCommande-ass.nbReserveLigneCommande}"/>
                         
                     </td>
                     <td>
-                        <c:out value="${ass.stock.qteDispo}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].stock.id" value="${ass.stock.id}"/>
-                        <form:input type="hidden" path="listAss[${status.index}].stock.qteDispo" value="${ass.stock.qteDispo}"/>
+                        <c:out value="${ass.qteDispoStock}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].idStock" value="${ass.idStock}"/>
+                        <form:input type="hidden" path="listAss[${status.index}].qteDispoStock" value="${ass.qteDispoStock}"/>
                     </td>
                     <td>
                         <form:input type="text" path="listAss[${status.index}].qteAReserve"/><br/>
-                        <form:errors path="listAss[${status.index}].qteAReserve" /></i></b>
+                        <form:errors path="listAss[${status.index}].qteReserveOk" /></i></b>
                     </td>
                     <td>
-                    <input type="submit" value= Assigner >
+                    <form:button type="submit" name="index" value="${status.index}" >Assigner</form:button>
+                   
                     </td>
                 </tr>
             </c:forEach>

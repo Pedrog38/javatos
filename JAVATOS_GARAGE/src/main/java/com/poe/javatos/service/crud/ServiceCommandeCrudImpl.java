@@ -42,6 +42,8 @@ public class ServiceCommandeCrudImpl implements IServiceCommandeCrud {
 	@Override
 	@Transactional
 	public Commande updateCommande(Commande commande) {
+		//commande = dao.findById(commande.getId()).orElse(null);
+		
 		return dao.save(commande);
 	}
 

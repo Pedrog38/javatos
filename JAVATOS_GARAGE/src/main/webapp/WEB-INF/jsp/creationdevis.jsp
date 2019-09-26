@@ -10,27 +10,82 @@
 <title>Affichage des stocks de la concession Javatos Garage</title>
 </head>
 <body>
-	<h1>Gestion Reception</h1>
-	<table>
-	<thead>
-	<tr>
-	<th>Modèle</th>
-	<th>Quantité commandée</th>
-	<th>Quantité réceptionnée</th>
-	</tr>
-	</thead>
-	<tbody>
-	<c:forEach items="${listestock}" var="stock">
-	<tr>
-	<form:form method="post" modelAttribute="receptionner" action="receptionnercommande">
-	<td> <c:out value="${listestock.model.nom}" /> </td>
-	<td> <c:out value="${listestock.qteCommandee}" /> </td>
-	<td> <form:input path="qteCommandee" /> </td>
-	<td> <input type="submit" value="VALIDER RECEPTION" /> </td>
+	<h1>Nouveau Devis</h1>
+	<form:form method="post" modelAttribute="creationDevis"
+		action="creerDevis">
+		<p><a href="#">Créer nouveau client</a></p>
+		<p><a href="#">Créer nouveau modèle</a></p>
+		<p>
+		<form:label path="client">Choix du client :</form:label>
+		<form:select path="client">
+			<c:forEach items="${clients}" var="client">
+				<form:option value="${client.id}" label="${client.prenom} ${client.nom}" />
+			</c:forEach>
+		</form:select>
+		</p>
+		<p>
+		<form:label path="dateCreation">Date du devis :</form:label>
+		<form:input path="dateCreation" type="date" max="${creationDevis.dateCreation}" />
+		</p>
+<!-- 		<table border="1"> -->
+<!-- 			<thead> -->
+<!-- 				<tr> -->
+<!-- 					<td>Modèle</td> -->
+<!-- 					<td>Quantité</td> -->
+<!-- 					<td>Délais</td> -->
+<!-- 					<td>Prix</td> -->
+<!-- 				</tr> -->
+<!-- 			</thead> -->
+<%-- 			<c:forEach items="${lignesDevis}" var="ligne"> --%>
+<!-- 				<tr> -->
+<%-- 					<td><c:out value="ligne.model.nom"></c:out></td> --%>
+<%-- 					<td><c:out value="ligne.quantite"></c:out></td> --%>
+<%-- 					<td><c:out value="ligne.model.delaisProd"></c:out></td> --%>
+<%-- 					<td><c:out value="ligne.model.prixVente"></c:out></td> --%>
+<!-- 				</tr> -->
+<%-- 			</c:forEach> --%>
+<!-- 			<tr> -->
+<!-- 				<td> -->
+<%-- 					<form:select path="model"> --%>
+<%-- 						<c:forEach items="${listemodel}" var="model"> --%>
+<%-- 							<form:option value="${model.id}">${model.nom}</form:option> --%>
+<%-- 						</c:forEach> --%>
+<%-- 					</form:select> --%>
+<!-- 				</td> -->
+<!-- 				<td> <input type="text" /> </td> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
+
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Modèle || Délais de production || Prix de vente HT</th>
+						<th>Délais de production </th>
+						<th>Quantité</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<form:select path="creationLigneDevis">
+								<c:forEach items="${models}" var="model">
+									<form:option value="${model.id}" label=" Modèle : ${model.nom} || Délais de production : ${model.delaisProd} jours || Prix de Vente HT : ${model.prixVente} euros" />
+								</c:forEach>
+							</form:select>
+						</td>
+						<td>
+							<c:out value="${creationLigneDevis.model.delaisProd}"/>
+							<form:input type="hidden" path="creationLigneDevis.delaisProd" value="${creationLigneDevis.model.delaisProd}"/>
+						</td>
+						<td>
+							<form:input path="creationLigneDevis.quantite"/>
+							<form:input type="hidden" path="creationLigneDevis.delaisProd" />
+						 	<form:input type="hidden" path="creationLigneDevis.prixVente"/>
+						</td>
+						<td> <a href="validerLigneDevis">Ajouter une ligne</a> </td>
+					</tr>
+				</tbody>
+			</table>
 	</form:form>
-	</tr>
-	</c:forEach>
-	</tbody>
-	</table>
 </body>
 </html>

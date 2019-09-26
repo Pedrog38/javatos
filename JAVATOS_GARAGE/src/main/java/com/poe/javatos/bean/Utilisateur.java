@@ -1,11 +1,13 @@
 package com.poe.javatos.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -41,7 +44,7 @@ public class Utilisateur implements Serializable , UserDetails
 	@Column(name = "fonction")
 	private String fonction;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "t_utilisateur_has_t_role", 
 	joinColumns =
 			@JoinColumn(name = "t_utilisateur_id", referencedColumnName = "id" ),
@@ -113,8 +116,11 @@ public class Utilisateur implements Serializable , UserDetails
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		for (final RoleUtilisateur role : this.getRoles()) {
+			authorities.add(new SimpleGrantedAuthority(role.getNom()));
+		}
+		return authorities;
 	}
 
 	@Override
