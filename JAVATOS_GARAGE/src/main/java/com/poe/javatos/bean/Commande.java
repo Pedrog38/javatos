@@ -4,14 +4,15 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_commande")
 public class Commande extends ProcessVente{
-	
-	@OneToMany(mappedBy = "commande",fetch = FetchType.EAGER)
+	//,fetch = FetchType.EAGER
+	@OneToMany(mappedBy = "commande")
 	private List<LigneCommande> lignesCommandes;
 
 	public List<LigneCommande> getLignesCommandes() {
