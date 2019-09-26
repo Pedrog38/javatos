@@ -20,4 +20,12 @@ public class ServiceLigneDevisImpl implements IServiceLigneDevis {
 		return dao.findByDevisLigneDevis(idDevis);
 	}
 
+	@Override
+	public Float calculerLignePrixDevis(LigneDevis ld) {
+			Float prixLigneDevis = (float) 0;
+			prixLigneDevis = ld.getModel().getPrixVente()*ld.getQuantite();
+			return prixLigneDevis;
+	
+	}
+
 }

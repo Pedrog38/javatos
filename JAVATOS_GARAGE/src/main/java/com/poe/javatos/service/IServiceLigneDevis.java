@@ -7,4 +7,5 @@ import com.poe.javatos.bean.LigneDevis;
 public interface IServiceLigneDevis 
 {
 	List<LigneDevis> findByIdDevisLigneDevis(Integer idDevis);
+	Float calculerLignePrixDevis (LigneDevis ld);
 }
