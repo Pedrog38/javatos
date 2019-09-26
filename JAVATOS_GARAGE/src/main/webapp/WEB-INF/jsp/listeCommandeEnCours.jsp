@@ -23,7 +23,7 @@
 			<tr>
 				<th>Id Commande</th>
 				<th>Client</th>
-				<th>Date de création</th>
+				<th>Date de creation</th>
 				<th>Prix HT</th>
 				<th>Statut</th>
 				<th></th>
@@ -41,8 +41,8 @@
 					<!--Prix total de la commande à déterminer, le prix d'une lignede commande est disponible dans modèle-->
 					<td><c:out value="${commande.lignecommande.model.prixVente}" /></td>
 					<td><c:out value="${commande.statut}" /></td>
-					<td><input type="button" value="Visualiser"></ins></td>
-					<td><input type="button" value="Livrer"></ins></td>
+					<td><input type="button" value="Visualiser"></td>
+					<td><input type="button" value="Livrer"></td>
 				</tr>
 			</c:forEach>
 		</tbody>

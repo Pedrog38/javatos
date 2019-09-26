@@ -10,8 +10,9 @@
 </head>
 <body>
 
-<a href="<c:url value='/app/hello'/>">Hello</a>
-<a href="<c:url value='creerClientAfficher'/>">creerClient</a>
+<a href="<c:url value='/app/hello'/>">Hello</a><br>
+<a href="<c:url value='/creerClientAfficher'/>">creer Client</a><br>
+<a href="<c:url value='/creerModeleAfficher'/>">creer Modele</a><br>
 
 </body>
 </html>
