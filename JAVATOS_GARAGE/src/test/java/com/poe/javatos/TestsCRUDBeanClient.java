@@ -47,6 +47,8 @@ public class TestsCRUDBeanClient {
 		c1.setSexe("SexeTest1");
 		c1.setTelephone("TelTest1");
 		c1.setStatut(daoStatutClient.findByIdStatutClient(1));
+		
+		
 
 		Client c2 = new Client();
 
@@ -61,10 +63,13 @@ public class TestsCRUDBeanClient {
 		c2.setTelephone("TelTest2");
 		c2.setStatut(daoStatutClient.findByIdStatutClient(2));
 
-		dao.createClient(c1);
-		dao.createClient(c2);
-
-		Client cRecup1 = dao.findByIdClient(1);
+		c1=dao.createClient(c1);
+		c2=dao.createClient(c2);
+		
+		Integer id1 = c1.getId();
+		Integer id2 = c2.getId();
+		
+		Client cRecup1 = dao.findByIdClient(id1);
 
 		assertNotNull(cRecup1);
 
@@ -75,9 +80,9 @@ public class TestsCRUDBeanClient {
 		assertEquals("PrenomTest1", cRecup1.getPrenom());
 		assertEquals("TelTest1", cRecup1.getTelephone());
 		assertEquals("SexeTest1", cRecup1.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(1).getId(), cRecup1.getStatut().getId());
+		assertEquals(daoStatutClient.findByIdStatutClient(id1).getId(), cRecup1.getStatut().getId());
 
-		Client cRecup2 = dao.findByIdClient(2);
+		Client cRecup2 = dao.findByIdClient(id2);
 
 		assertNotNull(cRecup2);
 
@@ -88,17 +93,18 @@ public class TestsCRUDBeanClient {
 		assertEquals("PrenomTest2", cRecup2.getPrenom());
 		assertEquals("TelTest2", cRecup2.getTelephone());
 		assertEquals("SexeTest2", cRecup2.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(2).getId(), cRecup2.getStatut().getId());
+		assertEquals(daoStatutClient.findByIdStatutClient(id2).getId(), cRecup2.getStatut().getId());
 
 		Client c1Modifie = c1;
 		c1Modifie.setNom("NomTest1Modifie");
 		Client c2Modifie = c2;
 		c2Modifie.setNom("NomTest2Modifie");
 
-		dao.updateClient(c1Modifie);
-		dao.updateClient(c2Modifie);
+		c1Modifie=dao.updateClient(c1Modifie);
+		c2Modifie=dao.updateClient(c2Modifie);
 
-		Client cRecupModifie1 = dao.findByIdClient(1);
+		Integer idM1 = c1Modifie.getId();
+		Client cRecupModifie1 = dao.findByIdClient(idM1);
 
 		assertNotNull(cRecupModifie1);
 
@@ -109,9 +115,10 @@ public class TestsCRUDBeanClient {
 		assertEquals("PrenomTest1", cRecupModifie1.getPrenom());
 		assertEquals("TelTest1", cRecupModifie1.getTelephone());
 		assertEquals("SexeTest1", cRecupModifie1.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(1).getId(), cRecupModifie1.getStatut().getId());
+		assertEquals(daoStatutClient.findByIdStatutClient(idM1).getId(), cRecupModifie1.getStatut().getId());
 
-		Client cRecupModifie2 = dao.findByIdClient(2);
+		Integer idM2 = c2Modifie.getId();
+		Client cRecupModifie2 = dao.findByIdClient(idM2);
 
 		assertNotNull(cRecupModifie2);
 
@@ -122,7 +129,7 @@ public class TestsCRUDBeanClient {
 		assertEquals("PrenomTest2", cRecupModifie2.getPrenom());
 		assertEquals("TelTest2", cRecupModifie2.getTelephone());
 		assertEquals("SexeTest2", cRecupModifie2.getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(2).getId(), cRecupModifie2.getStatut().getId());
+		assertEquals(daoStatutClient.findByIdStatutClient(idM2).getId(), cRecupModifie2.getStatut().getId());
 		
 		List<Client> allClients = dao.findAllClient();
 		assertEquals(2, allClients.size());
@@ -134,7 +141,7 @@ public class TestsCRUDBeanClient {
 		assertEquals("PrenomTest1", allClients.get(0).getPrenom());
 		assertEquals("TelTest1", allClients.get(0).getTelephone());
 		assertEquals("SexeTest1", allClients.get(0).getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(1).getId(), allClients.get(0).getStatut().getId());
+		assertEquals(daoStatutClient.findByIdStatutClient(idM1).getId(), allClients.get(0).getStatut().getId());
 		
 		assertEquals("AdresseTest2", allClients.get(1).getAdresse());
 		assertEquals(formatDate.format(date2), formatDate.format(allClients.get(1).getDateCreation()));
@@ -143,7 +150,7 @@ public class TestsCRUDBeanClient {
 		assertEquals("PrenomTest2", allClients.get(1).getPrenom());
 		assertEquals("TelTest2", allClients.get(1).getTelephone());
 		assertEquals("SexeTest2", allClients.get(1).getSexe());
-		assertEquals(daoStatutClient.findByIdStatutClient(2).getId(), allClients.get(1).getStatut().getId());
+		assertEquals(daoStatutClient.findByIdStatutClient(idM2).getId(), allClients.get(1).getStatut().getId());
 
 
 	}
