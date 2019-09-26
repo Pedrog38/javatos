@@ -5,8 +5,6 @@ import java.util.List;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
-import com.poe.javatos.bean.Client;
-
 
 public class CreationDevisForm 
 {
@@ -17,10 +15,8 @@ public class CreationDevisForm
 	@NotEmpty(message = "{creation.Devis.dateCreation.notempty}")	
 	private String dateCreation;
 	
-//	@NotEmpty(message = "{creation.Devis.idClient.notempty}")	
-//	private Integer idClient;
-	
-	private Client client;
+	@NotEmpty(message = "{creation.Devis.idClient.notempty}")	
+	private Integer idClient;
 	
 	@NotEmpty(message = "{creation.Devis.idCommercialResponsable.notempty}")	
 	private Integer idCommercialResponsable;
@@ -44,13 +40,13 @@ public class CreationDevisForm
 		this.dateCreation = dateCreation;
 	}
 
-//	public Integer getIdClient() {
-//		return idClient;
-//	}
-//
-//	public void setIdClient(Integer idClient) {
-//		this.idClient = idClient;
-//	}
+	public Integer getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(Integer idClient) {
+		this.idClient = idClient;
+	}
 
 	public Integer getIdCommercialResponsable() {
 		return idCommercialResponsable;
@@ -67,16 +63,6 @@ public class CreationDevisForm
 	public void setLignesDevis(List<CreationLigneDevisForm> lignesDevis) {
 		this.lignesDevis = lignesDevis;
 	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-	
-	
 	
 	
 }

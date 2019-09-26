@@ -14,33 +14,33 @@
 
 			<h1>AFFICHER LISTE DES DEVIS</h1>
 
-			<div>
-				<p>account: <c:out value="${utilisateur.nom}  ${utilisateur.prenom} - ${utilisateur.fonction}" /> </p>
-			</div>
 
 			<table border="1">
 		<thead>
 			<tr>
 				<th>Id Devis</th>
 				<th>Client</th>
-				<th>Delai</th>
-				<th>Prix total en euro(s)</th>
-				<th>Date de création</th>
+
+				
+				<th>Date de creation</th>
 				<th>Statut</th>
+				<th>Prix total en euro(s)</th>
+				<th>Delai</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<c:forEach items="${listeDevis}" var="devis">
+			<c:forEach items="${mapDevis}" var="couple" >
 				<tr>
-					<td><c:out value="${devis.id}" /></td>
-					<td><c:out value="${devis.client.nom}" /></td>
-					<!--Delai max à déterminer-->
-					<td><c:out value="${devis.delaifinal}" /></td>
-					<!--Prix total à déterminer-->
-					<td><c:out value="${devis.prixtotal}" /></td>
-					<td><c:out value="${devis.dateCreation}" /></td>
-					<td><c:out value="${devis.statut}" /></td>
+					<td><c:out value="${couple.key.id}" /></td>
+					<td><c:out value="${couple.key.client.nom} ${couple.key.client.prenom}" /></td>
+<!-- 					Delai max à déterminer -->
+<%-- 					<td><c:out value="${devis.delaifinal}" /></td> --%>
+
+
+					<td><c:out value="${couple.key.dateCreation}" /></td>
+					<td><c:out value="${couple.key.statut}" /></td>
+					<td><c:out value="${couple.value}" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>
