@@ -32,17 +32,11 @@
                                    <c:url value="/creationDevis" var="url" />
 										<a href="${url}"> Créer un devis</a>
                                 </h3></td></tr>
-                                
+                                kgh,gg,
                                 <tr><td><h3>
                                    <c:url value="/validationDevis" var="url" />
 										<a href="${url}"> Valider un devis</a>
-                                </h3></td></tr>
-                         
-                          <tr><td><h2>
-                                    2 - Commandes
-                                </h2></td></tr>
-                               
-                                <tr><td><h3>
+                      
                                    <c:url value="/historiqueCommandes" var="url" />
 										<a href="${url}"> Historique des commandes</a>
                                 </h3></td></tr>
