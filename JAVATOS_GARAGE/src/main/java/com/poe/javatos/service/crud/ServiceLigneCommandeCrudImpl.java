@@ -9,12 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.repository.crud.ILigneCommandeRepositoryCrud;
+import com.poe.javatos.service.IServiceLigneCommande;
 
 @Service
 public class ServiceLigneCommandeCrudImpl implements IServiceLigneCommandeCrud {
 
+
+
 	@Autowired
 	private ILigneCommandeRepositoryCrud dao;
+	
 	
 	public ILigneCommandeRepositoryCrud getDao() {
 		return dao;
@@ -29,8 +33,6 @@ public class ServiceLigneCommandeCrudImpl implements IServiceLigneCommandeCrud {
 	@Override
 	@Transactional
 	public LigneCommande createLigneCommande(LigneCommande ligneCommande) {
-		System.err.println(ligneCommande);
-		System.err.println(dao);
 		return dao.save(ligneCommande);
 	}
 

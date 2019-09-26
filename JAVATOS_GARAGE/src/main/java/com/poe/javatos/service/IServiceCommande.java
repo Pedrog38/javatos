@@ -8,4 +8,5 @@ public interface IServiceCommande
 {
 	List<Commande> findByStatutNouvelleCommande();
 	List<Commande> findByStatutsEnTraitementPreteCommande();
+	Commande mettreAJourStatut(Commande c);
 }

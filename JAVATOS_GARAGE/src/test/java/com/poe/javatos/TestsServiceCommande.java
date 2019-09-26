@@ -3,7 +3,6 @@ package com.poe.javatos;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -14,10 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.Commande;
+import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.global.StatutCommande;
+import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
+import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
+import com.poe.javatos.service.crud.IServiceModelCrud;
 import com.poe.javatos.service.crud.IServiceUtilisateurCrud;
 
 @RunWith(SpringRunner.class)
@@ -32,9 +35,11 @@ public class TestsServiceCommande {
     IServiceUtilisateurCrud daoUtilisateurCrud;
 	@Autowired
 	IServiceCommande daoCommande;
+
+
 	
 	@Test
-	public void testCommande() 
+	public void testCommandeFinds() 
 	{
         
         // créer au moins 2 objet Commande et les setter 
@@ -97,5 +102,8 @@ public class TestsServiceCommande {
         assertEquals(Integer.valueOf(5),commandesTraitementPrete.get(1).getId());
         
 	}
+	
+	
+	
 
 }
