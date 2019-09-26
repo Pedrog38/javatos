@@ -50,12 +50,12 @@
         </c:if>
 
         <form name='loginForm'
-          action="<c:url value='j__spring__security__check'/>" method='POST'>
+          action="login" method='POST'>
 
           <table>
             <tr>
                 <td>User:</td>
-                <td><input type='text' name='utilisateur' value=''></td>
+                <td><input type='text' name='username' value=''></td>
             </tr>
             <tr>
                 <td>Password:</td>

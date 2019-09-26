@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .disable()
                 .exceptionHandling()
                 .and()
+                .authenticationProvider(getProvider())
                 .formLogin()
                 .loginPage("/login")
                 .and()
@@ -40,7 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/app/**").permitAll()
+                .antMatchers("/app/**").authenticated()
+                .antMatchers("/admin/**").hasAuthority("Admin")
+                .antMatchers("/commercial/**").hasAuthority("Commercial")
+                .antMatchers("/magasinier/**").hasAuthority("Magasinier")
                 .anyRequest().permitAll();
     }
 
@@ -50,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
      * Configuration des chemins par défaut pour le menu et le formulaire
      * de connexion.
      */
-       registry.addViewController("/").setViewName("login");
-       registry.addViewController("/login").setViewName("secure/login");
+       registry.addViewController("/").setViewName("menu");
+       registry.addViewController("/login").setViewName("login");
     }
    
     @Override
@@ -67,8 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
      
     @Bean
     public AuthenticationProvider getProvider() {
-
-        AppAuthProvider provider = new AppAuthProvider();
+    	AppAuthProvider provider = new AppAuthProvider();
         provider.setUserDetailsService(userDetailsService);
         return provider;
 
