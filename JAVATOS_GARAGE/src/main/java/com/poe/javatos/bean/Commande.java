@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "t_commande")
 public class Commande extends ProcessVente{
 	
-	@OneToMany(mappedBy = "commande",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "commande")
 	private List<LigneCommande> lignesCommandes;
 
 	public List<LigneCommande> getLignesCommandes() {

@@ -33,4 +33,11 @@ public class ServiceLigneDevisImpl implements IServiceLigneDevis {
 		return prix;
 	}
 
+	@Override
+	public Integer calculerDelaiLigneDevis(LigneDevis lignedevis) {
+		Integer delaiTotal = 0;
+		delaiTotal = lignedevis.getQuantite()* lignedevis.getModel().getDelaisProd();
+		return delaiTotal;
+	}
+
 }

@@ -8,4 +8,5 @@ public interface IServiceLigneDevis
 {
 	List<LigneDevis> findByIdDevisLigneDevis(Integer idDevis);
 	Float calculerPrixLigneDevis(LigneDevis ld);
+	Integer calculerDelaiLigneDevis(LigneDevis lignedevis);
 }

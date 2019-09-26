@@ -13,7 +13,7 @@ import com.poe.javatos.repository.IDevisRepository;
 @Service
 public class ServiceDevisImpl implements IServiceDevis 
 {
-
+	
 	@Autowired
 	IDevisRepository dao;
 	
@@ -39,9 +39,16 @@ public class ServiceDevisImpl implements IServiceDevis
 	}
 
 	@Override
-	public Integer calculerDelaisDevis(Devis d) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer calculerDelaisDevis(Devis d) 
+	{
+		Integer delaiDevis = 0;
+		for (LigneDevis ld : d.getLignesDevis()) {
+		Integer delaiLigneDevisEnCours = service.calculerDelaiLigneDevis(ld); 
+		delaiDevis = Math.max(delaiDevis, delaiLigneDevisEnCours);
+			
+		}
+		
+		return delaiDevis;
 	}
 
 }
