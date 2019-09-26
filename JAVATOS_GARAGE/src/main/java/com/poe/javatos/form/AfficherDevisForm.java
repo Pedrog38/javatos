@@ -1,6 +1,6 @@
 package com.poe.javatos.form;
 
-import java.util.Date;
+import java.util.List;
 
 public class AfficherDevisForm {
 	private Integer idDevis;
@@ -9,7 +9,14 @@ public class AfficherDevisForm {
 	private String statut;
 	private Float prixTotal;
 	private Integer delai;
+	private List<AfficherLigneDevisForm> listLigneDevisForm;
 	
+	public List<AfficherLigneDevisForm> getListLigneDevisForm() {
+		return listLigneDevisForm;
+	}
+	public void setListLigneDevisForm(List<AfficherLigneDevisForm> listLigneDevisForm) {
+		this.listLigneDevisForm = listLigneDevisForm;
+	}
 	public Integer getIdDevis() {
 		return idDevis;
 	}
