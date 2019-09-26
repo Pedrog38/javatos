@@ -59,22 +59,30 @@
 			<table border="1">
 				<thead>
 					<tr>
-						<th>Modèle</th>
+						<th>Modèle || Délais de production || Prix de vente HT</th>
+						<th>Délais de production </th>
 						<th>Quantité</th>
-						<th>Délais</th>
-						<th>Prix</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
-							<form:select path="ligneDevis">
+							<form:select path="creationLigneDevis">
 								<c:forEach items="${models}" var="model">
-									<form:option value="${model.id}" label="${model.nom}" />
+									<form:option value="${model.id}" label=" Modèle : ${model.nom} || Délais de production : ${model.delaisProd} jours || Prix de Vente HT : ${model.prixVente} euros" />
 								</c:forEach>
 							</form:select>
 						</td>
-						<td> <form:input path="ligneDevis.quantite"/> </td>
+						<td>
+							<c:out value="${creationLigneDevis.model.delaisProd}"/>
+							<form:input type="hidden" path="creationLigneDevis.delaisProd" value="${creationLigneDevis.model.delaisProd}"/>
+						</td>
+						<td>
+							<form:input path="creationLigneDevis.quantite"/>
+							<form:input type="hidden" path="creationLigneDevis.delaisProd" />
+						 	<form:input type="hidden" path="creationLigneDevis.prixVente"/>
+						</td>
+						<td> <a href="validerLigneDevis">Ajouter une ligne</a> </td>
 					</tr>
 				</tbody>
 			</table>

@@ -3,6 +3,7 @@ package com.poe.javatos.form;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.poe.javatos.bean.Model;
 
@@ -10,14 +11,18 @@ import com.poe.javatos.bean.Model;
 public class CreationLigneDevisForm 
 {
 		
-	@NotEmpty(message = "{creation.LigneDevis.quantite.notempty}")
+	@NotNull(message = "{creation.LigneDevis.quantite.notempty}")
 	@Min(value=0, message = "{creation.LigneDevis.quantite.positive}")
 	private Integer quantite;
 
-	@NotEmpty(message = "{creation.LigneDevis.idModel.notempty}")
+	@NotNull(message = "{creation.LigneDevis.idModel.notempty}")
 	private Integer idModel;
 	
 	private Model model;
+	
+	private int delaisProd;
+	
+	private Float prixVente;
 
 	public Integer getQuantite() {
 		return quantite;
@@ -42,6 +47,23 @@ public class CreationLigneDevisForm
 	public void setModel(Model model) {
 		this.model = model;
 	}
+
+	public int getDelaisProd() {
+		return delaisProd;
+	}
+
+	public void setDelaisProd(int delaisProd) {
+		this.delaisProd = delaisProd;
+	}
+
+	public Float getPrixVente() {
+		return prixVente;
+	}
+
+	public void setPrixVente(Float prixVente) {
+		this.prixVente = prixVente;
+	}
+	
 	
 	
 }
