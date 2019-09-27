@@ -14,8 +14,8 @@
 		 <thead>
 			<tr>
 				<th>Id Commande</th>
-				<th>Client</th>
 				<th>Date de création</th>
+				<th>Client</th>	
 				<th>Date de livraison</th>
 				<th>Id Devis </th>
 				<th>Prix Total</th>
@@ -24,7 +24,7 @@
 			</thead>
 			<tbody>
 			<!--  Corps de ma table  n ligne avec au tant de cellule (td) que l'entête -->
-				<c:forEach items="${listeCommande}" var="p">
+				<c:forEach items="${AfficherCommandeForm.listLigneCdForm}" var="c">
 				<tr>
 					<td><c:out value="${c.idCommande}" /></td>
 					<td><c:out value="${c.client}"/></td>
@@ -44,19 +44,5 @@
 		<a href="ToutReserver"> Tout Réserver</a>
 		<a href="ValiderAutomatique"> Valider Automatique</a>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-
 </body>
 </html>

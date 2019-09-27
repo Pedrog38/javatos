@@ -13,7 +13,7 @@ loose.dtd">
 	<h1>CREATION NOUVEAU CLIENT</h1>
 			
 
-	<form:form method="post" modelAttribute="creationClient" action="creerClient">
+	<form:form method="post" modelAttribute="CreationClient" action="creerClient">
 		
 		<label>Nom: </label>
 		<form:input path="nom" type="text" />

@@ -21,7 +21,7 @@ import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceStatutClientCrud;
 
 @Controller
-@RequestMapping(value="/admin/")
+@RequestMapping(value = {"/commercial","/admin"}) 
 public class CreationClientController 
 {
 	@Autowired
@@ -33,17 +33,18 @@ public class CreationClientController
 	public String afficherCreationClient(final ModelMap model)
 	{
 		final List<StatutClient> listeStatutClient = serviceStatutClientCurd.findAllStatutClient();
+		System.err.println("List = "+listeStatutClient.size());
 		model.addAttribute("statutList",listeStatutClient);
-		if(model.get("creationClient")==null)
+		if(model.get("CreationClient")==null)
 		{
-			model.addAttribute("creationClient",new CreationClientForm());
+			model.addAttribute("CreationClient",new CreationClientForm());
 		}
-		return "creationClient";
+		return "CreationClient";
 	
 	}
 	
 	@PostMapping(value="/creerClient")
-	public String CreationClient(@Valid @ModelAttribute(value="creationClient") 
+	public String CreationClient(@Valid @ModelAttribute(value="CreationClient") 
 	 final CreationClientForm creationForm,final BindingResult bindingResult, final ModelMap model)
 	{
 		if(!bindingResult.hasErrors())
@@ -58,7 +59,7 @@ public class CreationClientController
 			c.setTelephone(creationForm.getTelephone());
 			c.setStatut(creationForm.getStatutClient());
 			serviceClientCurd.createClient(c);
-			return "menu"; //TODO changer le chemin en "retour à la page appelante"
+			//return "menu"; //TODO changer le chemin en "retour à la page appelante"
 		}
 		return afficherCreationClient(model);  
 	}
