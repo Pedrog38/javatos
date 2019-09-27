@@ -14,8 +14,9 @@ import com.poe.javatos.form.DevisAValiderForm;
 import com.poe.javatos.service.IServiceDevis;
 
 @Controller
-@RequestMapping(value= {"/commercial/","/admin/"})
-public class DevisAValiderController {
+@RequestMapping(value = {"/commercial/","/admin/"})
+public class ValiderDevisController {
+
 	
 	
 	@Autowired
