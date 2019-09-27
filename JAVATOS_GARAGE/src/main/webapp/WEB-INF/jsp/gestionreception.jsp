@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>Gestion Reception</h1>
-	<table>
+	<table border="1">
 	<thead>
 	<tr>
 	<th>Modèle</th>
@@ -20,12 +20,13 @@
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach items="${listestock}" var="stock">
+	<c:forEach items="${gestionStocks.listForm}" var="gestionStock" varStatus="status">
 	<tr>
-	<form:form method="post" modelAttribute="receptionner" action="receptionnercommande">
-	<td> <c:out value="${listestock.model.nom}" /> </td>
-	<td> <c:out value="${listestock.qteCommandee}" /> </td>
-	<td> <form:input path="qteCommandee" /> </td>
+	<form:form method="post" modelAttribute="gestionStocks[${status.index}]" action="receptionnercommande">
+	<td> <c:out value="${gestionStock.nomModele}" /> </td>
+	<td> <c:out value="${gestionStock.qteCommandee}" /> </td>
+<%-- 	<td> <form:input path="gestionStocks[${status.index}].qteRecue" /> </td> --%>
+	<td> <c:out value="${gestionStock.qteRecue}"></c:out> </td>
 	<td> <input type="submit" value="VALIDER RECEPTION" /> </td>
 	</form:form>
 	</tr>
