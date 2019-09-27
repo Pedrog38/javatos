@@ -31,7 +31,7 @@ public class AppAuthProvider extends DaoAuthenticationProvider {
         if (utilisateur == null) {
             throw new BadCredentialsException("Username/Password does not match for " + auth.getPrincipal());
         }
-        
+        System.err.println(utilisateur.getAuthorities().size());
         return new UsernamePasswordAuthenticationToken(utilisateur, null, utilisateur.getAuthorities());
 
     }

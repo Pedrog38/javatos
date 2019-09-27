@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.form.DevisAValiderForm;
 import com.poe.javatos.service.IServiceDevis;
-import com.poe.javatos.service.crud.IServiceDevisCrud;
 
 @Controller
-@RequestMapping(value="/commercial/")
+@RequestMapping(value= {"/commercial/","/admin/"})
 public class DevisAValiderController {
 	
 	
