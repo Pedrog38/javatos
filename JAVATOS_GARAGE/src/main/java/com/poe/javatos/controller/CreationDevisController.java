@@ -21,6 +21,9 @@ import com.poe.javatos.bean.Model;
 import com.poe.javatos.bean.Utilisateur;
 import com.poe.javatos.form.CreationDevisForm;
 import com.poe.javatos.form.CreationLigneDevisForm;
+import com.poe.javatos.global.StatutDevis;
+import com.poe.javatos.service.IServiceDevis;
+import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
@@ -41,9 +44,19 @@ public class CreationDevisController {
 	private IServiceLigneDevisCrud serviceLigneDevisCrud;
 	
 	@Autowired
+	private IServiceLigneDevis serviceLigneDevis;
+	
+	@Autowired
+	private IServiceDevis serviceDevis;
+	
+	@Autowired
 	private IServiceDevisCrud serviceDevisCrud;
 	
+	@Autowired
 	private IServiceUtilisateurCrud serviceUtilisateurCrud;
+	
+	@Autowired
+	private AfficherLignesDevisController ctrl;
 	
 	
 	@GetMapping(value = "/afficherCreerDevis")
@@ -91,13 +104,9 @@ public class CreationDevisController {
 			if (!bindingResult.hasErrors()) {
 				
 				List<CreationLigneDevisForm> lignes = pForm.getLignedevis();
-				List<Model> models = serviceModelCrud.findAllModel();
-				List<Client> clients = serviceClientCrud.findAllClient();
-				List<Utilisateur> utilisateurs = serviceUtilisateurCrud.findAllUtilisateur();
 				
 				Devis d = new Devis();
-				d.setClient(clients.get(pForm.getIdClient()));
-				System.err.println(d);
+				d.setClient(serviceClientCrud.findByIdClient(pForm.getIdClient()));
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				try {
 					Date dateCreation = format.parse(pForm.getDateDevis());
@@ -106,9 +115,11 @@ public class CreationDevisController {
 					e.printStackTrace();
 				}
 				
-				d.setStatut("Nouveau");
+				d.setStatut(StatutDevis.Nouveau);
+				d.setCommercialResponsable(serviceUtilisateurCrud.findByIdUtilisateur(1));
+				System.err.println(d);
+				d=serviceDevisCrud.createDevis(d);
 				
-				int delaisProd = 0;
 				List<LigneDevis> listLigneDevis = new ArrayList<>();
 				for (CreationLigneDevisForm ligne : lignes) {
 					
@@ -116,20 +127,20 @@ public class CreationDevisController {
 						
 						LigneDevis ligneDevis = new LigneDevis();
 						ligneDevis.setDevis(d);
-						ligneDevis.setModel(models.get(ligne.getIdModel()));
+						ligneDevis.setModel(serviceModelCrud.findByIdModel(ligne.getIdModel()));
 						ligneDevis.setQuantite(ligne.getQuantite());
 						listLigneDevis.add(ligneDevis);
+						serviceLigneDevisCrud.createLigneDevis(ligneDevis);
+						
 					}
 					
 					
 				}
-				d.setLignesDevis(listLigneDevis);
-				//d.setDelaisProd();
-				d.setCommercialResponsable(utilisateurs.get(1));
+				//d=serviceDevisCrud.updateDevis(d);
+				//d.setLignesDevis(listLigneDevis);
 				
-				serviceDevisCrud.createDevis(d);
-				//serviceLigneDevisCrud.createLigneDevis(ligneDevis);
-				
+				model.addAttribute("IdDevisAVisualiser", d.getId());
+				return ctrl.afficherLigneDevis(model);
 			}
 			
 		}

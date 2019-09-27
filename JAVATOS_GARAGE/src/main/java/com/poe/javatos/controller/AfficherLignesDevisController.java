@@ -16,6 +16,7 @@ import com.poe.javatos.form.ListeAfficherDevisForm;
 import com.poe.javatos.service.IServiceDevis;
 import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
+import com.poe.javatos.service.crud.ServiceDevisCrudImpl;
 
 @Controller
 public class AfficherLignesDevisController 
@@ -34,11 +35,11 @@ public class AfficherLignesDevisController
 	@GetMapping(value="/afficherLignesDevis")
 	public String afficherLigneDevis(ModelMap model) {
 		
-		final Devis devis = (Devis) model.get("DevisAVisualiser");
+		final Devis devis = service.findByIdDevis((Integer)model.get("IdDevisAVisualiser"));
 		
 		AfficherDevisForm affDevis = new AfficherDevisForm();
 		List<AfficherLigneDevisForm> lignesDevisForm = new ArrayList<>();
-		for (LigneDevis ld: devis.getLignesDevis()) 
+		for (LigneDevis ld: serviceLigneDevis.findByIdDevisLigneDevis(devis.getId())) 
 		{
 			AfficherLigneDevisForm aff = new AfficherLigneDevisForm();
 			aff.setNomModel(ld.getModel().getNom());

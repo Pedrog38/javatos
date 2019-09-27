@@ -29,7 +29,7 @@
                                 </h3></td></tr>
                                 
                                 <tr><td><h3>
-                                   <c:url value="/creationDevis" var="url" />
+                                   <c:url value="/afficherCreerDevis" var="url" />
 										<a href="${url}"> Créer un devis</a>
                                 </h3></td></tr>
 

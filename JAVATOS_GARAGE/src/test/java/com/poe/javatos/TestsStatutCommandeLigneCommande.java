@@ -46,7 +46,7 @@ public class TestsStatutCommandeLigneCommande
 	{
 		Commande c1 = new Commande();
         c1.setId(7);
-        c1.setDelaisProd(10);
+        //c1.setDelaisProd(10);
         Date datec1= new Date();
         c1.setDateCreation(datec1);
         c1.setStatut(StatutCommande.Nouvelle);

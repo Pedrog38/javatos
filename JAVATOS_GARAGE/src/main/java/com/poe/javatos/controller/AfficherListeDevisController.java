@@ -43,6 +43,7 @@ public class AfficherListeDevisController
 		
 		final ListeAfficherDevisForm grosseBoite = new ListeAfficherDevisForm();
 		final List<Devis> lListeDevis = service.findAllDevis();
+		System.err.println("DEVIS 1 = "+lListeDevis.get(0));
 		List<AfficherDevisForm> listeDevisForm = new ArrayList<>();
 		for (Devis devis : lListeDevis) {
 			AfficherDevisForm devisForm = new AfficherDevisForm();
@@ -51,6 +52,7 @@ public class AfficherListeDevisController
 			devisForm.setNomClient(devis.getClient().getPrenom()+" "+devis.getClient().getNom());
 			devisForm.setPrixTotal(serviceDevis.calculerPrixDevis(devis));
 			devisForm.setStatut(devis.getStatut());
+			System.err.println("DEVIS "+devis.getId()+" : "+devis.getLignesDevis());
 			devisForm.setDelai(serviceDevis.calculerDelaisDevis(devis));			
 			listeDevisForm.add(devisForm);
 			
@@ -68,9 +70,8 @@ public class AfficherListeDevisController
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idDevis = grosseBoite.getListeDevisForm().get(grosseBoite.getIndex()).getIdDevis();
 		System.err.println("Id Devis Choisis = "+idDevis);
-		Devis devis = service.findByIdDevis(idDevis);
 		
-		model.addAttribute("DevisAVisualiser",devis) ;
+		model.addAttribute("IdDevisAVisualiser",idDevis) ;
 	
 		return this.ctrlAfficheLigneDevis.afficherLigneDevis(model);
 	}
