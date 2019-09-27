@@ -1,68 +1,66 @@
 package com.poe.javatos.form;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 
 public class CreationDevisForm 
 {
-	@NotEmpty(message = "{creation.Devis.delais.notempty}")	
-	@Min(value=0, message = "{creation.Devis.delais.positive}")
-	private Integer delaisProd;
 	
-	@NotEmpty(message = "{creation.Devis.dateCreation.notempty}")	
-	private String dateCreation;
+	private List<CreationLigneDevisForm> lignedevis;
 	
-	@NotEmpty(message = "{creation.Devis.idClient.notempty}")	
-	private Integer idClient;
+	private int idClient;
 	
-	@NotEmpty(message = "{creation.Devis.idCommercialResponsable.notempty}")	
-	private Integer idCommercialResponsable;
+	private String DateDevis;
 	
-	@NotEmpty(message = "{creation.Devis.lignesDevis.notempty}")
-	private List<CreationLigneDevisForm> lignesDevis;
+	private String submit;
 
-	public Integer getDelaisProd() {
-		return delaisProd;
+
+
+	public List<CreationLigneDevisForm> getLignedevis() {
+		return lignedevis;
 	}
 
-	public void setDelaisProd(Integer delaisProd) {
-		this.delaisProd = delaisProd;
+	public void setLignedevis(List<CreationLigneDevisForm> lignedevis) {
+		this.lignedevis = lignedevis;
 	}
 
-	public String getDateCreation() {
-		return dateCreation;
-	}
-
-	public void setDateCreation(String dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-	public Integer getIdClient() {
+	public int getIdClient() {
 		return idClient;
 	}
 
-	public void setIdClient(Integer idClient) {
+	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
 
-	public Integer getIdCommercialResponsable() {
-		return idCommercialResponsable;
+	public String getDateDevis() {
+		return DateDevis;
 	}
 
-	public void setIdCommercialResponsable(Integer idCommercialResponsable) {
-		this.idCommercialResponsable = idCommercialResponsable;
+	public void setDateDevis(String dateDevis) {
+		DateDevis = dateDevis;
 	}
 
-	public List<CreationLigneDevisForm> getLignesDevis() {
-		return lignesDevis;
+	public String getSubmit() {
+		return submit;
 	}
 
-	public void setLignesDevis(List<CreationLigneDevisForm> lignesDevis) {
-		this.lignesDevis = lignesDevis;
+	public void setSubmit(String submit) {
+		this.submit = submit;
 	}
+
+	@Override
+	public String toString() {
+		return "CreationDevisForm [lignedevis=" + lignedevis + ", idClient=" + idClient + ", DateDevis=" + DateDevis
+				+ ", submit=" + submit + "]";
+	}
+
 	
-	
+		
 }
