@@ -38,7 +38,7 @@
 					<td><c:out value="${commande.id}" /></td>
 					<td><c:out value="${commande.client.nom}" /></td>
 					<td><c:out value="${commande.dateCreation}" /></td>
-					<!--Prix total de la commande à déterminer, le prix d'une lignede commande est disponible dans modèle-->
+					<!--Prix total de la commande à déterminer, le prix d'une ligne de commande est disponible dans modele-->
 					<td><c:out value="${commande.lignecommande.model.prixVente}" /></td>
 					<td><c:out value="${commande.statut}" /></td>
 					<td><input type="button" value="Visualiser"></td>

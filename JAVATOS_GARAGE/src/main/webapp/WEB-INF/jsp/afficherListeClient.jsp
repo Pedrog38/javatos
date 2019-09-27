@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
+
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -38,5 +40,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+				<input type="button" value="Retour" onclick="history.go(-1)"/><br>
 </body>
 </html>

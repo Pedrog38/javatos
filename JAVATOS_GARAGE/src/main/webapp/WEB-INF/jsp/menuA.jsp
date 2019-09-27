@@ -58,7 +58,7 @@
                                 </h3></td></tr>
                          
                           		<tr><td><h3>
-                                   <c:url value="/assignerCommandeSelonStock" var="url" />
+                                   <c:url value="/admin/assignationAfficherListe" var="url" />
 										<a href="${url}"> Assignation commande selon stock</a>
                                 </h3></td></tr>
                                  
@@ -72,7 +72,7 @@
                                 </h3></td></tr>
                                 
                                 <tr><td><h3>
-                                   <c:url value="/afficherStock" var="url" />
+                                   <c:url value="/admin/afficherStock" var="url" />
 										<a href="${url}"> Etat du stock</a>
                                 </h3></td></tr>
                                        

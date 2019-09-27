@@ -71,9 +71,10 @@
                                 </h3></td></tr>
                                 
                                 <tr><td><h3>
-                                   <c:url value="/creerClientAfficher" var="url" />
-										<a href="${url}"> Création d'un nouveau client </a>
+                                   <c:url value="/commercial/afficherListeClient" var="url" />
+										<a href="${url}"> Afficher liste des clients </a>
                                 </h3></td></tr>
+                                
                                 
                                 <td><tr> 
                                 <a id="logoutLink" href="${pageContext.servletContext.contextPath}/logout">Logout</a>

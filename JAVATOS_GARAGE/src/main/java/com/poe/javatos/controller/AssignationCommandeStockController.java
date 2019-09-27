@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
@@ -23,6 +24,7 @@ import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
 import com.poe.javatos.service.crud.IServiceStockCrud;
 
 @Controller
+@RequestMapping(value = {"/magasinier","/admin"})
 public class AssignationCommandeStockController 
 {
 	@Autowired

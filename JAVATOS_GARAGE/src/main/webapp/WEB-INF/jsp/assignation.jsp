@@ -6,9 +6,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-<head><meta charset="ISO-8859-1">
-<title>Assignation stock/commande</title></head>
+<head>
+<meta charset="ISO-8859-1">
+<title>Assignation stock par commande</title>
+</head>
 <body>
+<h1>Assignation stock par commande</h1>
 <form:form method="post" modelAttribute="listAssignationForm" action="assignationModifierLigne">
    
 	<table border="1">
@@ -72,6 +75,7 @@
             </c:forEach>
 	    </table>
 </form:form>
+				<input type="button" value="Retour" onclick="history.go(-1)"/><br>
 </body>
 </html>
 
