@@ -13,12 +13,12 @@ import com.poe.javatos.repository.IDevisRepository;
 @Service
 public class ServiceDevisImpl implements IServiceDevis 
 {
-
+	
 	@Autowired
 	IDevisRepository dao;
 	
 	@Autowired
-	IServiceLigneDevis serviceDevis;
+	IServiceLigneDevis service;
 	
 	@Override
 	public List<Devis> findByStatutNouveauDevis() 
@@ -27,14 +27,28 @@ public class ServiceDevisImpl implements IServiceDevis
 	}
 
 	@Override
-	public Float calculerPrix(Devis devis) {
-		float prixDevis =0;
-		for (LigneDevis ld : devis.getLignesDevis()) {
-			prixDevis = prixDevis+ serviceDevis.calculerLignePrixDevis(ld);
+	public Float calculerPrixDevis(Devis d) {
+		Float prixtotal = (float) 0;
+		for (LigneDevis ld : d.getLignesDevis()) {
+			Float prixligne = service.calculerPrixLigneDevis(ld);
+			
+			prixtotal = prixligne + prixtotal;
+		}
+		
+		return prixtotal;
+	}
+
+	@Override
+	public Integer calculerDelaisDevis(Devis d) 
+	{
+		Integer delaiDevis = 0;
+		for (LigneDevis ld : d.getLignesDevis()) {
+		Integer delaiLigneDevisEnCours = service.calculerDelaiLigneDevis(ld); 
+		delaiDevis = Math.max(delaiDevis, delaiLigneDevisEnCours);
 			
 		}
-		return prixDevis;
-		 
+		
+		return delaiDevis;
 	}
 
 }
