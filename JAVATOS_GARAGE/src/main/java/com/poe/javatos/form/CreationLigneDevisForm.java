@@ -31,6 +31,11 @@ public class CreationLigneDevisForm
 		this.idModel = idModel;
 	}
 
+	@Override
+	public String toString() {
+		return "CreationLigneDevisForm [quantite=" + quantite + ", idModel=" + idModel + "]";
+	}
+
 		
 		
 	

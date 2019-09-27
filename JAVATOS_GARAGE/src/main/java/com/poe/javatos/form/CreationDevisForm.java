@@ -50,5 +50,12 @@ public class CreationDevisForm
 		this.submit = submit;
 	}
 
+	@Override
+	public String toString() {
+		return "CreationDevisForm [lignedevis=" + lignedevis + ", idClient=" + idClient + ", DateDevis=" + DateDevis
+				+ ", submit=" + submit + "]";
+	}
+
+	
 		
 }
