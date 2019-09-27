@@ -62,4 +62,24 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 		return serviceLigneCommandeCrud.updateLigneCommande(lc);
 	}
 
+	@Override
+	public Float calculerPrixLigneCommande(LigneCommande lc) {
+		Float prix = (float) 0;
+		Float prixModel =(float) 0;
+		Integer quantite =0;
+		
+		prixModel = lc.getModel().getPrixVente();
+		quantite = lc.getQuantite();
+		
+		prix = prixModel * quantite;
+		return prix;
+	}
+
+	@Override
+	public Integer calculerDelaiLigneCommande(LigneCommande lc) {
+		Integer delaiTotal = 0;
+		delaiTotal = lc.getQuantite()* lc.getModel().getDelaisProd();
+		return delaiTotal;
+	}
+
 }
