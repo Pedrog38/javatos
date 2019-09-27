@@ -1,77 +1,58 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <title>Login Javatos Garage</title>
-<style>
-.error {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-}
 
-.msg {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    color: #31708f;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-}
-
-#login-box {
-    width: 300px;
-    padding: 20px;
-    margin: 100px auto;
-    background: #fff;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border: 1px solid #000;
-}
-</style>
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-    <h1>Javatos Login Page</h1>
+<style>
+  
+  body {
+  background: url("https://cdn.motor1.com/images/mgl/jAVWR/s3/porsche-concession.jpg");
+  background-repeat: no-repeat, repeat;
+  background-position: center;
+  background-size: cover;
+}
+</style>
 
-    <div id="login-box">
-
-        <h2>Veuillez vous connecter</h2>
-
-        <c:if test="${not empty error}">
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            
+            <h5 class="card-title text-center">JAVATOS LOGIN PAGE</h5>
+            <h5 class="card-title text-center">Veuillez vous connecter</h5>
+            <c:if test="${not empty error}">
             <div class="error">${error}</div>
-        </c:if>
-        <c:if test="${not empty msg}">
+            </c:if>
+        	<c:if test="${not empty msg}">
             <div class="msg">${msg}</div>
-        </c:if>
+        	</c:if>
+            
+            <form name="loginForm" action="login" method="POST" class="form-signin">
+              <div class="form-label-group">
+                <input type="text" name="username" class="form-control" required autofocus>
+                <label>User</label>
+              </div>
 
-        <form name='loginForm'
-          action="login" method='POST'>
+              <div class="form-label-group">
+                <input type="password" name="password" class="form-control" required>
+                <label>Password</label>
+              </div>
 
-          <table>
-            <tr>
-                <td>User:</td>
-                <td><input type='text' name='username' value=''></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type='password' name='password'/></td>
-            </tr>
-            <tr>
-                <td colspan='2'><input name="submit" type="submit"
-                    value="submit"/></td>
-            </tr>
-          </table>
-
-          <input type="hidden" name="${__csrf.parameterName}"
-            value="${__csrf.token}"/>
-
-        </form>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Connecter</button>
+              
+               <input class="btn btn-lg btn-primary btn-block text-uppercase" type="hidden" name="${__csrf.parameterName}" value="${__csrf.token}"></input>
+              
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
 </body>
 </html>
