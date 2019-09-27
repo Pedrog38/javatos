@@ -12,13 +12,13 @@
 <body>
 
 <security:authorize access="hasAuthority('Admin')" >
-	<a href="<c:url value='/WEB-INF/jsp/menuA.jsp'/>">Admin</a>
+	<a href="<c:url value='/Menu/A'/>">Admin</a>
 </security:authorize>
 <security:authorize access="hasAuthority('Commercial')">
-	<a href="<c:url value='/WEB-INF/jsp/menuC.jsp'/>">Commercial</a>
+	<a href="<c:url value='/Menu/C'/>">Commercial</a>
 </security:authorize>
 <security:authorize access="hasAuthority('Magasinier')">
-	<a href="<c:url value='/WEB-INF/jsp/menuM.jsp'/>">Magasinier</a>
+	<a href="<c:url value='/Menu/M'/>">Magasinier</a>
 </security:authorize>
 
 </body>
