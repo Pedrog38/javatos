@@ -32,7 +32,7 @@ public class AfficherLignesDevisController
 	private IServiceLigneDevis serviceLigneDevis;
 	
 	@GetMapping(value="/afficherLignesDevis")
-	public String afficherListeDevis(ModelMap model) {
+	public String afficherLigneDevis(ModelMap model) {
 		
 		final Devis devis = (Devis) model.get("DevisAVisualiser");
 		
@@ -56,6 +56,6 @@ public class AfficherLignesDevisController
 		affDevis.setDelai(serviceDevis.calculerDelaisDevis(devis));
 		model.addAttribute("AfficherDevisForm", affDevis);
 				
-		return "afficherListeDevis";
+		return "LigneDevis";
 	}
 }

@@ -35,6 +35,9 @@ public class AfficherListeDevisController
 	@Autowired
 	private IServiceLigneDevis serviceLigneDevis;
 	
+	@Autowired
+	AfficherLignesDevisController ctrlAfficheLigneDevis;
+	
 	@GetMapping(value="/afficherListeDevis")
 	public String afficherListeDevis(ModelMap model) {
 		
@@ -68,7 +71,7 @@ public class AfficherListeDevisController
 		Devis devis = service.findByIdDevis(idDevis);
 		
 		model.addAttribute("DevisAVisualiser",devis) ;
-		
-		return "afficherLignesDevis";
+	
+		return this.ctrlAfficheLigneDevis.afficherLigneDevis(model);
 	}
 }
