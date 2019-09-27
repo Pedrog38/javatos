@@ -44,7 +44,7 @@ public class Utilisateur implements Serializable , UserDetails
 	@Column(name = "fonction")
 	private String fonction;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "t_utilisateur_has_t_role", 
 	joinColumns =
 			@JoinColumn(name = "t_utilisateur_id", referencedColumnName = "id" ),

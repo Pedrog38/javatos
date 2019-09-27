@@ -19,7 +19,7 @@ loose.dtd">
 		
 		<label>Marque, modele: </label>
 		<form:input path="nom" type="text" value="Renault Twingo" />
-		<b><i><form:errors path="nom" /></i></b><br> 
+		<b><i><form:errors path="nom" /></i></b><br>
 
 	
 		<label>Puissance (CH): </label>

@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.form.DevisAValiderForm;
 import com.poe.javatos.service.IServiceDevis;
-import com.poe.javatos.service.crud.IServiceDevisCrud;
 
 @Controller
-@RequestMapping(value="/commercial/")
-public class DevisAValiderController {
+@RequestMapping(value = {"/commercial/","/admin/"})
+public class ValiderDevisController {
+
 	
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class DevisAValiderController {
 		for (Devis devis : lsDevis) {
 			DevisAValiderForm devisAV = new DevisAValiderForm();
 			devisAV.setDevis(devis);
-			devisAV.setPrixDevis(servicedevis.calculerPrix(devis));
+			devisAV.setPrixDevis(servicedevis.calculerPrixDevis(devis));
 			lsAValider.add(devisAV);
 		} 
 		model.addAttribute("listeDevisValiderForm", lsAValider);

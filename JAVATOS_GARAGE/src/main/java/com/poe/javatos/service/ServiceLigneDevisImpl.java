@@ -21,11 +21,23 @@ public class ServiceLigneDevisImpl implements IServiceLigneDevis {
 	}
 
 	@Override
-	public Float calculerLignePrixDevis(LigneDevis ld) {
-			Float prixLigneDevis = (float) 0;
-			prixLigneDevis = ld.getModel().getPrixVente()*ld.getQuantite();
-			return prixLigneDevis;
-	
+	public Float calculerPrixLigneDevis(LigneDevis ld) {
+		Float prix = (float) 0;
+		Float prixModel =(float) 0;
+		Integer quantite =0;
+		
+		prixModel = ld.getModel().getPrixVente();
+		quantite = ld.getQuantite();
+		
+		prix = prixModel * quantite;
+		return prix;
+	}
+
+	@Override
+	public Integer calculerDelaiLigneDevis(LigneDevis lignedevis) {
+		Integer delaiTotal = 0;
+		delaiTotal = lignedevis.getQuantite()* lignedevis.getModel().getDelaisProd();
+		return delaiTotal;
 	}
 
 }

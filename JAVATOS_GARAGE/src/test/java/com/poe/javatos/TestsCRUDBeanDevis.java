@@ -64,8 +64,11 @@ public class TestsCRUDBeanDevis
 		 //d2.setLignesDevis(daoLignesDevis.findAllLignesDevis);
 		 d2.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(2));
 		 
-		 dao.createDevis(d1);
-		 dao.createDevis(d2);
+		 d1=dao.createDevis(d1);
+		 d2=dao.createDevis(d2);
+		 
+		 Integer id1 = d1.getId();
+		 Integer id2 = d2.getId();
 		 
 		 Devis dRecup1 = dao.findByIdDevis(1);
 		 
