@@ -21,7 +21,7 @@ import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceStatutClientCrud;
 
 @Controller
-@RequestMapping(value="/admin/")
+@RequestMapping(value = {"/commercial","/admin"})
 public class CreationClientController 
 {
 	@Autowired

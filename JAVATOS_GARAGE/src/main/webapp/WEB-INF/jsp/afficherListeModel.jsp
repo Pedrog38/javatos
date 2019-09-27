@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Liste des modèles</h1>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Nom du modèle</th>

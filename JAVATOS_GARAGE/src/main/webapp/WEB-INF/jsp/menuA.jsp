@@ -27,12 +27,12 @@
                                    <c:url value="/afficherListeDevis" var="url" />
 										<a href="${url}"> Liste des devis</a>
                                 </h3></td></tr>
-                                
+<!-- manque le controller de pierre -->
                                 <tr><td><h3>
                                    <c:url value="/creationDevis" var="url" />
 										<a href="${url}"> Créer un devis</a>
                                 </h3></td></tr>
-
+ <!-- manque le tout -->
                                 <tr><td><h3>
                                    <c:url value="/validationDevis" var="url" />
 										<a href="${url}"> Valider un devis</a>
@@ -41,9 +41,9 @@
 								<tr><td><h2>
                                     2 - Commande
                                 </h2></td></tr>
-                      			
+ <!-- manque le controller !-->
                       			<tr><td><h3>
-                                   <c:url value="/historiqueCommandes" var="url" />
+                                   <c:url value="/afficherListeCommande" var="url" />
 										<a href="${url}"> Historique des commandes</a>
                                 </h3></td></tr>
                                 
@@ -77,26 +77,26 @@
                                 </h3></td></tr>
                                        
                           <tr><td><h2>
-                                    4 - Gestion Admin
+                                    4 - Gestion Administative
                                 </h2></td></tr>
                                
                                 <tr><td><h3>
-                                   <c:url value="/creerModeleAfficher" var="url" />
+                                   <c:url value="/admin/creerModeleAfficher" var="url" />
 										<a href="${url}"> Création d'un nouveau modèle </a>
                                 </h3></td></tr>
                                 
                                 <tr><td><h3>
-                                   <c:url value="/afficherListeModel" var="url" />
+                                   <c:url value="/admin/afficherListeModel" var="url" />
 										<a href="${url}"> Afficher liste des modèles </a>
                                 </h3></td></tr> 
                                 
                                 <tr><td><h3>
-                                   <c:url value="/creerClientAfficher" var="url" />
+                                   <c:url value="/admin/creerClientAfficher" var="url" />
 										<a href="${url}"> Création d'un nouveau client </a>
                                 </h3></td></tr>
                                 
                                 <tr><td><h3>
-                                   <c:url value="/afficherListeClient" var="url" />
+                                   <c:url value="/admin/afficherListeClient" var="url" />
 										<a href="${url}"> Afficher liste des clients </a>
                                 </h3></td></tr>
                                  

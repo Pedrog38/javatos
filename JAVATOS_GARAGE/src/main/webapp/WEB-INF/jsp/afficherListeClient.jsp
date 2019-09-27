@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Liste des clients</h1>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Statut</th>
@@ -26,7 +26,7 @@
 		<tbody>
 			<c:forEach items="${listeclient}" var="client">
 				<tr>
-					<td><c:out value="${client.statut}" /></td>
+					<td><c:out value="${client.statut.nom}" /></td>
 					<td><c:out value="${client.nom}" /></td>
 					<td><c:out value="${client.prenom}" /></td>
 					<td><c:out value="${client.sexe}" /></td>
