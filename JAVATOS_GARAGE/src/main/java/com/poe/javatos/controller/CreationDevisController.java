@@ -93,11 +93,11 @@ public class CreationDevisController {
 				List<CreationLigneDevisForm> lignes = pForm.getLignedevis();
 				List<Model> models = serviceModelCrud.findAllModel();
 				List<Client> clients = serviceClientCrud.findAllClient();
-				//List<Utilisateur> utilisateurs = serviceUtilisateurCrud.findAllUtilisateur();
+				List<Utilisateur> utilisateurs = serviceUtilisateurCrud.findAllUtilisateur();
 				
 				Devis d = new Devis();
-				System.err.println(d);
 				d.setClient(clients.get(pForm.getIdClient()));
+				System.err.println(d);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				try {
 					Date dateCreation = format.parse(pForm.getDateDevis());
@@ -109,7 +109,7 @@ public class CreationDevisController {
 				d.setStatut("Nouveau");
 				
 				int delaisProd = 0;
-				
+				List<LigneDevis> listLigneDevis = new ArrayList<>();
 				for (CreationLigneDevisForm ligne : lignes) {
 					
 					if (ligne.getQuantite()!=0) {
@@ -118,17 +118,17 @@ public class CreationDevisController {
 						ligneDevis.setDevis(d);
 						ligneDevis.setModel(models.get(ligne.getIdModel()));
 						ligneDevis.setQuantite(ligne.getQuantite());
-						delaisProd += models.get(ligne.getIdModel()).getDelaisProd();
-						serviceLigneDevisCrud.createLigneDevis(ligneDevis);
+						listLigneDevis.add(ligneDevis);
 					}
 					
 					
 				}
-				
-				d.setDelaisProd(delaisProd);
-				//d.setCommercialResponsable(utilisateurs.get(1));
+				d.setLignesDevis(listLigneDevis);
+				//d.setDelaisProd();
+				d.setCommercialResponsable(utilisateurs.get(1));
 				
 				serviceDevisCrud.createDevis(d);
+				//serviceLigneDevisCrud.createLigneDevis(ligneDevis);
 				
 			}
 			
