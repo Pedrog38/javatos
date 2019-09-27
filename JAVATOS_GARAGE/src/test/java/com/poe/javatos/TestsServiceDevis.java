@@ -37,7 +37,7 @@ public class TestsServiceDevis {
 	{
 		Devis d1 = new Devis();
 		 d1.setId(3);
-		 d1.setDelaisProd(10);
+		// d1.setDelaisProd(10);
 		 Date date1= new Date();
 		 d1.setDateCreation(date1);
 		 d1.setStatut(StatutDevis.Nouveau);
@@ -46,7 +46,7 @@ public class TestsServiceDevis {
 		 
 		 Devis d2 = new Devis();
 		 d2.setId(4);
-		 d2.setDelaisProd(20);
+		 //d2.setDelaisProd(20);
 		 Date date2= new Date();
 		 d2.setDateCreation(date2);
 		 d2.setStatut(StatutDevis.Annule);
@@ -55,7 +55,7 @@ public class TestsServiceDevis {
 		 
 		 Devis d3 = new Devis();
 		 d3.setId(5);
-		 d3.setDelaisProd(20);
+		// d3.setDelaisProd(20);
 		 Date date3= new Date();
 		 d3.setDateCreation(date3);
 		 d3.setStatut(StatutDevis.Valide);

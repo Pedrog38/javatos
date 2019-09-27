@@ -45,7 +45,7 @@ public class TestsServiceCommande {
         // créer au moins 2 objet Commande et les setter 
         Commande c1 = new Commande();
         c1.setId(3);
-        c1.setDelaisProd(11);
+       // c1.setDelaisProd(11);
         Date datec1= new Date();
         c1.setDateCreation(datec1);
         c1.setStatut(StatutCommande.Nouvelle);
@@ -55,7 +55,7 @@ public class TestsServiceCommande {
         
         Commande c2 = new Commande();
         c2.setId(4);
-        c2.setDelaisProd(22);
+       // c2.setDelaisProd(22);
         Date datec2= new Date();
         c2.setDateCreation(datec2);
         c2.setStatut(StatutCommande.EnTraitement);
@@ -65,7 +65,7 @@ public class TestsServiceCommande {
         
         Commande c3 = new Commande();
         c3.setId(5);
-        c3.setDelaisProd(22);
+        //c3.setDelaisProd(22);
         Date datec3= new Date();
         c3.setDateCreation(datec3);
         c3.setStatut(StatutCommande.Prete);
@@ -75,7 +75,7 @@ public class TestsServiceCommande {
         
         Commande c4 = new Commande();
         c4.setId(6);
-        c4.setDelaisProd(22);
+        //c4.setDelaisProd(22);
         Date datec4= new Date();
         c4.setDateCreation(datec4);
         c4.setStatut(StatutCommande.Livree);
