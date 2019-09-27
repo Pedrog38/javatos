@@ -36,7 +36,13 @@
                                 <tr><td><h3>
                                    <c:url value="/validationDevis" var="url" />
 										<a href="${url}"> Valider un devis</a>
-                      
+								</h3></td></tr>
+										
+								<tr><td><h2>
+                                    2 - Commande
+                                </h2></td></tr>
+                      			
+                      			<tr><td><h3>
                                    <c:url value="/historiqueCommandes" var="url" />
 										<a href="${url}"> Historique des commandes</a>
                                 </h3></td></tr>
@@ -55,9 +61,8 @@
                                    <c:url value="/assignerCommandeSelonStock" var="url" />
 										<a href="${url}"> Assignation commande selon stock</a>
                                 </h3></td></tr>
-                                 <tr><td>
                                  
-                          <tr><td><h2>
+                         		 <tr><td><h2>
                                     3 - Stock
                                 </h2></td></tr>
                                
@@ -85,7 +90,7 @@
 										<a href="${url}"> Création d'un nouveau client </a>
                                 </h3></td></tr>
                                  
-                                 <td><tr>  
+                                 <tr><td>  
                                 <a id="logoutLink" href="${pageContext.servletContext.contextPath}/logout">Logout</a>
                                 </td></tr>
                             </tbody>
