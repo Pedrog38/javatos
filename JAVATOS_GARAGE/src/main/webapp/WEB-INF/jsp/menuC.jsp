@@ -66,12 +66,12 @@
                                 </h2></td></tr>
                                
                                 <tr><td><h3>
-                                   <c:url value="/creationModel" var="url" />
+                                   <c:url value="/creerModeleAfficher" var="url" />
 										<a href="${url}"> Création d'un nouveau modèle </a>
                                 </h3></td></tr>
                                 
                                 <tr><td><h3>
-                                   <c:url value="/creationClient" var="url" />
+                                   <c:url value="/creerClientAfficher" var="url" />
 										<a href="${url}"> Création d'un nouveau client </a>
                                 </h3></td></tr>
                                 
