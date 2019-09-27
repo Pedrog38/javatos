@@ -86,8 +86,18 @@
                                 </h3></td></tr>
                                 
                                 <tr><td><h3>
+                                   <c:url value="/afficherListeModel" var="url" />
+										<a href="${url}"> Afficher liste des modèles </a>
+                                </h3></td></tr> 
+                                
+                                <tr><td><h3>
                                    <c:url value="/creerClientAfficher" var="url" />
 										<a href="${url}"> Création d'un nouveau client </a>
+                                </h3></td></tr>
+                                
+                                <tr><td><h3>
+                                   <c:url value="/afficherListeClient" var="url" />
+										<a href="${url}"> Afficher liste des clients </a>
                                 </h3></td></tr>
                                  
                                  <tr><td>  
