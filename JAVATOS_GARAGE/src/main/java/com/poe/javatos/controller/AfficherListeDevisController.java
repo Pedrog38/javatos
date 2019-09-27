@@ -23,7 +23,8 @@ import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 
 @Controller
-public class affichageListeDevisController {
+public class AfficherListeDevisController 
+{
 	
 	@Autowired
 	private IServiceDevisCrud service;
@@ -64,27 +65,10 @@ public class affichageListeDevisController {
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idDevis = grosseBoite.getListeDevisForm().get(grosseBoite.getIndex()).getIdDevis();
 		System.err.println("Id Devis Choisis = "+idDevis);
-		AfficherDevisForm affDevis = new AfficherDevisForm();
 		Devis devis = service.findByIdDevis(idDevis);
-		List<AfficherLigneDevisForm> lignesDevisForm = new ArrayList<>();
-		for (LigneDevis ld: devis.getLignesDevis()) {
-			AfficherLigneDevisForm aff = new AfficherLigneDevisForm();
-			aff.setNomModel(ld.getModel().getNom());
-			aff.setQuantite(ld.getQuantite());
-			aff.setDelai(serviceLigneDevis.calculerDelaiLigneDevis(ld));
-			aff.setPrixHT(serviceLigneDevis.calculerPrixLigneDevis(ld));
-			lignesDevisForm.add(aff);
-		}
-		affDevis.setListLigneDevisForm(lignesDevisForm);
-		affDevis.setDateDeCreation(devis.getDateCreation().toString());
-		affDevis.setIdDevis(devis.getId());
-		affDevis.setNomClient(devis.getClient().getPrenom()+" "+devis.getClient().getNom());
-		affDevis.setPrixTotal(serviceDevis.calculerPrixDevis(devis));
-		affDevis.setStatut(devis.getStatut());
-		affDevis.setDelai(serviceDevis.calculerDelaisDevis(devis));
-		model.addAttribute("AfficherDevisForm", affDevis);
 		
-		//TODO
-		return "afficherListeDevis";
+		model.addAttribute("DevisAVisualiser",devis) ;
+		
+		return "afficherLignesDevis";
 	}
 }

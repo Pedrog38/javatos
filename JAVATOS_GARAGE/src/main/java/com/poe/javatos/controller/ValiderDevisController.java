@@ -16,7 +16,7 @@ import com.poe.javatos.service.crud.IServiceDevisCrud;
 
 @Controller
 @RequestMapping(value="/commercial/")
-public class DevisAValiderController {
+public class ValiderDevisController {
 	
 	
 	@Autowired
