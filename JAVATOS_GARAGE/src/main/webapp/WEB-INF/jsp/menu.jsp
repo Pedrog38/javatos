@@ -11,7 +11,9 @@
 
 </head>
 <body>
+<c:redirect url="/MenuController"></c:redirect>
 
+<%--
 <sec:authorize access="hasAuthority('Admin')" >
 	<a href="<c:url value='/Menu/A'/>">Admin</a>
 </sec:authorize>
@@ -21,6 +23,6 @@
 <sec:authorize access="hasAuthority('Magasinier')">
 	<a href="<c:url value='/Menu/M'/>">Magasinier</a>
 </sec:authorize>
-
+--%>
 </body>
 </html>
