@@ -24,7 +24,7 @@
 			</thead>
 			<tbody>
 			<!--  Corps de ma table  n ligne avec au tant de cellule (td) que l'entête -->
-				<c:forEach items="${listeCommande}" var="p">
+				<c:forEach items="${listeCommande}" var="c">
 				<tr>
 					<td><c:out value="${c.idCommande}" /></td>
 					<td><c:out value="${c.client}"/></td>

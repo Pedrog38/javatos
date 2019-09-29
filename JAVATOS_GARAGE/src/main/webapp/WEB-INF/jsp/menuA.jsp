@@ -26,11 +26,11 @@
           1 - Devis
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <c:url value="/afficherListeDevis" var="url" />
+        <c:url value="/admin/afficherListeDevis" var="url" />
           <a class="dropdown-item" href="${url}">Liste des devis</a>
-          <c:url value="/creationDevis" var="url" />
+          <c:url value="/admin/afficherCreerDevis" var="url" />
           <a class="dropdown-item" href="${url}">Creer un devis</a>
-          <c:url value="/validationDevis" var="url" />
+          <c:url value="/admin/validationDevis" var="url" />
           <a class="dropdown-item" href="${url}">Valider un devis</a>
           
         </div>

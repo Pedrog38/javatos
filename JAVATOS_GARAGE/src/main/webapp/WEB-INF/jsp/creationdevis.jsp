@@ -13,8 +13,10 @@
 	<h1>Nouveau Devis</h1>
 	<form:form method="post" modelAttribute="creationDevis"
 		action="creerDevis">
-		<p><a href="#">Créer nouveau client</a></p>
-		<p><a href="#">Créer nouveau modèle</a></p>
+		
+		<c:url value="/${fonction}/creerClientAfficher" var="url" />
+		<a href="${url}">Créer nouveau client</a>
+		<p><a href="/${fonction}/creerModeleAfficher">Créer nouveau modèle</a></p>
 		<p>
 		<form:label path="idClient" >Choix du client :</form:label>
 		<form:select path="idClient">

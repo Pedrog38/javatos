@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
@@ -23,6 +24,7 @@ import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 
 @Controller
+@RequestMapping(value = {"/commercial","/admin"})
 public class AfficherListeDevisController 
 {
 	

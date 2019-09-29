@@ -7,12 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.Devis;
@@ -31,6 +33,7 @@ import com.poe.javatos.service.crud.IServiceModelCrud;
 import com.poe.javatos.service.crud.IServiceUtilisateurCrud;
 
 @Controller
+@RequestMapping(value = {"/commercial","/admin"})
 public class CreationDevisController {
 	
 	
@@ -85,7 +88,6 @@ public class CreationDevisController {
 			lp.add(cldf);
 			
 			creationDevisForm.setLignedevis(lp);
-			
 			model.addAttribute("creationDevis", creationDevisForm);
 		}
 		
