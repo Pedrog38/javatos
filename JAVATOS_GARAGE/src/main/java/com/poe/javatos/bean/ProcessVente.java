@@ -20,8 +20,6 @@ public class ProcessVente
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "delais_prod")
-	private Integer delaisProd;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_creation")
@@ -46,13 +44,7 @@ public class ProcessVente
 		this.id = id;
 	}
 
-	public Integer getDelaisProd() {
-		return delaisProd;
-	}
 
-	public void setDelaisProd(Integer delaisProd) {
-		this.delaisProd = delaisProd;
-	}
 
 	public Date getDateCreation() {
 		return dateCreation;
@@ -88,7 +80,7 @@ public class ProcessVente
 
 	@Override
 	public String toString() {
-		return "ProcessVente [id=" + id + ", delaisProd=" + delaisProd + ", dateCreation=" + dateCreation + ", statut="
+		return "ProcessVente [id=" + id + ", dateCreation=" + dateCreation + ", statut="
 				+ statut + ", client=" + client + ", commercialResponsable=" + commercialResponsable + "]";
 	}
 	

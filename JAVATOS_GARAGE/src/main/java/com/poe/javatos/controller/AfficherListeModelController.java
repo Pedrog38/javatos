@@ -5,26 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.poe.javatos.bean.Model;
 import com.poe.javatos.service.crud.IServiceModelCrud;
 
 @Controller
-@RequestMapping(value="/afficherListeModel")
-
+@RequestMapping(value = {"/commercial","/admin"})
 public class AfficherListeModelController {
-
+	
 		 @Autowired    
 		 private IServiceModelCrud service;
-
-		 @RequestMapping(method = RequestMethod.GET)    
+		 
+		 @GetMapping(value="/afficherListeModel")    
 		 public String afficher(ModelMap pModel) {        
 			 final List<Model> lListeModel = service.findAllModel();        
 			 pModel.addAttribute("listemodel", lListeModel);        
-			 return "listemodel";
-
+			 return "afficherListeModel";
 		 } 
 
 	}

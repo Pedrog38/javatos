@@ -18,10 +18,7 @@ import com.poe.javatos.bean.Commande;
 import com.poe.javatos.form.AfficherCommandeForm;
 import com.poe.javatos.form.ListeAfficherCommandeForm;
 import com.poe.javatos.service.IServiceCommande;
-import com.poe.javatos.service.IServiceLigneCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
-
-
 
 @Controller
 @RequestMapping(value = {"/commercial","/admin"}) // Mr Security
@@ -33,9 +30,6 @@ public class AfficherListeCommandeController
 
 	@Autowired
 	private IServiceCommande serviceCommande;
-	
-	@Autowired
-	private IServiceLigneCommande serviceLigneCommande;
 	
 	@Autowired
 	AfficherLignesCommandeController ctrlAfficheLigneCommande;
