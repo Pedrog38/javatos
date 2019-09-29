@@ -57,6 +57,6 @@ public class AfficherLignesCommandeController
 		affCd.setStatutCommande(commande.getStatut());
 		model.addAttribute("AfficherCommandeForm", affCd);
 				
-		return "afficherListeCommande";
+		return "LigneCommande";
 	}
 }

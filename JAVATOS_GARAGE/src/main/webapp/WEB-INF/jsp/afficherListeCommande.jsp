@@ -28,8 +28,8 @@
 		<tbody>
 			<c:forEach items="${ListeAfficherCommandeForm.listeCommandeForm}" var="affCommandeForm" varStatus="status" >
 				<tr>
-					<td><c:out value="${affCommandeForm.idDevis}" />
-                      <form:input type="hidden" path="listeCommandeForm[${status.index}].idDevis" value="${affCommandeForm.idDevis}"/>
+					<td><c:out value="${affCommandeForm.idCommande}" />
+                      <form:input type="hidden" path="listeCommandeForm[${status.index}].idCommande" value="${affCommandeForm.idCommande}"/>
                       </td>
 					<td><c:out value="${affCommandeForm.commandeDate}" />
 					<form:input type="hidden" path="listeCommandeForm[${status.index}].commandeDate" value="${affCommandeForm.commandeDate}"/>

@@ -8,41 +8,41 @@
 <title> Liste Commande </title>
 </head>
 <body>	
-		<h1> LISTE COMMANDE (Affichage/ Archive) </h1>
+		<h1> LISTE COMMANDE (Affichage/ Archive) <c:out value="${AfficherLigneCommandeForm.idCommande }"/> </h1>
+		
+		<div>
+			<label>Client: ${AfficherCommandeForm.nomClient}</label><br>
+			<label> Date de création : ${AfficherCommandeForm.commandeDate}</label><br>	
+		</div>
+		
 		<table border="1">
-		<!--  Entête de ma table  -->
 		 <thead>
 			<tr>
-				<th>Id Commande</th>
-				<th>Date de création</th>
-				<th>Client</th>	
-				<th>Date de livraison</th>
-				<th>Id Devis </th>
-				<th>Prix Total</th>
-				<th>Statut</th>
+				<th>Model</th>
+				<th>Quantite </th>
+				<th>Delai de production (jour)</th>
+				<th>Prix HT</th>
 			</tr>
-			</thead>
+		</thead>
+		
 			<tbody>
-			<!--  Corps de ma table  n ligne avec au tant de cellule (td) que l'entête -->
+			
 				<c:forEach items="${AfficherCommandeForm.listLigneCdForm}" var="c">
 				<tr>
-					<td><c:out value="${c.idCommande}" /></td>
-					<td><c:out value="${c.client}"/></td>
-					<td><c:out value="${c.dateDeCreation}"/></td>
-					<td><c:out value="${c.dateDeLivraison}"/></td>
-					<td><c:out value="${c.idDevis}"/></td>
-					<td><c:out value="${c.prixTotal}"/></td>
-					<td><c:out value="${c.statut}"/></td>
-					<td><a href= "/visualiserCommande?id="><c:out value="${c.idCommande}">Visualiser</c:out></a></td>
+					<td><c:out value="${c.nomModel}" /></td>
+					<td><c:out value="${c.quantite}"/></td>
+					<td><c:out value="${c.delai}"/></td>
+					<td><c:out value="${c.prixHT}"/></td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<div>
+				<label> Délai Total: ${AfficherCommandeForm.delaiCommande} jours </label><br>
+				<label> Tarif HT:  ${AfficherCommandeForm.prixTotal} euros </label><br>
+			</div>
+		<input type="button" value="Retour" onclick="history.go(-1)"/>
 		
-		
-		<a href="ToutCommander"> Tout Commander</a>
-		<a href="ToutReserver"> Tout Réserver</a>
-		<a href="ValiderAutomatique"> Valider Automatique</a>
-		
+	
 </body>
 </html>

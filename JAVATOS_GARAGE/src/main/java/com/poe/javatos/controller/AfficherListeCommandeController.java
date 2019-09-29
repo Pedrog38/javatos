@@ -43,7 +43,7 @@ public class AfficherListeCommandeController
 		for (Commande commande : cListeCommande) {
 			AfficherCommandeForm commandeForm = new AfficherCommandeForm();
 			commandeForm.setCommandeDate(commande.getDateCreation().toString());
-			commandeForm.setIdDevis(commande.getId());
+			commandeForm.setIdCommande(commande.getId());
 			commandeForm.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
 			commandeForm.setPrixTotal(serviceCommande.calculerPrixCommande(commande));
 			commandeForm.setStatutCommande(commande.getStatut());
@@ -63,7 +63,7 @@ public class AfficherListeCommandeController
 	{
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idCommande = grosseBoite.getListeCommandeForm().get(grosseBoite.getIndex()).getIdCommande();
-		System.err.println("Id Devis Choisis = "+idCommande);
+		System.err.println("Id Commande Choisis = "+idCommande);
 		Commande commande = service.findByIdCommande(idCommande);
 		
 		model.addAttribute("CommandeAVisualiser",commande) ;
