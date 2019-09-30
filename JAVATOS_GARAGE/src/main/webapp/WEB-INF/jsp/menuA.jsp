@@ -110,7 +110,7 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-        <c:url value="/stockGestion" var="url" />
+        <c:url value="/admin/afficherGestionStock" var="url" />
 
           <a class="dropdown-item" href="${url}">Gestion Stock</a>
 
