@@ -20,17 +20,16 @@ import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.bean.Model;
-import com.poe.javatos.bean.Utilisateur;
 import com.poe.javatos.form.CreationDevisForm;
 import com.poe.javatos.form.CreationLigneDevisForm;
 import com.poe.javatos.global.StatutDevis;
-import com.poe.javatos.service.IServiceDevis;
-import com.poe.javatos.service.IServiceLigneDevis;
+import com.poe.javatos.service.IServiceUtilisateur;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
 import com.poe.javatos.service.crud.IServiceModelCrud;
 import com.poe.javatos.service.crud.IServiceUtilisateurCrud;
+import com.poe.javatos.service.security.controller.SpringController;
 
 @Controller
 @RequestMapping(value = {"/commercial","/admin"})
@@ -47,19 +46,19 @@ public class CreationDevisController {
 	private IServiceLigneDevisCrud serviceLigneDevisCrud;
 	
 	@Autowired
-	private IServiceLigneDevis serviceLigneDevis;
-	
-	@Autowired
-	private IServiceDevis serviceDevis;
-	
-	@Autowired
 	private IServiceDevisCrud serviceDevisCrud;
 	
 	@Autowired
 	private IServiceUtilisateurCrud serviceUtilisateurCrud;
 	
 	@Autowired
+	private IServiceUtilisateur serviceUtilisateur;
+	
+	@Autowired
 	private AfficherLignesDevisController ctrl;
+	
+	@Autowired
+	private SpringController SpringCtrl;
 	
 	
 	@GetMapping(value = "/afficherCreerDevis")
@@ -89,6 +88,9 @@ public class CreationDevisController {
 			
 			creationDevisForm.setLignedevis(lp);
 			model.addAttribute("creationDevis", creationDevisForm);
+			model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
+			
+			System.err.println("CheminFonction = "+serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 		}
 		
 		
@@ -153,6 +155,7 @@ public class CreationDevisController {
 			pForm.getLignedevis().add(cldf);
 			
 			model.addAttribute("creationDevis", pForm);
+			model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 			
 		}
 		

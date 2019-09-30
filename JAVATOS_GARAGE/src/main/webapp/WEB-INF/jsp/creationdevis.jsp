@@ -13,10 +13,8 @@
 	<h1>Nouveau Devis</h1>
 	<form:form method="post" modelAttribute="creationDevis"
 		action="creerDevis">
-		
-		<c:url value="/${fonction}/creerClientAfficher" var="url" />
-		<a href="${url}">Créer nouveau client</a>
-		<p><a href="/${fonction}/creerModeleAfficher">Créer nouveau modèle</a></p>
+		<p><a href="/${cheminFonction}/creerClientAfficher">Crï¿½er nouveau client</a></p>
+		<p><a href="/${cheminFonction}/creerModeleAfficher">Crï¿½er nouveau modï¿½le</a></p>
 		<p>
 		<form:label path="idClient" >Choix du client :</form:label>
 		<form:select path="idClient">
@@ -33,8 +31,8 @@
 		<table border="1">
 				<thead>
 					<tr>
-						<th>Modèle || Délais de production || Prix de vente HT</th>
-						<th>Quantité</th>
+						<th>Modï¿½le - Couleur - Dï¿½lais de production - Prix de vente HT</th>
+						<th>Quantitï¿½</th>
 						<th>Bt</th>
 					</tr>
 				</thead>
@@ -44,7 +42,7 @@
 						<td>
 							<form:select path="lignedevis[${status.index}].idModel">
 								<c:forEach items="${models}" var="model">
-									<form:option  value="${model.id}" label=" Modèle : ${model.nom} || Délais de production : ${model.delaisProd} jours || Prix de Vente HT : ${model.prixVente} euros" />
+									<form:option  value="${model.id}" label=" ${model.nom} - ${model.couleur} - ${model.delaisProd} jours - ${model.prixVente} euros" />
 								</c:forEach>
 							</form:select>
 						</td>
