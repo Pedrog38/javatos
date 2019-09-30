@@ -3,8 +3,11 @@ package com.poe.javatos.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 public class ListeGestionStockForm {
 	
+	@Valid
 	private List<GestionStockForm> listForm = new ArrayList<GestionStockForm>();
 
 	private Integer index;
