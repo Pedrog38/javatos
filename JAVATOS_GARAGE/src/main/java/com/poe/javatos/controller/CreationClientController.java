@@ -28,6 +28,11 @@ public class CreationClientController
 	private IServiceClientCrud serviceClientCurd;
 	@Autowired
 	private IServiceStatutClientCrud serviceStatutClientCurd;
+	@Autowired
+	private AfficherListeClientController ctrlListeClient;
+	
+	@Autowired
+	private CreationDevisController crtlCreationDevis;
 	
 	@GetMapping(value="/creerClientAfficher")
 	public String afficherCreationClient(final ModelMap model)
@@ -61,7 +66,11 @@ public class CreationClientController
 			serviceClientCurd.createClient(c);
 			//return "menu"; //TODO changer le chemin en "retour à la page appelante"
 		}
-		return afficherCreationClient(model);  
+		if(model.get("creationDevis")!=null)
+		{
+			return(crtlCreationDevis.afficherCreationDevis(model));
+		}
+		return ctrlListeClient.afficherListeClient(model);  
 	}
 	
 	
