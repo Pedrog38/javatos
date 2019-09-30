@@ -44,7 +44,7 @@ public class CreationClientController
 		{
 			model.addAttribute("CreationClient",new CreationClientForm());
 		}
-		return "CreationClient";
+		return "creationClient";
 	
 	}
 	

@@ -36,7 +36,7 @@ public class CreationModelController
 		{
 			model.addAttribute("creationModele",new CreationModelForm());
 		}
-		return "creationNouveauModele";
+		return "creationModele";
 	}
 	
 	@PostMapping(value="/creerModele")

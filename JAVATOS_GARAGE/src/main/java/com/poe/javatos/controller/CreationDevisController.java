@@ -54,7 +54,7 @@ public class CreationDevisController {
 	private IServiceUtilisateur serviceUtilisateur;
 	
 	@Autowired
-	private AfficherLignesDevisController ctrl;
+	private AfficherListeLignesDevisController ctrl;
 	
 	@Autowired
 	private SpringController SpringCtrl;
@@ -94,7 +94,7 @@ public class CreationDevisController {
 		}
 		
 		
-		return "creationdevis";
+		return "creationDevis";
 	}
 	
 	@PostMapping(value = "/creerDevis")
@@ -140,8 +140,6 @@ public class CreationDevisController {
 					
 					
 				}
-				//d=serviceDevisCrud.updateDevis(d);
-				//d.setLignesDevis(listLigneDevis);
 				
 				model.addAttribute("IdDevisAVisualiser", d.getId());
 				return ctrl.afficherLigneDevis(model);

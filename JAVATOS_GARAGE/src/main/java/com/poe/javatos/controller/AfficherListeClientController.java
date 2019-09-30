@@ -23,7 +23,7 @@ public class AfficherListeClientController {
 
 			 final List<Client> lListeClient = service.findAllClient();        
 			 pModel.addAttribute("listeclient", lListeClient);        
-			 return "afficherListeClient";
+			 return "afficherListeClients";
 		 } 
 	}
 

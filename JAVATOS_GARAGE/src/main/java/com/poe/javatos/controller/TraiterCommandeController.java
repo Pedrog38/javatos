@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Commande;
-import com.poe.javatos.form.AfficherCommandeForm;
-import com.poe.javatos.form.ListeAfficherCommandeForm;
+import com.poe.javatos.form.CommandeForm;
+import com.poe.javatos.form.ListeCommandeForm;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
 @Controller
 @RequestMapping(value = {"/magasinier","/admin"}) // Mr Security
-public class TraiterNouvelleCommandeController 
+public class TraiterCommandeController 
 {
 	@Autowired
 	private IServiceCommandeCrud service;
@@ -31,16 +31,16 @@ public class TraiterNouvelleCommandeController
 	private IServiceCommande serviceCommande;
 	
 	@Autowired
-	AfficherLignesCommandeNouvelleController ctrlAfficheLigneCommandeNvlle;
+	TraiterLignesCommandeController ctrlAfficheLigneCommandeNvlle;
 	
 	@GetMapping(value="/traiterCommande")
 	public String afficherListeCommande(ModelMap model) {
 		
-		final ListeAfficherCommandeForm grosseBoite = new ListeAfficherCommandeForm();
+		final ListeCommandeForm grosseBoite = new ListeCommandeForm();
 		final List<Commande> cListeCommande = serviceCommande.findByStatutNouvelleEnTraitementCommande();
-		List<AfficherCommandeForm> listeCommandeForm = new ArrayList<>();
+		List<CommandeForm> listeCommandeForm = new ArrayList<>();
 		for (Commande commande : cListeCommande) {
-			AfficherCommandeForm commandeForm = new AfficherCommandeForm();
+			CommandeForm commandeForm = new CommandeForm();
 			commandeForm.setCommandeDate(commande.getDateCreation().toString());
 			commandeForm.setIdCommande(commande.getId());
 			commandeForm.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
@@ -53,12 +53,12 @@ public class TraiterNouvelleCommandeController
 		grosseBoite.setListeCommandeForm(listeCommandeForm);
 		model.addAttribute("ListeAfficherCommandeForm", grosseBoite);
 				
-		return "AfficherListeNouvellesCommandes";
+		return "traiterListeCommandes";
 	}
 	
 	@PostMapping(value="/VisualiserListeCommandeNouvelle")
 	public String visualiserAfficherListeCommandeNouvelle(@Valid @ModelAttribute(value="ListeAfficherCommandeForm") 
-	 final ListeAfficherCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+	 final ListeCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
 	{
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idCommande = grosseBoite.getListeCommandeForm().get(grosseBoite.getIndex()).getIdCommande();

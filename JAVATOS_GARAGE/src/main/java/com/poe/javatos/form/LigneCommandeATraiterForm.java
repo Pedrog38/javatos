@@ -3,7 +3,7 @@ package com.poe.javatos.form;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 
-public class AfficherLigneCommandeNouvelleForm 
+public class LigneCommandeATraiterForm 
 {
 	private String statut;
 	private Integer idLigneCommande;

@@ -2,7 +2,10 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
-public class AfficherCommandeForm {
+import javax.validation.Valid;
+
+public class CommandeATraiterForm 
+{
 	private Integer idCommande;
 	private String commandeDate;
 	private String nomClient;
@@ -10,8 +13,10 @@ public class AfficherCommandeForm {
 	private float prixTotal;
 	private String statutCommande;
 	private Integer delaiCommande;
-	private List<AfficherLigneCommandeForm> listLigneCdForm;
 	
+	@Valid
+	private List<LigneCommandeATraiterForm> listLigneCdForm;
+	private Integer index;
 	public Integer getIdCommande() {
 		return idCommande;
 	}
@@ -48,20 +53,24 @@ public class AfficherCommandeForm {
 	public void setStatutCommande(String statutCommande) {
 		this.statutCommande = statutCommande;
 	}
-	public List<AfficherLigneCommandeForm> getListLigneCdForm() {
-		return listLigneCdForm;
-	}
-	public void setListLigneCdForm(List<AfficherLigneCommandeForm> listLigneCdForm) {
-		this.listLigneCdForm = listLigneCdForm;
-	}
 	public Integer getDelaiCommande() {
 		return delaiCommande;
 	}
 	public void setDelaiCommande(Integer delaiCommande) {
 		this.delaiCommande = delaiCommande;
 	}
-	
-
+	public List<LigneCommandeATraiterForm> getListLigneCdForm() {
+		return listLigneCdForm;
+	}
+	public void setListLigneCdForm(List<LigneCommandeATraiterForm> listLigneCdForm) {
+		this.listLigneCdForm = listLigneCdForm;
+	}
+	public Integer getIndex() {
+		return index;
+	}
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
 	
 	
 	

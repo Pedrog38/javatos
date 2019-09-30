@@ -1,6 +1,6 @@
 package com.poe.javatos.form;
 
-public class AfficherLigneCommandeForm {
+public class LigneCommandeForm {
 	private String nomModel;
 	private Integer quantite;
 	private Integer delai;

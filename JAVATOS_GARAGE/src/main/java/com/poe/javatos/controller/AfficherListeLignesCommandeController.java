@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
-import com.poe.javatos.form.AfficherCommandeForm;
-import com.poe.javatos.form.AfficherLigneCommandeForm;
+import com.poe.javatos.form.CommandeForm;
+import com.poe.javatos.form.LigneCommandeForm;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.IServiceLigneCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
 @Controller
 @RequestMapping(value = {"/commercial","/admin"}) // Mr Security
-public class AfficherLignesCommandeController 
+public class AfficherListeLignesCommandeController 
 {
 
 
@@ -34,11 +34,11 @@ public class AfficherLignesCommandeController
 		
 		final Commande commande = (Commande) model.get("CommandeAVisualiser");
 		
-		AfficherCommandeForm affCd = new AfficherCommandeForm();
-		List<AfficherLigneCommandeForm> lignesCommandeForm = new ArrayList<>();
+		CommandeForm affCd = new CommandeForm();
+		List<LigneCommandeForm> lignesCommandeForm = new ArrayList<>();
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommande(commande.getId())) 
 		{
-			AfficherLigneCommandeForm aff = new AfficherLigneCommandeForm();
+			LigneCommandeForm aff = new LigneCommandeForm();
 			aff.setNomModel(lc.getModel().getNom());
 			aff.setQuantite(lc.getQuantite());
 			aff.setDelai(serviceLigneCommande.calculerDelaiLigneCommande(lc));
@@ -55,6 +55,6 @@ public class AfficherLignesCommandeController
 		affCd.setStatutCommande(commande.getStatut());
 		model.addAttribute("AfficherCommandeForm", affCd);
 				
-		return "LigneCommande";
+		return "afficherListeLignesCommande";
 	}
 }

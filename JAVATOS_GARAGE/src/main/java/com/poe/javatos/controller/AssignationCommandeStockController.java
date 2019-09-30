@@ -69,7 +69,7 @@ public class AssignationCommandeStockController
 			
 		}
 	
-		return "assignation";
+		return "assignationStockCommande";
 	}
 	
 	@PostMapping(value="/assignationModifierLigne")

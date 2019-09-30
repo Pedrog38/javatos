@@ -36,7 +36,7 @@ public class ValiderDevisController {
 		model.addAttribute("listeDevisValiderForm", lsAValider);
 		
 		
-		return "DevisAvalider";
+		return "validerDevis";
 			
 		}
 	}

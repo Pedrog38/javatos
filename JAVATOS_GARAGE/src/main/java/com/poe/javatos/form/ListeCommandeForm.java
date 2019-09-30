@@ -2,14 +2,14 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
-public class ListeAfficherCommandeForm {
-	private List<AfficherCommandeForm> listeCommandeForm;
+public class ListeCommandeForm {
+	private List<CommandeForm> listeCommandeForm;
 	private Integer index;
 	
-	public List<AfficherCommandeForm> getListeCommandeForm() {
+	public List<CommandeForm> getListeCommandeForm() {
 		return listeCommandeForm;
 	}
-	public void setListeCommandeForm(List<AfficherCommandeForm> listeCommandeForm) {
+	public void setListeCommandeForm(List<CommandeForm> listeCommandeForm) {
 		this.listeCommandeForm = listeCommandeForm;
 	}
 	public Integer getIndex() {

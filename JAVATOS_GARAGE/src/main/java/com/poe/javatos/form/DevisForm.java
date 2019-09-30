@@ -2,19 +2,19 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
-public class AfficherDevisForm {
+public class DevisForm {
 	private Integer idDevis;
 	private String nomClient;
 	private String dateDeCreation;
 	private String statut;
 	private Float prixTotal;
 	private Integer delai;
-	private List<AfficherLigneDevisForm> listLigneDevisForm;
+	private List<LigneDevisForm> listLigneDevisForm;
 	
-	public List<AfficherLigneDevisForm> getListLigneDevisForm() {
+	public List<LigneDevisForm> getListLigneDevisForm() {
 		return listLigneDevisForm;
 	}
-	public void setListLigneDevisForm(List<AfficherLigneDevisForm> listLigneDevisForm) {
+	public void setListLigneDevisForm(List<LigneDevisForm> listLigneDevisForm) {
 		this.listLigneDevisForm = listLigneDevisForm;
 	}
 	public Integer getIdDevis() {

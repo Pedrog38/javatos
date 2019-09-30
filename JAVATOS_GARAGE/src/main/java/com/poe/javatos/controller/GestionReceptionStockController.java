@@ -65,7 +65,7 @@ public class GestionReceptionStockController {
 			model.addAttribute("gestionStocks", gestionstocks);
 		}
 		
-		return "gestionreception";
+		return "receptionerStocks";
 	}
 	
 	@PostMapping(value = "/receptionnercommande")
