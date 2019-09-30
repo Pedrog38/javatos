@@ -37,6 +37,6 @@
 	</table>
 	
 	</form:form>
-	<input type="button" value="Retour" onclick="history.go(-1)"/><br>
+	<a href="/">Retour Menu Principal</a>
 </body>
 </html>
