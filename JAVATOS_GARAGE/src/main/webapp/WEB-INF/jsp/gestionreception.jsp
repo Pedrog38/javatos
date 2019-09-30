@@ -11,6 +11,8 @@
 </head>
 <body>
 	<h1>Gestion Reception</h1>
+	<form:form method="post" modelAttribute="gestionStocks" action="receptionnercommande">
+	
 	<table border="1">
 	<thead>
 	<tr>
@@ -20,18 +22,21 @@
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach items="${gestionStocks.listForm}" var="gestionStock" varStatus="status">
+	<c:forEach items="${gestionStocks.listForm}" var="listForm" varStatus="status">
 	<tr>
-	<form:form method="post" modelAttribute="gestionStocks[${status.index}]" action="receptionnercommande">
-	<td> <c:out value="${gestionStock.nomModele}" /> </td>
-	<td> <c:out value="${gestionStock.qteCommandee}" /> </td>
-<%-- 	<td> <form:input path="gestionStocks[${status.index}].qteRecue" /> </td> --%>
-	<td> <c:out value="${gestionStock.qteRecue}"></c:out> </td>
-	<td> <input type="submit" value="VALIDER RECEPTION" /> </td>
-	</form:form>
+	<td> <c:out value="${listForm.nomModele}" /> </td>
+	<td> <c:out value="${listForm.qteCommandee}" /> </td>
+	<td>
+	<form:input type="text" path="listForm[${status.index}].qteRecue" />
+	<form:input type="hidden" path="listForm[${status.index}].idModel" value="${listForm.idModel}"/>
+	</td>
+	<td> <form:button type="submit" name="index" value="${status.index}" >Valider réception</form:button> </td>
 	</tr>
 	</c:forEach>
 	</tbody>
 	</table>
+	
+	</form:form>
+	<input type="button" value="Retour" onclick="history.go(-1)"/><br>
 </body>
 </html>

@@ -7,6 +7,8 @@ public class ListeGestionStockForm {
 	
 	private List<GestionStockForm> listForm = new ArrayList<GestionStockForm>();
 
+	private Integer index;
+	
 	public List<GestionStockForm> getListForm() {
 		return listForm;
 	}
@@ -18,6 +20,14 @@ public class ListeGestionStockForm {
 	@Override
 	public String toString() {
 		return "ListeGestionStockForm [listForm=" + listForm + "]";
+	}
+
+	public Integer getIndex() {
+		return index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
 	}
 	
 	
