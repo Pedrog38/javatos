@@ -1,5 +1,8 @@
 package com.poe.javatos.form;
 
+import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
+
 public class GestionStockForm {
 	
 	private Integer qteDispo;
@@ -8,6 +11,7 @@ public class GestionStockForm {
 	
 	private Integer idModel;
 	
+	@Valid
 	private Integer qteRecue;
 	
 	private String nomModele;
@@ -52,6 +56,11 @@ public class GestionStockForm {
 		this.nomModele = nomModele;
 	}
 
+	@AssertTrue(message = "Quantié reçue incorrecte")
+	public boolean isQteRecueOk() {
+		return (this.getQteRecue()>=0)&&(this.getQteRecue()<=this.getQteCommandee());
+	}
+	
 	@Override
 	public String toString() {
 		return "GestionStockForm [qteDispo=" + qteDispo + ", qteCommandee=" + qteCommandee + ", idModel=" + idModel

@@ -12,4 +12,5 @@ public interface IServiceCommande
 	Commande mettreAJourStatut(Commande c);
 	Integer calculerDelaisCommande(Commande c);
 	Float calculerPrixCommande(Commande c);
+	List<Commande> findByStatutNouvelleEnTraitementCommande();
 }

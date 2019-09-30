@@ -24,10 +24,17 @@
 	<tbody>
 	<c:forEach items="${gestionStocks.listForm}" var="listForm" varStatus="status">
 	<tr>
-	<td> <c:out value="${listForm.nomModele}" /> </td>
-	<td> <c:out value="${listForm.qteCommandee}" /> </td>
+	<td> 
+		<c:out value="${listForm.nomModele}"/>
+        <form:input type="hidden" path="listForm[${status.index}].nomModele" value="${listForm.nomModele}"/>
+    </td>
+    <td> 
+		<c:out value="${listForm.qteCommandee}"/>
+        <form:input type="hidden" path="listForm[${status.index}].qteCommandee" value="${listForm.qteCommandee}"/>
+    </td>
 	<td>
 	<form:input type="text" path="listForm[${status.index}].qteRecue" />
+	<form:errors path="listForm[${status.index}].qteRecueOk" />
 	<form:input type="hidden" path="listForm[${status.index}].idModel" value="${listForm.idModel}"/>
 	</td>
 	<td> <form:button type="submit" name="index" value="${status.index}" >Valider réception</form:button> </td>
