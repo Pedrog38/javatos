@@ -40,4 +40,11 @@ public class ServiceStockImpl implements IServiceStock
 		return dao.save(s);
 	}
 	
+	public Stock commander(Stock s, Integer qteACommander)
+	{
+		s.setQteCommandee(s.getQteCommandee()+qteACommander);
+		return dao.save(s);
+	}
+	
+	
 }

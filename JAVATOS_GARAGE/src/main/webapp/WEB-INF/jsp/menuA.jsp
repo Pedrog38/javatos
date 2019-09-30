@@ -86,7 +86,7 @@
 
           <a class="dropdown-item" href="${url}">Liste des commandes en cours</a>
 
-          <c:url value="/traiterCommande" var="url" />
+          <c:url value="admin/traiterCommande" var="url" />
 
           <a class="dropdown-item" href="${url}">Traiter nouvelle commande Client/commande Fournisseur</a>
 

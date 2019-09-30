@@ -22,8 +22,6 @@ import com.poe.javatos.service.crud.IServiceCommandeCrud;
 public class AfficherLignesCommandeController 
 {
 
-	@Autowired
-	private IServiceCommandeCrud service;
 
 	@Autowired
 	private IServiceCommande serviceCommande;
