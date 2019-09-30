@@ -36,7 +36,7 @@
           <a class="dropdown-item" href="${url}">Liste des devis</a>
           <c:url value="/commercial/afficherCreerDevis" var="url" />
           <a class="dropdown-item" href="${url}">Creer un devis</a>
-          <c:url value="/commercial/validationDevis" var="url" />
+          <c:url value="/commercial/DevisValidation" var="url" />
           <a class="dropdown-item" href="${url}">Valider un devis</a>
           
         </div>
