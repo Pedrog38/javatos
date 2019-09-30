@@ -65,9 +65,7 @@
           3 - Stock
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        	<c:url value="/commercial/afficherGestionStock" var="url" />
-          <a class="dropdown-item" href="${url}">Gestion Stock</a>
-          <c:url value="/commercial/afficherStock" var="url" />
+        <c:url value="/commercial/afficherStock" var="url" />
           <a class="dropdown-item" href="${url}">Etat du stock</a>  
         </div>
       </li>
