@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
+import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.global.StatutCommande;
 import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.repository.ICommandeRepository;
@@ -20,7 +21,10 @@ public class ServiceCommandeImpl implements IServiceCommande
 	ICommandeRepository dao;
 	
 	@Autowired
-	IServiceCommandeCrud serviceCommande;
+	IServiceCommandeCrud serviceCommande;  
+	
+	@Autowired
+	IServiceLigneCommande serviceLigne;
 	
 	@Override
 	public List<Commande> findByStatutNouvelleCommande() 
@@ -54,6 +58,29 @@ public class ServiceCommandeImpl implements IServiceCommande
 			}
 		}
 		return serviceCommande.updateCommande(c);
+	}
+
+	@Override
+	public Integer calculerDelaisCommande(Commande c) {
+		Integer delaiCommande = 0;
+		for (LigneCommande lc : serviceLigne.findByIdCommandeLigneCommande(c.getId())) {
+		Integer delaiLigneCommandeEnCours = serviceLigne.calculerDelaiLigneCommande(lc); 
+		delaiCommande = Math.max(delaiCommande, delaiLigneCommandeEnCours);
+			
+		}
+		
+		return delaiCommande;
+	}
+
+	@Override
+	public Float calculerPrixCommande(Commande c) {
+		Float prixtotal = (float) 0;
+		for (LigneCommande lc : serviceLigne.findByIdCommandeLigneCommande(c.getId())) {
+			Float prixligne = serviceLigne.calculerPrixLigneCommande(lc);
+			prixtotal = prixligne + prixtotal;
+		}
+		
+		return prixtotal;
 	}
 
 	

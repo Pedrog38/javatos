@@ -1,43 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false" pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">    
-
+<!DOCTYPE html>
 <html>
-<head>
-<title> Liste Commande </title>
-</head>
-<body>	
-		<h1> LISTE COMMANDE (Affichage/ Archive) </h1>
-		<table border="1">
-		<!--  Entête de ma table  -->
-		 <thead>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Liste des commandes</title>
+	
+	</head>
+	<body>
+			<h1>AFFICHER LISTE DES COMMANDES</h1>
+
+<form:form method="post" modelAttribute="ListeAfficherCommandeForm" action="VisualiserListeCommande">
+			<table border="1">
+		<thead>
 			<tr>
-				<th>Id Commande</th>
-				<th>Client</th>
-				<th>Date de création</th>
-				<th>Date de livraison</th>
-				<th>Id Devis </th>
-				<th>Prix Total</th>
+				<th>Id Commande</th>				
+				<th>Date de creation</th>
+				<th>Client</th>			
+				<th>Delai en jours</th>
 				<th>Statut</th>
+				<th>Prix total en euro(s)</th>
 			</tr>
-			</thead>
-			<tbody>
-			<!--  Corps de ma table  n ligne avec au tant de cellule (td) que l'entête -->
-				<c:forEach items="${listeCommande}" var="c">
+		</thead>
+
+		<tbody>
+			<c:forEach items="${ListeAfficherCommandeForm.listeCommandeForm}" var="affCommandeForm" varStatus="status" >
 				<tr>
-					<td><c:out value="${c.idCommande}" /></td>
-					<td><c:out value="${c.client}"/></td>
-					<td><c:out value="${c.dateDeCreation}"/></td>
-					<td><c:out value="${c.dateDeLivraison}"/></td>
-					<td><c:out value="${c.idDevis}"/></td>
-					<td><c:out value="${c.prixTotal}"/></td>
-					<td><c:out value="${c.statut}"/></td>
-					<td><a href= "/visualiserCommande?id="><c:out value="${c.idCommande}">Visualiser</c:out></a></td>
+					<td><c:out value="${affCommandeForm.idCommande}" />
+                      <form:input type="hidden" path="listeCommandeForm[${status.index}].idCommande" value="${affCommandeForm.idCommande}"/>
+                      </td>
+					<td><c:out value="${affCommandeForm.commandeDate}" />
+					<form:input type="hidden" path="listeCommandeForm[${status.index}].commandeDate" value="${affCommandeForm.commandeDate}"/>
+					</td>
+					<td><c:out value="${affCommandeForm.nomClient}" />
+					<form:input type="hidden" path="listeCommandeForm[${status.index}].nomClient" value="${affCommandeForm.nomClient}"/>
+					</td>
+ 					<td><c:out value="${affCommandeForm.delaiCommande}" />
+ 					<form:input type="hidden" path="listeCommandeForm[${status.index}].delaiCommande" value="${affCommandeForm.delaiCommande}"/>
+ 					</td> 
+					<td><c:out value="${affCommandeForm.statutCommande}" />
+					<form:input type="hidden" path="listeCommandeForm[${status.index}].statutCommande" value="${affCommandeForm.statutCommande}"/>
+					</td>
+					<td><c:out value="${affCommandeForm.prixTotal}" />
+					<form:input type="hidden" path="listeCommandeForm[${status.index}].prixTotal" value="${affCommandeForm.prixTotal}"/>
+					</td> 
+					
+					<td><form:button type="submit" name="index" value="${status.index}" >Visualiser</form:button></td>
 				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<input type="button" value="Retour" onclick="history.go(-1)"/><br>
-</body>
+			</c:forEach>
+		</tbody>
+	</table>
+	</form:form>
+	
+	<input type="button" value="Retour" onclick="history.go(-1)"/>
+			
+	</body>
 </html>

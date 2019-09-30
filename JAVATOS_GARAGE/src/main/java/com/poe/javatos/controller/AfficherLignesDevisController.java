@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
@@ -19,10 +20,10 @@ import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.ServiceDevisCrudImpl;
 
 @Controller
+@RequestMapping(value = {"/commercial","/admin"}) // Mr Security
 public class AfficherLignesDevisController 
 {
-	
-	
+
 	@Autowired
 	private IServiceDevisCrud service;
 

@@ -20,8 +20,11 @@ public class AfficherListeClientController {
 		 
 		 @GetMapping(value="/afficherListeClient")  
 		 public String afficher(ModelMap pModel) {        
+
 			 final List<Client> lListeClient = service.findAllClient();        
 			 pModel.addAttribute("listeclient", lListeClient);        
 			 return "afficherListeClient";
 		 } 
 	}
+
+

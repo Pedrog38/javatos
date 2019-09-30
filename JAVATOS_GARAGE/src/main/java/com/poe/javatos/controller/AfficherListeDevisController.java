@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
-import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.form.AfficherDevisForm;
-import com.poe.javatos.form.AfficherLigneDevisForm;
 import com.poe.javatos.form.ListeAfficherDevisForm;
 import com.poe.javatos.service.IServiceDevis;
 import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 
 @Controller
+
 @RequestMapping(value = {"/commercial","/admin"})
+
 public class AfficherListeDevisController 
 {
 	
@@ -33,9 +33,6 @@ public class AfficherListeDevisController
 
 	@Autowired
 	private IServiceDevis serviceDevis;
-	
-	@Autowired
-	private IServiceLigneDevis serviceLigneDevis;
 	
 	@Autowired
 	AfficherLignesDevisController ctrlAfficheLigneDevis;

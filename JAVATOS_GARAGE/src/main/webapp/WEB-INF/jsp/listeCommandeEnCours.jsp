@@ -10,7 +10,6 @@
 	</head>
 
 	<body>
-			
 
 			<h1>AFFICHER LISTE DES COMMANDES EN COURS</h1>
 
