@@ -24,7 +24,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <a class="navbar-brand" href="#">Menu Principal - Admin</a>
+  <a class="navbar-brand" href="#">Menu Principal - Administrateur : <%=request.getUserPrincipal().getName()%></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -78,7 +78,7 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-            <c:url value="admin/historiqueCommandes" var="url" />
+            <c:url value="/admin/historiqueCommandes" var="url" />
 
           <a class="dropdown-item" href="${url}">Historique des commandes</a>
 
@@ -110,7 +110,7 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-        <c:url value="/stockGestion" var="url" />
+        <c:url value="/admin/afficherGestionStock" var="url" />
 
           <a class="dropdown-item" href="${url}">Gestion Stock</a>
 

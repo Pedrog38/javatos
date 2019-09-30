@@ -21,7 +21,7 @@ import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
 @Controller
-@RequestMapping(value = {"/commercial","/admin"}) // Mr Security
+@RequestMapping(value = {"/commercial","/admin","/magasinier"}) // Mr Security
 public class AfficherListeCommandeController 
 {
 	

@@ -23,7 +23,7 @@ import com.poe.javatos.service.crud.IServiceDevisCrud;
 
 @Controller
 
-@RequestMapping(value = {"/commercial","/admin"})
+@RequestMapping(value = {"/commercial","/admin","/magasinier"})
 
 public class AfficherListeDevisController 
 {
