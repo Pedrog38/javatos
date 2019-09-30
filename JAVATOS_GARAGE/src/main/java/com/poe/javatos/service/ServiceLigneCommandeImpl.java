@@ -82,5 +82,11 @@ public class ServiceLigneCommandeImpl implements IServiceLigneCommande {
 		return prix;
 	}
 
+	@Override
+	public List<LigneCommande> findByIdCommandeLigneCommandeNonRenseigne(Integer idCommande) 
+	{
+		return dao.findByCommandeLigneCommandeStatut(idCommande, StatutLigneCommande.NonRenseignee);
+	}
+
 
 }

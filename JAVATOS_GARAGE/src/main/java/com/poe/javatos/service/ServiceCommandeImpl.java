@@ -33,6 +33,17 @@ public class ServiceCommandeImpl implements IServiceCommande
 	}
 
 	@Override
+	public List<Commande> findByStatutNouvelleEnTraitementCommande() 
+	{
+		List<Commande> commandes = dao.findByStatutsCommande(StatutCommande.Nouvelle,StatutCommande.EnTraitement);
+		for (Commande commande : commandes) 
+		{
+			mettreAJourStatut(commande);
+		}
+		return dao.findByStatutsCommande(StatutCommande.Nouvelle,StatutCommande.EnTraitement);
+	}
+	
+	@Override
 	public List<Commande> findByStatutsEnTraitementPreteCommande() 
 	{
 		return dao.findByStatutsCommande(StatutCommande.EnTraitement, StatutCommande.Prete);
@@ -56,6 +67,10 @@ public class ServiceCommandeImpl implements IServiceCommande
 			{
 				c.setStatut(StatutCommande.Prete);
 			}
+		}
+		else if (c.getStatut().equals(StatutCommande.Nouvelle))
+		{
+			c.setStatut(StatutCommande.EnTraitement);
 		}
 		return serviceCommande.updateCommande(c);
 	}
