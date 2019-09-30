@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+/<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -8,7 +8,6 @@
 
 <body>
 	<h1>Détails du devis N° <c:out value="${AfficherDevisForm.idDevis}"/> </h1>
-
 	
 			<div>
 				<label> Client: ${AfficherDevisForm.nomClient} </label><br>

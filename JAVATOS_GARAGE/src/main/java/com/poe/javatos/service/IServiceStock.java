@@ -13,4 +13,6 @@ public interface IServiceStock
 	Stock miseAjourAssignation(Stock s, Integer qteAReserver);
 	
 	Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue);
+	
+	Stock commander(Stock s, Integer qteACommander);
 }

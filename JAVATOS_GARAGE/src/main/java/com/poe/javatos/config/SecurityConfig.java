@@ -7,7 +7,10 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -49,15 +52,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     }
 
     @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+    	// TODO Auto-generated method stub
+    
+    	WebMvcConfigurer.super.addInterceptors(registry);
+    }
+    
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+    
+    	
+    	
     /**
      * Configuration des chemins par défaut pour le menu et le formulaire
      * de connexion.
      */
-       registry.addViewController("/").setViewName("menu");
+    	 registry.addViewController("/").setViewName("menu");
        registry.addViewController("/login").setViewName("login");
+      
     }
-   
+    
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
     	/**

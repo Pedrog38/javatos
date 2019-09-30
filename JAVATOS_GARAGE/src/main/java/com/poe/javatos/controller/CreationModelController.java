@@ -9,21 +9,31 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.poe.javatos.bean.Model;
 import com.poe.javatos.form.CreationModelForm;
 import com.poe.javatos.service.crud.IServiceModelCrud;
 
 @Controller
+@RequestMapping(value = {"/commercial","/admin"})
 public class CreationModelController 
 {
 	@Autowired
 	private IServiceModelCrud serviceModelCrud;
 	
+	@Autowired
+	private CreationDevisController crtlCreationDevis;
+	
+	@Autowired
+	private AfficherListeModelController ctrlAfficherListModel;
+	
 	@GetMapping(value="/creerModeleAfficher")
 	public String afficherCreationModele(final ModelMap model)
 	{
 	
-		if (model.get("creationModele")==null) {
+		if (model.get("creationModele")==null) 
+		{
 			model.addAttribute("creationModele",new CreationModelForm());
 		}
 		return "creationNouveauModele";
@@ -42,9 +52,13 @@ public class CreationModelController
 			m.setDelaisProd(creationModelForm.getDelaisProd());
 			m.setPrixVente(creationModelForm.getPrixVente());
 			serviceModelCrud.createModel(m);
-			return "menu";
+			
 		}
-		return afficherCreationModele(model);//TODO changer le chemin en "retour à la page appelante"
+		if(model.get("creationDevis")!=null)
+		{
+			return(crtlCreationDevis.afficherCreationDevis(model));
+		}
+		return ctrlAfficherListModel.afficherListeModel(model);  
 		
 	}
 }

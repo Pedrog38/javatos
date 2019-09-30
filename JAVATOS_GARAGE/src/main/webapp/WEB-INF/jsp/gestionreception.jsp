@@ -11,7 +11,9 @@
 </head>
 <body>
 	<h1>Gestion Reception</h1>
-	<table>
+	<form:form method="post" modelAttribute="gestionStocks" action="receptionnercommande">
+	
+	<table border="1">
 	<thead>
 	<tr>
 	<th>Modèle</th>
@@ -20,17 +22,28 @@
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach items="${listestock}" var="stock">
+	<c:forEach items="${gestionStocks.listForm}" var="listForm" varStatus="status">
 	<tr>
-	<form:form method="post" modelAttribute="receptionner" action="receptionnercommande">
-	<td> <c:out value="${listestock.model.nom}" /> </td>
-	<td> <c:out value="${listestock.qteCommandee}" /> </td>
-	<td> <form:input path="qteCommandee" /> </td>
-	<td> <input type="submit" value="VALIDER RECEPTION" /> </td>
-	</form:form>
+	<td> 
+		<c:out value="${listForm.nomModele}"/>
+        <form:input type="hidden" path="listForm[${status.index}].nomModele" value="${listForm.nomModele}"/>
+    </td>
+    <td> 
+		<c:out value="${listForm.qteCommandee}"/>
+        <form:input type="hidden" path="listForm[${status.index}].qteCommandee" value="${listForm.qteCommandee}"/>
+    </td>
+	<td>
+	<form:input type="text" path="listForm[${status.index}].qteRecue" />
+	<form:errors path="listForm[${status.index}].qteRecueOk" />
+	<form:input type="hidden" path="listForm[${status.index}].idModel" value="${listForm.idModel}"/>
+	</td>
+	<td> <form:button type="submit" name="index" value="${status.index}" >Valider réception</form:button> </td>
 	</tr>
 	</c:forEach>
 	</tbody>
 	</table>
+	
+	</form:form>
+	<a href="/">Retour Menu Principal</a>
 </body>
 </html>

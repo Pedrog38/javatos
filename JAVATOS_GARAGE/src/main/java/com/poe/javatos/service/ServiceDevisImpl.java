@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
@@ -27,9 +28,11 @@ public class ServiceDevisImpl implements IServiceDevis
 	}
 
 	@Override
+	@Transactional
 	public Float calculerPrixDevis(Devis d) {
+		
 		Float prixtotal = (float) 0;
-		for (LigneDevis ld : d.getLignesDevis()) {
+		for (LigneDevis ld : service.findByIdDevisLigneDevis(d.getId())) {
 			Float prixligne = service.calculerPrixLigneDevis(ld);
 			
 			prixtotal = prixligne + prixtotal;
@@ -39,10 +42,11 @@ public class ServiceDevisImpl implements IServiceDevis
 	}
 
 	@Override
+	@Transactional
 	public Integer calculerDelaisDevis(Devis d) 
 	{
 		Integer delaiDevis = 0;
-		for (LigneDevis ld : d.getLignesDevis()) {
+		for (LigneDevis ld : service.findByIdDevisLigneDevis(d.getId())) {
 		Integer delaiLigneDevisEnCours = service.calculerDelaiLigneDevis(ld); 
 		delaiDevis = Math.max(delaiDevis, delaiLigneDevisEnCours);
 			

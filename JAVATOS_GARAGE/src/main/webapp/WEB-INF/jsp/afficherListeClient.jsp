@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
+
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -10,7 +12,7 @@
 </head>
 <body>
 	<h1>Liste des clients</h1>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Statut</th>
@@ -26,7 +28,7 @@
 		<tbody>
 			<c:forEach items="${listeclient}" var="client">
 				<tr>
-					<td><c:out value="${client.statut}" /></td>
+					<td><c:out value="${client.statut.nom}" /></td>
 					<td><c:out value="${client.nom}" /></td>
 					<td><c:out value="${client.prenom}" /></td>
 					<td><c:out value="${client.sexe}" /></td>
@@ -38,5 +40,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+				<input type="button" value="Retour" onclick="history.go(-1)"/><br>
 </body>
 </html>

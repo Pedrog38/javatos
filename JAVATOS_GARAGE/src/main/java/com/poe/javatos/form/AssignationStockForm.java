@@ -178,7 +178,7 @@ public class AssignationStockForm implements Serializable
 	@AssertTrue(message="Qte à reserver incorrecte")
 	public boolean isQteReserveOk()
 	{
-		return (this.getQteAReserve()>=0)&&(this.getQteAReserve()<=this.getQuantiteLigneCommande()-this.getNbReserveLigneCommande());
+		return (this.getQteAReserve()>=0)&&(this.getQteAReserve()<=Math.min(this.getQuantiteLigneCommande()-this.getNbReserveLigneCommande(),this.qteDispoStock));
 	}
 	
 	

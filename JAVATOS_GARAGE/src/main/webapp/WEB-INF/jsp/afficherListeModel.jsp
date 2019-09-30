@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Liste des modèles</h1>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Nom du modèle</th>
@@ -32,5 +32,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<input type="button" value="Retour" onclick="history.go(-1)"/><br>
 </body>
 </html>
