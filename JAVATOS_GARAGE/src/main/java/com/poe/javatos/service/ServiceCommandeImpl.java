@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
-import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.global.StatutCommande;
 import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.repository.ICommandeRepository;

@@ -88,6 +88,4 @@ public class LigneCommande
 				+ nbResvervees + ", commande=" + commande.getId() + ", model=" + model + "]";
 	}
 	
-	
-	
 }

@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.GestionStockForm;
 import com.poe.javatos.form.ListeGestionStockForm;
 import com.poe.javatos.service.IServiceStock;
@@ -28,7 +29,7 @@ public class GestionReceptionStockController {
 	IServiceModelCrud serviceModelCrud;
 	
 	@GetMapping(value = "/afficherGestionStock")
-	public String afficherListeGestionStock(final ModelMap model) {
+	public String afficherListeGestionStock(final ModelMap model) throws POEException {
 		
 		List<Stock> stockCmd = serviceStock.findStocksEnCommandeFournisseur();
 

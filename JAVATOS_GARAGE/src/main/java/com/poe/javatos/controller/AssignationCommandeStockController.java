@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.AssignationStockForm;
 import com.poe.javatos.form.ListeAssignationStockForm;
 import com.poe.javatos.global.StatutLigneCommande;
+import com.poe.javatos.mapper.AssignationMapper;
 import com.poe.javatos.service.IServiceLigneCommande;
 import com.poe.javatos.service.IServiceStock;
 import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
@@ -41,27 +43,25 @@ public class AssignationCommandeStockController
 	IServiceStockCrud serviceStockCrud;
 	
 	@GetMapping(value="/assignationAfficherListe")
-	public String afficherListeAssignation(final ModelMap model)
+	public String afficherListeAssignation(final ModelMap model) throws POEException
 	{
-		if(model.get("listAssignationForm")==null)
+		if(model.get("listAssignationForm")==null || model.get("error") =="false")
 		{			
 			ListeAssignationStockForm listFormAss = new ListeAssignationStockForm();
 			List<AssignationStockForm> listAssignationForm = new ArrayList<AssignationStockForm>();
+			
 			List<LigneCommande> listLigneCommande = serviceLigneCommande.findByStatutEnCommandeFournisseurLignesCommande();
-			for (LigneCommande lc : listLigneCommande) 
-			{
-				AssignationStockForm ass = new AssignationStockForm();
-				ass.setIdLigneCommande(lc.getId());
-				ass.setNomClient(lc.getCommande().getClient().getPrenom()+" "+lc.getCommande().getClient().getNom());
-				ass.setNomModel(lc.getModel().getNom());
-				ass.setDelaisProd(serviceLigneCommande.calculerDelaiLigneCommande(lc));
-				ass.setQuantiteLigneCommande(lc.getQuantite());
-				ass.setNbReserveLigneCommande(lc.getNbResvervees());
-				Stock s = serviceStock.findByIdModelStock(lc.getModel().getId());			
-				ass.setIdStock(s.getId());
-				ass.setQteDispoStock(s.getQteDispo());
-				ass.setQteAReserve(0);
+			
+			for (LigneCommande lc : listLigneCommande)  
+			{	
+				Stock s;
+				try {
+				s = serviceStock.findByIdModelStock(lc.getModel().getId());	
+				AssignationStockForm ass = AssignationMapper.ligneToAssignation(lc,s);
 				listAssignationForm.add(ass);
+				}
+				catch (Exception e) {}
+														
 			}
 			listFormAss.setListAss(listAssignationForm);
 			listFormAss.setIndex(0);
@@ -74,7 +74,7 @@ public class AssignationCommandeStockController
 	
 	@PostMapping(value="/assignationModifierLigne")
 	public String validerLigneAssignation(@Valid @ModelAttribute(value="listAssignationForm") 
-	 final ListeAssignationStockForm listFormAss,final BindingResult bindingResult, final ModelMap model)
+	 final ListeAssignationStockForm listFormAss,final BindingResult bindingResult, final ModelMap model) throws POEException
 	{
 		if(!bindingResult.hasErrors())
 		{
