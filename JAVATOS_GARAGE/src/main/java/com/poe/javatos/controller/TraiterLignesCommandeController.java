@@ -55,6 +55,10 @@ public class TraiterLignesCommandeController
 	@GetMapping(value="/afficherLigneCommandeNouvelle")
 	public String afficherLigneCommande(ModelMap model) {
 		
+		if(model.get("error")=="true")
+		{
+			return "traiterListeLignesCommande";
+		}
 		Commande commande = (Commande) model.get("CommandeAVisualiser");
 		commande=serviceCommande.mettreAJourStatut(commande);
 		CommandeATraiterForm affCd = new CommandeATraiterForm();
@@ -109,6 +113,7 @@ public class TraiterLignesCommandeController
 	{
 		Commande commande = service.findByIdCommande(affCd.getIdCommande());
 		model.addAttribute("CommandeAVisualiser",commande);
+		model.addAttribute("error","true");
 		if(!bindingResult.hasErrors())
 		{
 			int index = affCd.getIndex();
@@ -126,8 +131,9 @@ public class TraiterLignesCommandeController
 			System.err.println("qteAReserver : "+qteAReserver);
 			serviceStock.commander(s, qteACommander);
 			serviceLigneCommande.miseAJourStatut(lc);
+			model.addAttribute("error","false");
 		}
-		
+		System.err.println("ERR = "+bindingResult);
 		return afficherLigneCommande(model);
 	}
 }

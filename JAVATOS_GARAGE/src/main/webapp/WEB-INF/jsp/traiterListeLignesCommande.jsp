@@ -20,9 +20,11 @@
 		</h1>
 
 		<div>
-			<label>Client: ${AfficherCommandeForm.nomClient}</label><br> <label>
+			Client: <c:out value="${AfficherCommandeForm.nomClient }" />
+			<form:input type="hidden" path="nomClient" value="${AfficherCommandeForm.nomClient}" />
 			<br/>
-				Date de création : ${AfficherCommandeForm.commandeDate}</label><br>
+				Date de création : <c:out value="${AfficherCommandeForm.commandeDate }" />
+			<form:input type="hidden" path="commandeDate" value="${AfficherCommandeForm.commandeDate}" />
 		</div>
 <br/>
 		<table border="1">
@@ -65,16 +67,27 @@
 						</td>
 						<td>
 						<form:input type="text" path="listLigneCdForm[${status.index}].qteAReserver" value="${c.qteAReserver}" />
+						
 						</td>
 						<td>
 						<form:input type="text" path="listLigneCdForm[${status.index}].qteACommander" value="${c.qteACommander}" />
 						</td>
 						<td>
+						<form:errors path="listLigneCdForm[${status.index}].qteACommanderOk" />
+						<form:errors path="listLigneCdForm[${status.index}].qteReserveeOk" />
+						<form:errors path="listLigneCdForm[${status.index}].qtesOk" />
+						<form:errors path="listLigneCdForm[${status.index}].qtesNotNull" />
+						
+						
+						</td>
+						<td>
                     	<form:button type="submit" name="index" value="${status.index}" >Valider</form:button>
+                    	</td>
+                    	
                    
                    <form:input type="hidden" path="listLigneCdForm[${status.index}].idModel" value="${c.idModel}" />
                    <form:input type="hidden" path="listLigneCdForm[${status.index}].idLigneCommande" value="${c.idLigneCommande}" />
-                    </td>
+                    
 					</tr>
 				</c:forEach>
 			</tbody>

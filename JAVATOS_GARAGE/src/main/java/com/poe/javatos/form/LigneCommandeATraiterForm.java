@@ -2,6 +2,10 @@ package com.poe.javatos.form;
 
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.lang.NonNull;
 
 public class LigneCommandeATraiterForm 
 {
@@ -11,7 +15,6 @@ public class LigneCommandeATraiterForm
 	private Integer qteDemande;
 	private Integer qteDejaReserve;
 	private Integer qteDejaCommandee;
-	@Valid
 	private Integer qteAReserver;
 	private Integer qteACommander;
 	private Integer idModel;
@@ -89,16 +92,41 @@ public class LigneCommandeATraiterForm
 	
 	
 	
-	
-//	@AssertTrue(message="Qtes incorrectes")
-//	public boolean isQtesOk()
-//	{
-//		return (this.qteACommander>=0)&&(this.qteAReserver>=0)&&(getQteACommander()+getQteAReserver()==getQteDispo());
-//	}
-	
-//	@AssertTrue(message="Qte reserve incorrecte")
-//	public boolean isQteReserveTraitementCommandeOk()
-//	{
-//		return (this.getQteAReserver()>=0)&&(getQteAReserver()<=getQteDispo());
-//	}
+	@AssertTrue(message="Les quantitées sont obligatoires")
+	public boolean isQtesNotNull()
+	{
+		return ((getQteACommander()!=null)&&(getQteAReserver()!=null));
+	}
+	@AssertTrue(message="La quantitée à reserver doit être positive et inferieure au stock disponible")
+	public boolean isQteReserveeOk()
+	{
+		if(isQtesNotNull())
+		{			
+			return ((getQteAReserver()>=0)&&(getQteAReserver()<=getQteDispo()));
+		}
+		return true;
+	}
+	@AssertTrue(message="La quantitée à commander doit être positive")
+	public boolean isQteACommanderOk()
+	{
+		if(isQtesNotNull()&&isQteReserveeOk())
+		{
+			return (getQteACommander()>=0);			
+		}
+		return true;
+	}
+	@AssertTrue(message="La somme des quantitées à commander et à reserver doit être égale à la quantité demandée")
+	public boolean isQtesOk()
+	{
+		if((isQtesNotNull()&&isQteACommanderOk())&&(isQteReserveeOk()))
+		{
+			return (
+					(getQteACommander()>=0)
+				&&(getQteAReserver()>=0)
+				&&(getQteAReserver()<=getQteDispo())
+				&&(getQteACommander()+getQteAReserver()==getQteDemande())
+				);
+		}
+		return true;
+	}
 }
