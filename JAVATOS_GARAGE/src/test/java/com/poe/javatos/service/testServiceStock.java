@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class testServiceStock {
 	IStockRepository dao;
 
 	@Test
-	public void testTrouveUnStrock() { 
+	public void testTrouveUnStock() { 
 		Integer id = 1; //Stock 1 existe
 		Stock stk= null;
 		try {
@@ -49,7 +50,24 @@ public class testServiceStock {
 	}
 	
 	
-	/**@Test (expected = POEException.class)
+	@AfterClass
+	public void cleanLeStock() {
+		Integer id = 1; //Stock 1 existe
+		Stock stk= null;
+		try {
+		stk = dao.getOne(id);
+		stk.setQteCommandee(10);
+		stk.setQteDispo(50);
+		stk.setQteReservee(60);
+		dao.save(stk);
+		}
+		catch (Exception e) {
+			fail("Probleme interrogation service avec id" +id);
+			
+		}
+	}
+	
+	@Test (expected = POEException.class)
 	public void testMAJAssignation() throws POEException {
 		Integer qte = 50;
 		Stock s = stockService.findByIdModelStock(1);
@@ -61,7 +79,7 @@ public class testServiceStock {
 		assertEquals(dispo-qte,(int)s.getQteDispo());
 		assertEquals(resa+qte,(int)s.getQteReservee());
 	}
-	 **/
+	 
 		
 
 }
