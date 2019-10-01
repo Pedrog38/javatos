@@ -13,7 +13,9 @@ import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.form.DevisForm;
 import com.poe.javatos.form.LigneDevisForm;
-import com.poe.javatos.form.ListeDevisForm;
+import com.poe.javatos.mapper.DevisMapper;
+import com.poe.javatos.mapper.LigneDevisMapper;
+import com.poe.javatos.mapper.ListeDevisMapper;
 import com.poe.javatos.service.IServiceDevis;
 import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
@@ -38,27 +40,20 @@ public class AfficherListeLignesDevisController
 		
 		final Devis devis = service.findByIdDevis((Integer)model.get("IdDevisAVisualiser"));
 		
-		DevisForm affDevis = new DevisForm();
+		float prixHT = serviceDevis.calculerPrixHTDevis(devis);
+		float prixTTC = serviceDevis.calculerPrixTTCDevis(devis);
+		Integer delai =serviceDevis.calculerDelaisDevis(devis);
+		
 		List<LigneDevisForm> lignesDevisForm = new ArrayList<>();
 		for (LigneDevis ld: serviceLigneDevis.findByIdDevisLigneDevis(devis.getId())) 
 		{
-			LigneDevisForm aff = new LigneDevisForm();
-			aff.setNomModel(ld.getModel().getNom());
-			aff.setQuantite(ld.getQuantite());
-			aff.setDelai(serviceLigneDevis.calculerDelaiLigneDevis(ld));
-			aff.setPrixHT(serviceLigneDevis.calculerPrixLigneDevis(ld));
-			lignesDevisForm.add(aff);
+			Integer delaiLd = serviceLigneDevis.calculerDelaiLigneDevis(ld);
+			float prixHTLd = serviceLigneDevis.calculerPrixLigneDevis(ld);
+			LigneDevisForm ligneDevisForm = LigneDevisMapper.remplirListeDevisForm(ld, delaiLd, prixHTLd);
+			lignesDevisForm.add(ligneDevisForm);
 		}
-		affDevis.setListLigneDevisForm(lignesDevisForm);
-		affDevis.setDateDeCreation(devis.getDateCreation().toString());
-		affDevis.setIdDevis(devis.getId());
-		affDevis.setNomClient(devis.getClient().getPrenom()+" "+devis.getClient().getNom());
-		affDevis.setPrixTotalHT(serviceDevis.calculerPrixHTDevis(devis));
-		affDevis.setTaux(devis.getClient().getStatut().getTauxTva());
-		affDevis.setPrixTotalTTC(serviceDevis.calculerPrixTTCDevis(devis));
-		affDevis.setStatut(devis.getStatut());
-		affDevis.setDelai(serviceDevis.calculerDelaisDevis(devis));
-		model.addAttribute("AfficherDevisForm", affDevis);
+		DevisForm devisForm = DevisMapper.remplirDevisForm(devis, prixHT, prixTTC, delai, lignesDevisForm);
+		model.addAttribute("AfficherDevisForm", devisForm);
 				
 		return "afficherListeLignesDevis";
 	}

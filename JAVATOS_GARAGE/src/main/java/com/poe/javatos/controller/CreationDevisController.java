@@ -19,9 +19,9 @@ import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.bean.Model;
-import com.poe.javatos.form.CreationDevisForm;
-import com.poe.javatos.form.CreationLigneDevisForm;
 import com.poe.javatos.global.StatutDevis;
+import com.poe.javatos.mapper.CreationDevisMapper;
+import com.poe.javatos.mapper.CreationLigneDevisMapper;
 import com.poe.javatos.service.IServiceUtilisateur;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
@@ -72,15 +72,15 @@ public class CreationDevisController {
 		
 		if(model.get("creationDevis")==null) {
 			
-			CreationDevisForm creationDevisForm = new CreationDevisForm();
-			List<CreationLigneDevisForm> lp =  new ArrayList<CreationLigneDevisForm>();
+			CreationDevisMapper creationDevisForm = new CreationDevisMapper();
+			List<CreationLigneDevisMapper> lp =  new ArrayList<CreationLigneDevisMapper>();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			creationDevisForm.setSubmit("");
 			
 			creationDevisForm.setDateDevis(format.format(date));
 			
-			CreationLigneDevisForm cldf = new CreationLigneDevisForm();
+			CreationLigneDevisMapper cldf = new CreationLigneDevisMapper();
 			cldf.setQuantite(0);
 			
 			lp.add(cldf);
@@ -99,7 +99,7 @@ public class CreationDevisController {
 	
 	@PostMapping(value = "/creerDevis")
 	public String validerLigneDevis(@ModelAttribute(value="creationDevis") 
-	final CreationDevisForm pForm, final BindingResult bindingResult, final ModelMap model) {
+	final CreationDevisMapper pForm, final BindingResult bindingResult, final ModelMap model) {
 		System.err.println(pForm.getSubmit());
 		if(pForm.getSubmit().equals("valid")) {
 			System.err.println("valid");
@@ -107,7 +107,7 @@ public class CreationDevisController {
 			
 			if (!bindingResult.hasErrors()) {
 				
-				List<CreationLigneDevisForm> lignes = pForm.getLignedevis();
+				List<CreationLigneDevisMapper> lignes = pForm.getLignedevis();
 				
 				Devis d = new Devis();
 				d.setClient(serviceClientCrud.findByIdClient(pForm.getIdClient()));
@@ -125,7 +125,7 @@ public class CreationDevisController {
 				d=serviceDevisCrud.createDevis(d);
 				
 				List<LigneDevis> listLigneDevis = new ArrayList<>();
-				for (CreationLigneDevisForm ligne : lignes) {
+				for (CreationLigneDevisMapper ligne : lignes) {
 					
 					if (ligne.getQuantite()!=0) {
 						
@@ -148,7 +148,7 @@ public class CreationDevisController {
 		}
 		
 		if(pForm.getSubmit().equals("add")) {
-			CreationLigneDevisForm cldf = new CreationLigneDevisForm();
+			CreationLigneDevisMapper cldf = new CreationLigneDevisMapper();
 			cldf.setQuantite(0);
 			pForm.getLignedevis().add(cldf);
 			

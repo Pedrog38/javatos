@@ -13,6 +13,8 @@ import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.form.CommandeForm;
 import com.poe.javatos.form.LigneCommandeForm;
+import com.poe.javatos.mapper.CommandeMapper;
+import com.poe.javatos.mapper.LigneCommandeMapper;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.IServiceLigneCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
@@ -34,28 +36,22 @@ public class AfficherListeLignesCommandeController
 		
 		final Commande commande = (Commande) model.get("CommandeAVisualiser");
 		
-		CommandeForm affCd = new CommandeForm();
 		List<LigneCommandeForm> lignesCommandeForm = new ArrayList<>();
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommande(commande.getId())) 
 		{
-			LigneCommandeForm aff = new LigneCommandeForm();
-			aff.setNomModel(lc.getModel().getNom());
-			aff.setQuantite(lc.getQuantite());
-			aff.setDelai(serviceLigneCommande.calculerDelaiLigneCommande(lc));
-			aff.setPrixHT(serviceLigneCommande.calculerPrixLigneCommande(lc));
-			lignesCommandeForm.add(aff);
+			Integer delai = serviceLigneCommande.calculerDelaiLigneCommande(lc);
+			float prixHT =serviceLigneCommande.calculerPrixLigneCommande(lc);
+			
+			LigneCommandeForm ligneCommandeForm = LigneCommandeMapper.remplirLigneCommandeForm(lc,delai,prixHT);
+			
+			lignesCommandeForm.add(ligneCommandeForm);
 		}
-		affCd.setListLigneCdForm(lignesCommandeForm);
-		affCd.setCommandeDate(commande.getDateCreation().toString());
-		affCd.setIdDevis(commande.getId());
-		affCd.setIdCommande(commande.getId());
-		affCd.setDelaiCommande(serviceCommande.calculerDelaisCommande(commande));
-		affCd.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
-		affCd.setPrixTotalHT(serviceCommande.calculerPrixHTCommande(commande));
-		affCd.setPrixTotalTTC(serviceCommande.calculerPrixTTCCommande(commande));
-		affCd.setTaux(commande.getClient().getStatut().getTauxTva());
-		affCd.setStatutCommande(commande.getStatut());
-		model.addAttribute("AfficherCommandeForm", affCd);
+		float prixHT =serviceCommande.calculerPrixHTCommande(commande);
+		float prixTTC=serviceCommande.calculerPrixTTCCommande(commande);
+		Integer delai= serviceCommande.calculerDelaisCommande(commande);
+	
+		CommandeForm commandeForm = CommandeMapper.remplirCommandeForm(commande, prixHT, prixTTC, delai, lignesCommandeForm);
+		model.addAttribute("AfficherCommandeForm", commandeForm);
 				
 		return "afficherListeLignesCommande";
 	}

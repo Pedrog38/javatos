@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.StatutClient;
-import com.poe.javatos.form.CreationClientForm;
+import com.poe.javatos.mapper.CreationClientMapper;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceStatutClientCrud;
 
@@ -42,7 +42,7 @@ public class CreationClientController
 		model.addAttribute("statutList",listeStatutClient);
 		if(model.get("CreationClient")==null)
 		{
-			model.addAttribute("CreationClient",new CreationClientForm());
+			model.addAttribute("CreationClient",new CreationClientMapper());
 		}
 		return "creationClient";
 	
@@ -50,7 +50,7 @@ public class CreationClientController
 	
 	@PostMapping(value="/creerClient")
 	public String CreationClient(@Valid @ModelAttribute(value="CreationClient") 
-	 final CreationClientForm creationForm,final BindingResult bindingResult, final ModelMap model)
+	 final CreationClientMapper creationForm,final BindingResult bindingResult, final ModelMap model)
 	{
 		if(!bindingResult.hasErrors())
 		{

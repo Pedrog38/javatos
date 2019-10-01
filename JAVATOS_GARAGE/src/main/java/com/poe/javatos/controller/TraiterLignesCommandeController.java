@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
-import com.poe.javatos.form.CommandeForm;
-import com.poe.javatos.form.CommandeATraiterForm;
-import com.poe.javatos.form.LigneCommandeForm;
-import com.poe.javatos.form.LigneCommandeATraiterForm;
-import com.poe.javatos.form.AssignationStockForm;
-import com.poe.javatos.form.ListeCommandeForm;
 import com.poe.javatos.global.StatutLigneCommande;
+import com.poe.javatos.mapper.AssignationStockMapper;
+import com.poe.javatos.mapper.CommandeATraiterMapper;
+import com.poe.javatos.mapper.CommandeMapper;
+import com.poe.javatos.mapper.LigneCommandeATraiterMapper;
+import com.poe.javatos.mapper.LigneCommandeMapper;
+import com.poe.javatos.mapper.ListeCommandeMapper;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.IServiceLigneCommande;
 import com.poe.javatos.service.IServiceStock;
@@ -61,12 +61,12 @@ public class TraiterLignesCommandeController
 		}
 		Commande commande = (Commande) model.get("CommandeAVisualiser");
 		commande=serviceCommande.mettreAJourStatut(commande);
-		CommandeATraiterForm affCd = new CommandeATraiterForm();
-		List<LigneCommandeATraiterForm> lignesCommandeForm = new ArrayList<>();
-		List<LigneCommandeATraiterForm> lignesCommandeNonModifiableForm = new ArrayList<>();
+		CommandeATraiterMapper affCd = new CommandeATraiterMapper();
+		List<LigneCommandeATraiterMapper> lignesCommandeForm = new ArrayList<>();
+		List<LigneCommandeATraiterMapper> lignesCommandeNonModifiableForm = new ArrayList<>();
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommandeNonRenseigne(commande.getId())) 
 		{
-			LigneCommandeATraiterForm aff = new LigneCommandeATraiterForm();
+			LigneCommandeATraiterMapper aff = new LigneCommandeATraiterMapper();
 			aff.setNomModel(lc.getModel().getNom());
 			aff.setIdLigneCommande(lc.getId());
 			aff.setIdModel(lc.getModel().getId());
@@ -82,7 +82,7 @@ public class TraiterLignesCommandeController
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommandeRenseigne(commande.getId())) 
 		{
 			System.err.println("LC = "+lc);
-			LigneCommandeATraiterForm affNM = new LigneCommandeATraiterForm();
+			LigneCommandeATraiterMapper affNM = new LigneCommandeATraiterMapper();
 			affNM.setNomModel(lc.getModel().getNom());
 			affNM.setIdLigneCommande(lc.getId());
 			affNM.setIdModel(lc.getModel().getId());
@@ -111,7 +111,7 @@ public class TraiterLignesCommandeController
 	
 	@PostMapping(value="/VisualiserLigneCommandeNouvelle")
 	public String visualiserAfficherLigneCommandeNouvelle(@Valid @ModelAttribute(value="AfficherCommandeForm") 
-	 final CommandeATraiterForm affCd,final BindingResult bindingResult, final ModelMap model)
+	 final CommandeATraiterMapper affCd,final BindingResult bindingResult, final ModelMap model)
 	{
 		Commande commande = service.findByIdCommande(affCd.getIdCommande());
 		model.addAttribute("CommandeAVisualiser",commande);
@@ -120,8 +120,8 @@ public class TraiterLignesCommandeController
 		{
 			int index = affCd.getIndex();
 			System.err.println("INDEX = " +index);
-			List<LigneCommandeATraiterForm> lignesCommandeForm =affCd.getListLigneCdForm();
-			LigneCommandeATraiterForm formLigne= lignesCommandeForm.get(index);
+			List<LigneCommandeATraiterMapper> lignesCommandeForm =affCd.getListLigneCdForm();
+			LigneCommandeATraiterMapper formLigne= lignesCommandeForm.get(index);
 			LigneCommande lc = serviceLigneCommandeCrud.findByIdLigneCommande(formLigne.getIdLigneCommande());
 			Integer qteAReserver = formLigne.getQteAReserver();
 			Integer qteACommander= formLigne.getQteACommander();

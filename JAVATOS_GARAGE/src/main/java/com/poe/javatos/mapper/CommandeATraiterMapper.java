@@ -1,18 +1,26 @@
-package com.poe.javatos.form;
+package com.poe.javatos.mapper;
 
 import java.util.List;
 
-public class CommandeForm {
+import javax.validation.Valid;
+
+public class CommandeATraiterMapper 
+{
 	private Integer idCommande;
 	private String commandeDate;
 	private String nomClient;
+	private Integer idDevis;
 	private Float prixTotalHT;
 	private Float prixTotalTTC;
 	private Float taux;
 	private String statutCommande;
 	private Integer delaiCommande;
-	private List<LigneCommandeForm> listLigneCdForm;
 	
+	@Valid
+	private List<LigneCommandeATraiterMapper> listLigneCdForm;
+	private List<LigneCommandeATraiterMapper> listLigneCdFormNonModifiable;
+	
+	private Integer index;
 	public Integer getIdCommande() {
 		return idCommande;
 	}
@@ -30,6 +38,12 @@ public class CommandeForm {
 	}
 	public void setNomClient(String nomClient) {
 		this.nomClient = nomClient;
+	}
+	public Integer getIdDevis() {
+		return idDevis;
+	}
+	public void setIdDevis(Integer idDevis) {
+		this.idDevis = idDevis;
 	}
 	
 	public Float getPrixTotalHT() {
@@ -56,20 +70,31 @@ public class CommandeForm {
 	public void setStatutCommande(String statutCommande) {
 		this.statutCommande = statutCommande;
 	}
-	public List<LigneCommandeForm> getListLigneCdForm() {
-		return listLigneCdForm;
-	}
-	public void setListLigneCdForm(List<LigneCommandeForm> listLigneCdForm) {
-		this.listLigneCdForm = listLigneCdForm;
-	}
 	public Integer getDelaiCommande() {
 		return delaiCommande;
 	}
 	public void setDelaiCommande(Integer delaiCommande) {
 		this.delaiCommande = delaiCommande;
 	}
-	
-
+	public List<LigneCommandeATraiterMapper> getListLigneCdForm() {
+		return listLigneCdForm;
+	}
+	public void setListLigneCdForm(List<LigneCommandeATraiterMapper> listLigneCdForm) {
+		this.listLigneCdForm = listLigneCdForm;
+		
+	}
+	public Integer getIndex() {
+		return index;
+	}
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
+	public List<LigneCommandeATraiterMapper> getListLigneCdFormNonModifiable() {
+		return listLigneCdFormNonModifiable;
+	}
+	public void setListLigneCdFormNonModifiable(List<LigneCommandeATraiterMapper> listLigneCdFormNonModifiable) {
+		this.listLigneCdFormNonModifiable = listLigneCdFormNonModifiable;
+	}
 	
 	
 	

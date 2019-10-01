@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Commande;
-import com.poe.javatos.form.CommandeForm;
-import com.poe.javatos.form.ListeCommandeForm;
+import com.poe.javatos.mapper.CommandeMapper;
+import com.poe.javatos.mapper.ListeCommandeMapper;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
@@ -36,11 +36,11 @@ public class TraiterCommandeController
 	@GetMapping(value="/traiterCommande")
 	public String afficherListeCommande(ModelMap model) {
 		
-		final ListeCommandeForm grosseBoite = new ListeCommandeForm();
+		final ListeCommandeMapper grosseBoite = new ListeCommandeMapper();
 		final List<Commande> cListeCommande = serviceCommande.findCommandeATraiter();
-		List<CommandeForm> listeCommandeForm = new ArrayList<>();
+		List<CommandeMapper> listeCommandeForm = new ArrayList<>();
 		for (Commande commande : cListeCommande) {
-			CommandeForm commandeForm = new CommandeForm();
+			CommandeMapper commandeForm = new CommandeMapper();
 			commandeForm.setCommandeDate(commande.getDateCreation().toString());
 			commandeForm.setIdCommande(commande.getId());
 			commandeForm.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
@@ -60,7 +60,7 @@ public class TraiterCommandeController
 	
 	@PostMapping(value="/VisualiserListeCommandeNouvelle")
 	public String visualiserAfficherListeCommandeNouvelle(@Valid @ModelAttribute(value="ListeAfficherCommandeForm") 
-	 final ListeCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+	 final ListeCommandeMapper grosseBoite,final BindingResult bindingResult, final ModelMap model)
 	{
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idCommande = grosseBoite.getListeCommandeForm().get(grosseBoite.getIndex()).getIdCommande();

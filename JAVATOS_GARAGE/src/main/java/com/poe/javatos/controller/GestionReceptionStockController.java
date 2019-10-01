@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
-import com.poe.javatos.form.GestionStockForm;
-import com.poe.javatos.form.ListeGestionStockForm;
 import com.poe.javatos.global.StatutLigneCommande;
+import com.poe.javatos.mapper.GestionStockMapper;
+import com.poe.javatos.mapper.ListeGestionStockMapper;
 import com.poe.javatos.service.IServiceStock;
 import com.poe.javatos.service.crud.IServiceModelCrud;
 import com.poe.javatos.service.crud.IServiceStockCrud;
@@ -43,13 +43,13 @@ public class GestionReceptionStockController {
 		{
 			List<Stock> stockCmd = serviceStock.findStocksEnCommandeFournisseur();
 			
-			ListeGestionStockForm gestionstocks = new ListeGestionStockForm();
+			ListeGestionStockMapper gestionstocks = new ListeGestionStockMapper();
 			
 			System.err.println(gestionstocks.getListForm());
 			
 			for (Stock stock : stockCmd) {
 				
-				GestionStockForm gestionStockForm = new GestionStockForm();
+				GestionStockMapper gestionStockForm = new GestionStockMapper();
 				
 				gestionStockForm.setIdModel(stock.getModel().getId());
 				gestionStockForm.setQteCommandee(stock.getQteCommandee());
@@ -70,13 +70,13 @@ public class GestionReceptionStockController {
 	
 	@PostMapping(value = "/receptionnercommande")
 	public String validerLigneGestionStock(@Valid @ModelAttribute(value = "gestionStocks")
-			final ListeGestionStockForm gestionstocks, final BindingResult bindingResult, final ModelMap model) {
+			final ListeGestionStockMapper gestionstocks, final BindingResult bindingResult, final ModelMap model) {
 		
 		if (!bindingResult.hasErrors()) {
 			int index = gestionstocks.getIndex();
 			System.err.println("INDEX = " +index);
-			List<GestionStockForm> list = gestionstocks.getListForm();
-			GestionStockForm gestionStockForm = list.get(index);
+			List<GestionStockMapper> list = gestionstocks.getListForm();
+			GestionStockMapper gestionStockForm = list.get(index);
 			Stock s = serviceStock.findByIdModelStock(gestionStockForm.getIdModel());
 			Integer qteRecue = gestionStockForm.getQteRecue();
 			Integer qtedispo = s.getQteDispo();

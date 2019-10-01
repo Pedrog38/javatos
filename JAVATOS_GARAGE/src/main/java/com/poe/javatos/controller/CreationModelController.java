@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Model;
-import com.poe.javatos.form.CreationModelForm;
+import com.poe.javatos.mapper.CreationModelMapper;
 import com.poe.javatos.service.crud.IServiceModelCrud;
 
 @Controller
@@ -34,14 +34,14 @@ public class CreationModelController
 	
 		if (model.get("creationModele")==null) 
 		{
-			model.addAttribute("creationModele",new CreationModelForm());
+			model.addAttribute("creationModele",new CreationModelMapper());
 		}
 		return "creationModele";
 	}
 	
 	@PostMapping(value="/creerModele")
 	public String creationModele(@Valid @ModelAttribute(value="creationModele")
-	final CreationModelForm creationModelForm, final BindingResult bindingResult, final ModelMap model)
+	final CreationModelMapper creationModelForm, final BindingResult bindingResult, final ModelMap model)
 	{
 		if (!bindingResult.hasErrors()) {
 			
