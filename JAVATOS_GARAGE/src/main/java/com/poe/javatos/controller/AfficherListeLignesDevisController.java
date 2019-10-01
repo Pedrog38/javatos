@@ -53,7 +53,9 @@ public class AfficherListeLignesDevisController
 		affDevis.setDateDeCreation(devis.getDateCreation().toString());
 		affDevis.setIdDevis(devis.getId());
 		affDevis.setNomClient(devis.getClient().getPrenom()+" "+devis.getClient().getNom());
-		affDevis.setPrixTotal(serviceDevis.calculerPrixDevis(devis));
+		affDevis.setPrixTotalHT(serviceDevis.calculerPrixHTDevis(devis));
+		affDevis.setTaux(devis.getClient().getStatut().getTauxTva());
+		affDevis.setPrixTotalTTC(serviceDevis.calculerPrixTTCDevis(devis));
 		affDevis.setStatut(devis.getStatut());
 		affDevis.setDelai(serviceDevis.calculerDelaisDevis(devis));
 		model.addAttribute("AfficherDevisForm", affDevis);

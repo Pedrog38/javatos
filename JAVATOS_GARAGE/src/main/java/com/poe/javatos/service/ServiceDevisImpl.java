@@ -29,7 +29,7 @@ public class ServiceDevisImpl implements IServiceDevis
 
 	@Override
 	@Transactional
-	public Float calculerPrixDevis(Devis d) {
+	public Float calculerPrixHTDevis(Devis d) {
 		
 		Float prixtotal = (float) 0;
 		for (LigneDevis ld : service.findByIdDevisLigneDevis(d.getId())) {
@@ -53,6 +53,14 @@ public class ServiceDevisImpl implements IServiceDevis
 		}
 		
 		return delaiDevis;
+	}
+
+	@Override
+	public Float calculerPrixTTCDevis(Devis d) 
+	{
+		Float prixHT = calculerPrixHTDevis(d);
+		Float TVA = prixHT*(d.getClient().getStatut().getTauxTva()/100);
+		return prixHT+TVA;
 	}
 
 }

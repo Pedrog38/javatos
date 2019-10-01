@@ -7,7 +7,7 @@ import com.poe.javatos.bean.Devis;
 public interface IServiceDevis 
 {
 	List<Devis> findByStatutNouveauDevis();
-	Float calculerPrixDevis(Devis d);
-	
+	Float calculerPrixHTDevis(Devis d);
+	Float calculerPrixTTCDevis(Devis d);
 	Integer calculerDelaisDevis(Devis d);
 }

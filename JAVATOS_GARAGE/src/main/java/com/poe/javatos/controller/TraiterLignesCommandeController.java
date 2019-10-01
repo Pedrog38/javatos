@@ -100,7 +100,9 @@ public class TraiterLignesCommandeController
 		affCd.setIdCommande(commande.getId());
 		affCd.setDelaiCommande(serviceCommande.calculerDelaisCommande(commande));
 		affCd.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
-		affCd.setPrixTotal(serviceCommande.calculerPrixCommande(commande));
+		affCd.setPrixTotalHT(serviceCommande.calculerPrixHTCommande(commande));
+		affCd.setPrixTotalTTC(serviceCommande.calculerPrixTTCCommande(commande));
+		affCd.setTaux(commande.getClient().getStatut().getTauxTva());
 		affCd.setStatutCommande(commande.getStatut());
 		model.addAttribute("AfficherCommandeForm", affCd);
 				

@@ -43,8 +43,8 @@
 					<td><c:out value="${affCommandeForm.statutCommande}" />
 					<form:input type="hidden" path="listeCommandeForm[${status.index}].statutCommande" value="${affCommandeForm.statutCommande}"/>
 					</td>
-					<td><c:out value="${affCommandeForm.prixTotal}" />
-					<form:input type="hidden" path="listeCommandeForm[${status.index}].prixTotal" value="${affCommandeForm.prixTotal}"/>
+					<td><c:out value="${affCommandeForm.prixTotalTTC}" />
+					<form:input type="hidden" path="listeCommandeForm[${status.index}].prixTotalTTC" value="${affCommandeForm.prixTotalTTC}"/>
 					</td> 
 					
 					<td><form:button type="submit" name="index" value="${status.index}" >Visualiser</form:button></td>

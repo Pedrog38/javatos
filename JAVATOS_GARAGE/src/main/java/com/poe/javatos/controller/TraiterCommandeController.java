@@ -44,7 +44,9 @@ public class TraiterCommandeController
 			commandeForm.setCommandeDate(commande.getDateCreation().toString());
 			commandeForm.setIdCommande(commande.getId());
 			commandeForm.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
-			commandeForm.setPrixTotal(serviceCommande.calculerPrixCommande(commande));
+			commandeForm.setPrixTotalHT(serviceCommande.calculerPrixHTCommande(commande));
+			commandeForm.setPrixTotalTTC(serviceCommande.calculerPrixTTCCommande(commande));
+			commandeForm.setTaux(commande.getClient().getStatut().getTauxTva());
 			commandeForm.setStatutCommande(commande.getStatut());
 			commandeForm.setDelaiCommande(serviceCommande.calculerDelaisCommande(commande));			
 			listeCommandeForm.add(commandeForm);

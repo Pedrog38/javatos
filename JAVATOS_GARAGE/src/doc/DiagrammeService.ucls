@@ -326,108 +326,128 @@
     </display>  
   </interface>  
   <realization id="33">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="21"/>  
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="32"/>  
   </realization>  
-  <association id="34">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="35" name="serviceCommande"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="37">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="28"/>  
-  </realization>  
-  <realization id="38">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="29"/>  
-  </realization>  
-  <realization id="39">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="25"/>  
-  </realization>  
-  <association id="40">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="41" name="serviceLigneCommandeCrud"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="26" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="43">    
+  <realization id="34">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="18"/>  
   </realization>  
-  <realization id="44">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="19"/>  
+  <realization id="35">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="28"/>  
   </realization>  
-  <realization id="45">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="23"/>  
-  </realization>  
-  <realization id="46">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="22"/>  
-  </realization>  
-  <realization id="47">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="26"/>  
-  </realization>  
-  <realization id="48">    
+  <realization id="36">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="31"/>  
   </realization>  
-  <association id="49">    
+  <realization id="37">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <association id="39">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="50" name="service"/>      
-      <multiplicity id="51" minimum="0" maximum="1"/>    
+      <attribute id="40" name="service">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="22" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="52">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="30"/>  
-  </realization>  
-  <realization id="53">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <realization id="54">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="27"/>  
-  </realization>  
-  <association id="55">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="56" name="serviceLigne"/>      
-      <multiplicity id="57" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="58">    
+  <association id="42">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="59" name="serviceCommande"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
+      <attribute id="43" name="serviceCommande">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="61">    
+  <realization id="45">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="30"/>  
+  </realization>  
+  <realization id="46">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <realization id="47">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <association id="48">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="49" name="serviceLigneCommandeCrud">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="51">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="17"/>  
   </realization>  
+  <realization id="52">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <association id="53">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="54" name="serviceLigne">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="55" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="56">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <realization id="57">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <realization id="58">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <association id="59">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="60" name="serviceCommande">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <realization id="62">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="32"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="20"/>  
   </realization>  
   <realization id="63">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="24"/>  
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="23"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

@@ -10,7 +10,9 @@ public class CommandeATraiterForm
 	private String commandeDate;
 	private String nomClient;
 	private Integer idDevis;
-	private float prixTotal;
+	private Float prixTotalHT;
+	private Float prixTotalTTC;
+	private Float taux;
 	private String statutCommande;
 	private Integer delaiCommande;
 	
@@ -43,11 +45,24 @@ public class CommandeATraiterForm
 	public void setIdDevis(Integer idDevis) {
 		this.idDevis = idDevis;
 	}
-	public float getPrixTotal() {
-		return prixTotal;
+	
+	public Float getPrixTotalHT() {
+		return prixTotalHT;
 	}
-	public void setPrixTotal(float prixTotal) {
-		this.prixTotal = prixTotal;
+	public void setPrixTotalHT(Float prixTotalHT) {
+		this.prixTotalHT = prixTotalHT;
+	}
+	public Float getPrixTotalTTC() {
+		return prixTotalTTC;
+	}
+	public void setPrixTotalTTC(Float prixTotalTTC) {
+		this.prixTotalTTC = prixTotalTTC;
+	}
+	public Float getTaux() {
+		return taux;
+	}
+	public void setTaux(Float taux) {
+		this.taux = taux;
 	}
 	public String getStatutCommande() {
 		return statutCommande;

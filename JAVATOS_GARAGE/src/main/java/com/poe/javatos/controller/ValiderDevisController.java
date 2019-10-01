@@ -30,7 +30,7 @@ public class ValiderDevisController {
 		for (Devis devis : lsDevis) {
 			DevisAValiderForm devisAV = new DevisAValiderForm();
 			devisAV.setDevis(devis);
-			devisAV.setPrixDevis(servicedevis.calculerPrixDevis(devis));
+			devisAV.setPrixDevis(servicedevis.calculerPrixHTDevis(devis));
 			lsAValider.add(devisAV);
 		} 
 		model.addAttribute("listeDevisValiderForm", lsAValider);

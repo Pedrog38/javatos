@@ -21,7 +21,7 @@
 				<th>Client</th>			
 				<th>Delai en jours</th>
 				<th>Statut</th>
-				<th>Prix total en euro(s)</th>
+				<th>Prix total TTC en euro(s)</th>
 			</tr>
 		</thead>
 
@@ -43,8 +43,8 @@
 					<td><c:out value="${affDevisForm.statut}" />
 					<form:input type="hidden" path="listeDevisForm[${status.index}].statut" value="${affDevisForm.statut}"/>
 					</td>
-					<td><c:out value="${affDevisForm.prixTotal}" />
-					<form:input type="hidden" path="listeDevisForm[${status.index}].prixTotal" value="${affDevisForm.prixTotal}"/>
+					<td><c:out value="${affDevisForm.prixTotalTTC}" />
+					<form:input type="hidden" path="listeDevisForm[${status.index}].prixTotalTTC" value="${affDevisForm.prixTotalTTC}"/>
 					</td> 
 					
 					<td><form:button type="submit" name="index" value="${status.index}" >Visualiser</form:button></td>

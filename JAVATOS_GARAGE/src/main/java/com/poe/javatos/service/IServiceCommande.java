@@ -11,7 +11,8 @@ public interface IServiceCommande
 	List<Commande> findByStatutsEnTraitementPreteCommande();
 	Commande mettreAJourStatut(Commande c);
 	Integer calculerDelaisCommande(Commande c);
-	Float calculerPrixCommande(Commande c);
+	Float calculerPrixHTCommande(Commande c);
+	Float calculerPrixTTCCommande(Commande c);
 	List<Commande> findByStatutNouvelleEnTraitementCommande();
 	List<Commande> findCommandeByLignesCommandeNonRenseigne();
 	List<Commande> findCommandeATraiter();

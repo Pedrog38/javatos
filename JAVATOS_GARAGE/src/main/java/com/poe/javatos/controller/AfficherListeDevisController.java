@@ -47,7 +47,9 @@ public class AfficherListeDevisController
 			devisForm.setDateDeCreation(devis.getDateCreation().toString());
 			devisForm.setIdDevis(devis.getId());
 			devisForm.setNomClient(devis.getClient().getPrenom()+" "+devis.getClient().getNom());
-			devisForm.setPrixTotal(serviceDevis.calculerPrixDevis(devis));
+			devisForm.setPrixTotalHT(serviceDevis.calculerPrixHTDevis(devis));
+			devisForm.setTaux(devis.getClient().getStatut().getTauxTva());
+			devisForm.setPrixTotalTTC(serviceDevis.calculerPrixTTCDevis(devis));
 			devisForm.setStatut(devis.getStatut());
 			System.err.println("DEVIS "+devis.getId()+" : "+devis.getLignesDevis());
 			devisForm.setDelai(serviceDevis.calculerDelaisDevis(devis));			

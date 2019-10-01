@@ -7,7 +7,9 @@ public class DevisForm {
 	private String nomClient;
 	private String dateDeCreation;
 	private String statut;
-	private Float prixTotal;
+	private Float prixTotalHT;
+	private Float prixTotalTTC;
+	private Float taux;
 	private Integer delai;
 	private List<LigneDevisForm> listLigneDevisForm;
 	
@@ -41,17 +43,29 @@ public class DevisForm {
 	public void setStatut(String statut) {
 		this.statut = statut;
 	}
-	public Float getPrixTotal() {
-		return prixTotal;
-	}
-	public void setPrixTotal(Float prixTotal) {
-		this.prixTotal = prixTotal;
-	}
 	public Integer getDelai() {
 		return delai;
 	}
 	public void setDelai(Integer delai) {
 		this.delai = delai;
+	}
+	public Float getPrixTotalHT() {
+		return prixTotalHT;
+	}
+	public void setPrixTotalHT(Float prixTotalHT) {
+		this.prixTotalHT = prixTotalHT;
+	}
+	public Float getPrixTotalTTC() {
+		return prixTotalTTC;
+	}
+	public void setPrixTotalTTC(Float prixTotalTTC) {
+		this.prixTotalTTC = prixTotalTTC;
+	}
+	public Float getTaux() {
+		return taux;
+	}
+	public void setTaux(Float taux) {
+		this.taux = taux;
 	}
 	
 

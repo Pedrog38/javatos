@@ -109,7 +109,7 @@ public class ServiceCommandeImpl implements IServiceCommande
 	}
 
 	@Override
-	public Float calculerPrixCommande(Commande c) {
+	public Float calculerPrixHTCommande(Commande c) {
 		Float prixtotal = (float) 0;
 		for (LigneCommande lc : serviceLigne.findByIdCommandeLigneCommande(c.getId())) {
 			Float prixligne = serviceLigne.calculerPrixLigneCommande(lc);
@@ -117,6 +117,13 @@ public class ServiceCommandeImpl implements IServiceCommande
 		}
 		
 		return prixtotal;
+	}
+	
+	@Override
+	public Float calculerPrixTTCCommande(Commande c) {
+		Float prixHT = calculerPrixHTCommande(c);
+		Float TVA = prixHT*(c.getClient().getStatut().getTauxTva()/100);
+		return prixHT+TVA; 
 	}
 
 	@Override
