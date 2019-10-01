@@ -37,7 +37,7 @@ public class TraiterCommandeController
 	public String afficherListeCommande(ModelMap model) {
 		
 		final ListeCommandeForm grosseBoite = new ListeCommandeForm();
-		final List<Commande> cListeCommande = serviceCommande.findByStatutNouvelleEnTraitementCommande();
+		final List<Commande> cListeCommande = serviceCommande.findCommandeATraiter();
 		List<CommandeForm> listeCommandeForm = new ArrayList<>();
 		for (Commande commande : cListeCommande) {
 			CommandeForm commandeForm = new CommandeForm();

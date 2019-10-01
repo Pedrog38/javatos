@@ -1,5 +1,6 @@
 package com.poe.javatos.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,26 @@ public class ServiceCommandeImpl implements IServiceCommande
 		return dao.findByStatutsCommande(StatutCommande.Nouvelle,StatutCommande.EnTraitement);
 	}
 	
+	@Override
+	public List<Commande> findCommandeByLignesCommandeNonRenseigne() 
+	{
+		List<Commande> commmandes = dao.findByStatutCommande(StatutCommande.EnTraitement);
+		List<Commande> commmandesReponses = new ArrayList<Commande>();
+		for (Commande c : commmandes) 
+		{
+			boolean garder = true;
+			for (LigneCommande lc : serviceLigne.findByIdCommandeLigneCommande(c.getId())) 
+			{
+				garder = garder && (lc.getStatut().equals(StatutLigneCommande.NonRenseignee));
+			}
+			if(garder)
+			{
+				commmandesReponses.add(c);
+			}
+		}
+		
+		return commmandesReponses;
+	}
 	@Override
 	public List<Commande> findByStatutsEnTraitementPreteCommande() 
 	{
@@ -96,6 +117,12 @@ public class ServiceCommandeImpl implements IServiceCommande
 		}
 		
 		return prixtotal;
+	}
+
+	@Override
+	public List<Commande> findCommandeATraiter() 
+	{
+		return dao.findCommandeByStatutLigneCommande(StatutLigneCommande.NonRenseignee);
 	}
 
 	

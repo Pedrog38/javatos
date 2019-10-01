@@ -16,6 +16,8 @@ public class CommandeATraiterForm
 	
 	@Valid
 	private List<LigneCommandeATraiterForm> listLigneCdForm;
+	private List<LigneCommandeATraiterForm> listLigneCdFormNonModifiable;
+	
 	private Integer index;
 	public Integer getIdCommande() {
 		return idCommande;
@@ -64,12 +66,19 @@ public class CommandeATraiterForm
 	}
 	public void setListLigneCdForm(List<LigneCommandeATraiterForm> listLigneCdForm) {
 		this.listLigneCdForm = listLigneCdForm;
+		
 	}
 	public Integer getIndex() {
 		return index;
 	}
 	public void setIndex(Integer index) {
 		this.index = index;
+	}
+	public List<LigneCommandeATraiterForm> getListLigneCdFormNonModifiable() {
+		return listLigneCdFormNonModifiable;
+	}
+	public void setListLigneCdFormNonModifiable(List<LigneCommandeATraiterForm> listLigneCdFormNonModifiable) {
+		this.listLigneCdFormNonModifiable = listLigneCdFormNonModifiable;
 	}
 	
 	

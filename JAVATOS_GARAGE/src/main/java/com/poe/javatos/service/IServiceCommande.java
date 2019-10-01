@@ -13,4 +13,6 @@ public interface IServiceCommande
 	Integer calculerDelaisCommande(Commande c);
 	Float calculerPrixCommande(Commande c);
 	List<Commande> findByStatutNouvelleEnTraitementCommande();
+	List<Commande> findCommandeByLignesCommandeNonRenseigne();
+	List<Commande> findCommandeATraiter();
 }

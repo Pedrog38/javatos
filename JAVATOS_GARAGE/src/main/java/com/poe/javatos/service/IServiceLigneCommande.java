@@ -7,6 +7,8 @@ public interface IServiceLigneCommande {
 	List<LigneCommande> findByIdCommandeLigneCommande(Integer idCommande);
 
 	List<LigneCommande> findByIdCommandeLigneCommandeNonRenseigne(Integer idCommande);
+	
+	List<LigneCommande> findByIdCommandeLigneCommandeRenseigne(Integer idCommande);
 
 	List<LigneCommande> findByStatutEnCommandeFournisseurLignesCommande();
 

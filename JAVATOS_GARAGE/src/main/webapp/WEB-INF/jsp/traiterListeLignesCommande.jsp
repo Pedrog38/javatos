@@ -21,12 +21,14 @@
 
 		<div>
 			<label>Client: ${AfficherCommandeForm.nomClient}</label><br> <label>
+			<br/>
 				Date de création : ${AfficherCommandeForm.commandeDate}</label><br>
 		</div>
-
+<br/>
 		<table border="1">
 			<thead>
 				<tr>
+					<th>Id Ligne de commande</th>
 					<th>Statut</th>
 					<th>Model</th>
 					<th>Quantite demande</th>
@@ -40,6 +42,10 @@
 
 				<c:forEach items="${AfficherCommandeForm.listLigneCdForm}" var="c" varStatus="status">
 					<tr>
+						<td>
+						<c:out value="${c.idLigneCommande}" /> 
+						<form:input type="hidden" path="listLigneCdForm[${status.index}].idLigneCommande" value="${c.idLigneCommande}" />
+						</td>						
 						<td>
 						<c:out value="${c.statut}" /> 
 						<form:input type="hidden" path="listLigneCdForm[${status.index}].statut" value="${c.statut}" />
@@ -73,7 +79,57 @@
 				</c:forEach>
 			</tbody>
 		</table>
-	</form:form>
+		<br/>
+	<table border="1">
+			<thead>
+				<tr>
+					<th>Id Ligne de Commande</th>
+					<th>Statut</th>
+					<th>Model</th>
+					<th>Quantite demande</th>
+					<th>Quantité reservée</th>
+					<th>Quantité commandée</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				<c:forEach items="${AfficherCommandeForm.listLigneCdFormNonModifiable}" var="c" varStatus="stat">
+					<tr>
+						<td>
+						<c:out value="${c.idLigneCommande}" /> 
+						<form:input type="hidden" path="listLigneCdFormNonModifiable[${stat.index}].idLigneCommande" value="${c.idLigneCommande}" />
+						</td>						
+						<td>
+						<c:out value="${c.statut}" /> 
+						<form:input type="hidden" path="listLigneCdFormNonModifiable[${stat.index}].statut" value="${c.statut}" />
+						</td>
+						<td>
+						<c:out value="${c.nomModel}" /> 
+						<form:input type="hidden" path="listLigneCdFormNonModifiable[${stat.index}].nomModel" value="${c.nomModel}" />
+						</td>
+						<td>
+						<c:out value="${c.qteDemande}" /> 
+						<form:input type="hidden" path="listLigneCdFormNonModifiable[${stat.index}].qteDemande" value="${c.qteDemande}" />
+						</td>
+						<td>
+						<c:out value="${c.qteDejaReserve}" /> 
+						<form:input type="hidden" path="listLigneCdFormNonModifiable[${stat.index}].qteDejaReserve" value="${c.qteDejaReserve}" />
+						</td>
+						<td>
+						<c:out value="${c.qteDejaCommandee}" /> 
+						<form:input type="hidden" path="listLigneCdFormNonModifiable[${stat.index}].qteDejaCommandee" value="${c.qteDejaCommandee}" />
+						</td>
+						
+                   
+                   <form:input type="hidden" path="listLigneCdFormNonModifiable[${stat.index}].idModel" value="${c.idModel}" />
+                   
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		</form:form>
+		<br/>
 	<input type="button" value="Retour" onclick="history.go(-1)" />
 
 

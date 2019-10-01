@@ -19,4 +19,7 @@ public interface ILigneCommandeRepository extends JpaRepository<LigneCommande, I
 	
 	@Query(" select lc from LigneCommande lc where lc.commande.id = ?1 and lc.statut = ?2")
     List<LigneCommande> findByCommandeLigneCommandeStatut(Integer idCommande, String statut);
+
+	@Query(" select lc from LigneCommande lc where lc.commande.id = ?1 and (lc.statut = ?2 or lc.statut = ?3)")
+    List<LigneCommande> findByCommandeLigneCommandeStatuts(Integer idCommande, String statut1, String statut2);
 }

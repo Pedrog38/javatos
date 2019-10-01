@@ -50,8 +50,6 @@ public class TraiterLignesCommandeController
 	@Autowired
 	private IServiceStock serviceStock;
 	
-	@Autowired
-	private IServiceStockCrud serviceStockCrud;
 	
 	
 	@GetMapping(value="/afficherLigneCommandeNouvelle")
@@ -61,6 +59,7 @@ public class TraiterLignesCommandeController
 		commande=serviceCommande.mettreAJourStatut(commande);
 		CommandeATraiterForm affCd = new CommandeATraiterForm();
 		List<LigneCommandeATraiterForm> lignesCommandeForm = new ArrayList<>();
+		List<LigneCommandeATraiterForm> lignesCommandeNonModifiableForm = new ArrayList<>();
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommandeNonRenseigne(commande.getId())) 
 		{
 			LigneCommandeATraiterForm aff = new LigneCommandeATraiterForm();
@@ -74,8 +73,24 @@ public class TraiterLignesCommandeController
 			aff.setQteAReserver(Math.min(lc.getQuantite(), s.getQteDispo()));
 			aff.setQteACommander(aff.getQteDemande()-aff.getQteAReserver());
 			lignesCommandeForm.add(aff);
+			
+		}
+		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommandeRenseigne(commande.getId())) 
+		{
+			System.err.println("LC = "+lc);
+			LigneCommandeATraiterForm affNM = new LigneCommandeATraiterForm();
+			affNM.setNomModel(lc.getModel().getNom());
+			affNM.setIdLigneCommande(lc.getId());
+			affNM.setIdModel(lc.getModel().getId());
+			affNM.setStatut(lc.getStatut());
+			affNM.setQteDemande(lc.getQuantite());
+			affNM.setQteDejaReserve(lc.getNbResvervees());
+			affNM.setQteDejaCommandee(lc.getQuantite()-lc.getNbResvervees());
+			lignesCommandeNonModifiableForm.add(affNM);
+			System.err.println("Ligne non modifiable : "+affNM);
 		}
 		affCd.setListLigneCdForm(lignesCommandeForm);
+		affCd.setListLigneCdFormNonModifiable(lignesCommandeNonModifiableForm);
 		affCd.setCommandeDate(commande.getDateCreation().toString());
 		affCd.setIdDevis(commande.getId());
 		affCd.setIdCommande(commande.getId());

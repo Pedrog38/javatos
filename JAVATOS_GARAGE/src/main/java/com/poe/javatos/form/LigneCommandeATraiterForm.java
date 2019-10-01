@@ -77,6 +77,13 @@ public class LigneCommandeATraiterForm
 	public void setQteDejaCommandee(Integer qteDejaCommandee) {
 		this.qteDejaCommandee = qteDejaCommandee;
 	}
+	@Override
+	public String toString() {
+		return "LigneCommandeATraiterForm [statut=" + statut + ", idLigneCommande=" + idLigneCommande + ", nomModel="
+				+ nomModel + ", qteDemande=" + qteDemande + ", qteDejaReserve=" + qteDejaReserve + ", qteDejaCommandee="
+				+ qteDejaCommandee + ", qteAReserver=" + qteAReserver + ", qteACommander=" + qteACommander
+				+ ", idModel=" + idModel + ", qteDispo=" + qteDispo	+ "]";
+	}
 	
 	
 	
