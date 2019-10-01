@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.AfficherDevisForm;
 import com.poe.javatos.form.AfficherLigneDevisForm;
 import com.poe.javatos.form.ListeAfficherDevisForm;
@@ -34,7 +35,7 @@ public class AfficherLignesDevisController
 	private IServiceLigneDevis serviceLigneDevis;
 	
 	@GetMapping(value="/afficherLignesDevis")
-	public String afficherLigneDevis(ModelMap model) {
+	public String afficherLigneDevis(ModelMap model) throws POEException {
 		
 		final Devis devis = service.findByIdDevis((Integer)model.get("IdDevisAVisualiser"));
 		

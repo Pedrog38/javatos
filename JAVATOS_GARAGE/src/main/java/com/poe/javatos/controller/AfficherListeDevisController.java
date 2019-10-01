@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.AfficherDevisForm;
 import com.poe.javatos.form.ListeAfficherDevisForm;
 import com.poe.javatos.service.IServiceDevis;
@@ -36,7 +37,7 @@ public class AfficherListeDevisController
 	AfficherLignesDevisController ctrlAfficheLigneDevis;
 	
 	@GetMapping(value="/afficherListeDevis")
-	public String afficherListeDevis(ModelMap model) {
+	public String afficherListeDevis(ModelMap model) throws POEException {
 		
 		final ListeAfficherDevisForm grosseBoite = new ListeAfficherDevisForm();
 		final List<Devis> lListeDevis = service.findAllDevis();
@@ -62,7 +63,7 @@ public class AfficherListeDevisController
 	
 	@PostMapping(value="/VisualiserListeDevis")
 	public String visualiserAfficherListeDevis(@Valid @ModelAttribute(value="ListeAfficherDevisForm") 
-	 final ListeAfficherDevisForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+	 final ListeAfficherDevisForm grosseBoite,final BindingResult bindingResult, final ModelMap model) throws POEException
 	{
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idDevis = grosseBoite.getListeDevisForm().get(grosseBoite.getIndex()).getIdDevis();

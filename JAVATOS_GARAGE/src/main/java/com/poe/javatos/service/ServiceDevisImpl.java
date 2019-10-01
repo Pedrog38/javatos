@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.global.StatutDevis;
 import com.poe.javatos.repository.IDevisRepository;
 
@@ -29,7 +30,7 @@ public class ServiceDevisImpl implements IServiceDevis
 
 	@Override
 	@Transactional
-	public Float calculerPrixDevis(Devis d) {
+	public Float calculerPrixDevis(Devis d) throws POEException {
 		
 		Float prixtotal = (float) 0;
 		for (LigneDevis ld : service.findByIdDevisLigneDevis(d.getId())) {
@@ -43,7 +44,7 @@ public class ServiceDevisImpl implements IServiceDevis
 
 	@Override
 	@Transactional
-	public Integer calculerDelaisDevis(Devis d) 
+	public Integer calculerDelaisDevis(Devis d) throws POEException 
 	{
 		Integer delaiDevis = 0;
 		for (LigneDevis ld : service.findByIdDevisLigneDevis(d.getId())) {

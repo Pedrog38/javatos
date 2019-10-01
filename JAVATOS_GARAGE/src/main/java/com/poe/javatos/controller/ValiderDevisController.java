@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.DevisAValiderForm;
 import com.poe.javatos.service.IServiceDevis;
 
@@ -23,7 +24,7 @@ public class ValiderDevisController {
 	private IServiceDevis servicedevis;
 	
 	@GetMapping(value="/DevisValidation")
-	public String afficherDevis(final ModelMap model) {			
+	public String afficherDevis(final ModelMap model) throws POEException {			
 		final List<Devis> lsDevis = servicedevis.findByStatutNouveauDevis();
 		
 		List<DevisAValiderForm> lsAValider = new ArrayList<>();

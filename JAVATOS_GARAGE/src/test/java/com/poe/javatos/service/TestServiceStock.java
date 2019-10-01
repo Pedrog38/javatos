@@ -17,7 +17,7 @@ import com.poe.javatos.repository.IStockRepository;
 
 @SpringBootTest //permet d'utiliser les @Autowired et determiner l'environnement Spring
 @RunWith(SpringRunner.class)
-public class testServiceStock {
+public class TestServiceStock {
 	
 	//On met toujours l'interface
 	@Autowired
@@ -39,7 +39,7 @@ public class testServiceStock {
 		}
 		assertNotNull(stk);
 		assertEquals((int)stk.getId(),1);
-		assertEquals((int)stk.getQteDispo(),-115);
+		assertEquals((int)stk.getQteDispo(), 4);
 		}
 	
 	
@@ -50,7 +50,7 @@ public class testServiceStock {
 	}
 	
 	
-	@AfterClass
+	/**@AfterClass
 	public void cleanLeStock() {
 		Integer id = 1; //Stock 1 existe
 		Stock stk= null;
@@ -79,7 +79,7 @@ public class testServiceStock {
 		assertEquals(dispo-qte,(int)s.getQteDispo());
 		assertEquals(resa+qte,(int)s.getQteReservee());
 	}
-	 
+	 **/
 		
 
 }
