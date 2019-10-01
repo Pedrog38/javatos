@@ -83,6 +83,16 @@ public class ServiceCommandeImpl implements IServiceCommande
 		return prixtotal;
 	}
 
+	@Override
+	public Commande livrerCommande(Commande c) {
+		c = mettreAJourStatut(c);
+		if( c.getStatut().equals(StatutCommande.Prete)) {
+			c.setStatut(StatutCommande.Livree);
+		}
+			return serviceCommande.updateCommande(c);
+
+	}
+
 	
 
 }

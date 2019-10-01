@@ -59,7 +59,7 @@ public class AfficherListeCommandeController
 	
 	@PostMapping(value="/VisualiserListeCommande")
 	public String visualiserAfficherListeCommande(@Valid @ModelAttribute(value="ListeAfficherCommandeForm") 
-	 final ListeAfficherCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+	final ListeAfficherCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
 	{
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idCommande = grosseBoite.getListeCommandeForm().get(grosseBoite.getIndex()).getIdCommande();
