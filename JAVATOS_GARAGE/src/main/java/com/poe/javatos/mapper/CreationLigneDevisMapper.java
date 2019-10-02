@@ -1,41 +1,21 @@
 package com.poe.javatos.mapper;
 
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
+import com.poe.javatos.bean.Devis;
+import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.bean.Model;
-
+import com.poe.javatos.form.CreationLigneDevisForm;
 
 public class CreationLigneDevisMapper 
 {
 		
-	private int quantite;
-
-	private int idModel;
-
-	public int getQuantite() {
-		return quantite;
+	public static LigneDevis remplirCreationDevisForm(CreationLigneDevisForm creationLigneDevisForm, Devis devis, Model model)
+	{
+		LigneDevis ligneDevis = new LigneDevis();
+		ligneDevis.setDevis(devis);
+		ligneDevis.setModel(model);
+		ligneDevis.setQuantite(creationLigneDevisForm.getQuantite());
+		return ligneDevis;
 	}
-
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
-	}
-
-	public int getIdModel() {
-		return idModel;
-	}
-
-	public void setIdModel(int idModel) {
-		this.idModel = idModel;
-	}
-
-	@Override
-	public String toString() {
-		return "CreationLigneDevisForm [quantite=" + quantite + ", idModel=" + idModel + "]";
-	}
-
 		
 		
 	

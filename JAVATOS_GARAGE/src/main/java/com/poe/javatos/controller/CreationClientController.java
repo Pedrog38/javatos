@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.StatutClient;
+import com.poe.javatos.form.CreationClientForm;
 import com.poe.javatos.mapper.CreationClientMapper;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceStatutClientCrud;
@@ -38,11 +39,10 @@ public class CreationClientController
 	public String afficherCreationClient(final ModelMap model)
 	{
 		final List<StatutClient> listeStatutClient = serviceStatutClientCurd.findAllStatutClient();
-		System.err.println("List = "+listeStatutClient.size());
 		model.addAttribute("statutList",listeStatutClient);
 		if(model.get("CreationClient")==null)
 		{
-			model.addAttribute("CreationClient",new CreationClientMapper());
+			model.addAttribute("CreationClient",new CreationClientForm());
 		}
 		return "creationClient";
 	
@@ -50,21 +50,12 @@ public class CreationClientController
 	
 	@PostMapping(value="/creerClient")
 	public String CreationClient(@Valid @ModelAttribute(value="CreationClient") 
-	 final CreationClientMapper creationForm,final BindingResult bindingResult, final ModelMap model)
+	 final CreationClientForm creationForm,final BindingResult bindingResult, final ModelMap model)
 	{
 		if(!bindingResult.hasErrors())
 		{
-			Client c = new Client();
-			c.setNom(creationForm.getNom());
-			c.setPrenom(creationForm.getPrenom());
-			c.setDateCreation(new Date());
-			c.setAdresse(creationForm.getAdresse());
-			c.setMail(creationForm.getMail());
-			c.setSexe(creationForm.getSexe());
-			c.setTelephone(creationForm.getTelephone());
-			c.setStatut(creationForm.getStatutClient());
-			serviceClientCurd.createClient(c);
-			//return "menu"; //TODO changer le chemin en "retour à la page appelante"
+			Client client = CreationClientMapper.remplirClient(creationForm);
+			serviceClientCurd.createClient(client);
 		}
 		if(model.get("creationDevis")!=null)
 		{

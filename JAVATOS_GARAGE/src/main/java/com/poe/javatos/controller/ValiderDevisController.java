@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
+import com.poe.javatos.form.DevisAValiderForm;
 import com.poe.javatos.mapper.DevisAValiderMapper;
 import com.poe.javatos.service.IServiceDevis;
 
@@ -26,9 +27,9 @@ public class ValiderDevisController {
 	public String afficherDevis(final ModelMap model) {			
 		final List<Devis> lsDevis = servicedevis.findByStatutNouveauDevis();
 		
-		List<DevisAValiderMapper> lsAValider = new ArrayList<>();
+		List<DevisAValiderForm> lsAValider = new ArrayList<>();
 		for (Devis devis : lsDevis) {
-			DevisAValiderMapper devisAV = new DevisAValiderMapper();
+			DevisAValiderForm devisAV = new DevisAValiderForm();
 			devisAV.setDevis(devis);
 			devisAV.setPrixDevis(servicedevis.calculerPrixHTDevis(devis));
 			lsAValider.add(devisAV);

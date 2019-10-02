@@ -2,37 +2,17 @@ package com.poe.javatos.mapper;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
-import org.springframework.lang.NonNull;
+import com.poe.javatos.form.AssignationStockForm;
+import com.poe.javatos.form.ListeAssignationStockForm;
 
 public class ListeAssignationStockMapper 
 {
-
-	@Valid
-	private List<AssignationStockMapper> listAss;
-	
-	private Integer index;
-
-	public List<AssignationStockMapper> getListAss() 
+	public static ListeAssignationStockForm remplirListeAssignationForm(List<AssignationStockForm>listAssignationForm)
 	{
-		return listAss;
+		ListeAssignationStockForm listeAssignationStockForm = new ListeAssignationStockForm();
+		listeAssignationStockForm.setListAss(listAssignationForm);
+		listeAssignationStockForm.setIndex(0);
+		return listeAssignationStockForm;
 	}
-
-	public void setListAss(List<AssignationStockMapper> listAss) 
-	{
-		this.listAss = listAss;
-	}
-
-	public Integer getIndex() {
-		return index;
-	}
-
-	public void setIndex(Integer index) {
-		this.index = index;
-	}
-	
-	
-	
 	
 }

@@ -1,187 +1,25 @@
 package com.poe.javatos.mapper;
 
-import java.io.Serializable;
+import com.poe.javatos.bean.LigneCommande;
+import com.poe.javatos.bean.Stock;
+import com.poe.javatos.form.AssignationStockForm;
 
-import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 
-
-public class AssignationStockMapper implements Serializable
+public class AssignationStockMapper
 {
-	private Integer idLigneCommande;
-	
-	private String nomClient;
-	
-	private String nomModel;
-	
-	private Integer delaisProd;
-	
-	private Integer quantiteLigneCommande;
-	
-	private Integer nbReserveLigneCommande;
-	
-	private Integer idStock;
-	
-	private Integer qteDispoStock;
-	
-	@Valid
-	private Integer qteAReserve;
-
-	
-
-	
-
-	public Integer getIdLigneCommande() {
-		return idLigneCommande;
-	}
-
-
-
-
-
-	public void setIdLigneCommande(Integer idLigneCommande) {
-		this.idLigneCommande = idLigneCommande;
-	}
-
-
-
-
-
-	public String getNomClient() {
-		return nomClient;
-	}
-
-
-
-
-
-	public void setNomClient(String nomClient) {
-		this.nomClient = nomClient;
-	}
-
-
-
-
-
-	public String getNomModel() {
-		return nomModel;
-	}
-
-
-
-
-
-	public void setNomModel(String nomModel) {
-		this.nomModel = nomModel;
-	}
-
-
-
-
-
-	public Integer getDelaisProd() {
-		return delaisProd;
-	}
-
-
-
-
-
-	public void setDelaisProd(Integer delaisProd) {
-		this.delaisProd = delaisProd;
-	}
-
-
-
-
-
-	public Integer getQuantiteLigneCommande() {
-		return quantiteLigneCommande;
-	}
-
-
-
-
-
-	public void setQuantiteLigneCommande(Integer quantiteLigneCommande) {
-		this.quantiteLigneCommande = quantiteLigneCommande;
-	}
-
-
-
-
-
-	public Integer getNbReserveLigneCommande() {
-		return nbReserveLigneCommande;
-	}
-
-
-
-
-
-	public void setNbReserveLigneCommande(Integer nbReserveLigneCommande) {
-		this.nbReserveLigneCommande = nbReserveLigneCommande;
-	}
-
-
-
-
-
-	public Integer getIdStock() {
-		return idStock;
-	}
-
-
-
-
-
-	public void setIdStock(Integer idStock) {
-		this.idStock = idStock;
-	}
-
-
-
-
-
-	public Integer getQteDispoStock() {
-		return qteDispoStock;
-	}
-
-
-
-
-
-	public void setQteDispoStock(Integer qteDispoStock) {
-		this.qteDispoStock = qteDispoStock;
-	}
-
-
-
-
-
-	public Integer getQteAReserve() {
-		return qteAReserve;
-	}
-
-
-
-
-
-	public void setQteAReserve(Integer qteAReserve) {
-		this.qteAReserve = qteAReserve;
-	}
-
-
-
-
-
-	@AssertTrue(message="Qte à reserver incorrecte")
-	public boolean isQteReserveOk()
+	public static AssignationStockForm remplirAssignationStockForm(LigneCommande lc,Integer delai, Stock s)
 	{
-		return (this.getQteAReserve()>=0)&&(this.getQteAReserve()<=Math.min(this.getQuantiteLigneCommande()-this.getNbReserveLigneCommande(),this.qteDispoStock));
+		AssignationStockForm assignationStockForm = new AssignationStockForm();
+		assignationStockForm.setIdLigneCommande(lc.getId());
+		assignationStockForm.setNomClient(lc.getCommande().getClient().getPrenom()+" "+lc.getCommande().getClient().getNom());
+		assignationStockForm.setNomModel(lc.getModel().getNom());
+		assignationStockForm.setDelaisProd(delai);
+		assignationStockForm.setQuantiteLigneCommande(lc.getQuantite());
+		assignationStockForm.setNbReserveLigneCommande(lc.getNbResvervees());			
+		assignationStockForm.setIdStock(s.getId());
+		assignationStockForm.setQteDispoStock(s.getQteDispo());
+		assignationStockForm.setQteAReserve(0);
+		return assignationStockForm;
 	}
-	
-	
-
 	
 }

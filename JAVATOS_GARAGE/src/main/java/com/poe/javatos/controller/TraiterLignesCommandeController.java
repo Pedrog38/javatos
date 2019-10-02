@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.form.CommandeATraiterForm;
+import com.poe.javatos.form.LigneCommandeATraiterForm;
 import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.mapper.AssignationStockMapper;
 import com.poe.javatos.mapper.CommandeATraiterMapper;
@@ -61,81 +63,57 @@ public class TraiterLignesCommandeController
 		}
 		Commande commande = (Commande) model.get("CommandeAVisualiser");
 		commande=serviceCommande.mettreAJourStatut(commande);
-		CommandeATraiterMapper affCd = new CommandeATraiterMapper();
-		List<LigneCommandeATraiterMapper> lignesCommandeForm = new ArrayList<>();
-		List<LigneCommandeATraiterMapper> lignesCommandeNonModifiableForm = new ArrayList<>();
+		
+		
+		List<LigneCommandeATraiterForm> listLCATFs = new ArrayList<>();
+		List<LigneCommandeATraiterForm> listLCNonModifiableFs = new ArrayList<>();
+		
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommandeNonRenseigne(commande.getId())) 
 		{
-			LigneCommandeATraiterMapper aff = new LigneCommandeATraiterMapper();
-			aff.setNomModel(lc.getModel().getNom());
-			aff.setIdLigneCommande(lc.getId());
-			aff.setIdModel(lc.getModel().getId());
 			Stock s = serviceStock.findByIdModelStock(lc.getModel().getId());
-			aff.setQteDispo(s.getQteDispo());
-			aff.setStatut(lc.getStatut());
-			aff.setQteDemande(lc.getQuantite());
-			aff.setQteAReserver(Math.min(lc.getQuantite(), s.getQteDispo()));
-			aff.setQteACommander(aff.getQteDemande()-aff.getQteAReserver());
-			lignesCommandeForm.add(aff);
+			LigneCommandeATraiterForm ligneCommandeATF = LigneCommandeATraiterMapper.remplirLigneCommandeATraiterForm(lc,s);
+			listLCATFs.add(ligneCommandeATF);
 			
 		}
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommandeRenseigne(commande.getId())) 
 		{
-			System.err.println("LC = "+lc);
-			LigneCommandeATraiterMapper affNM = new LigneCommandeATraiterMapper();
-			affNM.setNomModel(lc.getModel().getNom());
-			affNM.setIdLigneCommande(lc.getId());
-			affNM.setIdModel(lc.getModel().getId());
-			affNM.setStatut(lc.getStatut());
-			affNM.setQteDemande(lc.getQuantite());
-			affNM.setQteDejaReserve(lc.getNbResvervees());
-			affNM.setQteDejaCommandee(lc.getQuantite()-lc.getNbResvervees());
-			lignesCommandeNonModifiableForm.add(affNM);
-			System.err.println("Ligne non modifiable : "+affNM);
+			LigneCommandeATraiterForm ligneCommandeATNonModifiableF = LigneCommandeATraiterMapper.remplirLigneCommandeATraiterNonModifiableForm(lc);
+			
+			listLCNonModifiableFs.add(ligneCommandeATNonModifiableF);
 		}
-		affCd.setListLigneCdForm(lignesCommandeForm);
-		affCd.setListLigneCdFormNonModifiable(lignesCommandeNonModifiableForm);
-		affCd.setCommandeDate(commande.getDateCreation().toString());
-		affCd.setIdDevis(commande.getId());
-		affCd.setIdCommande(commande.getId());
-		affCd.setDelaiCommande(serviceCommande.calculerDelaisCommande(commande));
-		affCd.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
-		affCd.setPrixTotalHT(serviceCommande.calculerPrixHTCommande(commande));
-		affCd.setPrixTotalTTC(serviceCommande.calculerPrixTTCCommande(commande));
-		affCd.setTaux(commande.getClient().getStatut().getTauxTva());
-		affCd.setStatutCommande(commande.getStatut());
-		model.addAttribute("AfficherCommandeForm", affCd);
+		Integer delai = serviceCommande.calculerDelaisCommande(commande);
+		float prixHT = serviceCommande.calculerPrixHTCommande(commande);
+		float prixTTC = serviceCommande.calculerPrixTTCCommande(commande);
+		
+		CommandeATraiterForm commandeATraiterForm = CommandeATraiterMapper.remplirCommandeATraiterForm(commande, delai, prixHT, prixTTC, listLCATFs, listLCNonModifiableFs);
+		
+		model.addAttribute("AfficherCommandeForm", commandeATraiterForm);
 				
 		return "traiterListeLignesCommande";
 	}
 	
 	@PostMapping(value="/VisualiserLigneCommandeNouvelle")
 	public String visualiserAfficherLigneCommandeNouvelle(@Valid @ModelAttribute(value="AfficherCommandeForm") 
-	 final CommandeATraiterMapper affCd,final BindingResult bindingResult, final ModelMap model)
+	 final CommandeATraiterForm commandeATraiterForm,final BindingResult bindingResult, final ModelMap model)
 	{
-		Commande commande = service.findByIdCommande(affCd.getIdCommande());
+		Commande commande = service.findByIdCommande(commandeATraiterForm.getIdCommande());
 		model.addAttribute("CommandeAVisualiser",commande);
 		model.addAttribute("error","true");
 		if(!bindingResult.hasErrors())
 		{
-			int index = affCd.getIndex();
-			System.err.println("INDEX = " +index);
-			List<LigneCommandeATraiterMapper> lignesCommandeForm =affCd.getListLigneCdForm();
-			LigneCommandeATraiterMapper formLigne= lignesCommandeForm.get(index);
+			int index = commandeATraiterForm.getIndex();
+			List<LigneCommandeATraiterForm> lignesCommandeForm =commandeATraiterForm.getListLigneCdForm();
+			LigneCommandeATraiterForm formLigne= lignesCommandeForm.get(index);
 			LigneCommande lc = serviceLigneCommandeCrud.findByIdLigneCommande(formLigne.getIdLigneCommande());
 			Integer qteAReserver = formLigne.getQteAReserver();
 			Integer qteACommander= formLigne.getQteACommander();
 			Stock s = serviceStock.findByIdModelStock(formLigne.getIdModel());
 			serviceLigneCommande.miseAJourAssignation(lc, qteAReserver);
 			serviceStock.miseAjourAssignation(s, qteAReserver);
-			System.err.println("Stock : "+s);
-			System.err.println("qteACommander : "+qteACommander);
-			System.err.println("qteAReserver : "+qteAReserver);
 			serviceStock.commander(s, qteACommander);
 			serviceLigneCommande.miseAJourStatut(lc);
 			model.addAttribute("error","false");
 		}
-		System.err.println("ERR = "+bindingResult);
 		return afficherLigneCommande(model);
 	}
 }

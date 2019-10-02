@@ -1,9 +1,6 @@
 package com.poe.javatos.mapper;
 
-import java.util.List;
-
 import com.poe.javatos.bean.LigneDevis;
-import com.poe.javatos.form.DevisForm;
 import com.poe.javatos.form.LigneDevisForm;
 
 public class LigneDevisMapper

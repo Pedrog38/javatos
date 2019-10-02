@@ -1,89 +1,24 @@
 package com.poe.javatos.mapper;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+import java.util.Date;
 
-import com.poe.javatos.bean.StatutClient;
+import com.poe.javatos.bean.Client;
+import com.poe.javatos.form.CreationClientForm;
 
 public class CreationClientMapper 
 {
-	@NotEmpty(message = "{creation.client.nom.notempty}")
-	private String nom;
-
-	@NotEmpty(message = "{creation.client.prenom.notempty}")
-	private String prenom;
-	@Pattern(regexp = "^[^\\W][a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$", 
-			message = "{creation.client.mail.notvalide}")
-	private String mail;
-
-	@NotEmpty(message = "{creation.client.adresse.notempty}")
-	private String adresse;
-
-	@Pattern(regexp ="^(\\d\\d){4}(\\d\\d)$",
-			message = "{creation.client.telephone.notvalide}")
-	private String telephone;
-
-	@Pattern(regexp ="^(HOMME)|(FEMME)$",
-			message = "{creation.client.sexe.notvalide}")
-	private String sexe;
-
-	private StatutClient statutClient;
-
-	public String getNom() {
-		return nom;
+	public static Client remplirClient(CreationClientForm cForm)
+	{
+		Client client = new Client();
+		client.setNom(cForm.getNom());
+		client.setPrenom(cForm.getPrenom());
+		client.setDateCreation(new Date());
+		client.setAdresse(cForm.getAdresse());
+		client.setMail(cForm.getMail());
+		client.setSexe(cForm.getSexe());
+		client.setTelephone(cForm.getTelephone());
+		client.setStatut(cForm.getStatutClient());
+		return client;
 	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getSexe() {
-		return sexe;
-	}
-
-	public void setSexe(String sexe) {
-		this.sexe = sexe;
-	}
-
-	public StatutClient getStatutClient() {
-		return statutClient;
-	}
-
-	public void setStatutClient(StatutClient statutClient) {
-		this.statutClient = statutClient;
-	}
-
 	
 }

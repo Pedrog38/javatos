@@ -7,10 +7,10 @@ import com.poe.javatos.form.ListeCommandeForm;
 
 public class ListeCommandeMapper
 {
-	public static ListeCommandeForm remplirListeCommandeForm(List<CommandeForm> listeCommandeForm)
+	public static ListeCommandeForm remplirListeCommandeForm(List<CommandeForm> listCFs)
 	{
 		ListeCommandeForm form = new ListeCommandeForm();
-		form.setListeCommandeForm(listeCommandeForm);
+		form.setListeCommandeForm(listCFs);
 		return form;
 	}
 	

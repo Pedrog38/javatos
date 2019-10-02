@@ -19,6 +19,9 @@ import com.poe.javatos.bean.Client;
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.bean.Model;
+import com.poe.javatos.bean.Utilisateur;
+import com.poe.javatos.form.CreationDevisForm;
+import com.poe.javatos.form.CreationLigneDevisForm;
 import com.poe.javatos.global.StatutDevis;
 import com.poe.javatos.mapper.CreationDevisMapper;
 import com.poe.javatos.mapper.CreationLigneDevisMapper;
@@ -72,25 +75,9 @@ public class CreationDevisController {
 		
 		if(model.get("creationDevis")==null) {
 			
-			CreationDevisMapper creationDevisForm = new CreationDevisMapper();
-			List<CreationLigneDevisMapper> lp =  new ArrayList<CreationLigneDevisMapper>();
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
-			creationDevisForm.setSubmit("");
-			
-			creationDevisForm.setDateDevis(format.format(date));
-			
-			CreationLigneDevisMapper cldf = new CreationLigneDevisMapper();
-			cldf.setQuantite(0);
-			
-			lp.add(cldf);
-			
-			creationDevisForm.setLignedevis(lp);
-			
+			CreationDevisForm creationDevisForm = CreationDevisMapper.remplirCreationDevisForm();
 			model.addAttribute("creationDevis", creationDevisForm);
 			model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
-			
-			System.err.println("CheminFonction = "+serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 		}
 		
 		
@@ -99,60 +86,55 @@ public class CreationDevisController {
 	
 	@PostMapping(value = "/creerDevis")
 	public String validerLigneDevis(@ModelAttribute(value="creationDevis") 
-	final CreationDevisMapper pForm, final BindingResult bindingResult, final ModelMap model) {
-		System.err.println(pForm.getSubmit());
-		if(pForm.getSubmit().equals("valid")) {
-			System.err.println("valid");
-			System.err.println(pForm);
+	final CreationDevisForm creationDevisForm, final BindingResult bindingResult, final ModelMap model) 
+	{
+//		System.err.println(pForm.getSubmit());
+		if(creationDevisForm.getSubmit().equals("valid")) 
+		{
+//			System.err.println("valid");
+//			System.err.println(pForm);
 			
-			if (!bindingResult.hasErrors()) {
+			if (!bindingResult.hasErrors()) 
+			{
 				
-				List<CreationLigneDevisMapper> lignes = pForm.getLignedevis();
+				List<CreationLigneDevisForm> lignes = creationDevisForm.getLignedevis();
 				
-				Devis d = new Devis();
-				d.setClient(serviceClientCrud.findByIdClient(pForm.getIdClient()));
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-				try {
-					Date dateCreation = format.parse(pForm.getDateDevis());
-					d.setDateCreation(dateCreation);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
 				
-				d.setStatut(StatutDevis.Nouveau);
-				d.setCommercialResponsable(serviceUtilisateurCrud.findByIdUtilisateur(1));
-				System.err.println(d);
-				d=serviceDevisCrud.createDevis(d);
+				Client client = serviceClientCrud.findByIdClient(creationDevisForm.getIdClient());
+				Utilisateur commercial = serviceUtilisateurCrud.findByIdUtilisateur(1);
+				Devis devis = CreationDevisMapper.remplirCreationDevisForm(creationDevisForm, client, commercial);
 				
-				List<LigneDevis> listLigneDevis = new ArrayList<>();
-				for (CreationLigneDevisMapper ligne : lignes) {
+				devis=serviceDevisCrud.createDevis(devis);
+				
+				List<LigneDevis> listLDs = new ArrayList<>();
+				for (CreationLigneDevisForm ligneForm : lignes) 
+				{
 					
-					if (ligne.getQuantite()!=0) {
+					if (ligneForm.getQuantite()!=0) 
+					{
+						Model modelVoiture = serviceModelCrud.findByIdModel(ligneForm.getIdModel());
+						LigneDevis ligneDevis =CreationLigneDevisMapper.remplirCreationDevisForm(ligneForm, devis, modelVoiture);
+						listLDs.add(ligneDevis);
 						
-						LigneDevis ligneDevis = new LigneDevis();
-						ligneDevis.setDevis(d);
-						ligneDevis.setModel(serviceModelCrud.findByIdModel(ligne.getIdModel()));
-						ligneDevis.setQuantite(ligne.getQuantite());
-						listLigneDevis.add(ligneDevis);
 						serviceLigneDevisCrud.createLigneDevis(ligneDevis);
 						
 					}
 					
 					
 				}
-				
-				model.addAttribute("IdDevisAVisualiser", d.getId());
+				model.addAttribute("IdDevisAVisualiser", devis.getId());
 				return ctrl.afficherLigneDevis(model);
 			}
 			
 		}
 		
-		if(pForm.getSubmit().equals("add")) {
-			CreationLigneDevisMapper cldf = new CreationLigneDevisMapper();
+		if(creationDevisForm.getSubmit().equals("add")) 
+		{
+			CreationLigneDevisForm cldf = new CreationLigneDevisForm();
 			cldf.setQuantite(0);
-			pForm.getLignedevis().add(cldf);
+			creationDevisForm.getLignedevis().add(cldf);
 			
-			model.addAttribute("creationDevis", pForm);
+			model.addAttribute("creationDevis", creationDevisForm);
 			model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 			
 		}
