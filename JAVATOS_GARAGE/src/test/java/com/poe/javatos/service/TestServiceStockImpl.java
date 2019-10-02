@@ -7,7 +7,6 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +85,71 @@ public class TestServiceStockImpl {
 		assertNotNull(s);
 		assertEquals(qteDispo, qteDispoApres);
 	}
+	
+	@Test(expected = POEException.class)
+	public void testNonMajAssStock() throws POEException {
+		Stock s = issCrud.findByIdStock(1);
+		int qteAReserver = 115;
+		
+		iss.miseAjourAssignation(s, qteAReserver);
+		
+	}
+	
+	@Test
+	public void testRecepCmd() {
+		Stock s = issCrud.findByIdStock(1);
+		int qteRecue = 10;
+		int QteDispo = 119;
+		int QteCmd = 35;
+		
+		try {
+			iss.miseAjourReceptionCommandeFournisseur(s, qteRecue);
+		} catch (POEException e) {
+			fail("Impossible de mettre à jour le stock avec la quantité recue suivante : " + qteRecue);
+		}
+		
+		int QteDispoApres = s.getQteDispo();
+		int QteCmdApres = s.getQteCommandee();
+		
+		assertNotNull(s);
+		assertEquals(QteDispo, QteDispoApres);
+		assertEquals(QteCmd, QteCmdApres);
+				
+	}
+	
+	@Test(expected = POEException.class)
+	public void testErrRecepCmd() throws POEException {
+		Stock s = issCrud.findByIdStock(1);
+		int qteRecue = 100;
+		
+		iss.miseAjourReceptionCommandeFournisseur(s, qteRecue);
+	}
+	
+	@Test
+	public void testCommander() {
+		Stock s = issCrud.findByIdStock(1);
+		int qteACommander = 10;
+		int qteCmd = 55;
+		
+		try {
+			iss.commander(s, qteACommander);
+		} catch (POEException e) {
+			fail("Impossible de commander cette quantité, veuillez vérifier votre quantité à commander");
+		}
+		
+		int qteCmdApres = s.getQteCommandee();
+		
+		assertNotNull(s);
+		assertEquals(qteCmd, qteCmdApres);	
+	}
+	
+	@Test(expected = POEException.class)
+	public void testErrCommander() throws POEException {
+		Stock s = issCrud.findByIdStock(1);
+		int qteACommander = -545859547;
+		
+		iss.commander(s, qteACommander);
+	}
 		
 	@After
 	public void cleanLeStockApresChaqueTest() {
@@ -93,7 +157,9 @@ public class TestServiceStockImpl {
 		Stock s = issCrud.findByIdStock(1);
 		s.setQteDispo(109);
 		s.setQteReservee(5);
+		s.setQteCommandee(45);
 		issCrud.updateStock(s);		
 	}
+	
 	
 }

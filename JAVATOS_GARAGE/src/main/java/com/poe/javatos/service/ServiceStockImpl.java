@@ -34,24 +34,41 @@ public class ServiceStockImpl implements IServiceStock
 		}
 	}
 
-	public Stock miseAjourAssignation(Stock s, Integer qteAReserver)
+	public Stock miseAjourAssignation(Stock s, Integer qteAReserver) throws POEException
 	{
-		s.setQteDispo(s.getQteDispo()-qteAReserver);
-		s.setQteReservee(s.getQteReservee()+qteAReserver);
-		return dao.save(s);
+		if ((s.getQteDispo() >= qteAReserver) && (qteAReserver > 0)) {
+			s.setQteDispo(s.getQteDispo()-qteAReserver);
+			s.setQteReservee(s.getQteReservee()+qteAReserver);
+			return dao.save(s);
+			
+		} else {
+			throw new POEException("Impossible d'assigner la quantité à réserver : " + qteAReserver +  " pour le modèle : " + s.getModel().getNom());
+		}
+		
 	}
 	
-	public Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue)
+	public Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue) throws POEException
 	{
-		s.setQteDispo(s.getQteDispo()+qteRecue);
-		s.setQteCommandee(s.getQteCommandee()-qteRecue);
-		return dao.save(s);
+		if ((qteRecue <= s.getQteCommandee()) && (qteRecue > 0)) {
+			s.setQteDispo(s.getQteDispo()+qteRecue);
+			s.setQteCommandee(s.getQteCommandee()-qteRecue);
+			return dao.save(s);
+			
+		} else {
+			throw new POEException("raté");
+		}
 	}
 	
-	public Stock commander(Stock s, Integer qteACommander)
+	public Stock commander(Stock s, Integer qteACommander) throws POEException
 	{
-		s.setQteCommandee(s.getQteCommandee()+qteACommander);
-		return dao.save(s);
+		if (qteACommander > 0) {
+			s.setQteCommandee(s.getQteCommandee()+qteACommander);
+			return dao.save(s);
+			
+		} else {
+			throw new POEException("la quantité à commander doit être positive (qui l'eut cru ?) quantité renseignée : " + qteACommander);
+		}
+		
 	}
 	
 	
