@@ -95,6 +95,7 @@ public class LigneCommande
 		result = prime * result + ((commande == null) ? 0 : commande.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nbResvervees == null) ? 0 : nbResvervees.hashCode());
 		result = prime * result + ((quantite == null) ? 0 : quantite.hashCode());
 		result = prime * result + ((statut == null) ? 0 : statut.hashCode());
@@ -110,11 +111,13 @@ public class LigneCommande
 		if (getClass() != obj.getClass())
 			return false;
 		LigneCommande other = (LigneCommande) obj;
+
 		if (commande == null) {
 			if (other.commande != null)
 				return false;
 		} else if (!commande.equals(other.commande))
 			return false;
+
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -125,6 +128,7 @@ public class LigneCommande
 				return false;
 		} else if (!model.equals(other.model))
 			return false;
+
 		if (nbResvervees == null) {
 			if (other.nbResvervees != null)
 				return false;
@@ -142,7 +146,6 @@ public class LigneCommande
 			return false;
 		return true;
 	}
-	
 	
 	
 }
