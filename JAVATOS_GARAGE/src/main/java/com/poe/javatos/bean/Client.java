@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.poe.javatos.global.DateStringConverter;
 
 @Entity
@@ -37,7 +39,7 @@ public class Client {
 	private String adresse;
 	
 	@Column(name="date_de_creation")
-	@Convert(converter = DateStringConverter.class)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreation;
 	
 	@Column(name = "telephone")

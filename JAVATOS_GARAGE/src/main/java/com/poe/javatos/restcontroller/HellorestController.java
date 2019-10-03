@@ -14,7 +14,7 @@ import com.poe.javatos.bean.StatutClient;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 
 @RestController
-public class HelloController {
+public class HellorestController {
 	
 	@Autowired
 	IServiceClientCrud dao;

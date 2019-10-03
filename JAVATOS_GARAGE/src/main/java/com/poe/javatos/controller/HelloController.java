@@ -13,7 +13,7 @@ public class HelloController {
     @Autowired
     IServiceClientCrud serviceClient;
     
-    @GetMapping("/hello")
+    @GetMapping("/helloo")
    String salutToutLeMonde()
    {
        return "Hello the world";
