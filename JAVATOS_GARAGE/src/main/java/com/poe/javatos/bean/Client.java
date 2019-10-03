@@ -36,7 +36,7 @@ public class Client {
 	@Column(name = "adresse")
 	private String adresse;
 	
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_de_creation")
 	@Convert(converter = DateStringConvertor.class)
 	private Date dateCreation;
