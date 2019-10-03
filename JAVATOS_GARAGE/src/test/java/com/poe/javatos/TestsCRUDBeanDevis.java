@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.Devis;
+import com.poe.javatos.global.StatutDevis;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
@@ -49,7 +50,7 @@ public class TestsCRUDBeanDevis
 		// d1.setDelaisProd(10);
 		 Date date1= new Date();
 		 d1.setDateCreation(date1);
-		 d1.setStatut("Statut1");
+		 d1.setStatut(StatutDevis.Nouveau);
 		 d1.setClient(daoClient.findByIdClient(1));
 		 //d1.setLignesDevis(daoLignesDevis.findAllLignesDevis);
 		 d1.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(1));
@@ -59,7 +60,7 @@ public class TestsCRUDBeanDevis
 		 //d2.setDelaisProd(20);
 		 Date date2= new Date();
 		 d2.setDateCreation(date2);
-		 d2.setStatut("Statut2");
+		 d2.setStatut(StatutDevis.Nouveau);
 		 d2.setClient(daoClient.findByIdClient(2));
 		 //d2.setLignesDevis(daoLignesDevis.findAllLignesDevis);
 		 d2.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(2));
@@ -93,9 +94,9 @@ public class TestsCRUDBeanDevis
 		 assertEquals(daoUtilisateur.findByIdUtilisateur(2).getId(), dRecup2.getCommercialResponsable().getId());
 		 
 		 Devis d1Modifie = d1;
-		 d1Modifie.setStatut("StatutModifie1");
+		 d1Modifie.setStatut(StatutDevis.Nouveau);
 		 Devis d2Modifie = d2;
-		 d2Modifie.setStatut("StatutModifie2");
+		 d2Modifie.setStatut(StatutDevis.Nouveau);
 		 
 		 dao.updateDevis(d1Modifie);
 		 dao.updateDevis(d2Modifie);

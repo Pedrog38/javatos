@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.Commande;
-
+import com.poe.javatos.global.StatutCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
 
@@ -52,7 +52,7 @@ public class TestsCRUDBeanCommande{
          //c1.setDelaisProd(11);
          Date datec1= new Date();
          c1.setDateCreation(datec1);
-         c1.setStatut("Statut1");
+         c1.setStatut(StatutCommande.Nouvelle);
          c1.setClient(daoClient.findByIdClient(1));
          //c1.setLignesDevis(daoLignesDevis.findAllLignesDevis);
          c1.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(1));
@@ -62,7 +62,7 @@ public class TestsCRUDBeanCommande{
         // c2.setDelaisProd(22);
          Date datec2= new Date();
          c2.setDateCreation(datec2);
-         c2.setStatut("Statut2");
+         c2.setStatut(StatutCommande.Nouvelle);
          c2.setClient(daoClient.findByIdClient(2));
          //d2.setLignesDevis(daoLignesDevis.findAllLignesDevis);
          c2.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(2));
@@ -92,9 +92,9 @@ public class TestsCRUDBeanCommande{
          assertEquals(daoUtilisateur.findByIdUtilisateur(2).getId(), CRecup2.getCommercialResponsable().getId());
          
          Commande c1Modifie = c1;
-         c1Modifie.setStatut("StatutModifiec1");
+         c1Modifie.setStatut(StatutCommande.Nouvelle);
          Commande c2Modifie = c2;
-         c2Modifie.setStatut("StatutModifiec2");
+         c2Modifie.setStatut(StatutCommande.Nouvelle);
          
          dao.updateCommande(c1Modifie);
          dao.updateCommande(c2Modifie);
