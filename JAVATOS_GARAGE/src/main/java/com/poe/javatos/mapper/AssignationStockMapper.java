@@ -18,7 +18,7 @@ public class AssignationStockMapper
 		assignationStockForm.setNbReserveLigneCommande(lc.getNbResvervees());			
 		assignationStockForm.setIdStock(s.getId());
 		assignationStockForm.setQteDispoStock(s.getQteDispo());
-		assignationStockForm.setQteAReserve(0);
+		assignationStockForm.setQteAReserve(Math.min(s.getQteDispo(), (lc.getQuantite()-lc.getNbResvervees())));
 		return assignationStockForm;
 	}
 	

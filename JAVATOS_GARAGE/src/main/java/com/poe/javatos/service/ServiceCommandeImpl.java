@@ -3,12 +3,17 @@ package com.poe.javatos.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
-import com.poe.javatos.bean.LigneDevis;
+import com.poe.javatos.controller.AfficherListeCommandeEnCours;
+import com.poe.javatos.controller.AfficherListeLignesCommandeController;
+import com.poe.javatos.form.ListeCommandeForm;
 import com.poe.javatos.global.StatutCommande;
 import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.repository.ICommandeRepository;
@@ -27,13 +32,21 @@ public class ServiceCommandeImpl implements IServiceCommande
 	@Autowired
 	IServiceLigneCommande serviceLigne;
 	
+	@Autowired
+	AfficherListeLignesCommandeController ctrlAfficherListeLignesCommandeController ;
+	
+	@Autowired
+	AfficherListeCommandeEnCours ctrlAfficherListeCommandeEnCours;
+	
 	@Override
+	@Transactional
 	public List<Commande> findByStatutNouvelleCommande() 
 	{
 		return dao.findByStatutCommande(StatutCommande.Nouvelle);
 	}
 
 	@Override
+	@Transactional
 	public List<Commande> findByStatutNouvelleEnTraitementCommande() 
 	{
 		List<Commande> commandes = dao.findByStatutsCommande(StatutCommande.Nouvelle,StatutCommande.EnTraitement);
@@ -65,6 +78,7 @@ public class ServiceCommandeImpl implements IServiceCommande
 		return commmandesReponses;
 	}
 	@Override
+	@Transactional
 	public List<Commande> findByStatutsEnTraitementPreteCommande() 
 	{
 		return dao.findByStatutsCommande(StatutCommande.EnTraitement, StatutCommande.Prete);
@@ -127,9 +141,55 @@ public class ServiceCommandeImpl implements IServiceCommande
 	}
 
 	@Override
+	@Transactional
 	public List<Commande> findCommandeATraiter() 
 	{
 		return dao.findCommandeByStatutLigneCommande(StatutLigneCommande.NonRenseignee);
+	}
+
+	@Override
+	@Transactional
+	public List<Commande> findByStatutEnTraitementCommande() 
+	{
+		return dao.findByStatutCommande(StatutCommande.EnTraitement);
+	}
+
+	@Override
+	@Transactional
+	public List<Commande> findByStatutPreteCommande() 
+	{
+		return dao.findByStatutCommande(StatutCommande.Prete);
+	}
+
+	@Override
+	public String traiterVisualiserLivrerCommande(ListeCommandeForm listeCommandeForm, ModelMap model) 
+	{
+		if(listeCommandeForm.getIndexVisualisePrete()!=null)
+		{
+			Integer idCommande = listeCommandeForm.getListCommandeFormPretes().get(listeCommandeForm.getIndexVisualisePrete()).getIdCommande();
+			model.addAttribute("IdCommandeAVisualiser",idCommande) ;
+			return this.ctrlAfficherListeLignesCommandeController.afficherLigneCommande(model);
+		}
+		else if(listeCommandeForm.getIndexVisualiseEnTraitement()!=null)
+		{
+			Integer idCommande = listeCommandeForm.getListCommandeFormEnTraitement().get(listeCommandeForm.getIndexVisualiseEnTraitement()).getIdCommande();
+			model.addAttribute("IdCommandeAVisualiser",idCommande) ;
+			return this.ctrlAfficherListeLignesCommandeController.afficherLigneCommande(model);
+		}
+		else if(listeCommandeForm.getIndexLivrerPrete()!=null)
+		{
+			Integer idCommande = listeCommandeForm.getListCommandeFormPretes().get(listeCommandeForm.getIndexLivrerPrete()).getIdCommande();
+			livrerCommande(serviceCommande.findByIdCommande(idCommande));
+		}
+		return ctrlAfficherListeCommandeEnCours.afficherListeCommandeEnCours(model);
+	}
+
+	@Transactional
+	@Override
+	public Commande livrerCommande(Commande c) 
+	{
+		c.setStatut(StatutCommande.Livree);
+		return dao.save(c);
 	}
 
 	

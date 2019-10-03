@@ -19,8 +19,8 @@ public class AfficherListeClientController {
 		 private IServiceClientCrud service;
 		 
 		 @GetMapping(value="/afficherListeClient")  
-		 public String afficherListeClient(ModelMap pModel) {        
-
+		 public String afficherListeClient(ModelMap pModel) 
+		 {        
 			 final List<Client> lListeClient = service.findAllClient();        
 			 pModel.addAttribute("listeclient", lListeClient);        
 			 return "afficherListeClients";

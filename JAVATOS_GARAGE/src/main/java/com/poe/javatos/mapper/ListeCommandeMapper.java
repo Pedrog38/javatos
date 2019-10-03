@@ -14,5 +14,13 @@ public class ListeCommandeMapper
 		return form;
 	}
 	
+	public static ListeCommandeForm remplirListeCommandeForm(List<CommandeForm> listCFPretes, List<CommandeForm> listCFEnTraitements)
+	{
+		ListeCommandeForm form = new ListeCommandeForm();
+		
+		form.setListCommandeFormPretes(listCFPretes);
+		form.setListCommandeFormEnTraitement(listCFEnTraitements);
+		return form;
+	}
 
 }

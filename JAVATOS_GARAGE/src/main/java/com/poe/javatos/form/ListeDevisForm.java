@@ -2,7 +2,8 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
-public class ListeDevisForm {
+public class ListeDevisForm 
+{
 	private List<DevisForm> listeDevisForm;
 	private Integer index;
 	

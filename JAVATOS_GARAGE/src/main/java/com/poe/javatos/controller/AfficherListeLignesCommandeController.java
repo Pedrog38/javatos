@@ -29,12 +29,15 @@ public class AfficherListeLignesCommandeController
 	private IServiceCommande serviceCommande;
 	
 	@Autowired
+	private IServiceCommandeCrud serviceCommandeCrud;
+	
+	@Autowired
 	private IServiceLigneCommande serviceLigneCommande;
 	
 	@GetMapping(value="/afficherLigneCommande")
 	public String afficherLigneCommande(ModelMap model) {
 		
-		final Commande commande = (Commande) model.get("CommandeAVisualiser");
+		final Commande commande = serviceCommandeCrud.findByIdCommande((Integer)model.get("IdCommandeAVisualiser"));
 		
 		List<LigneCommandeForm> lignesCommandeForm = new ArrayList<>();
 		for (LigneCommande lc: serviceLigneCommande.findByIdCommandeLigneCommande(commande.getId())) 
