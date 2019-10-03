@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Commande;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.AfficherCommandeForm;
 import com.poe.javatos.form.ListeAfficherCommandeForm;
 import com.poe.javatos.service.IServiceCommande;
@@ -58,7 +59,7 @@ public class TraiterNouvelleCommandeController
 	
 	@PostMapping(value="/VisualiserListeCommandeNouvelle")
 	public String visualiserAfficherListeCommandeNouvelle(@Valid @ModelAttribute(value="ListeAfficherCommandeForm") 
-	 final ListeAfficherCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+	 final ListeAfficherCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model) throws POEException
 	{
 		System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idCommande = grosseBoite.getListeCommandeForm().get(grosseBoite.getIndex()).getIdCommande();

@@ -2,13 +2,15 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
+import com.poe.javatos.global.StatutCommande;
+
 public class AfficherCommandeForm {
 	private Integer idCommande;
 	private String commandeDate;
 	private String nomClient;
 	private Integer idDevis;
 	private float prixTotal;
-	private String statutCommande;
+	private StatutCommande statutCommande;
 	private Integer delaiCommande;
 	private List<AfficherLigneCommandeForm> listLigneCdForm;
 	
@@ -42,10 +44,10 @@ public class AfficherCommandeForm {
 	public void setPrixTotal(float prixTotal) {
 		this.prixTotal = prixTotal;
 	}
-	public String getStatutCommande() {
+	public StatutCommande getStatutCommande() {
 		return statutCommande;
 	}
-	public void setStatutCommande(String statutCommande) {
+	public void setStatutCommande(StatutCommande statutCommande) {
 		this.statutCommande = statutCommande;
 	}
 	public List<AfficherLigneCommandeForm> getListLigneCdForm() {

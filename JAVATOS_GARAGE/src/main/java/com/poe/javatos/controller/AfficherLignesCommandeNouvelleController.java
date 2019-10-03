@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.AfficherCommandeForm;
 import com.poe.javatos.form.AfficherCommandeNouvelleForm;
 import com.poe.javatos.form.AfficherLigneCommandeForm;
@@ -55,7 +56,7 @@ public class AfficherLignesCommandeNouvelleController
 	
 	
 	@GetMapping(value="/afficherLigneCommandeNouvelle")
-	public String afficherLigneCommande(ModelMap model) {
+	public String afficherLigneCommande(ModelMap model) throws POEException {
 		
 		Commande commande = (Commande) model.get("CommandeAVisualiser");
 		commande=serviceCommande.mettreAJourStatut(commande);
@@ -90,7 +91,7 @@ public class AfficherLignesCommandeNouvelleController
 	
 	@PostMapping(value="/VisualiserLigneCommandeNouvelle")
 	public String visualiserAfficherLigneCommandeNouvelle(@Valid @ModelAttribute(value="AfficherCommandeForm") 
-	 final AfficherCommandeNouvelleForm affCd,final BindingResult bindingResult, final ModelMap model)
+	 final AfficherCommandeNouvelleForm affCd,final BindingResult bindingResult, final ModelMap model) throws POEException
 	{
 		Commande commande = service.findByIdCommande(affCd.getIdCommande());
 		model.addAttribute("CommandeAVisualiser",commande);

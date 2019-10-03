@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.GestionStockForm;
 import com.poe.javatos.form.ListeGestionStockForm;
 import com.poe.javatos.global.StatutLigneCommande;
@@ -70,7 +71,7 @@ public class GestionReceptionStockController {
 	
 	@PostMapping(value = "/receptionnercommande")
 	public String validerLigneGestionStock(@Valid @ModelAttribute(value = "gestionStocks")
-			final ListeGestionStockForm gestionstocks, final BindingResult bindingResult, final ModelMap model) {
+			final ListeGestionStockForm gestionstocks, final BindingResult bindingResult, final ModelMap model) throws POEException {
 		
 		if (!bindingResult.hasErrors()) {
 			int index = gestionstocks.getIndex();

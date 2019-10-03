@@ -7,13 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.poe.javatos.bean.Commande;
+import com.poe.javatos.global.StatutCommande;
 
 @Repository
 public interface ICommandeRepository extends JpaRepository<Commande, Integer>
 {
 	@Query(" select c from Commande c where c.statut = ?1")
-    List<Commande> findByStatutCommande(String statut);
+    List<Commande> findByStatutCommande(StatutCommande statut);
 	
 	@Query(" select c from Commande c where c.statut = ?1 OR c.statut = ?2")
-    List<Commande> findByStatutsCommande(String statut1, String statut2);
+    List<Commande> findByStatutsCommande(StatutCommande statut1, StatutCommande statut2);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.repository.IStockRepository;
 
 @Service
@@ -21,9 +22,14 @@ public class ServiceStockImpl implements IServiceStock
 	}
 
 	@Override
-	public Stock findByIdModelStock(Integer idModel) 
+	public Stock findByIdModelStock(Integer idModel) throws POEException	
 	{
-		return dao.findByIdModelStocks(idModel).get(0);
+		try {
+			return dao.findByIdModelStocks(idModel).get(0);
+		}
+		catch (Exception e) {
+			throw new POEException("Stock introuvable "+idModel);
+		}
 	}
 
 	public Stock miseAjourAssignation(Stock s, Integer qteAReserver)
