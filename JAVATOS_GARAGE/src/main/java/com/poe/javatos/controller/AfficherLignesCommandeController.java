@@ -54,7 +54,7 @@ public class AfficherLignesCommandeController
 		affCd.setDelaiCommande(serviceCommande.calculerDelaisCommande(commande));
 		affCd.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
 		affCd.setPrixTotal(serviceCommande.calculerPrixCommande(commande));
-		affCd.setStatutCommande(commande.getStatut());
+		affCd.setStatutCommande(commande.getStatutCommande());
 		model.addAttribute("AfficherCommandeForm", affCd);
 				
 		return "LigneCommande";

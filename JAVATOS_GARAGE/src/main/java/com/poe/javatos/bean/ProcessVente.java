@@ -3,6 +3,8 @@ package com.poe.javatos.bean;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.poe.javatos.global.StatutCommande;
+
 @MappedSuperclass
 public class ProcessVente 
 {
@@ -19,14 +23,15 @@ public class ProcessVente
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	
+		
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_creation")
 	private Date dateCreation;
 	
+	//private String statut;
 	@Column(name = "statut")
-	private String statut;
+	@Enumerated(EnumType.STRING)
+	private StatutCommande statut;
 	
 	@ManyToOne
 	@JoinColumn(name = "t_client_id")
@@ -45,7 +50,6 @@ public class ProcessVente
 	}
 
 
-
 	public Date getDateCreation() {
 		return dateCreation;
 	}
@@ -54,11 +58,11 @@ public class ProcessVente
 		this.dateCreation = dateCreation;
 	}
 
-	public String getStatut() {
+	public StatutCommande getStatut() {
 		return statut;
 	}
 
-	public void setStatut(String statut) {
+	public void setStatut(StatutCommande statut) {
 		this.statut = statut;
 	}
 
@@ -83,8 +87,5 @@ public class ProcessVente
 		return "ProcessVente [id=" + id + ", dateCreation=" + dateCreation + ", statut="
 				+ statut + ", client=" + client + ", commercialResponsable=" + commercialResponsable + "]";
 	}
-	
-	
-	
-	
+		
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poe.javatos.bean.LigneDevis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.repository.ILigneDevisRepository;
 
 @Service
@@ -15,8 +16,9 @@ public class ServiceLigneDevisImpl implements IServiceLigneDevis {
 	ILigneDevisRepository dao;
 	
 	@Override
-	public List<LigneDevis> findByIdDevisLigneDevis(Integer idDevis) 
+	public List<LigneDevis> findByIdDevisLigneDevis(Integer idDevis) throws POEException 
 	{
+		if (idDevis==null || idDevis<1) throw new POEException("Id de Devis invalide " + idDevis);
 		return dao.findByDevisLigneDevis(idDevis);
 	}
 

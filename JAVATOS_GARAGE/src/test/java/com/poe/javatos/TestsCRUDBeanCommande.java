@@ -52,7 +52,7 @@ public class TestsCRUDBeanCommande{
          //c1.setDelaisProd(11);
          Date datec1= new Date();
          c1.setDateCreation(datec1);
-         c1.setStatut("Statut1");
+         c1.setStatutCommande("Statut1");
          c1.setClient(daoClient.findByIdClient(1));
          //c1.setLignesDevis(daoLignesDevis.findAllLignesDevis);
          c1.setCommercialResponsable(daoUtilisateur.findByIdUtilisateur(1));

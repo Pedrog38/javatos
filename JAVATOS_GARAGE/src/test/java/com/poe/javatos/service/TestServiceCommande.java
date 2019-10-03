@@ -26,7 +26,7 @@ public class TestServiceCommande {
 	
 	@Test
 	public void testTrouverCommande() {
-		List<Commande> lc1 = new ArrayList<>();
+		List<Commande> lc1 = null;
 		try { 
 			
 		lc1 = commandeService.findByStatutNouvelleCommande();

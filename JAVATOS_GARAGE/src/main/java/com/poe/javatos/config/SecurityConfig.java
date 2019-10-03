@@ -59,10 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     }
     
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-    
-    	
-    	
+    public void addViewControllers(ViewControllerRegistry registry) {	
     /**
      * Configuration des chemins par défaut pour le menu et le formulaire
      * de connexion.
@@ -76,9 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     public void configureViewResolvers(ViewResolverRegistry registry) {
     	/**
     	 * Configuration très simple du dossier des JSP et
-    	 * de la résolution des noms passés par les controller
+    	 * de la résolution des noms passés par les controller 
     	 */
-    	// TODO Auto-generated method stub
     	 registry.jsp("/WEB-INF/jsp/", ".jsp");
     	WebMvcConfigurer.super.configureViewResolvers(registry);
     }
