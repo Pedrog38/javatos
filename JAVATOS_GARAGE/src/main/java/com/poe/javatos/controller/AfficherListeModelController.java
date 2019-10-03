@@ -23,7 +23,7 @@ public class AfficherListeModelController {
 		 public String afficherListeModel(ModelMap pModel) {        
 			 final List<Model> lListeModel = service.findAllModel();        
 			 pModel.addAttribute("listemodel", lListeModel);        
-			 return "afficherListeModel";
+			 return "afficherListeModels";
 		 } 
 
 	}

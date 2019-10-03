@@ -34,7 +34,7 @@ public class Client {
 	private String mail;
 	
 	@Column(name = "adresse")
-	private String adresse;
+	private String adresse;	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_de_creation")

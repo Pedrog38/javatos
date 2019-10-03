@@ -10,46 +10,65 @@ import com.poe.javatos.exception.POEException;
 import com.poe.javatos.repository.IStockRepository;
 
 @Service
-public class ServiceStockImpl implements IServiceStock 
+public class ServiceStockImpl implements IServiceStock
 {
 	@Autowired
 	IStockRepository dao;
 	
 	@Override
-	public List<Stock> findStocksEnCommandeFournisseur() 
+	public List<Stock> findStocksEnCommandeFournisseur()
 	{
 		return dao.findStocksEnCommandeFournisseur();
 	}
 
 	@Override
-	public Stock findByIdModelStock(Integer idModel) throws POEException	
+	public Stock findByIdModelStock (Integer idModel) throws POEException
 	{
-		try {
+		List<Stock> stocks = dao.findByIdModelStocks(idModel);
+		
+		if (stocks.size() !=0) {
+			
 			return dao.findByIdModelStocks(idModel).get(0);
-		}
-		catch (Exception e) {
+		} else {
 			throw new POEException("Stock introuvable "+idModel);
 		}
 	}
 
-	public Stock miseAjourAssignation(Stock s, Integer qteAReserver)
+	public Stock miseAjourAssignation(Stock s, Integer qteAReserver) throws POEException
 	{
-		s.setQteDispo(s.getQteDispo()-qteAReserver);
-		s.setQteReservee(s.getQteReservee()+qteAReserver);
-		return dao.save(s);
+		if ((s.getQteDispo() >= qteAReserver) && (qteAReserver > 0)) {
+			s.setQteDispo(s.getQteDispo()-qteAReserver);
+			s.setQteReservee(s.getQteReservee()+qteAReserver);
+			return dao.save(s);
+			
+		} else {
+			throw new POEException("Impossible d'assigner la quantité à réserver : " + qteAReserver +  " pour le modèle : " + s.getModel().getNom());
+		}
+		
 	}
 	
-	public Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue)
+	public Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue) throws POEException
 	{
-		s.setQteDispo(s.getQteDispo()+qteRecue);
-		s.setQteCommandee(s.getQteCommandee()-qteRecue);
-		return dao.save(s);
+		if ((qteRecue <= s.getQteCommandee()) && (qteRecue > 0)) {
+			s.setQteDispo(s.getQteDispo()+qteRecue);
+			s.setQteCommandee(s.getQteCommandee()-qteRecue);
+			return dao.save(s);
+			
+		} else {
+			throw new POEException("raté");
+		}
 	}
 	
-	public Stock commander(Stock s, Integer qteACommander)
+	public Stock commander(Stock s, Integer qteACommander) throws POEException
 	{
-		s.setQteCommandee(s.getQteCommandee()+qteACommander);
-		return dao.save(s);
+		if (qteACommander > 0) {
+			s.setQteCommandee(s.getQteCommandee()+qteACommander);
+			return dao.save(s);
+			
+		} else {
+			throw new POEException("la quantité à commander doit être positive (qui l'eut cru ?) quantité renseignée : " + qteACommander);
+		}
+		
 	}
 	
 	

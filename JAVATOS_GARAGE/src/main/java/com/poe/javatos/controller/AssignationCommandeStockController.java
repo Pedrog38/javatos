@@ -20,6 +20,8 @@ import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.AssignationStockForm;
 import com.poe.javatos.form.ListeAssignationStockForm;
 import com.poe.javatos.global.StatutLigneCommande;
+import com.poe.javatos.mapper.AssignationStockMapper;
+import com.poe.javatos.mapper.ListeAssignationStockMapper;
 import com.poe.javatos.service.IServiceLigneCommande;
 import com.poe.javatos.service.IServiceStock;
 import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
@@ -44,33 +46,23 @@ public class AssignationCommandeStockController
 	@GetMapping(value="/assignationAfficherListe")
 	public String afficherListeAssignation(final ModelMap model) throws POEException
 	{
-		if(model.get("listAssignationForm")==null)
-		{			
-			ListeAssignationStockForm listFormAss = new ListeAssignationStockForm();
-			List<AssignationStockForm> listAssignationForm = new ArrayList<AssignationStockForm>();
-			List<LigneCommande> listLigneCommande = serviceLigneCommande.findByStatutEnCommandeFournisseurLignesCommande();
-			for (LigneCommande lc : listLigneCommande) 
+		if(model.get("listAssignationForm")==null || model.get("error") =="false")
+		{					
+			List<AssignationStockForm> listAFs = new ArrayList<AssignationStockForm>();
+			List<LigneCommande> listLCs = serviceLigneCommande.findByStatutEnCommandeFournisseurLignesCommande();
+			for (LigneCommande lc : listLCs) 
 			{
-				AssignationStockForm ass = new AssignationStockForm();
-				ass.setIdLigneCommande(lc.getId());
-				ass.setNomClient(lc.getCommande().getClient().getPrenom()+" "+lc.getCommande().getClient().getNom());
-				ass.setNomModel(lc.getModel().getNom());
-				ass.setDelaisProd(serviceLigneCommande.calculerDelaiLigneCommande(lc));
-				ass.setQuantiteLigneCommande(lc.getQuantite());
-				ass.setNbReserveLigneCommande(lc.getNbResvervees());
-				Stock s = serviceStock.findByIdModelStock(lc.getModel().getId());			
-				ass.setIdStock(s.getId());
-				ass.setQteDispoStock(s.getQteDispo());
-				ass.setQteAReserve(0);
-				listAssignationForm.add(ass);
+				Integer delai = serviceLigneCommande.calculerDelaiLigneCommande(lc);
+				Stock s = serviceStock.findByIdModelStock(lc.getModel().getId());
+				AssignationStockForm assignationStockForm = AssignationStockMapper.remplirAssignationStockForm(lc, delai, s);
+				listAFs.add(assignationStockForm);
 			}
-			listFormAss.setListAss(listAssignationForm);
-			listFormAss.setIndex(0);
-			model.addAttribute("listAssignationForm",listFormAss);
+			ListeAssignationStockForm listeAssignationForm = ListeAssignationStockMapper.remplirListeAssignationForm(listAFs);
+			model.addAttribute("listAssignationForm",listeAssignationForm);
 			
 		}
 	
-		return "assignation";
+		return "assignationStockCommande";
 	}
 	
 	@PostMapping(value="/assignationModifierLigne")
@@ -80,23 +72,19 @@ public class AssignationCommandeStockController
 		if(!bindingResult.hasErrors())
 		{
 			int index = listFormAss.getIndex();
-			System.err.println("INDEX = " +index);
 			AssignationStockForm ass =listFormAss.getListAss().get(index);
 			LigneCommande lc = serviceLigneCommandeCrud.findByIdLigneCommande(ass.getIdLigneCommande());
 			Stock s = serviceStockCrud.findByIdStock(ass.getIdStock());
 			Integer qteAReserver = ass.getQteAReserve();
-			System.err.println("BOOL = "+ass.isQteReserveOk());
 			s= serviceStock.miseAjourAssignation(s, qteAReserver);
 			lc=serviceLigneCommande.miseAJourAssignation(lc, qteAReserver);
 			List<AssignationStockForm> listAss =listFormAss.getListAss();
 			listAss.remove(ass);
-			System.err.println("STATUT = "+lc.getStatut());
 			if(!lc.getStatut().equals(StatutLigneCommande.Reservee))
 			{				
-				System.err.println("STATUT = "+lc.getStatut());
 				ass.setNbReserveLigneCommande(lc.getNbResvervees());
 				ass.setQteDispoStock(s.getQteDispo());
-				ass.setQteAReserve(0);
+				ass.setQteAReserve(Math.min(s.getQteDispo(), (lc.getQuantite()-lc.getNbResvervees())));
 				listAss.add(index, ass);
 			}
 			listFormAss.setListAss(listAss);

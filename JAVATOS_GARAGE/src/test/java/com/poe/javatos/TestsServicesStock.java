@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.service.IServiceStock;
 import com.poe.javatos.service.crud.IServiceModelCrud;
 import com.poe.javatos.service.crud.IServiceStockCrud;
@@ -28,7 +29,7 @@ public class TestsServicesStock {
 	IServiceStock daoStock;
 	
 	@Test
-	public void testStocksEnCommandeFournisseur() 
+	public void testStocksEnCommandeFournisseur() throws POEException 
 	{
 		Stock s1 = new Stock();
 		s1.setId(3); // 2 Stocks initiaux des cruds
@@ -47,7 +48,13 @@ public class TestsServicesStock {
 		daoStockCrud.createStock(s1);
 		daoStockCrud.createStock(s2);
 		
-		List<Stock> stocksEnCommandeFournisseur = daoStock.findStocksEnCommandeFournisseur();
+		List<Stock> stocksEnCommandeFournisseur = null;
+		try {
+			stocksEnCommandeFournisseur = daoStock.findStocksEnCommandeFournisseur();
+		} catch (POEException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertNotNull(stocksEnCommandeFournisseur);
 		assertEquals(2, stocksEnCommandeFournisseur.size());
 		

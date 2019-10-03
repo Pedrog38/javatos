@@ -2,9 +2,10 @@ package com.poe.javatos.bean;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -14,10 +15,14 @@ import com.poe.javatos.global.StatutCommande;
 @Table(name = "t_commande")
 public class Commande extends ProcessVente{
 
-	StatutCommande statut;
 	
 	@OneToMany(mappedBy = "commande")
 	private List<LigneCommande> lignesCommandes;
+	
+	//private String statut;
+	@Column(name = "statut")
+	@Enumerated(EnumType.STRING)
+	private StatutCommande statut;
 
 	public List<LigneCommande> getLignesCommandes() {
 		return lignesCommandes;
@@ -26,6 +31,7 @@ public class Commande extends ProcessVente{
 	public void setLignesCommandes(List<LigneCommande> lignesCommandes) {
 		this.lignesCommandes = lignesCommandes;
 	}
+
 
 	@Override
 	public String toString() {
@@ -36,7 +42,8 @@ public class Commande extends ProcessVente{
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+
+		int result = 1;
 		result = prime * result + ((lignesCommandes == null) ? 0 : lignesCommandes.hashCode());
 		return result;
 	}
@@ -45,7 +52,8 @@ public class Commande extends ProcessVente{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -53,7 +61,8 @@ public class Commande extends ProcessVente{
 		if (lignesCommandes == null) {
 			if (other.lignesCommandes != null)
 				return false;
-		} else if (lignesCommandes.size() != other.lignesCommandes.size())
+
+		} else if (!lignesCommandes.equals(other.lignesCommandes))
 			return false;
 		return true;
 	}

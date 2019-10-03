@@ -82,7 +82,7 @@
 
           <a class="dropdown-item" href="${url}">Historique des commandes</a>
 
-          <c:url value="/admin/afficherCommandeEnCours" var="url" />
+          <c:url value="admin/afficherCommandeEnCours" var="url" />
 
           <a class="dropdown-item" href="${url}">Liste des commandes en cours</a>
 

@@ -24,23 +24,17 @@ public class MenuController {
 		
 		if(userIsAdmin) 
 		{
-			model.addAttribute("fonction","admin");
 			return "menuA";
 		}
-		
-		if(userIsCom) 
+		else if(userIsCom) 
 		{
-			model.addAttribute("fonction","commercial");
 			return "menuC";
 		}
-		else 
-		{
-			model.addAttribute("fonction","magasinier");
-			return "menuM";}
-		}
+		else return "menuM";
+	}
 					
 		
-	}
+}
 	
 //	@GetMapping(value ="C")
 //	public String afficherMenuCommercial (ModelMap model) 

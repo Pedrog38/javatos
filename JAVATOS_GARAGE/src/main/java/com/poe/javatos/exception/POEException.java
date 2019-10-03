@@ -1,17 +1,21 @@
 package com.poe.javatos.exception;
 
-// exception controllée (checked - try/catch)
-public class POEException extends Exception{
+// exception controlée (checked) si je me sers je devrais mettrais un try catch
 
-	public POEException() {
+// Exception controllée (checked - try/catch)
+
+@SuppressWarnings("serial")
+public class POEException extends Exception 
+{
+
+	public POEException() 
+	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public POEException(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
-	}
+	public POEException(String msg) 
+	{
+		super(msg);
 
-	
+	}
 }

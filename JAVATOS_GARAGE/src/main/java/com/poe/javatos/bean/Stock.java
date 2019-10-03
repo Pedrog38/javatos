@@ -81,6 +81,11 @@ public class Stock
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((qteCommandee == null) ? 0 : qteCommandee.hashCode());
+		result = prime * result + ((qteDispo == null) ? 0 : qteDispo.hashCode());
+		result = prime * result + ((qteReservee == null) ? 0 : qteReservee.hashCode());
+
 		return result;
 	}
 
@@ -97,6 +102,26 @@ public class Stock
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (qteCommandee == null) {
+			if (other.qteCommandee != null)
+				return false;
+		} else if (!qteCommandee.equals(other.qteCommandee))
+			return false;
+		if (qteDispo == null) {
+			if (other.qteDispo != null)
+				return false;
+		} else if (!qteDispo.equals(other.qteDispo))
+			return false;
+		if (qteReservee == null) {
+			if (other.qteReservee != null)
+				return false;
+		} else if (!qteReservee.equals(other.qteReservee))
 			return false;
 		return true;
 	}

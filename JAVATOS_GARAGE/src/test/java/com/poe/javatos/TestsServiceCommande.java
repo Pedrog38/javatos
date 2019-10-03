@@ -13,14 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.Commande;
-import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.global.StatutCommande;
-import com.poe.javatos.global.StatutLigneCommande;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
-import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
-import com.poe.javatos.service.crud.IServiceModelCrud;
+
 import com.poe.javatos.service.crud.IServiceUtilisateurCrud;
 
 @RunWith(SpringRunner.class)

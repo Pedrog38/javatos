@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.LigneDevis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
 import com.poe.javatos.service.crud.IServiceLigneDevisCrud;
@@ -30,7 +31,7 @@ public class TestsLigneDevis {
 	IServiceLigneDevis daoLigneDevis;
 	
 	@Test
-	public void testLigneDevis() 
+	public void testLigneDevis() throws POEException 
 	{
 		LigneDevis ld1 = new LigneDevis();
 		ld1.setId(5);

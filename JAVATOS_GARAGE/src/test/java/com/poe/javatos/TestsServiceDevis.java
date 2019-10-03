@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.poe.javatos.bean.Devis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.global.StatutDevis;
 import com.poe.javatos.service.IServiceDevis;
 import com.poe.javatos.service.crud.IServiceClientCrud;
@@ -33,7 +34,7 @@ public class TestsServiceDevis {
 	IServiceDevis daoDevis;
 	
 	@Test
-	public void test() 
+	public void test() throws POEException 
 	{
 		Devis d1 = new Devis();
 		 d1.setId(3);

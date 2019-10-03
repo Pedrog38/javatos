@@ -7,13 +7,13 @@ import com.poe.javatos.exception.POEException;
 
 public interface IServiceStock 
 {
-	List<Stock> findStocksEnCommandeFournisseur();
+	List<Stock> findStocksEnCommandeFournisseur() throws POEException;
 	
 	Stock findByIdModelStock(Integer idModel) throws POEException;
 	
-	Stock miseAjourAssignation(Stock s, Integer qteAReserver);
+	Stock miseAjourAssignation(Stock s, Integer qteAReserver) throws POEException;
 	
-	Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue);
-	
-	Stock commander(Stock s, Integer qteACommander);
+	Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue) throws POEException;
+
+	Stock commander(Stock s, Integer qteACommander) throws POEException;
 }
