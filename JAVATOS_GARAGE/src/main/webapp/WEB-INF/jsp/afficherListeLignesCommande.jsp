@@ -21,6 +21,7 @@
 				<th>Model</th>
 				<th>Quantite </th>
 				<th>Delai de production (jour)</th>
+				<th>Statut</th>
 				<th>Prix HT</th>
 			</tr>
 		</thead>
@@ -32,6 +33,7 @@
 					<td><c:out value="${c.nomModel}" /></td>
 					<td><c:out value="${c.quantite}"/></td>
 					<td><c:out value="${c.delai}"/></td>
+					<td><c:out value="${c.statut}"/></td>
 					<td><c:out value="${c.prixHT}"/></td>
 				</tr>
 				</c:forEach>

@@ -40,17 +40,17 @@ public class AfficherListeDevisController
 	@GetMapping(value="/afficherListeDevis")
 	public String afficherListeDevis(ModelMap model) 
 	{
-		final List<Devis> lListeDevis = service.findAllDevis();
-		List<DevisForm> listeDevisForm = new ArrayList<>();
-		for (Devis devis : lListeDevis) 
+		final List<Devis> listDevis = service.findAllDevis();
+		List<DevisForm> listDevisForms = new ArrayList<>();
+		for (Devis devis : listDevis) 
 		{
 			float prixHT = serviceDevis.calculerPrixHTDevis(devis);
 			float prixTTC = serviceDevis.calculerPrixTTCDevis(devis);
 			Integer delai =serviceDevis.calculerDelaisDevis(devis);
 			DevisForm devisForm = DevisMapper.remplirDevisForm(devis, prixHT, prixTTC, delai);		
-			listeDevisForm.add(devisForm);
+			listDevisForms.add(devisForm);
 		}
-		final ListeDevisForm grosseBoite = ListeDevisMapper.remplirListeDevisForm(listeDevisForm);
+		final ListeDevisForm grosseBoite = ListeDevisMapper.remplirListeDevisForm(listDevisForms);
 		model.addAttribute("ListeAfficherDevisForm", grosseBoite);
 				
 		return "afficherListeDevis";

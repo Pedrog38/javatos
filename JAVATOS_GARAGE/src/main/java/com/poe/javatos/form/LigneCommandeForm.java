@@ -4,6 +4,7 @@ public class LigneCommandeForm {
 	private String nomModel;
 	private Integer quantite;
 	private Integer delai;
+	private String statut;
 	private float prixHT;
 	
 	public String getNomModel() {
@@ -29,6 +30,12 @@ public class LigneCommandeForm {
 	}
 	public void setPrixHT(float prixHT) {
 		this.prixHT = prixHT;
+	}
+	public String getStatut() {
+		return statut;
+	}
+	public void setStatut(String string) {
+		this.statut = string;
 	}
 	
 }

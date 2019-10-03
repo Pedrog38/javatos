@@ -83,10 +83,9 @@ public class AssignationCommandeStockController
 			listAss.remove(ass);
 			if(!lc.getStatut().equals(StatutLigneCommande.Reservee))
 			{				
-				System.err.println("STATUT = "+lc.getStatut());
 				ass.setNbReserveLigneCommande(lc.getNbResvervees());
 				ass.setQteDispoStock(s.getQteDispo());
-				ass.setQteAReserve(0);
+				ass.setQteAReserve(Math.min(s.getQteDispo(), (lc.getQuantite()-lc.getNbResvervees())));
 				listAss.add(index, ass);
 			}
 			listFormAss.setListAss(listAss);

@@ -58,7 +58,7 @@
 
           <a class="dropdown-item" href="${url}">Creer un devis</a>
 
-          <c:url value="/admin/validationDevis" var="url" />
+          <c:url value="/admin/DevisValidation" var="url" />
 
           <a class="dropdown-item" href="${url}">Valider un devis</a>
 
@@ -82,7 +82,7 @@
 
           <a class="dropdown-item" href="${url}">Historique des commandes</a>
 
-          <c:url value="/afficherCommandeEnCours" var="url" />
+          <c:url value="admin/afficherCommandeEnCours" var="url" />
 
           <a class="dropdown-item" href="${url}">Liste des commandes en cours</a>
 
