@@ -6,13 +6,13 @@ import java.util.Date;
 
 import javax.persistence.AttributeConverter;
 
-public class DateStringConvertor implements AttributeConverter<Date,String> {
+public class DateStringConvertor implements AttributeConverter<Date, String> {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+	
 	@Override
 	public String convertToDatabaseColumn(Date uneDate) {
-		// TODO Auto-generated method stub
+		
 		return sdf.format(uneDate);
 	}
 
@@ -22,6 +22,9 @@ public class DateStringConvertor implements AttributeConverter<Date,String> {
 			return sdf.parse(dbData);
 		} catch (ParseException e) {
 			return new Date();
-		}	
-	}}
+		}
+	}
+	
+	
 
+}

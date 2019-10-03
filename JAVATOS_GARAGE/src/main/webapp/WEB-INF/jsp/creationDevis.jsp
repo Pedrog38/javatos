@@ -13,8 +13,8 @@
 	<h1>Nouveau Devis</h1>
 	<form:form method="post" modelAttribute="creationDevis"
 		action="creerDevis">
-		<p><a href="/${cheminFonction}/creerClientAfficher">Crï¿½er nouveau client</a></p>
-		<p><a href="/${cheminFonction}/creerModeleAfficher">Crï¿½er nouveau modï¿½le</a></p>
+		<p><a href="/${cheminFonction}/creerClientAfficher">Créer nouveau client</a></p>
+		<p><a href="/${cheminFonction}/creerModeleAfficher">Créer nouveau modèle</a></p>
 		<p>
 		<form:label path="idClient" >Choix du client :</form:label>
 		<form:select path="idClient">
@@ -31,7 +31,7 @@
 		<table border="1">
 				<thead>
 					<tr>
-						<th>Modï¿½le - Couleur - Dï¿½lais de production - Prix de vente HT</th>
+						<th>Modèle - Couleur - Délais de production - Prix de vente HT</th>
 						<th>Quantitï¿½</th>
 						<th>Bt</th>
 					</tr>

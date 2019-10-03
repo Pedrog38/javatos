@@ -14,13 +14,13 @@ import com.poe.javatos.service.crud.IServiceClientCrud;
 public class ClientRestController {
 	
 	@Autowired
-	IServiceClientCrud dao;
+	IServiceClientCrud serviceClientCrud;
 	
 	@PostMapping("/createclient")
 	public @ResponseBody ResponseEntity<Client> createClient(@RequestBody Client clientACreer) {
 		
 		try {
-			Client c = dao.createClient(clientACreer);
+			Client c = serviceClientCrud.createClient(clientACreer);
 			if (c!=null && c.getId()>0) {
 				return ResponseEntity.ok().body(c);
 			}

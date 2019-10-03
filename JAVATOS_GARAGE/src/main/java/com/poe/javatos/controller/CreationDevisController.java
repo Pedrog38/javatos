@@ -74,12 +74,11 @@ public class CreationDevisController {
 		
 		model.addAttribute("clients", listeClients);
 		model.addAttribute("models", listeModels);
-		
+		model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 		if(model.get("creationDevis")==null) {
 			
 			CreationDevisForm creationDevisForm = CreationDevisMapper.remplirCreationDevisForm();
 			model.addAttribute("creationDevis", creationDevisForm);
-			model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 		}
 		
 		
