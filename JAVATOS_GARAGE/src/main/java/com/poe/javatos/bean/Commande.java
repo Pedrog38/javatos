@@ -2,11 +2,14 @@ package com.poe.javatos.bean;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.poe.javatos.global.StatutCommande;
 
 @Entity
 @Table(name = "t_commande")
@@ -14,6 +17,11 @@ public class Commande extends ProcessVente{
 
 	@OneToMany(mappedBy = "commande")
 	private List<LigneCommande> lignesCommandes;
+	
+	//private String statut;
+	@Column(name = "statut")
+	@Enumerated(EnumType.STRING)
+	private StatutCommande statut;
 
 	public List<LigneCommande> getLignesCommandes() {
 		return lignesCommandes;
@@ -21,6 +29,15 @@ public class Commande extends ProcessVente{
 
 	public void setLignesCommandes(List<LigneCommande> lignesCommandes) {
 		this.lignesCommandes = lignesCommandes;
+	}
+
+	
+	public StatutCommande getStatut() {
+		return statut;
+	}
+
+	public void setStatut(StatutCommande statut) {
+		this.statut = statut;
 	}
 
 	@Override

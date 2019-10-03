@@ -1,10 +1,12 @@
 package com.poe.javatos.form;
 
+import com.poe.javatos.global.StatutLigneCommande;
+
 public class LigneCommandeForm {
 	private String nomModel;
 	private Integer quantite;
 	private Integer delai;
-	private String statut;
+	private StatutLigneCommande statut;
 	private float prixHT;
 	
 	public String getNomModel() {
@@ -31,11 +33,11 @@ public class LigneCommandeForm {
 	public void setPrixHT(float prixHT) {
 		this.prixHT = prixHT;
 	}
-	public String getStatut() {
+	public StatutLigneCommande getStatut() {
 		return statut;
 	}
-	public void setStatut(String string) {
-		this.statut = string;
+	public void setStatut(StatutLigneCommande statut) {
+		this.statut = statut;
 	}
 	
 }

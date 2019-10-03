@@ -7,9 +7,11 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.NonNull;
 
+import com.poe.javatos.global.StatutLigneCommande;
+
 public class LigneCommandeATraiterForm 
 {
-	private String statut;
+	private StatutLigneCommande statut;
 	private Integer idLigneCommande;
 	private String nomModel;
 	private Integer qteDemande;
@@ -20,10 +22,10 @@ public class LigneCommandeATraiterForm
 	private Integer idModel;
 	private Integer qteDispo;
 	
-	public String getStatut() {
+	public StatutLigneCommande getStatut() {
 		return statut;
 	}
-	public void setStatut(String statut) {
+	public void setStatut(StatutLigneCommande statut) {
 		this.statut = statut;
 	}
 	public String getNomModel() {

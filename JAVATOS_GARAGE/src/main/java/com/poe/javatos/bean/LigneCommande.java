@@ -2,6 +2,8 @@ package com.poe.javatos.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,7 @@ public class LigneCommande
 	private Integer quantite;
 	
 	@Column(name = "statut")
+	@Enumerated(EnumType.STRING)
 	private StatutLigneCommande statut;
 	
 	@Column(name = "nb_reservee")
