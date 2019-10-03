@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Commande;
-import com.poe.javatos.form.AfficherCommandeForm;
-import com.poe.javatos.form.ListeAfficherCommandeForm;
+import com.poe.javatos.form.CommandeForm;
+import com.poe.javatos.form.ListeCommandeForm;
+import com.poe.javatos.mapper.CommandeMapper;
+import com.poe.javatos.mapper.ListeCommandeMapper;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
@@ -32,41 +34,37 @@ public class AfficherListeCommandeController
 	private IServiceCommande serviceCommande;
 	
 	@Autowired
-	AfficherLignesCommandeController ctrlAfficheLigneCommande;
+	AfficherListeLignesCommandeController ctrlAfficheLigneCommande;
 	
 	@GetMapping(value="/historiqueCommandes")
-	public String afficherListeCommande(ModelMap model) {
-		
-		final ListeAfficherCommandeForm grosseBoite = new ListeAfficherCommandeForm();
+	public String afficherListeCommande(ModelMap model) 
+	{
 		final List<Commande> cListeCommande = service.findAllCommande();
-		List<AfficherCommandeForm> listeCommandeForm = new ArrayList<>();
-		for (Commande commande : cListeCommande) {
-			AfficherCommandeForm commandeForm = new AfficherCommandeForm();
-			commandeForm.setCommandeDate(commande.getDateCreation().toString());
-			commandeForm.setIdCommande(commande.getId());
-			commandeForm.setNomClient(commande.getClient().getPrenom()+" "+commande.getClient().getNom());
-			commandeForm.setPrixTotal(serviceCommande.calculerPrixCommande(commande));
-			commandeForm.setStatutCommande(commande.getStatut());
-			commandeForm.setDelaiCommande(serviceCommande.calculerDelaisCommande(commande));			
+		List<CommandeForm> listeCommandeForm = new ArrayList<>();
+		for (Commande commande : cListeCommande) 
+		{
+			float prixHT = serviceCommande.calculerPrixHTCommande(commande);
+			float prixTTC = serviceCommande.calculerPrixTTCCommande(commande);
+			Integer delai = serviceCommande.calculerDelaisCommande(commande);
+			CommandeForm commandeForm = CommandeMapper.remplirCommandeForm(commande, prixHT, prixTTC, delai);
 			listeCommandeForm.add(commandeForm);
-			
 		}
-		grosseBoite.setListeCommandeForm(listeCommandeForm);
+		final ListeCommandeForm grosseBoite = ListeCommandeMapper.remplirListeCommandeForm(listeCommandeForm);
 		model.addAttribute("ListeAfficherCommandeForm", grosseBoite);
 				
-		return "afficherListeCommande";
+		return "afficherListeCommandes";
 	}
 	
 	@PostMapping(value="/VisualiserListeCommande")
 	public String visualiserAfficherListeCommande(@Valid @ModelAttribute(value="ListeAfficherCommandeForm") 
-	final ListeAfficherCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+	 final ListeCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+
 	{
-		System.err.println("Index = "+grosseBoite.getIndex());
+		//System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idCommande = grosseBoite.getListeCommandeForm().get(grosseBoite.getIndex()).getIdCommande();
-		System.err.println("Id Commande Choisis = "+idCommande);
-		Commande commande = service.findByIdCommande(idCommande);
+		//System.err.println("Id Commande Choisis = "+idCommande);
 		
-		model.addAttribute("CommandeAVisualiser",commande) ;
+		model.addAttribute("IdCommandeAVisualiser",idCommande) ;
 	
 		return this.ctrlAfficheLigneCommande.afficherLigneCommande(model);
 	}

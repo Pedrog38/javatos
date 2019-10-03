@@ -1,6 +1,6 @@
 package com.poe.javatos.form;
 
-public class AfficherLigneDevisForm {
+public class LigneDevisForm {
 	
 	private String nomModel;
 	private Integer quantite;

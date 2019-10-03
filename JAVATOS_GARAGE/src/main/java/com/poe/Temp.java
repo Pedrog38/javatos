@@ -1,4 +1,5 @@
 package com.poe;
+
 import java.util.Date;
 
 import com.poe.javatos.global.StatutCommande;
@@ -25,7 +26,6 @@ public class Temp {
 	
 	System.out.println(dsc.convertToEntityAttribute(strD));
 
-			
 	}
 
 }

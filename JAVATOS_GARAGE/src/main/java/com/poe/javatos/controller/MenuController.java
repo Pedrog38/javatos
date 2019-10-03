@@ -22,12 +22,15 @@ public class MenuController {
 		boolean userIsCom = authentication.getAuthorities().stream()
 		          .anyMatch(r -> r.getAuthority().equals("Commercial"));
 		
-		if(userIsAdmin) {
-		return "menuA";}
-		
-		if(userIsCom) {
-			return "menuC";}
-				else return "menuM";}
+		if(userIsAdmin) 
+		{
+			return "menuA";
+		}
+		else if(userIsCom) 
+		{
+			return "menuC";
+		}
+		else return "menuM";}
 					
 		
 	}

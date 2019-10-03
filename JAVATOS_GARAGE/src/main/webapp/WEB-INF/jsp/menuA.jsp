@@ -58,7 +58,7 @@
 
           <a class="dropdown-item" href="${url}">Creer un devis</a>
 
-          <c:url value="/admin/validationDevis" var="url" />
+          <c:url value="/admin/DevisValidation" var="url" />
 
           <a class="dropdown-item" href="${url}">Valider un devis</a>
 
@@ -82,11 +82,11 @@
 
           <a class="dropdown-item" href="${url}">Historique des commandes</a>
 
-          <c:url value="/admin/afficherCommandeEnCours" var="url" />
+          <c:url value="admin/afficherCommandeEnCours" var="url" />
 
           <a class="dropdown-item" href="${url}">Liste des commandes en cours</a>
 
-          <c:url value="/traiterCommande" var="url" />
+          <c:url value="admin/traiterCommande" var="url" />
 
           <a class="dropdown-item" href="${url}">Traiter nouvelle commande Client/commande Fournisseur</a>
 
@@ -110,7 +110,7 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-        <c:url value="/stockGestion" var="url" />
+        <c:url value="/admin/afficherGestionStock" var="url" />
 
           <a class="dropdown-item" href="${url}">Gestion Stock</a>
 

@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.exception.POEException;
-import com.poe.javatos.form.AfficherDevisForm;
-import com.poe.javatos.form.AfficherLigneDevisForm;
-import com.poe.javatos.form.ListeAfficherDevisForm;
+import com.poe.javatos.form.DevisForm;
+import com.poe.javatos.form.LigneDevisForm;
+import com.poe.javatos.mapper.DevisMapper;
+import com.poe.javatos.mapper.LigneDevisMapper;
 import com.poe.javatos.service.IServiceDevis;
 import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
-import com.poe.javatos.service.crud.ServiceDevisCrudImpl;
 
 @Controller
 @RequestMapping(value = {"/commercial","/admin"}) // Mr Security
-public class AfficherLignesDevisController 
+public class AfficherListeLignesDevisController 
 {
 
 	@Autowired
@@ -39,26 +39,21 @@ public class AfficherLignesDevisController
 		
 		final Devis devis = service.findByIdDevis((Integer)model.get("IdDevisAVisualiser"));
 		
-		AfficherDevisForm affDevis = new AfficherDevisForm();
-		List<AfficherLigneDevisForm> lignesDevisForm = new ArrayList<>();
+		float prixHT = serviceDevis.calculerPrixHTDevis(devis);
+		float prixTTC = serviceDevis.calculerPrixTTCDevis(devis);
+		Integer delai =serviceDevis.calculerDelaisDevis(devis);
+		
+		List<LigneDevisForm> lignesDevisForm = new ArrayList<>();
 		for (LigneDevis ld: serviceLigneDevis.findByIdDevisLigneDevis(devis.getId())) 
 		{
-			AfficherLigneDevisForm aff = new AfficherLigneDevisForm();
-			aff.setNomModel(ld.getModel().getNom());
-			aff.setQuantite(ld.getQuantite());
-			aff.setDelai(serviceLigneDevis.calculerDelaiLigneDevis(ld));
-			aff.setPrixHT(serviceLigneDevis.calculerPrixLigneDevis(ld));
-			lignesDevisForm.add(aff);
+			Integer delaiLd = serviceLigneDevis.calculerDelaiLigneDevis(ld);
+			float prixHTLd = serviceLigneDevis.calculerPrixLigneDevis(ld);
+			LigneDevisForm ligneDevisForm = LigneDevisMapper.remplirListeDevisForm(ld, delaiLd, prixHTLd);
+			lignesDevisForm.add(ligneDevisForm);
 		}
-		affDevis.setListLigneDevisForm(lignesDevisForm);
-		affDevis.setDateDeCreation(devis.getDateCreation().toString());
-		affDevis.setIdDevis(devis.getId());
-		affDevis.setNomClient(devis.getClient().getPrenom()+" "+devis.getClient().getNom());
-		affDevis.setPrixTotal(serviceDevis.calculerPrixDevis(devis));
-		affDevis.setStatut(devis.getStatut());
-		affDevis.setDelai(serviceDevis.calculerDelaisDevis(devis));
-		model.addAttribute("AfficherDevisForm", affDevis);
+		DevisForm devisForm = DevisMapper.remplirDevisForm(devis, prixHT, prixTTC, delai, lignesDevisForm);
+		model.addAttribute("AfficherDevisForm", devisForm);
 				
-		return "LigneDevis";
+		return "afficherListeLignesDevis";
 	}
 }

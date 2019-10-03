@@ -86,6 +86,61 @@ public class Model
 		return "Model [id=" + id + ", nom=" + nom + ", puissance=" + puissance + ", prixVente=" + prixVente
 				+ ", couleur=" + couleur + ", delaisProd=" + delaisProd + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((couleur == null) ? 0 : couleur.hashCode());
+		result = prime * result + ((delaisProd == null) ? 0 : delaisProd.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prixVente == null) ? 0 : prixVente.hashCode());
+		result = prime * result + ((puissance == null) ? 0 : puissance.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Model other = (Model) obj;
+		if (couleur == null) {
+			if (other.couleur != null)
+				return false;
+		} else if (!couleur.equals(other.couleur))
+			return false;
+		if (delaisProd == null) {
+			if (other.delaisProd != null)
+				return false;
+		} else if (!delaisProd.equals(other.delaisProd))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prixVente == null) {
+			if (other.prixVente != null)
+				return false;
+		} else if (!prixVente.equals(other.prixVente))
+			return false;
+		if (puissance == null) {
+			if (other.puissance != null)
+				return false;
+		} else if (!puissance.equals(other.puissance))
+			return false;
+		return true;
+	}
 	
 	
 	

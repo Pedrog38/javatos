@@ -20,10 +20,10 @@ public class AfficherListeModelController {
 		 private IServiceModelCrud service;
 		 
 		 @GetMapping(value="/afficherListeModel")    
-		 public String afficher(ModelMap pModel) {        
+		 public String afficherListeModel(ModelMap pModel) {        
 			 final List<Model> lListeModel = service.findAllModel();        
 			 pModel.addAttribute("listemodel", lListeModel);        
-			 return "afficherListeModel";
+			 return "afficherListeModels";
 		 } 
 
 	}

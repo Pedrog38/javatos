@@ -15,7 +15,8 @@ import com.poe.javatos.service.IServiceStock;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 
 @RestController
-public class HelloController {
+public class HelloController 
+{
 	
 	@Autowired
 	IServiceClientCrud serviceClient;
@@ -73,10 +74,48 @@ public class HelloController {
 		
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
 	}
+    @GetMapping("/hello2")
+   String salutToutLeMonde()
+   {
+       return "Hello the world";
+   }
+   @GetMapping(value="/helloClient", produces = "application/json")
+   public Client helloClient()
+   {
+       Client c = new Client();
+       c.setId(1);
+       c.setNom("Fucking Awesome");
+       c.setPrenom("Adèle");
+       return c;
+   }
+   @GetMapping(value="/helloClient/{id}", produces = "application/json")
+   public Client helloClientId(@PathVariable(value = "id") Integer idClient)
+   {
+       Client c = new Client();
+       c.setId(idClient);
+       c.setNom("Fucking Awesome");
+       c.setPrenom("Adèle");
+       return c;
+   }
+   @GetMapping(value="/helloClientReel/{id}", produces = "application/json")
+   public Client helloClientIdReel(@PathVariable(value = "id") Integer idClient)
+   {
+       Client c = serviceClient.findByIdClient(idClient);
+       return c;
+   }
+   @GetMapping(value="/helloClientReelException/{id}", produces = "application/json")
+   public @ResponseBody ResponseEntity<Client> helloClientIdReelException(@PathVariable(value = "id") Integer idClient)
+   {
+       try
+       {            
+           Client c = serviceClient.findByIdClient(idClient);
+           return ResponseEntity.ok().body(c);
+       }
+       catch(Exception e)
+       {
+           return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+           //return ResponseEntity.badRequest().body(null);
+       }
+   }
 }
-	
-		
-
-

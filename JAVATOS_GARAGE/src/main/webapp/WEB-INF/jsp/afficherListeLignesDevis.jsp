@@ -1,4 +1,4 @@
-/<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -11,7 +11,9 @@
 	
 			<div>
 				<label> Client: ${AfficherDevisForm.nomClient} </label><br>
+				<br/>
 				<label> Date de création : ${AfficherDevisForm.dateDeCreation} </label><br>
+				<br/>
 			</div>
 	
 	<table border="1">
@@ -37,8 +39,15 @@
 	</table>
 	
 			<div>
+			<br/>
 				<label> Délai Total: ${AfficherDevisForm.delai} jours </label><br>
-				<label> Tarif HT:  ${AfficherDevisForm.prixTotal} euros </label><br>
+				<br/>
+				<label> Tarif HT:  ${AfficherDevisForm.prixTotalHT} euros </label><br>
+				<br/>
+				<label> Taux:  ${AfficherDevisForm.taux} % </label><br>
+				<br/>
+				<label> Tarif TTC:  ${AfficherDevisForm.prixTotalTTC} euros </label><br>
+				<br/>
 			</div>
 		<input type="button" value="Retour" onclick="history.go(-1)"/>
 </body>

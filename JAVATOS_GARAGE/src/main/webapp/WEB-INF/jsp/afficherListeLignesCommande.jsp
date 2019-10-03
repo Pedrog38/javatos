@@ -21,6 +21,7 @@
 				<th>Model</th>
 				<th>Quantite </th>
 				<th>Delai de production (jour)</th>
+				<th>Statut</th>
 				<th>Prix HT</th>
 			</tr>
 		</thead>
@@ -32,14 +33,22 @@
 					<td><c:out value="${c.nomModel}" /></td>
 					<td><c:out value="${c.quantite}"/></td>
 					<td><c:out value="${c.delai}"/></td>
+					<td><c:out value="${c.statut}"/></td>
 					<td><c:out value="${c.prixHT}"/></td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div>
+				<br/>
 				<label> Délai Total: ${AfficherCommandeForm.delaiCommande} jours </label><br>
-				<label> Tarif HT:  ${AfficherCommandeForm.prixTotal} euros </label><br>
+				<br/>
+				<label> Tarif HT:  ${AfficherCommandeForm.prixTotalHT} euros </label><br>
+				<br/>
+				<label> Taaux:  ${AfficherCommandeForm.taux} % </label><br>
+				<br/>
+				<label> Tarif TTC:  ${AfficherCommandeForm.prixTotalTTC} euros </label><br>
+				<br/>
 			</div>
 		<input type="button" value="Retour" onclick="history.go(-1)"/>
 		

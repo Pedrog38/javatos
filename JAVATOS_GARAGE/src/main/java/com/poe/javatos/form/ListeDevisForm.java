@@ -2,15 +2,16 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
-public class ListeAfficherDevisForm {
-	private List<AfficherDevisForm> listeDevisForm;
+public class ListeDevisForm 
+{
+	private List<DevisForm> listeDevisForm;
 	private Integer index;
 	
 
-	public List<AfficherDevisForm> getListeDevisForm() {
+	public List<DevisForm> getListeDevisForm() {
 		return listeDevisForm;
 	}
-	public void setListeDevisForm(List<AfficherDevisForm> listeDevisForm) {
+	public void setListeDevisForm(List<DevisForm> listeDevisForm) {
 		this.listeDevisForm = listeDevisForm;
 	}
 	public Integer getIndex() {

@@ -48,7 +48,13 @@ public class TestsServicesStock {
 		daoStockCrud.createStock(s1);
 		daoStockCrud.createStock(s2);
 		
-		List<Stock> stocksEnCommandeFournisseur = daoStock.findStocksEnCommandeFournisseur();
+		List<Stock> stocksEnCommandeFournisseur = null;
+		try {
+			stocksEnCommandeFournisseur = daoStock.findStocksEnCommandeFournisseur();
+		} catch (POEException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertNotNull(stocksEnCommandeFournisseur);
 		assertEquals(2, stocksEnCommandeFournisseur.size());
 		

@@ -22,6 +22,6 @@ public class AfficherStock {
 		 public String afficher(ModelMap pModel) {        
 			 final List<Stock> lListeModel = service.findAllStock();        
 			 pModel.addAttribute("listestock", lListeModel);        
-			 return "afficherStock";
+			 return "afficherListeStocks";
 		 } 
 	}

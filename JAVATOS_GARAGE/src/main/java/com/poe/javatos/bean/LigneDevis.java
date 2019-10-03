@@ -91,6 +91,7 @@ public class LigneDevis
 			if (other.devis != null)
 				return false;
 		} else if (!devis.getId().equals(other.devis.getId()))
+
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -100,7 +101,9 @@ public class LigneDevis
 		if (model == null) {
 			if (other.model != null)
 				return false;
+
 		} else if (!model.getId().equals(other.model.getId()))
+
 			return false;
 		if (quantite == null) {
 			if (other.quantite != null)
@@ -109,5 +112,6 @@ public class LigneDevis
 			return false;
 		return true;
 	}
+
 	
 }

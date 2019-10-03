@@ -13,7 +13,7 @@ import com.poe.javatos.repository.IUtilisateurRepository;
 
 @Service
 
-public class ServiceUtilisateurImpl implements UserDetailsService {
+public class ServiceUtilisateurImpl implements UserDetailsService, IServiceUtilisateur {
 
     private final IUtilisateurRepository utilisateurRepository;
 
@@ -31,5 +31,23 @@ public class ServiceUtilisateurImpl implements UserDetailsService {
 
         return utilisateur;
     }
+
+	@Override
+	public String getChemin(Integer idUtilisateur) 
+	{
+		Utilisateur user = utilisateurRepository.findById(idUtilisateur).orElse(null);
+		if(user.getRoles().get(0).getNom().equals("Commercial"))
+		{
+			return "commercial";
+		}
+		if(user.getRoles().get(0).getNom().equals("Magasinier"))
+		{
+			return "magasinier";
+		}
+		else
+		{
+			return "admin";
+		}
+	}
 
 }
