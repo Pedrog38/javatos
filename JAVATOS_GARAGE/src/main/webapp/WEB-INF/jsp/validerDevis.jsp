@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 
@@ -11,30 +12,54 @@
 </head>
 <body>
 		<h1> DEVIS A VALIDER</h1>
-		<table border="1">
+		
+<form:form method="post" modelAttribute="listeDevisValiderForm" action="TraiterDevisAV">
+			<table border="1">
 		<thead>
 			<tr>
-				<th>id Devis</th>
-				<th>Client</th>
-				<th>Date de création</th>   
-				<th>Prix HT</th>
+				<th>Id Devis</th>				
+				<th>Date de creation</th>
+				<th>Client</th>			
+				<th>Delai en jours</th>
+				<th>Statut</th>
+				<th>Prix total TTC en euro(s)</th>
 			</tr>
-		</thead>				
-		
+		</thead>
+
 		<tbody>
-			<c:forEach items="${listeDevisValiderForm}" var="devisForm">
-			<tr>
-				<td><c:out value="${devisForm.devis.id}"/></td>
-				<td><c:out value="${devisForm.devis.client.nom}"/></td>
-				<td><c:out value="${devisForm.devis.dateCreation}"/></td>
-				<td><c:out value="${devisForm.prixDevis}"/></td>
-				<td><a href= "/validerDevis?id=<c:out value='${devisForm.devis.id}'/>">Valider</a></td>		
-				<td><a href= "/visualiserDevis?id=<c:out value='${devisForm.devis.id}'/>">Visualiser</a></td>
-				<td><a href= "/annulerDevis?id=<c:out value='${devisForm.devis.id}'/>">Annuler</a></td>
-				
-			</tr>
+			<c:forEach items="${listeDevisValiderForm.listeDevisForm}" var="affDevisForm" varStatus="status" >
+				<tr>
+					<td><c:out value="${affDevisForm.idDevis}" />
+                      <form:input type="hidden" path="listeDevisForm[${status.index}].idDevis" value="${affDevisForm.idDevis}"/>
+                      </td>
+					<td><c:out value="${affDevisForm.dateDeCreation}" />
+					<form:input type="hidden" path="listeDevisForm[${status.index}].dateDeCreation" value="${affDevisForm.dateDeCreation}"/>
+					</td>
+					<td><c:out value="${affDevisForm.nomClient}" />
+					<form:input type="hidden" path="listeDevisForm[${status.index}].nomClient" value="${affDevisForm.nomClient}"/>
+					</td>
+ 					<td><c:out value="${affDevisForm.delai}" />
+ 					<form:input type="hidden" path="listeDevisForm[${status.index}].delai" value="${affDevisForm.delai}"/>
+ 					</td> 
+					<td><c:out value="${affDevisForm.statut}" />
+					<form:input type="hidden" path="listeDevisForm[${status.index}].statut" value="${affDevisForm.statut}"/>
+					</td>
+					<td><c:out value="${affDevisForm.prixTotalTTC}" />
+					<form:input type="hidden" path="listeDevisForm[${status.index}].prixTotalTTC" value="${affDevisForm.prixTotalTTC}"/>
+					</td> 
+					<td><form:button type="submit" name="indexValider" value="${status.index}" >Valider</form:button></td>
+					<td><form:button type="submit" name="indexVisualiser" value="${status.index}" >Visualiser</form:button></td>
+					<td><form:button type="submit" name="indexAnnuler" value="${status.index}" >Annuler</form:button></td>
+					
+					
+					
+				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-</body>
-</html>
+	</form:form>
+	
+	<input type="button" value="Retour" onclick="history.go(-1)"/>
+			
+	</body>
+</html>		

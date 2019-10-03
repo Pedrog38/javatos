@@ -11,6 +11,7 @@ public class LigneCommandeMapper
 		ligneCommandeForm.setNomModel(lc.getModel().getNom());
 		ligneCommandeForm.setQuantite(lc.getQuantite());
 		ligneCommandeForm.setDelai(delai);
+		ligneCommandeForm.setStatut(lc.getStatut());
 		ligneCommandeForm.setPrixHT(prixHT);
 		return ligneCommandeForm;
 	}
