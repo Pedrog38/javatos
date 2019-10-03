@@ -1,4 +1,4 @@
-package com.poe.javatos.controller;
+package com.poe.javatos.restcontroller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
