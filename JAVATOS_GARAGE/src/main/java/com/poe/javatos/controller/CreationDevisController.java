@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.bean.Model;
 import com.poe.javatos.bean.Utilisateur;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.CreationDevisForm;
 import com.poe.javatos.form.CreationLigneDevisForm;
 import com.poe.javatos.global.StatutDevis;
@@ -72,12 +74,11 @@ public class CreationDevisController {
 		
 		model.addAttribute("clients", listeClients);
 		model.addAttribute("models", listeModels);
-		
+		model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 		if(model.get("creationDevis")==null) {
 			
 			CreationDevisForm creationDevisForm = CreationDevisMapper.remplirCreationDevisForm();
 			model.addAttribute("creationDevis", creationDevisForm);
-			model.addAttribute("cheminFonction", serviceUtilisateur.getChemin(SpringCtrl.getUser().getBody().getId()));
 		}
 		
 		
@@ -86,7 +87,8 @@ public class CreationDevisController {
 	
 	@PostMapping(value = "/creerDevis")
 	public String validerLigneDevis(@ModelAttribute(value="creationDevis") 
-	final CreationDevisForm creationDevisForm, final BindingResult bindingResult, final ModelMap model) 
+
+	final CreationDevisForm creationDevisForm, final BindingResult bindingResult, final ModelMap model) throws POEException 
 	{
 //		System.err.println(pForm.getSubmit());
 		if(creationDevisForm.getSubmit().equals("valid")) 

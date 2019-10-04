@@ -2,11 +2,14 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
+import com.poe.javatos.global.StatutDevis;
+
+
 public class DevisForm {
 	private Integer idDevis;
 	private String nomClient;
 	private String dateDeCreation;
-	private String statut;
+	private StatutDevis statut;
 	private Float prixTotalHT;
 	private Float prixTotalTTC;
 	private Float taux;
@@ -37,10 +40,10 @@ public class DevisForm {
 	public void setDateDeCreation(String dateDeCreation) {
 		this.dateDeCreation = dateDeCreation;
 	}
-	public String getStatut() {
+	public StatutDevis getStatut() {
 		return statut;
 	}
-	public void setStatut(String statut) {
+	public void setStatut(StatutDevis statut) {
 		this.statut = statut;
 	}
 	public Integer getDelai() {

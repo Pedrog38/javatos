@@ -30,7 +30,7 @@ public class ServiceStockImpl implements IServiceStock
 			
 			return dao.findByIdModelStocks(idModel).get(0);
 		} else {
-			throw new POEException();
+			throw new POEException("Stock introuvable "+idModel);
 		}
 	}
 

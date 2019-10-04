@@ -2,6 +2,8 @@ package com.poe.javatos.form;
 
 import java.util.List;
 
+import com.poe.javatos.global.StatutCommande;
+
 public class CommandeForm {
 	private Integer idCommande;
 	private String commandeDate;
@@ -9,7 +11,7 @@ public class CommandeForm {
 	private Float prixTotalHT;
 	private Float prixTotalTTC;
 	private Float taux;
-	private String statutCommande;
+	private StatutCommande statutCommande;
 	private Integer delaiCommande;
 	private List<LigneCommandeForm> listLigneCdForm;
 	
@@ -44,16 +46,19 @@ public class CommandeForm {
 	public void setPrixTotalTTC(Float prixTotalTTC) {
 		this.prixTotalTTC = prixTotalTTC;
 	}
+
 	public Float getTaux() {
 		return taux;
 	}
 	public void setTaux(Float taux) {
 		this.taux = taux;
 	}
-	public String getStatutCommande() {
+
+	
+	public StatutCommande getStatutCommande() {
 		return statutCommande;
 	}
-	public void setStatutCommande(String statutCommande) {
+	public void setStatutCommande(StatutCommande statutCommande) {
 		this.statutCommande = statutCommande;
 	}
 	public List<LigneCommandeForm> getListLigneCdForm() {
@@ -68,9 +73,6 @@ public class CommandeForm {
 	public void setDelaiCommande(Integer delaiCommande) {
 		this.delaiCommande = delaiCommande;
 	}
-	
-
-	
-	
+		
 	
 }

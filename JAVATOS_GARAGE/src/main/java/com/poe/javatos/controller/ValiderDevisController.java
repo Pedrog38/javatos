@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.DevisForm;
 import com.poe.javatos.form.ListeDevisAValiderForm;
 import com.poe.javatos.form.ListeDevisForm;
@@ -36,7 +37,8 @@ public class ValiderDevisController {
 	AfficherListeLignesDevisController ctrlAfficheLigneDevis;
 	
 	@GetMapping(value="/DevisValidation")
-	public String afficherDevisAValider(final ModelMap model) 
+
+	public String afficherDevisAValider(final ModelMap model) throws POEException 
 	{			
 		final List<Devis> listNouveauxDevis = serviceDevis.findByStatutNouveauDevis();
 		List<DevisForm> listDevisForms = new ArrayList<>();
@@ -56,7 +58,7 @@ public class ValiderDevisController {
 
 	@PostMapping(value="/TraiterDevisAV")
 	public String traiterListeDevis(@Valid @ModelAttribute(value="listeDevisValiderForm") 
-	 final ListeDevisAValiderForm listeDevisForm,final BindingResult bindingResult, final ModelMap model)
+	 final ListeDevisAValiderForm listeDevisForm,final BindingResult bindingResult, final ModelMap model) throws POEException
 	{
 		return serviceDevis.traiterDevis(listeDevisForm, model);
 	}

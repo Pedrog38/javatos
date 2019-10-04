@@ -32,7 +32,7 @@
 				<thead>
 					<tr>
 						<th>Modèle - Couleur - Délais de production - Prix de vente HT</th>
-						<th>Quantité</th>
+						<th>Quantitï¿½</th>
 						<th>Bt</th>
 					</tr>
 				</thead>
@@ -57,6 +57,6 @@
 			<form:button name="submit" value="valid" > Valider </form:button>
 			
 	</form:form>
-	
+	<input type="button" value="Retour" onclick="history.go(-1)"/><br>
 </body>
 </html>

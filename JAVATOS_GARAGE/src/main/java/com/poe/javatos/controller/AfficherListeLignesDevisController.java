@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.Devis;
 import com.poe.javatos.bean.LigneDevis;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.DevisForm;
 import com.poe.javatos.form.LigneDevisForm;
 import com.poe.javatos.mapper.DevisMapper;
 import com.poe.javatos.mapper.LigneDevisMapper;
-import com.poe.javatos.mapper.ListeDevisMapper;
 import com.poe.javatos.service.IServiceDevis;
 import com.poe.javatos.service.IServiceLigneDevis;
 import com.poe.javatos.service.crud.IServiceDevisCrud;
-import com.poe.javatos.service.crud.ServiceDevisCrudImpl;
 
 @Controller
 @RequestMapping(value = {"/commercial","/admin"}) // Mr Security
@@ -36,7 +35,7 @@ public class AfficherListeLignesDevisController
 	private IServiceLigneDevis serviceLigneDevis;
 	
 	@GetMapping(value="/afficherLignesDevis")
-	public String afficherLigneDevis(ModelMap model) {
+	public String afficherLigneDevis(ModelMap model) throws POEException {
 		
 		final Devis devis = service.findByIdDevis((Integer)model.get("IdDevisAVisualiser"));
 		

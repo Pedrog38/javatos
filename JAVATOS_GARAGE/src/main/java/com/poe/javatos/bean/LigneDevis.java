@@ -71,9 +71,9 @@ public class LigneDevis
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((devis == null) ? 0 : devis.hashCode());
+		result = prime * result + ((devis.getId() == null) ? 0 : devis.getId().hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((model.getId() == null) ? 0 : model.getId().hashCode());
 		result = prime * result + ((quantite == null) ? 0 : quantite.hashCode());
 		return result;
 	}
@@ -90,7 +90,8 @@ public class LigneDevis
 		if (devis == null) {
 			if (other.devis != null)
 				return false;
-		} else if (!devis.equals(other.devis))
+		} else if (!devis.getId().equals(other.devis.getId()))
+
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -100,7 +101,9 @@ public class LigneDevis
 		if (model == null) {
 			if (other.model != null)
 				return false;
-		} else if (!model.equals(other.model))
+
+		} else if (!model.getId().equals(other.model.getId()))
+
 			return false;
 		if (quantite == null) {
 			if (other.quantite != null)
@@ -109,6 +112,6 @@ public class LigneDevis
 			return false;
 		return true;
 	}
-	
+
 	
 }

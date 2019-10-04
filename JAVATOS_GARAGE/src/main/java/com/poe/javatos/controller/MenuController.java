@@ -30,10 +30,11 @@ public class MenuController {
 		{
 			return "menuC";
 		}
-		else return "menuM";}
+		else return "menuM";
+	}
 					
 		
-	}
+}
 	
 //	@GetMapping(value ="C")
 //	public String afficherMenuCommercial (ModelMap model) 

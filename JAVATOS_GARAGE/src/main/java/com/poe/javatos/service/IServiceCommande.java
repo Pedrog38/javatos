@@ -32,6 +32,6 @@ public interface IServiceCommande
 	List<Commande> findCommandeATraiter();
 
 	String traiterVisualiserLivrerCommande( ListeCommandeForm listeCommandeForm, ModelMap model);
-	
+
 	Commande livrerCommande(Commande c);
 }

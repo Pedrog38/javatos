@@ -1,14 +1,23 @@
 package com.poe.javatos.global;
 
-public class StatutCommande 
-{
+public enum StatutCommande 
 
+{
 	//Commande
-	public static final String Nouvelle="Nouvelle";
-	public static final String EnTraitement="EnTraitement";
-	public static final String Prete="Prete";
-	public static final String Livree="Livree";
+	Nouvelle,EnTraitement,Prete,Livree;
+
 	
-	
+	public StatutCommande statusSuivant() 
+	{
+		int  o = ordinal();
+		switch (o) {
+		case 0:return StatutCommande.Nouvelle;
+		case 1:return StatutCommande.EnTraitement;
+		case 2:return StatutCommande.Prete;
+		default :
+			throw new IllegalAccessError();
+		
+		}
+	}
 	
 }

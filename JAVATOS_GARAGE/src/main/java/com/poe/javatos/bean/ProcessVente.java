@@ -3,6 +3,8 @@ package com.poe.javatos.bean;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.poe.javatos.global.StatutCommande;
+
 @MappedSuperclass
 public class ProcessVente 
 {
@@ -19,14 +23,11 @@ public class ProcessVente
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	
+		
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_creation")
 	private Date dateCreation;
 	
-	@Column(name = "statut")
-	private String statut;
 	
 	@ManyToOne
 	@JoinColumn(name = "t_client_id")
@@ -45,21 +46,12 @@ public class ProcessVente
 	}
 
 
-
 	public Date getDateCreation() {
 		return dateCreation;
 	}
 
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
-	}
-
-	public String getStatut() {
-		return statut;
-	}
-
-	public void setStatut(String statut) {
-		this.statut = statut;
 	}
 
 	public Client getClient() {
@@ -80,9 +72,9 @@ public class ProcessVente
 
 	@Override
 	public String toString() {
-		return "ProcessVente [id=" + id + ", dateCreation=" + dateCreation + ", statut="
-				+ statut + ", client=" + client + ", commercialResponsable=" + commercialResponsable + "]";
+		return "ProcessVente [id=" + id + ", dateCreation=" + dateCreation  + ", client=" + client + ", commercialResponsable=" + commercialResponsable + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -92,7 +84,6 @@ public class ProcessVente
 		result = prime * result + ((commercialResponsable == null) ? 0 : commercialResponsable.hashCode());
 		result = prime * result + ((dateCreation == null) ? 0 : dateCreation.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((statut == null) ? 0 : statut.hashCode());
 		return result;
 	}
 
@@ -125,15 +116,7 @@ public class ProcessVente
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (statut == null) {
-			if (other.statut != null)
-				return false;
-		} else if (!statut.equals(other.statut))
-			return false;
 		return true;
 	}
-	
-	
-	
 	
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.persistence.AttributeConverter;
 
-public class DateStringConverter implements AttributeConverter<Date, String> {
+public class DateStringConvertor implements AttributeConverter<Date, String> {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	

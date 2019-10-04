@@ -17,21 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poe.javatos.bean.Commande;
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.CommandeATraiterForm;
 import com.poe.javatos.form.LigneCommandeATraiterForm;
-import com.poe.javatos.global.StatutLigneCommande;
-import com.poe.javatos.mapper.AssignationStockMapper;
 import com.poe.javatos.mapper.CommandeATraiterMapper;
-import com.poe.javatos.mapper.CommandeMapper;
 import com.poe.javatos.mapper.LigneCommandeATraiterMapper;
-import com.poe.javatos.mapper.LigneCommandeMapper;
-import com.poe.javatos.mapper.ListeCommandeMapper;
 import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.IServiceLigneCommande;
 import com.poe.javatos.service.IServiceStock;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 import com.poe.javatos.service.crud.IServiceLigneCommandeCrud;
-import com.poe.javatos.service.crud.IServiceStockCrud;
 
 @Controller
 @RequestMapping(value = {"/magasinier","/admin"}) // Mr Security
@@ -55,7 +50,7 @@ public class TraiterLignesCommandeController
 	
 	
 	@GetMapping(value="/afficherLigneCommandeNouvelle")
-	public String afficherLigneCommande(ModelMap model) {
+	public String afficherLigneCommande(ModelMap model) throws POEException {
 		
 		if(model.get("error")=="true")
 		{
@@ -94,7 +89,7 @@ public class TraiterLignesCommandeController
 	
 	@PostMapping(value="/VisualiserLigneCommandeNouvelle")
 	public String visualiserAfficherLigneCommandeNouvelle(@Valid @ModelAttribute(value="AfficherCommandeForm") 
-	 final CommandeATraiterForm commandeATraiterForm,final BindingResult bindingResult, final ModelMap model)
+	 final CommandeATraiterForm commandeATraiterForm,final BindingResult bindingResult, final ModelMap model) throws POEException
 	{
 		Commande commande = service.findByIdCommande(commandeATraiterForm.getIdCommande());
 		model.addAttribute("CommandeAVisualiser",commande);

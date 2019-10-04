@@ -29,7 +29,7 @@ public class TestsServicesStock {
 	IServiceStock daoStock;
 	
 	@Test
-	public void testStocksEnCommandeFournisseur() 
+	public void testStocksEnCommandeFournisseur() throws POEException 
 	{
 		Stock s1 = new Stock();
 		s1.setId(3); // 2 Stocks initiaux des cruds

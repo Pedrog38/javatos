@@ -13,7 +13,7 @@ import com.poe.javatos.bean.Model;
 import com.poe.javatos.service.crud.IServiceModelCrud;
 
 @Controller
-@RequestMapping(value = {"/commercial","/admin"})
+@RequestMapping(value = {"/commercial","/admin","/magasinier"})
 public class AfficherListeModelController {
 	
 		 @Autowired    

@@ -1,9 +1,6 @@
 package com.poe.javatos.global;
 
-public class StatutLigneCommande 
+public enum StatutLigneCommande 
 {
-	//LigneCommande
-	public static final String NonRenseignee="NonRenseignee";
-	public static final String EnCommandeFournisseur="EnCommandeFournisseur";
-	public static final String Reservee="Reservee";
+	NonRenseignee,EnCommandeFournisseur,Reservee;
 }

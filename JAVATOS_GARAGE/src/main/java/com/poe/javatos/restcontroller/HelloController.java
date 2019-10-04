@@ -1,5 +1,5 @@
 package com.poe.javatos.restcontroller;
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,45 +10,113 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poe.javatos.bean.Client;
-import com.poe.javatos.bean.StatutClient;
+import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
+import com.poe.javatos.service.IServiceStock;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 
 @RestController
-public class HelloController {
+public class HelloController 
+{
 	
 	@Autowired
-	IServiceClientCrud dao;
+	IServiceClientCrud serviceClient;
+	
+	@Autowired
+	IServiceStock serviceStock;
 	
 	@GetMapping("/hello")
-	String salutToutLeMonde() {
-		return "Hello the world";
+	String salutLesKikis() {
+		return "hello Yasmine";
 	}
 	
-	@GetMapping(value = "/client/{id}", produces = "application/json")
-	public Client getClient(@PathVariable(value = "id") int id) {
+	
+	@GetMapping(value ="/client", produces = "application/json")
+	public Client donneMoiUnClient() {
 		Client c = new Client();
-		// remplir client
-		c.setId(id);
-		c.setNom("JONG UN");
-		c.setPrenom("KIM");
-		c.setDateCreation(new Date());
-		StatutClient statut = new StatutClient();
-		statut.setNom("statutest");
-		c.setStatut(statut);
+		c.setNom("georges");
+		c.setSexe("HOMME");
+		c.setMail("georges@gmail.com");	
 		return c;
 	}
 	
-	@GetMapping(value = "/clientdb/{id}", produces = "application/json")
-	public @ResponseBody ResponseEntity<Client> getClientDb(@PathVariable(value = "id") int id) {
-		
-		try {
-			Client c = dao.findByIdClient(id);
-			if (c!=null) {
-				return ResponseEntity.ok().body(c);
-			}
-		}
-		catch (Exception e) {}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	@GetMapping(value ="/client/{id}", produces = "application/json")
+	public Client donneMoiUnClient(@PathVariable(value ="id") Integer idClient) {	
+		Client c = new Client();
+		c.setId(idClient);
+		c.setNom("georges");
+		c.setSexe("HOMME");
+		c.setMail("georges@gmail.com");	
+		return c;
 	}
 	
+	
+	@GetMapping(value ="/client2/{id}", produces = "application/json")
+	public Client chercherUnClientParLid(@PathVariable(value ="id") Integer idClient) {	
+		Client c = serviceClient.findByIdClient(idClient);
+		return c;
+	}
+	
+	@GetMapping(value ="/stock/{idModel}", produces = "application/json")
+	public Stock chercherUnStockParLidModel(@PathVariable(value ="idModel") Integer idModel) throws POEException {	
+		Stock s = serviceStock.findByIdModelStock(idModel);
+		return s;
+	}
+	
+	@GetMapping(value ="/bonjourClient/{id}", produces = "application/json")
+	public @ResponseBody ResponseEntity<Client> 
+		bonjourClient(@PathVariable(value = "id") Integer idClient) {
+		try {
+			Client c = serviceClient.findByIdClient(idClient);
+			if (c!=null) return ResponseEntity.ok().body(c);
+		}
+		catch (Exception e)
+		{			
+		
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+    @GetMapping("/hello2")
+   String salutToutLeMonde()
+   {
+       return "Hello the world";
+   }
+   @GetMapping(value="/helloClient", produces = "application/json")
+   public Client helloClient()
+   {
+       Client c = new Client();
+       c.setId(1);
+       c.setNom("Fucking Awesome");
+       c.setPrenom("Adèle");
+       return c;
+   }
+   @GetMapping(value="/helloClient/{id}", produces = "application/json")
+   public Client helloClientId(@PathVariable(value = "id") Integer idClient)
+   {
+       Client c = new Client();
+       c.setId(idClient);
+       c.setNom("Fucking Awesome");
+       c.setPrenom("Adèle");
+       return c;
+   }
+   @GetMapping(value="/helloClientReel/{id}", produces = "application/json")
+   public Client helloClientIdReel(@PathVariable(value = "id") Integer idClient)
+   {
+       Client c = serviceClient.findByIdClient(idClient);
+       return c;
+   }
+   @GetMapping(value="/helloClientReelException/{id}", produces = "application/json")
+   public @ResponseBody ResponseEntity<Client> helloClientIdReelException(@PathVariable(value = "id") Integer idClient)
+   {
+       try
+       {            
+           Client c = serviceClient.findByIdClient(idClient);
+           return ResponseEntity.ok().body(c);
+       }
+       catch(Exception e)
+       {
+           return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+           //return ResponseEntity.badRequest().body(null);
+       }
+   }
 }

@@ -23,7 +23,7 @@ import com.poe.javatos.service.IServiceCommande;
 import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
 @Controller
-@RequestMapping(value = {"/commercial","/admin"}) // Mr Security
+@RequestMapping(value = {"/commercial","/admin","/magasinier"}) // Mr Security
 public class AfficherListeCommandeController 
 {
 	
@@ -58,6 +58,7 @@ public class AfficherListeCommandeController
 	@PostMapping(value="/VisualiserListeCommande")
 	public String visualiserAfficherListeCommande(@Valid @ModelAttribute(value="ListeAfficherCommandeForm") 
 	 final ListeCommandeForm grosseBoite,final BindingResult bindingResult, final ModelMap model)
+
 	{
 		//System.err.println("Index = "+grosseBoite.getIndex());
 		Integer idCommande = grosseBoite.getListeCommandeForm().get(grosseBoite.getIndex()).getIdCommande();

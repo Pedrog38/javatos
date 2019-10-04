@@ -85,6 +85,7 @@ public class Stock
 		result = prime * result + ((qteCommandee == null) ? 0 : qteCommandee.hashCode());
 		result = prime * result + ((qteDispo == null) ? 0 : qteDispo.hashCode());
 		result = prime * result + ((qteReservee == null) ? 0 : qteReservee.hashCode());
+
 		return result;
 	}
 

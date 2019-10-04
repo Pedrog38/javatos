@@ -12,7 +12,7 @@ import com.poe.javatos.bean.Client;
 import com.poe.javatos.service.crud.IServiceClientCrud;
 
 @Controller
-@RequestMapping(value = {"/commercial","/admin"})
+@RequestMapping(value = {"/commercial","/admin","/magasinier"})
 public class AfficherListeClientController {
 	
 		 @Autowired    

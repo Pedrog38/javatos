@@ -14,6 +14,6 @@ public interface IServiceStock
 	Stock miseAjourAssignation(Stock s, Integer qteAReserver) throws POEException;
 	
 	Stock miseAjourReceptionCommandeFournisseur(Stock s, Integer qteRecue) throws POEException;
-	
+
 	Stock commander(Stock s, Integer qteACommander) throws POEException;
 }

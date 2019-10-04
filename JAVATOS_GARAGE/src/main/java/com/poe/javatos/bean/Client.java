@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.poe.javatos.global.DateStringConverter;
+import com.poe.javatos.global.DateStringConvertor;
 
 @Entity
 @Table(name="t_client")
@@ -34,10 +34,11 @@ public class Client {
 	private String mail;
 	
 	@Column(name = "adresse")
-	private String adresse;
+	private String adresse;	
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_de_creation")
-	@Convert(converter = DateStringConverter.class)
+	@Convert(converter = DateStringConvertor.class)
 	private Date dateCreation;
 	
 	@Column(name = "telephone")
@@ -127,79 +128,6 @@ public class Client {
 		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", adresse=" + adresse
 				+ ", dateCreation=" + dateCreation + ", telephone=" + telephone + ", sexe=" + sexe + ", statut="
 				+ statut + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
-		result = prime * result + ((dateCreation == null) ? 0 : dateCreation.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((sexe == null) ? 0 : sexe.hashCode());
-		result = prime * result + ((statut == null) ? 0 : statut.hashCode());
-		result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Client other = (Client) obj;
-		if (adresse == null) {
-			if (other.adresse != null)
-				return false;
-		} else if (!adresse.equals(other.adresse))
-			return false;
-		if (dateCreation == null) {
-			if (other.dateCreation != null)
-				return false;
-		} else if (!dateCreation.equals(other.dateCreation))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (mail == null) {
-			if (other.mail != null)
-				return false;
-		} else if (!mail.equals(other.mail))
-			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
-			return false;
-		if (sexe == null) {
-			if (other.sexe != null)
-				return false;
-		} else if (!sexe.equals(other.sexe))
-			return false;
-		if (statut == null) {
-			if (other.statut != null)
-				return false;
-		} else if (!statut.equals(other.statut))
-			return false;
-		if (telephone == null) {
-			if (other.telephone != null)
-				return false;
-		} else if (!telephone.equals(other.telephone))
-			return false;
-		return true;
 	}
 	
 	

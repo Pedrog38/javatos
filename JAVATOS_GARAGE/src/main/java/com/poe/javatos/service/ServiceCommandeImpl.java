@@ -184,12 +184,22 @@ public class ServiceCommandeImpl implements IServiceCommande
 		return ctrlAfficherListeCommandeEnCours.afficherListeCommandeEnCours(model);
 	}
 
-	@Transactional
+//	@Transactional
+//	@Override
+//	public Commande livrerCommande(Commande c) 
+//	{
+//		c.setStatut(StatutCommande.Livree);
+//		return dao.save(c);
+//	}
+
 	@Override
-	public Commande livrerCommande(Commande c) 
-	{
-		c.setStatut(StatutCommande.Livree);
-		return dao.save(c);
+	public Commande livrerCommande(Commande c) {
+		c = mettreAJourStatut(c);
+		if( c.getStatut().equals(StatutCommande.Prete)) {
+			c.setStatut(StatutCommande.Livree);
+		}
+			return serviceCommande.updateCommande(c);
+
 	}
 
 	

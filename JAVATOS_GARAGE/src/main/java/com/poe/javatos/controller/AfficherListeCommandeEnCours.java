@@ -20,14 +20,12 @@ import com.poe.javatos.form.ListeCommandeForm;
 import com.poe.javatos.mapper.CommandeMapper;
 import com.poe.javatos.mapper.ListeCommandeMapper;
 import com.poe.javatos.service.IServiceCommande;
-import com.poe.javatos.service.crud.IServiceCommandeCrud;
 
 @Controller
 @RequestMapping(value = {"/commercial","/admin"}) // Mr Security
 public class AfficherListeCommandeEnCours 
 {
-	@Autowired
-	private IServiceCommandeCrud service;
+
 
 	@Autowired
 	private IServiceCommande serviceCommande;

@@ -2,12 +2,16 @@ package com.poe.javatos.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.poe.javatos.global.StatutLigneCommande;
 
 @Entity
 @Table(name = "t_ligne_commande")
@@ -21,7 +25,8 @@ public class LigneCommande
 	private Integer quantite;
 	
 	@Column(name = "statut")
-	private String statut;
+	@Enumerated(EnumType.STRING)
+	private StatutLigneCommande statut;
 	
 	@Column(name = "nb_reservee")
 	private Integer nbResvervees;
@@ -50,11 +55,11 @@ public class LigneCommande
 		this.quantite = quantite;
 	}
 
-	public String getStatut() {
+	public StatutLigneCommande getStatut() {
 		return statut;
 	}
 
-	public void setStatut(String statut) {
+	public void setStatut(StatutLigneCommande statut) {
 		this.statut = statut;
 	}
 
@@ -146,6 +151,6 @@ public class LigneCommande
 			return false;
 		return true;
 	}
-	
+
 	
 }

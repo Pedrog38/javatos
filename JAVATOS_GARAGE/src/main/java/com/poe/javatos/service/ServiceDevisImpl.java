@@ -14,6 +14,7 @@ import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.LigneDevis;
 import com.poe.javatos.controller.AfficherListeLignesDevisController;
 import com.poe.javatos.controller.ValiderDevisController;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.ListeDevisAValiderForm;
 import com.poe.javatos.global.StatutCommande;
 import com.poe.javatos.global.StatutDevis;
@@ -56,8 +57,7 @@ public class ServiceDevisImpl implements IServiceDevis
 
 	@Override
 	@Transactional
-	public Float calculerPrixHTDevis(Devis d) {
-		
+	public Float calculerPrixHTDevis(Devis d) throws POEException {	
 		Float prixtotal = (float) 0;
 		for (LigneDevis ld : service.findByIdDevisLigneDevis(d.getId())) {
 			Float prixligne = service.calculerPrixLigneDevis(ld);
@@ -70,7 +70,7 @@ public class ServiceDevisImpl implements IServiceDevis
 
 	@Override
 	@Transactional
-	public Integer calculerDelaisDevis(Devis d) 
+	public Integer calculerDelaisDevis(Devis d) throws POEException 
 	{
 		Integer delaiDevis = 0;
 		for (LigneDevis ld : service.findByIdDevisLigneDevis(d.getId())) {
@@ -83,7 +83,7 @@ public class ServiceDevisImpl implements IServiceDevis
 	}
 
 	@Override
-	public Float calculerPrixTTCDevis(Devis d) 
+	public Float calculerPrixTTCDevis(Devis d) throws POEException 
 	{
 		Float prixHT = calculerPrixHTDevis(d);
 		Float TVA = prixHT*(d.getClient().getStatut().getTauxTva()/100);
@@ -91,7 +91,7 @@ public class ServiceDevisImpl implements IServiceDevis
 	}
 
 	@Override
-	public String traiterDevis(ListeDevisAValiderForm listeDevisForm, ModelMap model) 
+	public String traiterDevis(ListeDevisAValiderForm listeDevisForm, ModelMap model) throws POEException 
 	{
 		if(listeDevisForm.getIndexVisualiser()!=null)
 		{

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.poe.javatos.global.StatutCommande;
+
 public class CommandeATraiterForm 
 {
 	private Integer idCommande;
@@ -13,7 +15,7 @@ public class CommandeATraiterForm
 	private Float prixTotalHT;
 	private Float prixTotalTTC;
 	private Float taux;
-	private String statutCommande;
+	private StatutCommande statutCommande;
 	private Integer delaiCommande;
 	
 	@Valid
@@ -64,10 +66,10 @@ public class CommandeATraiterForm
 	public void setTaux(Float taux) {
 		this.taux = taux;
 	}
-	public String getStatutCommande() {
+	public StatutCommande getStatutCommande() {
 		return statutCommande;
 	}
-	public void setStatutCommande(String statutCommande) {
+	public void setStatutCommande(StatutCommande statutCommande) {
 		this.statutCommande = statutCommande;
 	}
 	public Integer getDelaiCommande() {

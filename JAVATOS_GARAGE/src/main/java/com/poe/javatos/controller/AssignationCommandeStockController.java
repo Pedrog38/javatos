@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poe.javatos.bean.LigneCommande;
 import com.poe.javatos.bean.Stock;
+import com.poe.javatos.exception.POEException;
 import com.poe.javatos.form.AssignationStockForm;
 import com.poe.javatos.form.ListeAssignationStockForm;
 import com.poe.javatos.global.StatutLigneCommande;
@@ -43,12 +44,10 @@ public class AssignationCommandeStockController
 	IServiceStockCrud serviceStockCrud;
 	
 	@GetMapping(value="/assignationAfficherListe")
-	public String afficherListeAssignation(final ModelMap model)
+	public String afficherListeAssignation(final ModelMap model) throws POEException
 	{
-		if(model.get("listAssignationForm")==null)
-		{			
-			
-			
+		if(model.get("listAssignationForm")==null || model.get("error") =="false")
+		{					
 			List<AssignationStockForm> listAFs = new ArrayList<AssignationStockForm>();
 			List<LigneCommande> listLCs = serviceLigneCommande.findByStatutEnCommandeFournisseurLignesCommande();
 			for (LigneCommande lc : listLCs) 
@@ -68,7 +67,7 @@ public class AssignationCommandeStockController
 	
 	@PostMapping(value="/assignationModifierLigne")
 	public String validerLigneAssignation(@Valid @ModelAttribute(value="listAssignationForm") 
-	 final ListeAssignationStockForm listFormAss,final BindingResult bindingResult, final ModelMap model)
+	 final ListeAssignationStockForm listFormAss,final BindingResult bindingResult, final ModelMap model) throws POEException
 	{
 		if(!bindingResult.hasErrors())
 		{
